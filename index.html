@@ -16,70 +16,68 @@
             height: 100vh;
             margin: 0;
             overflow: hidden;
+            text-align: center;
         }
 
-        /* THE ANIMATION CONTAINER - Sized like your App Squircle */
-        .wolf-box {
-            width: 320px;
-            height: 320px;
-            overflow: hidden;
+        /* THE ANIMATION CONTAINER */
+        .wolf-container {
+            /* We scale the 590px down to 250px for a sharp look on all screens */
+            width: 250px; 
+            height: 241.5px; /* (570/590) * 250 to maintain aspect ratio */
+            background-image: url('wolf_strip.png');
+            background-repeat: no-repeat;
+            background-size: 250px 7487px; /* 250px width, total height is 241.5 * 31 */
+            
+            /* THE KINETICS: 31 frames over 2.5 seconds */
+            /* infinite means it will loop the assembly */
+            animation: assemble-wolf 2.5s steps(31) infinite;
+            
             margin-bottom: 20px;
-            position: relative;
+            filter: drop-shadow(0 0 10px rgba(145, 172, 200, 0.2));
         }
 
-        .wolf-sprite {
-            width: 100%;
-            height: 100%;
-            background: url('wolf_strip.png') no-repeat;
-            background-size: 100% auto;
-            
-            /* THE REFINED ENGINE: 
-               4s for a deliberate assembly, 
-               8s for a slow, professional breath */
-            animation: 
-                move-wolf 4s steps(31) infinite,
-                breath-wolf 8s ease-in-out infinite;
-            
-            /* Clean, steady StilSein Blue glow */
-            filter: drop-shadow(0 0 8px rgba(145, 172, 200, 0.4));
-        }
-
-        /* 31 frames: 0% to 100% position */
-        @keyframes move-wolf {
+        @keyframes assemble-wolf {
             from { background-position: 0 0; }
-            to { background-position: 0 -9920px; } /* (31 * 320px) */
-        }
-
-        /* Subtle breathing instead of flickering */
-        @keyframes breath-wolf {
-            0%, 100% { opacity: 0.8; }
-            50% { opacity: 1; }
+            to { background-position: 0 -7487px; } /* Matches the full height of the scaled strip */
         }
 
         h1 {
-            letter-spacing: 10px;
+            letter-spacing: 8px;
             font-size: 2.2rem;
             margin: 0;
             font-weight: bold;
-            opacity: 0.9;
         }
-        span { color: #91ACC8; }
-
+        h1 span {
+            color: #91ACC8; /* StilSein Blue */
+        }
+        .status-tag {
+            background-color: rgba(145, 172, 200, 0.1);
+            border: 1px solid rgba(145, 172, 200, 0.3);
+            color: #91ACC8;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            margin-top: 15px;
+            text-transform: uppercase;
+        }
         p {
             color: #ADBAB7;
-            font-size: 0.7rem;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            margin-top: 15px;
-            opacity: 0.6;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            margin-top: 20px;
+            line-height: 1.6;
         }
     </style>
 </head>
 <body>
-    <div class="wolf-box">
-        <div class="wolf-sprite"></div>
-    </div>
+
+    <div class="wolf-container"></div>
+    
     <h1>STIL<span>SEIN</span></h1>
+    <div class="status-tag">System Initialization</div>
+    
     <p>BIETJIE GEDULD...<br>Ons bou tans die toekoms van die veld.</p>
+
 </body>
 </html>
