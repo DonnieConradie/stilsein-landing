@@ -18,10 +18,10 @@
             overflow: hidden;
         }
 
-        /* THE ANIMATION CONTAINER */
+        /* THE ANIMATION CONTAINER - Sized like your App Squircle */
         .wolf-box {
-            width: 300px; /* Scaled down for web legibility */
-            height: 290px; /* Proportional to 590x570 */
+            width: 320px;
+            height: 320px;
             overflow: hidden;
             margin-bottom: 20px;
             position: relative;
@@ -31,54 +31,47 @@
             width: 100%;
             height: 100%;
             background: url('wolf_strip.png') no-repeat;
-            background-size: 100% auto; /* Matches the 300px width */
+            background-size: 100% auto;
             
-            /* ANIMATION 1: The Frame Jumps */
+            /* THE REFINED ENGINE: 
+               4s for a deliberate assembly, 
+               8s for a slow, professional breath */
             animation: 
-                move-wolf 3.1s steps(31) infinite,
-                glow-wolf 0.1s ease-in-out infinite; /* High frequency pulse */
+                move-wolf 4s steps(31) infinite,
+                breath-wolf 8s ease-in-out infinite;
             
-            filter: drop-shadow(0 0 5px #91ACC8); /* Subtle StilSein Blue Glow */
+            /* Clean, steady StilSein Blue glow */
+            filter: drop-shadow(0 0 8px rgba(145, 172, 200, 0.4));
         }
 
-        /* Move the background position through 31 frames */
+        /* 31 frames: 0% to 100% position */
         @keyframes move-wolf {
             from { background-position: 0 0; }
-            to { background-position: 0 -8990px; } /* (31 frames * 290px height) */
+            to { background-position: 0 -9920px; } /* (31 * 320px) */
         }
 
-        /* The "Fade-Per-Frame" effect: 0.1s matches roughly 1 frame duration */
-        @keyframes glow-wolf {
-            0%, 100% { opacity: 0.7; transform: scale(0.98); }
-            50% { opacity: 1; transform: scale(1); }
+        /* Subtle breathing instead of flickering */
+        @keyframes breath-wolf {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; }
         }
 
         h1 {
-            letter-spacing: 8px;
+            letter-spacing: 10px;
             font-size: 2.2rem;
             margin: 0;
             font-weight: bold;
+            opacity: 0.9;
         }
         span { color: #91ACC8; }
 
         p {
             color: #ADBAB7;
-            font-size: 0.8rem;
-            letter-spacing: 3px;
+            font-size: 0.7rem;
+            letter-spacing: 4px;
             text-transform: uppercase;
             margin-top: 15px;
-            opacity: 0.8;
-        }
-
-        /* SCANDINE EFFECT: For that industrial radar look */
-        .wolf-box::after {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), 
-                        linear-gradient(90deg, rgba(255, 0, 0, 0.02), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.02));
-            background-size: 100% 2px, 3px 100%;
-            pointer-events: none;
+            opacity: 0.6;
         }
     </style>
 </head>
