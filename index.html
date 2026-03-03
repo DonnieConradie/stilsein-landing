@@ -19,26 +19,28 @@
             text-align: center;
         }
 
-        /* THE ANIMATION CONTAINER */
+        /* THE ANIMATED WOLF */
         .wolf-container {
-            /* We scale the 590px down to 250px for a sharp look on all screens */
             width: 250px; 
-            height: 241.5px; /* (570/590) * 250 to maintain aspect ratio */
+            height: 242px; /* Precision adjustment */
             background-image: url('wolf_strip.png');
             background-repeat: no-repeat;
-            background-size: 250px 7487px; /* 250px width, total height is 241.5 * 31 */
             
-            /* THE KINETICS: 31 frames over 2.5 seconds */
-            /* infinite means it will loop the assembly */
-            animation: assemble-wolf 2.5s steps(31) infinite;
+            /* background-size: width, total-strip-height */
+            /* Math: 242px per frame * 31 frames = 7502px */
+            background-size: 250px 7502px; 
             
-            margin-bottom: 20px;
-            filter: drop-shadow(0 0 10px rgba(145, 172, 200, 0.2));
+            /* THE KINETICS: 31 frames over 7.5 seconds */
+            /* We use 'steps(31)' to ensure each line-trace 'snaps' in */
+            animation: assemble-wolf 7.5s steps(31) infinite;
+            
+            margin: 0 auto 20px auto;
+            filter: drop-shadow(0 0 15px rgba(145, 172, 200, 0.3));
         }
 
         @keyframes assemble-wolf {
             from { background-position: 0 0; }
-            to { background-position: 0 -7487px; } /* Matches the full height of the scaled strip */
+            to { background-position: 0 -7502px; } /* Must match background-size height */
         }
 
         h1 {
