@@ -19,28 +19,13 @@
             text-align: center;
         }
 
-        /* THE ANIMATED WOLF */
-        .wolf-container {
-            width: 250px; 
-            height: 242px; /* Precision adjustment */
-            background-image: url('wolf_strip.png');
-            background-repeat: no-repeat;
-            
-            /* background-size: width, total-strip-height */
-            /* Math: 242px per frame * 31 frames = 7502px */
-            background-size: 250px 7502px; 
-            
-            /* THE KINETICS: 31 frames over 7.5 seconds */
-            /* We use 'steps(31)' to ensure each line-trace 'snaps' in */
-            animation: assemble-wolf 7.5s steps(31) infinite;
-            
-            margin: 0 auto 20px auto;
-            filter: drop-shadow(0 0 15px rgba(145, 172, 200, 0.3));
-        }
-
-        @keyframes assemble-wolf {
-            from { background-position: 0 0; }
-            to { background-position: 0 -7502px; } /* Must match background-size height */
+        /* THE STATIC LOGO */
+        .wolf-logo {
+            width: 200px; 
+            height: auto;
+            margin-bottom: 20px;
+            /* Subtle glow to match the app aesthetic */
+            filter: drop-shadow(0 0 15px rgba(145, 172, 200, 0.2));
         }
 
         h1 {
@@ -48,6 +33,7 @@
             font-size: 2.2rem;
             margin: 0;
             font-weight: bold;
+            text-transform: uppercase;
         }
         h1 span {
             color: #91ACC8; /* StilSein Blue */
@@ -67,17 +53,17 @@
             color: #ADBAB7;
             font-size: 0.85rem;
             letter-spacing: 2px;
-            margin-top: 20px;
+            margin-top: 25px;
             line-height: 1.6;
         }
     </style>
 </head>
 <body>
 
-    <div class="wolf-container"></div>
+    <img src="wolf_white.png" alt="StilSein Wolf" class="wolf-logo">
     
     <h1>STIL<span>SEIN</span></h1>
-    <div class="status-tag">System Initialization</div>
+    <div class="status-tag">In Ontwikkeling</div>
     
     <p>BIETJIE GEDULD...<br>Ons bou tans die toekoms van die veld.</p>
 
