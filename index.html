@@ -15,31 +15,77 @@
             justify-content: center;
             height: 100vh;
             margin: 0;
-            text-align: center;
+            overflow: hidden;
         }
-        img {
-            width: 150px;
+
+        /* THE ANIMATION CONTAINER */
+        .wolf-box {
+            width: 300px; /* Scaled down for web legibility */
+            height: 290px; /* Proportional to 590x570 */
+            overflow: hidden;
             margin-bottom: 20px;
+            position: relative;
         }
+
+        .wolf-sprite {
+            width: 100%;
+            height: 100%;
+            background: url('wolf_strip.png') no-repeat;
+            background-size: 100% auto; /* Matches the 300px width */
+            
+            /* ANIMATION 1: The Frame Jumps */
+            animation: 
+                move-wolf 3.1s steps(31) infinite,
+                glow-wolf 0.1s ease-in-out infinite; /* High frequency pulse */
+            
+            filter: drop-shadow(0 0 5px #91ACC8); /* Subtle StilSein Blue Glow */
+        }
+
+        /* Move the background position through 31 frames */
+        @keyframes move-wolf {
+            from { background-position: 0 0; }
+            to { background-position: 0 -8990px; } /* (31 frames * 290px height) */
+        }
+
+        /* The "Fade-Per-Frame" effect: 0.1s matches roughly 1 frame duration */
+        @keyframes glow-wolf {
+            0%, 100% { opacity: 0.7; transform: scale(0.98); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+
         h1 {
             letter-spacing: 8px;
-            font-size: 2.5rem;
-            margin-bottom: 5px;
+            font-size: 2.2rem;
+            margin: 0;
+            font-weight: bold;
         }
-        span {
-            color: #91ACC8; /* StilSein Blue */
-        }
+        span { color: #91ACC8; }
+
         p {
             color: #ADBAB7;
-            font-size: 0.9rem;
-            letter-spacing: 2px;
-            max-width: 400px;
-            line-height: 1.6;
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-top: 15px;
+            opacity: 0.8;
+        }
+
+        /* SCANDINE EFFECT: For that industrial radar look */
+        .wolf-box::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), 
+                        linear-gradient(90deg, rgba(255, 0, 0, 0.02), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.02));
+            background-size: 100% 2px, 3px 100%;
+            pointer-events: none;
         }
     </style>
 </head>
 <body>
-    <img src="wolf_white.png" alt="StilSein Wolf">
+    <div class="wolf-box">
+        <div class="wolf-sprite"></div>
+    </div>
     <h1>STIL<span>SEIN</span></h1>
     <p>BIETJIE GEDULD...<br>Ons bou tans die toekoms van die veld.</p>
 </body>
