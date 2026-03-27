@@ -25,7 +25,7 @@
       };
     </script>
     <style>
-      /* LOAD CUSTOM FONTS */
+      /* 1. LOAD CUSTOM FONTS */
       @font-face {
         font-family: "TTOctasquares";
         src: url("assets/fonts/TTOctasquares-Bold.ttf") format("truetype");
@@ -41,25 +41,31 @@
         font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       }
 
-      /* THE SEAMLESS TEXTURES */
+      /* 2. THE SEAMLESS TEXTURES (With ?v=2 for Cache-Busting!) */
       .bg-texture-main {
-        background-image: url("assets/images/bg_texture_dark.png");
+        background-image: url("assets/images/bg_texture_dark.png?v=2");
         background-repeat: repeat;
       }
 
-      .panel-texture {
-        background-image: url("assets/images/panel_texture.png");
+      /* New Texture for the Top Navigation Bar */
+      .topbar-texture {
+        background-image: url("assets/images/topbar_texture.png?v=2");
         background-repeat: repeat;
-        /* Blends the light texture perfectly into the dark glassmorphism */
         background-blend-mode: overlay;
-        opacity: 0.95;
       }
 
-      /* GLASSMORPHISM BASE */
+      /* Texture for Sub-panels and Footers */
+      .panel-texture {
+        background-image: url("assets/images/panel_texture.png?v=2");
+        background-repeat: repeat;
+        background-blend-mode: overlay;
+      }
+
+      /* 3. GLASSMORPHISM BASE (Linter Fix: Webkit comes first!) */
       .glass-card {
         background-color: rgba(35, 43, 56, 0.85);
-        backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
+        backdrop-filter: blur(12px);
       }
 
       .glow-blue {
@@ -69,16 +75,31 @@
         box-shadow: 0 0 20px rgba(255, 158, 74, 0.2);
       }
 
-      /* Smooth fade for the living text */
       .fade-transition {
         transition: opacity 0.5s ease-in-out;
+      }
+
+      /* 4. TYPOGRAPHY CLASSES (Linter Fix: Replaces inline styles) */
+      .font-brand-title {
+        font-family: "TTOctasquares", sans-serif;
+        font-size: 20.2px;
+        letter-spacing: 0.372em;
+        line-height: 1;
+      }
+      .font-brand-subtitle {
+        font-family: "Roboto", sans-serif;
+        font-size: 11.7px;
+        letter-spacing: 0.418em;
+      }
+      .font-garet {
+        font-family: "Garet", sans-serif;
       }
     </style>
   </head>
   <body
     class="bg-stilsein-dark text-stilsein-text bg-texture-main relative overflow-x-hidden"
   >
-    <!-- CSS VIGNETTE OVERLAY (Applies dark edges over the tiled texture without breaking it!) -->
+    <!-- CSS VIGNETTE OVERLAY -->
     <div
       class="fixed inset-0 pointer-events-none shadow-[inset_0_0_150px_rgba(0,0,0,0.9)] z-0"
     ></div>
@@ -91,49 +112,32 @@
       class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-jakkals-orange/10 rounded-full blur-3xl -z-10"
     ></div>
 
-    <!-- 1. MAIN NAVIGATION BAR -->
+    <!-- 1. MAIN NAVIGATION BAR (Now uses topbar-texture) -->
     <nav
-      class="fixed top-0 w-full z-50 glass-card panel-texture border-b border-stilsein-blue/20 h-[80px] flex items-center"
+      class="fixed top-0 w-full z-50 glass-card topbar-texture border-b border-stilsein-blue/20 h-[80px] flex items-center"
     >
       <div
         class="max-w-7xl mx-auto w-full px-6 flex justify-between items-center"
       >
-        <!-- Logo & Typography Group -->
         <div class="flex items-center space-x-4">
           <img
             src="assets/images/wolf_white.png"
             alt="StilSein Logo"
             class="h-12 w-auto object-contain"
-            onerror="this.style.display = 'none'"
+            onerror="this.classList.add('hidden')"
           />
           <div class="flex flex-col justify-center mt-1">
-            <!-- TTOctasquares Title -->
-            <span
-              style="
-                font-family: &quot;TTOctasquares&quot;, sans-serif;
-                font-size: 20.2px;
-                letter-spacing: 0.372em;
-                line-height: 1;
-              "
-              class="text-white"
-            >
+            <span class="text-white font-bold font-brand-title">
               STIL<span class="text-stilsein-blue">SEIN</span>
             </span>
-            <!-- Roboto Subtitle -->
             <span
-              style="
-                font-family: &quot;Roboto&quot;, sans-serif;
-                font-size: 11.7px;
-                letter-spacing: 0.418em;
-              "
-              class="text-stilsein-muted mt-[4px] uppercase font-bold"
+              class="text-stilsein-muted mt-[4px] uppercase font-bold font-brand-subtitle"
             >
               Data Sonder Grense
             </span>
           </div>
         </div>
 
-        <!-- Desktop Links -->
         <div
           class="hidden md:flex space-x-8 text-[11px] font-bold tracking-[0.2em] text-stilsein-muted uppercase"
         >
@@ -155,15 +159,13 @@
     </nav>
 
     <!-- 2. SUB-PANEL (The Living Text Ticker) -->
-    <!-- Starts at 80px (below nav). Scrolls up to become a 4px blue line -->
     <div
       id="sub-panel"
       class="fixed top-[80px] w-full z-40 glass-card panel-texture border-b border-stilsein-blue/10 transition-all duration-500 ease-in-out flex items-center justify-center overflow-hidden h-[40px]"
     >
       <div
         id="ticker-text"
-        class="fade-transition text-[11px] tracking-[0.2em] text-stilsein-muted uppercase font-bold text-center px-4"
-        style="font-family: &quot;Garet&quot;, sans-serif"
+        class="fade-transition text-[11px] tracking-[0.2em] text-stilsein-muted uppercase font-bold text-center px-4 font-garet"
       >
         Industriële Langafstand Moniteringsagteware
       </div>
@@ -179,8 +181,7 @@
         DIE BEDRYFSTELSEL VIR DIE AFRIKA-PLAAS
       </div>
       <h1
-        class="text-5xl md:text-7xl font-black text-white tracking-tight mb-6 drop-shadow-lg"
-        style="font-family: &quot;Garet&quot;, sans-serif"
+        class="text-5xl md:text-7xl font-black text-white tracking-tight mb-6 drop-shadow-lg font-garet"
       >
         DATA SONDER <br /><span class="text-stilsein-blue">GRENSE.</span>
       </h1>
@@ -197,7 +198,6 @@
         >
           ONTDEK DIE STELSEL
         </a>
-        <!-- FIX: Linter rel="noopener noreferrer" added -->
         <a
           href="https://wa.me/27718162636"
           target="_blank"
@@ -218,10 +218,7 @@
     <section id="die-stelsel" class="py-20 px-6 relative z-10">
       <div class="max-w-6xl mx-auto">
         <div class="text-center mb-16">
-          <h2
-            class="text-3xl md:text-4xl font-bold text-white mb-4"
-            style="font-family: &quot;Garet&quot;, sans-serif"
-          >
+          <h2 class="text-3xl md:text-4xl font-bold text-white mb-4 font-garet">
             ONAFHANKLIK VAN ESKOM EN TELKOM.
           </h2>
           <p class="text-stilsein-muted max-w-2xl mx-auto">
@@ -334,8 +331,7 @@
           >
             <div class="text-center mb-6 z-10">
               <h4
-                class="text-white font-bold tracking-[0.2em] text-sm"
-                style="font-family: &quot;TTOctasquares&quot;, sans-serif"
+                class="text-white font-bold tracking-[0.2em] text-sm font-brand-title"
               >
                 STILSEIN KERN
               </h4>
@@ -413,7 +409,6 @@
                   >WAGWOLF<br />SEKURITEIT</span
                 >
               </div>
-
               <!-- Ghost Node -->
               <div
                 class="bg-stilsein-dark/50 rounded-xl border border-white/5 flex flex-col items-center justify-center p-2 opacity-50"
@@ -483,7 +478,6 @@
                   >DRUKWOLF<br />PYPDRUK</span
                 >
               </div>
-
               <!-- Ghost Node -->
               <div
                 class="bg-stilsein-dark/50 rounded-xl border border-white/5 flex flex-col items-center justify-center p-2 opacity-50"
@@ -568,10 +562,7 @@
 
         <!-- The Text -->
         <div class="w-full lg:w-1/2">
-          <h2
-            class="text-3xl md:text-4xl font-bold text-white mb-6"
-            style="font-family: &quot;Garet&quot;, sans-serif"
-          >
+          <h2 class="text-3xl md:text-4xl font-bold text-white mb-6 font-garet">
             BOU JOU RYK, EEN SENSOR OP 'N SLAG.
           </h2>
           <p class="text-stilsein-muted text-lg mb-6 leading-relaxed">
@@ -603,17 +594,13 @@
       id="kontak"
       class="py-16 px-6 text-center border-t border-white/10 z-10 relative glass-card panel-texture"
     >
-      <h2
-        class="text-3xl font-bold text-white mb-8"
-        style="font-family: &quot;Garet&quot;, sans-serif"
-      >
+      <h2 class="text-3xl font-bold text-white mb-8 font-garet">
         GEREED OM JOU PLAAS TE KOPPEL?
       </h2>
 
       <div
         class="flex flex-col sm:flex-row justify-center items-center gap-6 mb-12"
       >
-        <!-- FIX: Linter rel="noopener noreferrer" added -->
         <a
           href="https://wa.me/27718162636"
           target="_blank"
@@ -657,7 +644,6 @@
           // Expand back to glassmorphism panel
           subPanel.style.height = "40px";
           tickerText.style.opacity = "1";
-          // Remove inline background color to let CSS class handle the texture
           subPanel.style.backgroundColor = "";
           subPanel.style.borderBottom = "1px solid rgba(145, 172, 200, 0.2)";
         }
@@ -667,7 +653,7 @@
       const phrases = [
         "Industriële Langafstand Moniteringsagteware",
         "Beheer Jou Hele Boerderynetwerk op Een Skerm",
-        "Jou Oë en Ore in Sein-Dooie Sones",
+        "Jou Oë en Ore in die Veld",
         "Genereer Professionele PDF en CSV Verslae met Een Kliek",
         "Een Platform vir Reën, Sekuriteit, en Damvlakke",
         "Oorbrug Afstande Sonder Eskom of Telkom",
@@ -679,15 +665,13 @@
       let currentPhraseIndex = 0;
 
       setInterval(() => {
-        // Only fade text if the panel is open (not scrolled down)
         if (window.scrollY <= 50) {
-          tickerText.style.opacity = 0; // Fade out
-
+          tickerText.style.opacity = 0;
           setTimeout(() => {
             currentPhraseIndex = (currentPhraseIndex + 1) % phrases.length;
             tickerText.innerText = phrases[currentPhraseIndex];
-            tickerText.style.opacity = 1; // Fade in
-          }, 500); // Sync with CSS transition duration
+            tickerText.style.opacity = 1;
+          }, 500);
         }
       }, 5000);
     </script>
