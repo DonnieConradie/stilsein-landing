@@ -25,7 +25,6 @@
       };
     </script>
     <style>
-      /* 1. LOAD CUSTOM FONTS */
       @font-face {
         font-family: "TTOctasquares";
         src: url("assets/fonts/TTOctasquares-Bold.ttf") format("truetype");
@@ -41,27 +40,21 @@
         font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       }
 
-      /* 2. THE SEAMLESS TEXTURES (With ?v=2 for Cache-Busting!) */
       .bg-texture-main {
         background-image: url("assets/images/bg_texture_dark.png?v=2");
         background-repeat: repeat;
       }
-
-      /* New Texture for the Top Navigation Bar */
       .topbar-texture {
         background-image: url("assets/images/topbar_texture.png?v=2");
         background-repeat: repeat;
         background-blend-mode: overlay;
       }
-
-      /* Texture for Sub-panels and Footers */
       .panel-texture {
         background-image: url("assets/images/panel_texture.png?v=2");
         background-repeat: repeat;
         background-blend-mode: overlay;
       }
 
-      /* 3. GLASSMORPHISM BASE (Linter Fix: Webkit comes first!) */
       .glass-card {
         background-color: rgba(35, 43, 56, 0.85);
         -webkit-backdrop-filter: blur(12px);
@@ -71,28 +64,25 @@
       .glow-blue {
         box-shadow: 0 0 20px rgba(145, 172, 200, 0.15);
       }
-      .glow-orange {
-        box-shadow: 0 0 20px rgba(255, 158, 74, 0.2);
-      }
-
       .fade-transition {
         transition: opacity 0.5s ease-in-out;
       }
 
-      /* 4. TYPOGRAPHY CLASSES (Linter Fix: Replaces inline styles) */
       .font-brand-title {
         font-family: "TTOctasquares", sans-serif;
         font-size: 20.2px;
         letter-spacing: 0.372em;
         line-height: 1;
       }
-      .font-brand-subtitle {
-        font-family: "Roboto", sans-serif;
-        font-size: 11.7px;
-        letter-spacing: 0.418em;
-      }
       .font-garet {
         font-family: "Garet", sans-serif;
+      }
+
+      /* New Roboto styling for the exact layout requested */
+      .font-roboto-wide {
+        font-family: "Roboto", sans-serif;
+        font-weight: 400;
+        letter-spacing: 0.5em; /* Stretched tracking */
       }
     </style>
   </head>
@@ -131,16 +121,26 @@
               >STIL<span class="text-stilsein-blue">SEIN</span></span
             >
             <span
-              class="text-stilsein-muted mt-[4px] uppercase font-bold font-brand-subtitle"
-              >Data Sonder Grense</span
+              class="text-stilsein-muted mt-[4px] uppercase font-bold"
+              style="
+                font-family: &quot;Roboto&quot;, sans-serif;
+                font-size: 11.7px;
+                letter-spacing: 0.418em;
+              "
             >
+              Data Sonder Grense
+            </span>
           </div>
         </div>
 
-        <!-- Desktop Links -->
         <div
           class="hidden md:flex space-x-8 text-[11px] font-bold tracking-[0.2em] text-stilsein-muted uppercase"
         >
+          <a
+            href="#hoe-dit-werk"
+            class="hover:text-jakkals-orange transition-colors"
+            >Hoe Dit Werk</a
+          >
           <a
             href="#die-stelsel"
             class="hover:text-jakkals-orange transition-colors"
@@ -156,29 +156,11 @@
           >
         </div>
 
-        <!-- Mobile Hamburger Button -->
+        <!-- FIX 1: Cleaned Hamburger Button -->
         <button
           id="mobile-menu-btn"
           class="md:hidden text-stilsein-blue focus:outline-none"
           aria-label="Maak kieslys oop"
-          title="Kieslys"
-        >
-          <svg
-            class="w-8 h-8"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M4 6h16M4 12h16M4 18h16"
-            ></path>
-          </svg>
-        </button>
-          id="mobile-menu-btn"
-          class="md:hidden text-stilsein-blue focus:outline-none"
         >
           <svg
             class="w-8 h-8"
@@ -197,11 +179,16 @@
       </div>
     </nav>
 
-    <!-- Mobile Dropdown Menu (Hidden by default) -->
+    <!-- Mobile Dropdown Menu -->
     <div
       id="mobile-menu"
       class="fixed top-[80px] w-full z-40 glass-card panel-texture border-b border-stilsein-blue/20 flex flex-col items-center space-y-6 py-6 transform -translate-y-full opacity-0 transition-all duration-300 ease-in-out md:hidden"
     >
+      <a
+        href="#hoe-dit-werk"
+        class="mobile-link text-xs font-bold tracking-[0.2em] text-stilsein-muted uppercase hover:text-jakkals-orange"
+        >Hoe Dit Werk</a
+      >
       <a
         href="#die-stelsel"
         class="mobile-link text-xs font-bold tracking-[0.2em] text-stilsein-muted uppercase hover:text-jakkals-orange"
@@ -234,18 +221,19 @@
 
     <!-- 3. HERO SECTION -->
     <section
-      class="pt-48 pb-20 px-6 min-h-screen flex flex-col justify-center items-center text-center relative z-10"
+      class="pt-48 pb-20 px-6 min-h-[80vh] flex flex-col justify-center items-center text-center relative z-10"
     >
-      <div
-        class="inline-block px-4 py-1 rounded-full border border-jakkals-orange/30 bg-jakkals-orange/10 text-jakkals-orange text-xs font-bold tracking-[0.2em] mb-6"
-      >
-        DIE BEDRYFSTELSEL VIR DIE AFRIKA-PLAAS
-      </div>
+      <!-- FIX 2: BIG STILSEIN & Slik DATA SONDER GRENSE -->
       <h1
-        class="text-5xl md:text-7xl font-black text-white tracking-tight mb-6 drop-shadow-lg font-garet"
+        class="text-6xl md:text-8xl font-black text-white tracking-widest mb-4 drop-shadow-lg font-brand-title"
       >
-        DATA SONDER <br /><span class="text-stilsein-blue">GRENSE.</span>
+        STIL<span class="text-stilsein-blue">SEIN</span>
       </h1>
+      <h2
+        class="text-sm md:text-xl text-stilsein-blue mb-10 uppercase font-roboto-wide"
+      >
+        Data Sonder Grense
+      </h2>
       <p
         class="text-lg md:text-xl text-stilsein-muted max-w-2xl mx-auto mb-10 leading-relaxed"
       >
@@ -254,7 +242,7 @@
       </p>
       <div class="flex flex-col sm:flex-row gap-4">
         <a
-          href="#die-stelsel"
+          href="#hoe-dit-werk"
           class="px-8 py-4 bg-stilsein-blue text-stilsein-dark font-bold rounded-lg hover:bg-white transition-all shadow-[0_0_15px_rgba(145,172,200,0.4)] tracking-wide"
         >
           ONTDEK DIE STELSEL
@@ -275,6 +263,91 @@
       </div>
     </section>
 
+    <!-- FIX 3: NEW "HOW IT WORKS" SECTION -->
+    <section
+      id="hoe-dit-werk"
+      class="py-20 px-6 bg-black/20 border-y border-white/5 relative z-10"
+    >
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold text-white mb-4 font-garet">
+            HOE WERK DIE STILSEIN NETWERK?
+          </h2>
+          <p class="text-stilsein-muted max-w-2xl mx-auto">
+            Vergeet van swak selfoonopvangs. Ons skep 'n private, langafstand
+            radionetwerk oor jou hele plaas.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
+          <!-- Line connecting steps (Desktop only) -->
+          <div
+            class="hidden md:block absolute top-1/2 left-[10%] right-[10%] h-0.5 bg-stilsein-blue/20 -z-10"
+          ></div>
+
+          <div
+            class="text-center bg-stilsein-card/80 p-6 rounded-2xl border border-white/5 backdrop-blur-md"
+          >
+            <div
+              class="w-16 h-16 mx-auto bg-stilsein-dark border-2 border-stilsein-blue rounded-full flex items-center justify-center mb-4 z-10 relative"
+            >
+              <span class="text-2xl">📡</span>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">1. Die Sensors</h3>
+            <p class="text-xs text-stilsein-muted leading-relaxed">
+              Ons plaas battery-aangedrewe sensors (reënmeters, hekke, damme) in
+              die veld. Die battery hou tot 10 jaar.
+            </p>
+          </div>
+
+          <div
+            class="text-center bg-stilsein-card/80 p-6 rounded-2xl border border-white/5 backdrop-blur-md"
+          >
+            <div
+              class="w-16 h-16 mx-auto bg-stilsein-dark border-2 border-jakkals-orange rounded-full flex items-center justify-center mb-4 z-10 relative"
+            >
+              <span class="text-2xl">📻</span>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">2. Die Gateway</h3>
+            <p class="text-xs text-stilsein-muted leading-relaxed">
+              Een sentrale basisstasie by die opstal vang radioseine van
+              kilometers ver op. Geen SIM-kaarte benodig op die landerye nie.
+            </p>
+          </div>
+
+          <div
+            class="text-center bg-stilsein-card/80 p-6 rounded-2xl border border-white/5 backdrop-blur-md"
+          >
+            <div
+              class="w-16 h-16 mx-auto bg-stilsein-dark border-2 border-stilsein-blue rounded-full flex items-center justify-center mb-4 z-10 relative"
+            >
+              <span class="text-2xl">☁️</span>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">3. Die Wolk</h3>
+            <p class="text-xs text-stilsein-muted leading-relaxed">
+              Die stelsel stuur data blitsvinnig na ons veilige bedieners waar
+              Jakkals-KI (Kunsmatige Intelligensie) dit ontleed.
+            </p>
+          </div>
+
+          <div
+            class="text-center bg-stilsein-card/80 p-6 rounded-2xl border border-white/5 backdrop-blur-md"
+          >
+            <div
+              class="w-16 h-16 mx-auto bg-stilsein-dark border-2 border-jakkals-orange rounded-full flex items-center justify-center mb-4 z-10 relative"
+            >
+              <span class="text-2xl">📱</span>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">4. Die App</h3>
+            <p class="text-xs text-stilsein-muted leading-relaxed">
+              Alles vertoon onmiddellik en mooi georganiseerd op jou foon. Jy
+              kry waarskuwings nog voor 'n krisis tref.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- 4. THE PROBLEM -->
     <section id="die-stelsel" class="py-20 px-6 relative z-10">
       <div class="max-w-6xl mx-auto">
@@ -288,9 +361,7 @@
             StilSein is anders.
           </p>
         </div>
-
         <div class="grid md:grid-cols-3 gap-8">
-          <!-- Card 1 -->
           <div class="glass-card p-8 rounded-2xl glow-blue text-center">
             <div
               class="w-14 h-14 mx-auto bg-stilsein-blue/10 rounded-full flex items-center justify-center mb-6 border border-stilsein-blue/30"
@@ -313,14 +384,12 @@
               Die Krag van die Wolf
             </h3>
             <p class="text-sm text-stilsein-muted">
-              Ons plaaslike LoRaWAN-basisstasie (Gateway) trek data van
-              kilometers ver, sonder dat jy sellulêre opvangs op die landerye
-              nodig het.
+              Die basisstasie tree op as die brein. Plaas dit by die opstal met
+              internet, en dit dek jou hele plaas.
             </p>
           </div>
-          <!-- Card 2 -->
           <div
-            class="glass-card p-8 rounded-2xl glow-orange text-center border-jakkals-orange/30"
+            class="glass-card p-8 rounded-2xl border border-jakkals-orange/30 text-center"
           >
             <div
               class="w-14 h-14 mx-auto bg-jakkals-orange/10 rounded-full flex items-center justify-center mb-6 border border-jakkals-orange/30"
@@ -343,12 +412,10 @@
               Die Slim van die Jakkals
             </h3>
             <p class="text-sm text-stilsein-muted">
-              Moenie in data verdrink nie. Ons gevorderde AI-stelsel, Jakkals,
-              ontleed hittegolwe en storm-patrone, en bedien bruikbare raad op
-              'n skinkbord.
+              Ons gevorderde AI-stelsel ontleed weersomstandighede en bedien
+              proaktiewe, boerdery-spesifieke raad direk op jou foon.
             </p>
           </div>
-          <!-- Card 3 -->
           <div class="glass-card p-8 rounded-2xl glow-blue text-center">
             <div
               class="w-14 h-14 mx-auto bg-stilsein-blue/10 rounded-full flex items-center justify-center mb-6 border border-stilsein-blue/30"
@@ -369,69 +436,68 @@
             </div>
             <h3 class="text-xl font-bold text-white mb-3">Bou vir 'n Dekade</h3>
             <p class="text-sm text-stilsein-muted">
-              Die sensors op die veld is gebou om tot 10 jaar op 'n enkele
-              battery te hardloop. Installeer en vergeet daarvan.
+              Die hardeware is oudio-ingeneur vir uiterste hitte en reën. Sit
+              dit op 'n paal en laat dit sy werk doen.
             </p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 5.1 THE ECOSYSTEM (THE 3x3 INTERACTIVE GRID) -->
+    <!-- 5. THE ECOSYSTEM (THE 3x3 INTERACTIVE GRID) -->
     <section
       id="ekosisteem"
       class="py-20 px-6 bg-black/40 border-y border-white/5 relative z-10"
     >
       <div class="max-w-7xl mx-auto">
+        <!-- FIX 4: NEW CATCHY TITLE -->
         <div class="text-center mb-16">
           <h2 class="text-3xl md:text-4xl font-bold text-white mb-4 font-garet">
-            BOU JOU RYK, EEN SENSOR OP 'N SLAG.
+            MONITOR JOU HELE PLAAS ONDER EEN DAK.
           </h2>
           <p
             class="text-stilsein-muted text-lg max-w-2xl mx-auto leading-relaxed"
           >
-            Beweeg oor enige skerm hieronder om diepte-analise te sien. Jou app
-            pas outomaties aan namate jou plaas groei.
+            Raak aan enige skerm hieronder om diepte-analise te sien.
           </p>
         </div>
 
-        <!-- The 3x3 Phone Grid -->
-        <!-- On mobile: 1 column. Tablet: 2 columns. Desktop: 3 columns -->
+        <!-- The 3x3 Phone Grid with FIX 6 Tap-to-Toggle Logic -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-          <!-- SLOT 1: RAIN GAUGE (Top Left) -->
+          <!-- SLOT 1 -->
           <div
-            class="relative group cursor-pointer w-full max-w-[300px] mx-auto aspect-[1/2] transition-transform duration-300 hover:-translate-y-2"
+            class="relative w-full max-w-[300px] mx-auto aspect-[1/2] transition-transform duration-300 hover:-translate-y-2 cursor-pointer"
+            onclick="toggleMockup(this)"
           >
             <img
               src="assets/images/mockup_rain_1.png"
-              class="absolute inset-0 w-full h-full object-contain transition-opacity duration-700 ease-in-out group-hover:opacity-0"
+              class="img-1 absolute inset-0 w-full h-full object-contain transition-opacity duration-700 ease-in-out"
               alt="Rain Dashboard"
             />
             <img
               src="assets/images/mockup_rain_2.png"
-              class="absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-700 ease-in-out group-hover:opacity-100"
+              class="img-2 absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-700 ease-in-out"
               alt="Rain Chart"
             />
-            <!-- Text Label below phone -->
             <div
               class="absolute -bottom-8 w-full text-center text-stilsein-blue text-xs tracking-widest font-bold font-garet"
             >
               WEERWOLF REËNVAL
             </div>
           </div>
-
-          <!-- SLOT 2: FORECAST (Top Center) -->
+          <!-- SLOT 2 -->
           <div
-            class="relative group cursor-pointer w-full max-w-[300px] mx-auto aspect-[1/2] transition-transform duration-300 hover:-translate-y-2"
+            class="relative w-full max-w-[300px] mx-auto aspect-[1/2] transition-transform duration-300 hover:-translate-y-2 cursor-pointer"
+            onclick="toggleMockup(this)"
           >
             <img
               src="assets/images/mockup_forecast_1.png"
-              class="absolute inset-0 w-full h-full object-contain transition-opacity duration-700 ease-in-out group-hover:opacity-0"
+              class="img-1 absolute inset-0 w-full h-full object-contain transition-opacity duration-700 ease-in-out"
               alt="Forecast Dashboard"
             />
             <img
               src="assets/images/mockup_forecast_2.png"
-              class="absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-700 ease-in-out group-hover:opacity-100"
+              class="img-2 absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-700 ease-in-out"
               alt="Forecast Chart"
             />
             <div
@@ -440,19 +506,19 @@
               SATELLIET VOORSPELLING
             </div>
           </div>
-
-          <!-- SLOT 3: SECURITY (Top Right) -->
+          <!-- SLOT 3 -->
           <div
-            class="relative group cursor-pointer w-full max-w-[300px] mx-auto aspect-[1/2] transition-transform duration-300 hover:-translate-y-2"
+            class="relative w-full max-w-[300px] mx-auto aspect-[1/2] transition-transform duration-300 hover:-translate-y-2 cursor-pointer"
+            onclick="toggleMockup(this)"
           >
             <img
               src="assets/images/mockup_security_1.png"
-              class="absolute inset-0 w-full h-full object-contain transition-opacity duration-700 ease-in-out group-hover:opacity-0"
-              alt="Security Dashboard"
+              class="img-1 absolute inset-0 w-full h-full object-contain transition-opacity duration-700 ease-in-out"
+              alt="Security"
             />
             <img
               src="assets/images/mockup_security_2.png"
-              class="absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-700 ease-in-out group-hover:opacity-100"
+              class="img-2 absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-700 ease-in-out"
               alt="Security Event"
             />
             <div
@@ -461,19 +527,19 @@
               WAGWOLF SEKURITEIT
             </div>
           </div>
-
-          <!-- SLOT 4: DAM LEVELS (Mid Left) -->
+          <!-- SLOT 4 -->
           <div
-            class="relative group cursor-pointer w-full max-w-[300px] mx-auto aspect-[1/2] transition-transform duration-300 hover:-translate-y-2"
+            class="relative w-full max-w-[300px] mx-auto aspect-[1/2] transition-transform duration-300 hover:-translate-y-2 cursor-pointer"
+            onclick="toggleMockup(this)"
           >
             <img
               src="assets/images/mockup_dam_1.png"
-              class="absolute inset-0 w-full h-full object-contain transition-opacity duration-700 ease-in-out group-hover:opacity-0"
-              alt="Dam Dashboard"
+              class="img-1 absolute inset-0 w-full h-full object-contain transition-opacity duration-700 ease-in-out"
+              alt="Dam"
             />
             <img
               src="assets/images/mockup_dam_2.png"
-              class="absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-700 ease-in-out group-hover:opacity-100"
+              class="img-2 absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-700 ease-in-out"
               alt="Dam Chart"
             />
             <div
@@ -482,20 +548,20 @@
               WATERWOLF DAMVLAKKE
             </div>
           </div>
-
-          <!-- SLOT 5: CORE HUB (Center) -->
+          <!-- SLOT 5: CORE HUB (FIX 5: Drop-shadow directly on img) -->
           <div
-            class="relative group cursor-pointer w-full max-w-[300px] mx-auto aspect-[1/2] transition-transform duration-300 hover:-translate-y-2 lg:scale-105 z-20"
+            class="relative w-full max-w-[300px] mx-auto aspect-[1/2] transition-transform duration-300 hover:-translate-y-2 lg:scale-105 z-20 cursor-pointer"
+            onclick="toggleMockup(this)"
           >
             <img
               src="assets/images/mockup_hub_1.png"
-              class="absolute inset-0 w-full h-full object-contain transition-opacity duration-700 ease-in-out group-hover:opacity-0 glow-orange"
-              alt="Omni Dashboard"
+              class="img-1 absolute inset-0 w-full h-full object-contain transition-opacity duration-700 ease-in-out drop-shadow-[0_0_20px_rgba(255,158,74,0.6)]"
+              alt="Hub"
             />
             <img
               src="assets/images/mockup_hub_2.png"
-              class="absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-700 ease-in-out group-hover:opacity-100 glow-blue"
-              alt="Wolf Cave Settings"
+              class="img-2 absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-700 ease-in-out drop-shadow-[0_0_20px_rgba(145,172,200,0.6)]"
+              alt="Settings"
             />
             <div
               class="absolute -bottom-8 w-full text-center text-white text-sm tracking-widest font-black font-garet drop-shadow-lg"
@@ -503,19 +569,19 @@
               STILSEIN KERN
             </div>
           </div>
-
-          <!-- SLOT 6: PIPE PRESSURE (Mid Right) -->
+          <!-- SLOT 6 -->
           <div
-            class="relative group cursor-pointer w-full max-w-[300px] mx-auto aspect-[1/2] transition-transform duration-300 hover:-translate-y-2"
+            class="relative w-full max-w-[300px] mx-auto aspect-[1/2] transition-transform duration-300 hover:-translate-y-2 cursor-pointer"
+            onclick="toggleMockup(this)"
           >
             <img
               src="assets/images/mockup_pipe_1.png"
-              class="absolute inset-0 w-full h-full object-contain transition-opacity duration-700 ease-in-out group-hover:opacity-0"
-              alt="Pipe Dashboard"
+              class="img-1 absolute inset-0 w-full h-full object-contain transition-opacity duration-700 ease-in-out"
+              alt="Pipe"
             />
             <img
               src="assets/images/mockup_pipe_2.png"
-              class="absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-700 ease-in-out group-hover:opacity-100"
+              class="img-2 absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-700 ease-in-out"
               alt="Pipe Chart"
             />
             <div
@@ -524,20 +590,20 @@
               DRUKWOLF PYPDRUK
             </div>
           </div>
-
-          <!-- SLOT 7: TRACKING (Bot Left) -->
+          <!-- SLOT 7 -->
           <div
-            class="relative group cursor-pointer w-full max-w-[300px] mx-auto aspect-[1/2] transition-transform duration-300 hover:-translate-y-2"
+            class="relative w-full max-w-[300px] mx-auto aspect-[1/2] transition-transform duration-300 hover:-translate-y-2 cursor-pointer"
+            onclick="toggleMockup(this)"
           >
             <img
               src="assets/images/mockup_tracking_1.png"
-              class="absolute inset-0 w-full h-full object-contain transition-opacity duration-700 ease-in-out group-hover:opacity-0"
-              alt="Tracking Dashboard"
+              class="img-1 absolute inset-0 w-full h-full object-contain transition-opacity duration-700 ease-in-out"
+              alt="Tracker"
             />
             <img
               src="assets/images/mockup_tracking_2.png"
-              class="absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-700 ease-in-out group-hover:opacity-100"
-              alt="Tracking Map"
+              class="img-2 absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-700 ease-in-out"
+              alt="Tracker Map"
             />
             <div
               class="absolute -bottom-8 w-full text-center text-purple-400 text-xs tracking-widest font-bold font-garet"
@@ -545,19 +611,19 @@
               SPOORWOLF OPSPORING
             </div>
           </div>
-
-          <!-- SLOT 8: SOIL MOISTURE (Bot Center) -->
+          <!-- SLOT 8 -->
           <div
-            class="relative group cursor-pointer w-full max-w-[300px] mx-auto aspect-[1/2] transition-transform duration-300 hover:-translate-y-2"
+            class="relative w-full max-w-[300px] mx-auto aspect-[1/2] transition-transform duration-300 hover:-translate-y-2 cursor-pointer"
+            onclick="toggleMockup(this)"
           >
             <img
               src="assets/images/mockup_soil_1.png"
-              class="absolute inset-0 w-full h-full object-contain transition-opacity duration-700 ease-in-out group-hover:opacity-0"
-              alt="Soil Dashboard"
+              class="img-1 absolute inset-0 w-full h-full object-contain transition-opacity duration-700 ease-in-out"
+              alt="Soil"
             />
             <img
               src="assets/images/mockup_soil_2.png"
-              class="absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-700 ease-in-out group-hover:opacity-100"
+              class="img-2 absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-700 ease-in-out"
               alt="Soil Chart"
             />
             <div
@@ -566,89 +632,185 @@
               GRONDWOLF GRONDVOG
             </div>
           </div>
-
-          <!-- SLOT 9: FIRE WARNING (Bot Right) -->
+          <!-- SLOT 9 -->
           <div
-            class="relative group cursor-pointer w-full max-w-[300px] mx-auto aspect-[1/2] transition-transform duration-300 hover:-translate-y-2"
+            class="relative w-full max-w-[300px] mx-auto aspect-[1/2] transition-transform duration-300 hover:-translate-y-2 cursor-pointer"
+            onclick="toggleMockup(this)"
           >
             <img
               src="assets/images/mockup_fire_1.png"
-              class="absolute inset-0 w-full h-full object-contain transition-opacity duration-700 ease-in-out group-hover:opacity-0"
-              alt="Fire Dashboard"
+              class="img-1 absolute inset-0 w-full h-full object-contain transition-opacity duration-700 ease-in-out"
+              alt="Fire"
             />
             <img
               src="assets/images/mockup_fire_2.png"
-              class="absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-700 ease-in-out group-hover:opacity-100"
-              alt="Fire Chart"
+              class="img-2 absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-700 ease-in-out"
+              alt="Fire Map"
             />
             <div
               class="absolute -bottom-8 w-full text-center text-deep-orange-400 text-xs tracking-widest font-bold font-garet"
             >
-              VELDWOLF BRANDWAARSKUWING
+              VELDWOLF BRANDE
             </div>
           </div>
         </div>
-      </div>
 
+        <!-- The Preserved Text -->
         <div class="max-w-4xl mx-auto mt-24 text-center">
-          <h2 class="text-3xl md:text-4xl font-bold text-white mb-6 font-garet">
-            BOU JOU PLAAS SE NETWERK, EEN SENSOR OP 'N SLAG.
-          </h2>
           <p class="text-stilsein-muted text-lg mb-6 leading-relaxed">
-            Om 'n stelsel op te stel vir net een reënmeter is nogal nice. Maar om 'n netwerk te bou wat pypdruk, plaashekke, damvlakke en uiterste weer gelyktydig dophou?
+            Om 'n stelsel op te stel vir net een reënmeter is nogal nice. Maar
+            om 'n netwerk te bou wat pypdruk, plaashekke, damvlakke en uiterste
+            weer gelyktydig dophou?
             <strong class="text-jakkals-orange">Dit verander die game.</strong>
           </p>
           <p class="text-stilsein-muted text-lg mb-10 leading-relaxed">
-            StilSein is modulêr. Belê in die hoofinfrastruktuur vandag, en voeg nuwe sensors by op jou eie tyd—of dit nou môre of oor twee jaar is. Jou app pas outomaties aan namate jou plaas groei.
+            StilSein is modulêr. Belê in die hoofinfrastruktuur vandag, en voeg
+            nuwe sensors by op jou eie tyd—of dit nou môre of oor twee jaar is.
+            Jou app pas outomaties aan namate jou plaas groei.
           </p>
-          <div class="bg-stilsein-blue/10 border-l-4 border-stilsein-blue p-6 rounded-r-xl shadow-[0_0_15px_rgba(145,172,200,0.1)] text-left">
-            <p class="text-sm md:text-base text-white italic m-0 leading-relaxed">
-              "Monitor elke hoek en draai van jou plaas. Die wolf slaap wakker. Weet wanneer die eerste druppels val, of wanneer die pype loop en wanneer die boonste kamp se hek oop is. Stoor dan alles en hou 'n 10-jaar logboek van jou plaas se mikroklimaat om jou grondwaarde te verhoog."
+          <div
+            class="bg-stilsein-blue/10 border-l-4 border-stilsein-blue p-6 rounded-r-xl shadow-[0_0_15px_rgba(145,172,200,0.1)] text-left"
+          >
+            <p
+              class="text-sm md:text-base text-white italic m-0 leading-relaxed"
+            >
+              "Monitor elke hoek en draai van jou plaas. Die wolf slaap wakker.
+              Weet wanneer die eerste druppels val, of wanneer die pype loop en
+              wanneer die boonste kamp se hek oop is. Stoor dan alles en hou 'n
+              10-jaar logboek van jou plaas se mikroklimaat om jou grondwaarde
+              te verhoog."
             </p>
           </div>
         </div>
-
       </div>
     </section>
 
-    <!-- 6. DATA & REPORTS SECTION -->
+    <!-- 6. DATA & REPORTS SECTION (FIX 7: A4 aspect ratios + Toggles) -->
     <section class="py-20 px-6 relative z-10">
       <div class="max-w-6xl mx-auto">
         <div class="text-center mb-16">
-          <h2 class="text-3xl md:text-4xl font-bold text-white mb-4 font-garet">PROFESSIONELE VERSLAE, MET EEN KLIEK.</h2>
-          <p class="text-stilsein-muted max-w-2xl mx-auto">Jou data is joune. Voer intydse weerverslae en rou data uit direk vanaf jou foon, ideaal vir versekeringseise of argiefbestuur.</p>
+          <h2 class="text-3xl md:text-4xl font-bold text-white mb-4 font-garet">
+            PROFESSIONELE VERSLAE, MET EEN KLIEK.
+          </h2>
+          <p class="text-stilsein-muted max-w-2xl mx-auto">
+            Jou data is joune. Voer intydse weerverslae en rou data uit direk
+            vanaf jou foon, ideaal vir versekeringseise of argiefbestuur.
+          </p>
         </div>
 
         <div class="grid md:grid-cols-2 gap-10">
           <!-- PDF Card -->
-          <div class="glass-card p-8 rounded-3xl border border-stilsein-blue/20 hover:border-stilsein-blue/50 transition-colors group">
+          <div
+            class="glass-card p-8 rounded-3xl border border-stilsein-blue/20"
+          >
             <div class="flex items-center gap-4 mb-6">
-              <div class="w-12 h-12 bg-stilsein-blue/10 rounded-xl flex items-center justify-center border border-stilsein-blue/30">
-                <svg class="w-6 h-6 text-stilsein-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+              <div
+                class="w-12 h-12 bg-stilsein-blue/10 rounded-xl flex items-center justify-center border border-stilsein-blue/30"
+              >
+                <svg
+                  class="w-6 h-6 text-stilsein-blue"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"
+                  ></path>
+                </svg>
               </div>
-              <h3 class="text-2xl font-bold text-white font-garet">STILSEIN PDF</h3>
+              <h3 class="text-2xl font-bold text-white font-garet">
+                STILSEIN PDF
+              </h3>
             </div>
-            <p class="text-stilsein-muted mb-6 text-sm leading-relaxed">Pragtige, maatskappy-gebrande PDF-verslae. Sluit outomatiese weerkundige opsommings deur Jakkals in, asook kleurgekodeerde intensiteitsgrafieke van jou storms.</p>
-            <!-- Image Placeholder -->
-            <div class="w-full aspect-video bg-stilsein-dark/50 rounded-xl border border-white/5 overflow-hidden relative">
-               <img src="assets/images/export_pdf_mockup.png" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" alt="PDF Example" onerror="this.classList.add('hidden')">
-               <div class="absolute inset-0 flex items-center justify-center text-gray-600 text-xs font-bold tracking-widest">[ PDF VOORBEELD HIER ]</div>
+            <p class="text-stilsein-muted mb-6 text-sm leading-relaxed">
+              Pragtige, maatskappy-gebrande PDF-verslae. Sluit outomatiese
+              weerkundige opsommings deur Jakkals in, asook kleurgekodeerde
+              intensiteitsgrafieke van jou storms. Raak aan die dokument om blad
+              2 te sien.
+            </p>
+
+            <!-- A4 Document Mockup -->
+            <div
+              class="w-full mx-auto aspect-[1/1.414] bg-stilsein-dark/50 rounded-xl border border-white/5 overflow-hidden relative cursor-pointer shadow-lg"
+              onclick="toggleMockup(this)"
+            >
+              <img
+                src="assets/images/export_pdf_mockup.png"
+                class="img-1 absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ease-in-out"
+                alt="PDF Page 1"
+                onerror="this.classList.add('hidden')"
+              />
+              <img
+                src="assets/images/export_pdf_mockup_2.png"
+                class="img-2 absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-500 ease-in-out"
+                alt="PDF Page 2"
+                onerror="this.classList.add('hidden')"
+              />
+              <div
+                class="absolute inset-0 flex items-center justify-center text-gray-600 text-xs font-bold tracking-widest -z-10"
+              >
+                [ PDF VOORBEELD HIER ]
+              </div>
             </div>
           </div>
 
           <!-- CSV Card -->
-          <div class="glass-card p-8 rounded-3xl border border-jakkals-orange/20 hover:border-jakkals-orange/50 transition-colors group">
+          <div
+            class="glass-card p-8 rounded-3xl border border-jakkals-orange/20"
+          >
             <div class="flex items-center gap-4 mb-6">
-              <div class="w-12 h-12 bg-jakkals-orange/10 rounded-xl flex items-center justify-center border border-jakkals-orange/30">
-                <svg class="w-6 h-6 text-jakkals-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+              <div
+                class="w-12 h-12 bg-jakkals-orange/10 rounded-xl flex items-center justify-center border border-jakkals-orange/30"
+              >
+                <svg
+                  class="w-6 h-6 text-jakkals-orange"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                  ></path>
+                </svg>
               </div>
-              <h3 class="text-2xl font-bold text-white font-garet">ROU DATA CSV</h3>
+              <h3 class="text-2xl font-bold text-white font-garet">
+                ROU DATA CSV
+              </h3>
             </div>
-            <p class="text-stilsein-muted mb-6 text-sm leading-relaxed">Kry onmiddellike toegang tot elke 5-minute data pols wat deur jou sensors gestuur is. Ideaal vir sigblaaie (Excel) en jou eie landbou-analises.</p>
-            <!-- Image Placeholder -->
-            <div class="w-full aspect-video bg-stilsein-dark/50 rounded-xl border border-white/5 overflow-hidden relative">
-               <img src="assets/images/export_csv_mockup.png" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" alt="CSV Example" onerror="this.classList.add('hidden')">
-               <div class="absolute inset-0 flex items-center justify-center text-gray-600 text-xs font-bold tracking-widest">[ CSV VOORBEELD HIER ]</div>
+            <p class="text-stilsein-muted mb-6 text-sm leading-relaxed">
+              Kry onmiddellike toegang tot elke data pols wat deur jou sensors
+              gestuur is. Ideaal vir sigblaaie (Excel) en jou eie
+              landbou-analises. Raak aan die dokument om blad 2 te sien.
+            </p>
+
+            <!-- A4 Document Mockup -->
+            <div
+              class="w-full mx-auto aspect-[1/1.414] bg-stilsein-dark/50 rounded-xl border border-white/5 overflow-hidden relative cursor-pointer shadow-lg"
+              onclick="toggleMockup(this)"
+            >
+              <img
+                src="assets/images/export_csv_mockup.png"
+                class="img-1 absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ease-in-out"
+                alt="CSV Page 1"
+                onerror="this.classList.add('hidden')"
+              />
+              <img
+                src="assets/images/export_csv_mockup_2.png"
+                class="img-2 absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-500 ease-in-out"
+                alt="CSV Page 2"
+                onerror="this.classList.add('hidden')"
+              />
+              <div
+                class="absolute inset-0 flex items-center justify-center text-gray-600 text-xs font-bold tracking-widest -z-10"
+              >
+                [ CSV VOORBEELD HIER ]
+              </div>
             </div>
           </div>
         </div>
@@ -663,7 +825,6 @@
       <h2 class="text-3xl font-bold text-white mb-8 font-garet">
         GEREED OM JOU PLAAS TE KOPPEL?
       </h2>
-
       <div
         class="flex flex-col sm:flex-row justify-center items-center gap-6 mb-12"
       >
@@ -687,7 +848,6 @@
           info@stilsein.co.za
         </a>
       </div>
-
       <p class="text-sm text-gray-600 mt-10">
         &copy; 2026 StilSein Industrial (Pty) Ltd. | Ontwerp in Suid-Afrika.
       </p>
@@ -695,7 +855,6 @@
 
     <!-- STILSEIN INTERACTIVITY SCRIPTS -->
     <script>
-      // --- 1. SUB-PANEL SCROLL EFFECT ---
       // --- MOBILE MENU TOGGLE ---
       const btn = document.getElementById("mobile-menu-btn");
       const menu = document.getElementById("mobile-menu");
@@ -709,25 +868,24 @@
         menu.classList.toggle("hidden");
       });
 
-      // Close menu when a link is clicked
       mobileLinks.forEach((link) => {
         link.addEventListener("click", () => {
           menu.classList.add("-translate-y-full", "opacity-0", "hidden");
           menu.classList.remove("translate-y-0", "opacity-100");
         });
       });
+
+      // --- SUB-PANEL SCROLL EFFECT ---
       const subPanel = document.getElementById("sub-panel");
       const tickerText = document.getElementById("ticker-text");
 
       window.addEventListener("scroll", () => {
         if (window.scrollY > 50) {
-          // Shrink to a blue racing stripe
           subPanel.style.height = "4px";
           tickerText.style.opacity = "0";
           subPanel.style.backgroundColor = "#91ACC8";
           subPanel.style.borderBottom = "none";
         } else {
-          // Expand back to glassmorphism panel
           subPanel.style.height = "40px";
           tickerText.style.opacity = "1";
           subPanel.style.backgroundColor = "";
@@ -735,7 +893,7 @@
         }
       });
 
-      // --- 2. THE LIVING TEXT ENGINE ---
+      // --- THE LIVING TEXT ENGINE ---
       const phrases = [
         "Industriële Langafstand Moniteringsagteware",
         "Beheer Jou Hele Boerderynetwerk op Een Skerm",
@@ -760,6 +918,25 @@
           }, 500);
         }
       }, 5000);
+
+      // --- FIX 6: TAP TO TOGGLE MOCKUPS ---
+      function toggleMockup(container) {
+        const img1 = container.querySelector(".img-1");
+        const img2 = container.querySelector(".img-2");
+
+        if (!img1 || !img2) return;
+
+        // Toggle opacity classes
+        if (img1.classList.contains("opacity-0")) {
+          // Show img1, hide img2
+          img1.classList.remove("opacity-0");
+          img2.classList.add("opacity-0");
+        } else {
+          // Hide img1, show img2
+          img1.classList.add("opacity-0");
+          img2.classList.remove("opacity-0");
+        }
+      }
     </script>
   </body>
 </html>
