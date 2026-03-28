@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>StilSein | Data Sonder Grense</title>
-    <link rel="icon" type="image/png" href="assets/images/wolf_white.png" />
+    <link rel="icon" type="image/png" href="assets/images/wolf_icon.png" />
 
     <!-- TAILWIND CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -112,7 +112,7 @@
       class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-jakkals-orange/10 rounded-full blur-3xl -z-10"
     ></div>
 
-    <!-- 1. MAIN NAVIGATION BAR (Now uses topbar-texture) -->
+    <!-- 1. MAIN NAVIGATION BAR -->
     <nav
       class="fixed top-0 w-full z-50 glass-card topbar-texture border-b border-stilsein-blue/20 h-[80px] flex items-center"
     >
@@ -127,17 +127,17 @@
             onerror="this.classList.add('hidden')"
           />
           <div class="flex flex-col justify-center mt-1">
-            <span class="text-white font-bold font-brand-title">
-              STIL<span class="text-stilsein-blue">SEIN</span>
-            </span>
+            <span class="text-white font-bold font-brand-title"
+              >STIL<span class="text-stilsein-blue">SEIN</span></span
+            >
             <span
               class="text-stilsein-muted mt-[4px] uppercase font-bold font-brand-subtitle"
+              >Data Sonder Grense</span
             >
-              Data Sonder Grense
-            </span>
           </div>
         </div>
 
+        <!-- Desktop Links -->
         <div
           class="hidden md:flex space-x-8 text-[11px] font-bold tracking-[0.2em] text-stilsein-muted uppercase"
         >
@@ -155,8 +155,69 @@
             >Kontak</a
           >
         </div>
+
+        <!-- Mobile Hamburger Button -->
+        <button
+          id="mobile-menu-btn"
+          class="md:hidden text-stilsein-blue focus:outline-none"
+          aria-label="Maak kieslys oop"
+          title="Kieslys"
+        >
+          <svg
+            class="w-8 h-8"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            ></path>
+          </svg>
+        </button>
+          id="mobile-menu-btn"
+          class="md:hidden text-stilsein-blue focus:outline-none"
+        >
+          <svg
+            class="w-8 h-8"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            ></path>
+          </svg>
+        </button>
       </div>
     </nav>
+
+    <!-- Mobile Dropdown Menu (Hidden by default) -->
+    <div
+      id="mobile-menu"
+      class="fixed top-[80px] w-full z-40 glass-card panel-texture border-b border-stilsein-blue/20 flex flex-col items-center space-y-6 py-6 transform -translate-y-full opacity-0 transition-all duration-300 ease-in-out md:hidden"
+    >
+      <a
+        href="#die-stelsel"
+        class="mobile-link text-xs font-bold tracking-[0.2em] text-stilsein-muted uppercase hover:text-jakkals-orange"
+        >Die Stelsel</a
+      >
+      <a
+        href="#ekosisteem"
+        class="mobile-link text-xs font-bold tracking-[0.2em] text-stilsein-muted uppercase hover:text-jakkals-orange"
+        >Ekosisteem</a
+      >
+      <a
+        href="#kontak"
+        class="mobile-link text-xs font-bold tracking-[0.2em] text-stilsein-muted uppercase hover:text-jakkals-orange"
+        >Kontak</a
+      >
+    </div>
 
     <!-- 2. SUB-PANEL (The Living Text Ticker) -->
     <div
@@ -316,280 +377,285 @@
       </div>
     </section>
 
-    <!-- 5. THE ECOSYSTEM (OMNI-DASHBOARD MOCKUP) -->
+    <!-- 5.1 THE ECOSYSTEM (THE 3x3 INTERACTIVE GRID) -->
     <section
       id="ekosisteem"
-      class="py-20 px-6 bg-black/20 border-y border-white/5 relative z-10"
+      class="py-20 px-6 bg-black/40 border-y border-white/5 relative z-10"
     >
-      <div
-        class="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-16"
-      >
-        <!-- The Mockup Grid -->
-        <div class="w-full lg:w-1/2">
-          <div
-            class="glass-card p-6 rounded-3xl aspect-square border-2 border-stilsein-blue/20 flex flex-col relative overflow-hidden bg-[#1A1F26]/80"
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold text-white mb-4 font-garet">
+            BOU JOU RYK, EEN SENSOR OP 'N SLAG.
+          </h2>
+          <p
+            class="text-stilsein-muted text-lg max-w-2xl mx-auto leading-relaxed"
           >
-            <div class="text-center mb-6 z-10">
-              <h4
-                class="text-white font-bold tracking-[0.2em] text-sm font-brand-title"
-              >
-                STILSEIN KERN
-              </h4>
-              <div class="text-stilsein-blue text-[10px] tracking-widest mt-1">
-                HQ TOETS SENTRALE
-              </div>
-            </div>
+            Beweeg oor enige skerm hieronder om diepte-analise te sien. Jou app
+            pas outomaties aan namate jou plaas groei.
+          </p>
+        </div>
 
-            <div class="grid grid-cols-3 gap-3 flex-grow z-10">
-              <!-- Active Node -->
-              <div
-                class="bg-stilsein-card rounded-xl border border-stilsein-blue/30 flex flex-col items-center justify-center p-2 shadow-[0_0_10px_rgba(145,172,200,0.1)]"
-              >
-                <svg
-                  class="w-6 h-6 text-stilsein-blue mb-2"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"
-                  ></path>
-                </svg>
-                <span
-                  class="text-[8px] font-bold text-white tracking-wider text-center"
-                  >WEERWOLF<br />REËNVAL</span
-                >
-                <span class="text-sm font-black text-white mt-1">15.3mm</span>
-              </div>
-              <!-- Forecast -->
-              <div
-                class="bg-stilsein-card rounded-xl border border-stilsein-blue/30 flex flex-col items-center justify-center p-2"
-              >
-                <svg
-                  class="w-6 h-6 text-jakkals-orange mb-2"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                  ></path>
-                </svg>
-                <span
-                  class="text-[8px] font-bold text-white tracking-wider text-center"
-                  >SATELLIET<br />VOORSPELLING</span
-                >
-                <span class="text-sm font-black text-white mt-1">28°</span>
-              </div>
-              <!-- Ghost Node -->
-              <div
-                class="bg-stilsein-dark/50 rounded-xl border border-white/5 flex flex-col items-center justify-center p-2 opacity-50"
-              >
-                <svg
-                  class="w-6 h-6 text-gray-500 mb-2"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
-                  ></path>
-                </svg>
-                <span
-                  class="text-[8px] font-bold text-gray-400 tracking-wider text-center"
-                  >WAGWOLF<br />SEKURITEIT</span
-                >
-              </div>
-              <!-- Ghost Node -->
-              <div
-                class="bg-stilsein-dark/50 rounded-xl border border-white/5 flex flex-col items-center justify-center p-2 opacity-50"
-              >
-                <svg
-                  class="w-6 h-6 text-gray-500 mb-2"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"
-                  ></path>
-                </svg>
-                <span
-                  class="text-[8px] font-bold text-gray-400 tracking-wider text-center"
-                  >WATERWOLF<br />DAMVLAKKE</span
-                >
-              </div>
-              <!-- CORE HUB -->
-              <div
-                class="bg-stilsein-card rounded-xl border-2 border-jakkals-orange/80 flex flex-col items-center justify-center p-2 shadow-[0_0_15px_rgba(255,158,74,0.3)]"
-              >
-                <svg
-                  class="w-7 h-7 text-stilsein-blue mb-1"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"
-                  ></path>
-                </svg>
-                <span
-                  class="text-[8px] font-bold text-white tracking-wider text-center mt-1"
-                  >STELSEL AANLYN</span
-                >
-                <span class="text-sm font-black text-jakkals-orange"
-                  >BEHEER</span
-                >
-              </div>
-              <!-- Ghost Node -->
-              <div
-                class="bg-stilsein-dark/50 rounded-xl border border-white/5 flex flex-col items-center justify-center p-2 opacity-50"
-              >
-                <svg
-                  class="w-6 h-6 text-gray-500 mb-2"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M13 10V3L4 14h7v7l9-11h-7z"
-                  ></path>
-                </svg>
-                <span
-                  class="text-[8px] font-bold text-gray-400 tracking-wider text-center"
-                  >DRUKWOLF<br />PYPDRUK</span
-                >
-              </div>
-              <!-- Ghost Node -->
-              <div
-                class="bg-stilsein-dark/50 rounded-xl border border-white/5 flex flex-col items-center justify-center p-2 opacity-50"
-              >
-                <svg
-                  class="w-6 h-6 text-gray-500 mb-2"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                  ></path>
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-                  ></path>
-                </svg>
-                <span
-                  class="text-[8px] font-bold text-gray-400 tracking-wider text-center"
-                  >SPOORWOLF<br />OPSPORING</span
-                >
-              </div>
-              <!-- Ghost Node -->
-              <div
-                class="bg-stilsein-dark/50 rounded-xl border border-white/5 flex flex-col items-center justify-center p-2 opacity-50"
-              >
-                <svg
-                  class="w-6 h-6 text-gray-500 mb-2"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-                  ></path>
-                </svg>
-                <span
-                  class="text-[8px] font-bold text-gray-400 tracking-wider text-center"
-                  >GRONDWOLF<br />GRONDVOG</span
-                >
-              </div>
-              <!-- Ghost Node -->
-              <div
-                class="bg-stilsein-dark/50 rounded-xl border border-white/5 flex flex-col items-center justify-center p-2 opacity-50"
-              >
-                <svg
-                  class="w-6 h-6 text-gray-500 mb-2"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"
-                  ></path>
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"
-                  ></path>
-                </svg>
-                <span
-                  class="text-[8px] font-bold text-gray-400 tracking-wider text-center"
-                  >VELDWOLF<br />BRANDE</span
-                >
-              </div>
+        <!-- The 3x3 Phone Grid -->
+        <!-- On mobile: 1 column. Tablet: 2 columns. Desktop: 3 columns -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+          <!-- SLOT 1: RAIN GAUGE (Top Left) -->
+          <div
+            class="relative group cursor-pointer w-full max-w-[300px] mx-auto aspect-[1/2] transition-transform duration-300 hover:-translate-y-2"
+          >
+            <img
+              src="assets/images/mockup_rain_1.png"
+              class="absolute inset-0 w-full h-full object-contain transition-opacity duration-700 ease-in-out group-hover:opacity-0"
+              alt="Rain Dashboard"
+            />
+            <img
+              src="assets/images/mockup_rain_2.png"
+              class="absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-700 ease-in-out group-hover:opacity-100"
+              alt="Rain Chart"
+            />
+            <!-- Text Label below phone -->
+            <div
+              class="absolute -bottom-8 w-full text-center text-stilsein-blue text-xs tracking-widest font-bold font-garet"
+            >
+              WEERWOLF REËNVAL
+            </div>
+          </div>
+
+          <!-- SLOT 2: FORECAST (Top Center) -->
+          <div
+            class="relative group cursor-pointer w-full max-w-[300px] mx-auto aspect-[1/2] transition-transform duration-300 hover:-translate-y-2"
+          >
+            <img
+              src="assets/images/mockup_forecast_1.png"
+              class="absolute inset-0 w-full h-full object-contain transition-opacity duration-700 ease-in-out group-hover:opacity-0"
+              alt="Forecast Dashboard"
+            />
+            <img
+              src="assets/images/mockup_forecast_2.png"
+              class="absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-700 ease-in-out group-hover:opacity-100"
+              alt="Forecast Chart"
+            />
+            <div
+              class="absolute -bottom-8 w-full text-center text-jakkals-orange text-xs tracking-widest font-bold font-garet"
+            >
+              SATELLIET VOORSPELLING
+            </div>
+          </div>
+
+          <!-- SLOT 3: SECURITY (Top Right) -->
+          <div
+            class="relative group cursor-pointer w-full max-w-[300px] mx-auto aspect-[1/2] transition-transform duration-300 hover:-translate-y-2"
+          >
+            <img
+              src="assets/images/mockup_security_1.png"
+              class="absolute inset-0 w-full h-full object-contain transition-opacity duration-700 ease-in-out group-hover:opacity-0"
+              alt="Security Dashboard"
+            />
+            <img
+              src="assets/images/mockup_security_2.png"
+              class="absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-700 ease-in-out group-hover:opacity-100"
+              alt="Security Event"
+            />
+            <div
+              class="absolute -bottom-8 w-full text-center text-red-400 text-xs tracking-widest font-bold font-garet"
+            >
+              WAGWOLF SEKURITEIT
+            </div>
+          </div>
+
+          <!-- SLOT 4: DAM LEVELS (Mid Left) -->
+          <div
+            class="relative group cursor-pointer w-full max-w-[300px] mx-auto aspect-[1/2] transition-transform duration-300 hover:-translate-y-2"
+          >
+            <img
+              src="assets/images/mockup_dam_1.png"
+              class="absolute inset-0 w-full h-full object-contain transition-opacity duration-700 ease-in-out group-hover:opacity-0"
+              alt="Dam Dashboard"
+            />
+            <img
+              src="assets/images/mockup_dam_2.png"
+              class="absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-700 ease-in-out group-hover:opacity-100"
+              alt="Dam Chart"
+            />
+            <div
+              class="absolute -bottom-8 w-full text-center text-teal-400 text-xs tracking-widest font-bold font-garet"
+            >
+              WATERWOLF DAMVLAKKE
+            </div>
+          </div>
+
+          <!-- SLOT 5: CORE HUB (Center) -->
+          <div
+            class="relative group cursor-pointer w-full max-w-[300px] mx-auto aspect-[1/2] transition-transform duration-300 hover:-translate-y-2 lg:scale-105 z-20"
+          >
+            <img
+              src="assets/images/mockup_hub_1.png"
+              class="absolute inset-0 w-full h-full object-contain transition-opacity duration-700 ease-in-out group-hover:opacity-0 glow-orange"
+              alt="Omni Dashboard"
+            />
+            <img
+              src="assets/images/mockup_hub_2.png"
+              class="absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-700 ease-in-out group-hover:opacity-100 glow-blue"
+              alt="Wolf Cave Settings"
+            />
+            <div
+              class="absolute -bottom-8 w-full text-center text-white text-sm tracking-widest font-black font-garet drop-shadow-lg"
+            >
+              STILSEIN KERN
+            </div>
+          </div>
+
+          <!-- SLOT 6: PIPE PRESSURE (Mid Right) -->
+          <div
+            class="relative group cursor-pointer w-full max-w-[300px] mx-auto aspect-[1/2] transition-transform duration-300 hover:-translate-y-2"
+          >
+            <img
+              src="assets/images/mockup_pipe_1.png"
+              class="absolute inset-0 w-full h-full object-contain transition-opacity duration-700 ease-in-out group-hover:opacity-0"
+              alt="Pipe Dashboard"
+            />
+            <img
+              src="assets/images/mockup_pipe_2.png"
+              class="absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-700 ease-in-out group-hover:opacity-100"
+              alt="Pipe Chart"
+            />
+            <div
+              class="absolute -bottom-8 w-full text-center text-cyan-400 text-xs tracking-widest font-bold font-garet"
+            >
+              DRUKWOLF PYPDRUK
+            </div>
+          </div>
+
+          <!-- SLOT 7: TRACKING (Bot Left) -->
+          <div
+            class="relative group cursor-pointer w-full max-w-[300px] mx-auto aspect-[1/2] transition-transform duration-300 hover:-translate-y-2"
+          >
+            <img
+              src="assets/images/mockup_tracking_1.png"
+              class="absolute inset-0 w-full h-full object-contain transition-opacity duration-700 ease-in-out group-hover:opacity-0"
+              alt="Tracking Dashboard"
+            />
+            <img
+              src="assets/images/mockup_tracking_2.png"
+              class="absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-700 ease-in-out group-hover:opacity-100"
+              alt="Tracking Map"
+            />
+            <div
+              class="absolute -bottom-8 w-full text-center text-purple-400 text-xs tracking-widest font-bold font-garet"
+            >
+              SPOORWOLF OPSPORING
+            </div>
+          </div>
+
+          <!-- SLOT 8: SOIL MOISTURE (Bot Center) -->
+          <div
+            class="relative group cursor-pointer w-full max-w-[300px] mx-auto aspect-[1/2] transition-transform duration-300 hover:-translate-y-2"
+          >
+            <img
+              src="assets/images/mockup_soil_1.png"
+              class="absolute inset-0 w-full h-full object-contain transition-opacity duration-700 ease-in-out group-hover:opacity-0"
+              alt="Soil Dashboard"
+            />
+            <img
+              src="assets/images/mockup_soil_2.png"
+              class="absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-700 ease-in-out group-hover:opacity-100"
+              alt="Soil Chart"
+            />
+            <div
+              class="absolute -bottom-8 w-full text-center text-green-400 text-xs tracking-widest font-bold font-garet"
+            >
+              GRONDWOLF GRONDVOG
+            </div>
+          </div>
+
+          <!-- SLOT 9: FIRE WARNING (Bot Right) -->
+          <div
+            class="relative group cursor-pointer w-full max-w-[300px] mx-auto aspect-[1/2] transition-transform duration-300 hover:-translate-y-2"
+          >
+            <img
+              src="assets/images/mockup_fire_1.png"
+              class="absolute inset-0 w-full h-full object-contain transition-opacity duration-700 ease-in-out group-hover:opacity-0"
+              alt="Fire Dashboard"
+            />
+            <img
+              src="assets/images/mockup_fire_2.png"
+              class="absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-700 ease-in-out group-hover:opacity-100"
+              alt="Fire Chart"
+            />
+            <div
+              class="absolute -bottom-8 w-full text-center text-deep-orange-400 text-xs tracking-widest font-bold font-garet"
+            >
+              VELDWOLF BRANDWAARSKUWING
             </div>
           </div>
         </div>
+      </div>
 
-        <!-- The Text -->
-        <div class="w-full lg:w-1/2">
+        <div class="max-w-4xl mx-auto mt-24 text-center">
           <h2 class="text-3xl md:text-4xl font-bold text-white mb-6 font-garet">
-            BOU JOU RYK, EEN SENSOR OP 'N SLAG.
+            BOU JOU PLAAS SE NETWERK, EEN SENSOR OP 'N SLAG.
           </h2>
           <p class="text-stilsein-muted text-lg mb-6 leading-relaxed">
-            Om 'n stelsel op te stel vir net een reënmeter maak nie finansiële
-            sin nie. Maar om 'n netwerk te bou wat pypdruk, plaashekke,
-            damvlakke en uiterste weer gelyktydig dophou?
-            <strong>Dit verander die spel.</strong>
+            Om 'n stelsel op te stel vir net een reënmeter is nogal nice. Maar om 'n netwerk te bou wat pypdruk, plaashekke, damvlakke en uiterste weer gelyktydig dophou?
+            <strong class="text-jakkals-orange">Dit verander die game.</strong>
           </p>
-          <p class="text-stilsein-muted text-lg mb-8 leading-relaxed">
-            StilSein is modulêr. Belê in die hoofinfrastruktuur vandag, en voeg
-            nuwe sensors by op jou eie tyd—of dit nou môre of oor twee jaar is.
-            Jou app pas outomaties aan namate jou plaas groei.
+          <p class="text-stilsein-muted text-lg mb-10 leading-relaxed">
+            StilSein is modulêr. Belê in die hoofinfrastruktuur vandag, en voeg nuwe sensors by op jou eie tyd—of dit nou môre of oor twee jaar is. Jou app pas outomaties aan namate jou plaas groei.
           </p>
-          <div
-            class="bg-stilsein-blue/10 border-l-4 border-stilsein-blue p-4 rounded-r-lg"
-          >
-            <p class="text-sm text-white italic m-0">
-              "Hou 'n 10-jaar logboek van jou plaas se mikroklimaat om jou
-              grondwaarde te verhoog. En ja, dit is 'n ongelooflike stelsel om
-              vir die bure langs die braaivleisvuur te wys."
+          <div class="bg-stilsein-blue/10 border-l-4 border-stilsein-blue p-6 rounded-r-xl shadow-[0_0_15px_rgba(145,172,200,0.1)] text-left">
+            <p class="text-sm md:text-base text-white italic m-0 leading-relaxed">
+              "Monitor elke hoek en draai van jou plaas. Die wolf slaap wakker. Weet wanneer die eerste druppels val, of wanneer die pype loop en wanneer die boonste kamp se hek oop is. Stoor dan alles en hou 'n 10-jaar logboek van jou plaas se mikroklimaat om jou grondwaarde te verhoog."
             </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 6. DATA & REPORTS SECTION -->
+    <section class="py-20 px-6 relative z-10">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold text-white mb-4 font-garet">PROFESSIONELE VERSLAE, MET EEN KLIEK.</h2>
+          <p class="text-stilsein-muted max-w-2xl mx-auto">Jou data is joune. Voer intydse weerverslae en rou data uit direk vanaf jou foon, ideaal vir versekeringseise of argiefbestuur.</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-10">
+          <!-- PDF Card -->
+          <div class="glass-card p-8 rounded-3xl border border-stilsein-blue/20 hover:border-stilsein-blue/50 transition-colors group">
+            <div class="flex items-center gap-4 mb-6">
+              <div class="w-12 h-12 bg-stilsein-blue/10 rounded-xl flex items-center justify-center border border-stilsein-blue/30">
+                <svg class="w-6 h-6 text-stilsein-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+              </div>
+              <h3 class="text-2xl font-bold text-white font-garet">STILSEIN PDF</h3>
+            </div>
+            <p class="text-stilsein-muted mb-6 text-sm leading-relaxed">Pragtige, maatskappy-gebrande PDF-verslae. Sluit outomatiese weerkundige opsommings deur Jakkals in, asook kleurgekodeerde intensiteitsgrafieke van jou storms.</p>
+            <!-- Image Placeholder -->
+            <div class="w-full aspect-video bg-stilsein-dark/50 rounded-xl border border-white/5 overflow-hidden relative">
+               <img src="assets/images/export_pdf_mockup.png" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" alt="PDF Example" onerror="this.classList.add('hidden')">
+               <div class="absolute inset-0 flex items-center justify-center text-gray-600 text-xs font-bold tracking-widest">[ PDF VOORBEELD HIER ]</div>
+            </div>
+          </div>
+
+          <!-- CSV Card -->
+          <div class="glass-card p-8 rounded-3xl border border-jakkals-orange/20 hover:border-jakkals-orange/50 transition-colors group">
+            <div class="flex items-center gap-4 mb-6">
+              <div class="w-12 h-12 bg-jakkals-orange/10 rounded-xl flex items-center justify-center border border-jakkals-orange/30">
+                <svg class="w-6 h-6 text-jakkals-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+              </div>
+              <h3 class="text-2xl font-bold text-white font-garet">ROU DATA CSV</h3>
+            </div>
+            <p class="text-stilsein-muted mb-6 text-sm leading-relaxed">Kry onmiddellike toegang tot elke 5-minute data pols wat deur jou sensors gestuur is. Ideaal vir sigblaaie (Excel) en jou eie landbou-analises.</p>
+            <!-- Image Placeholder -->
+            <div class="w-full aspect-video bg-stilsein-dark/50 rounded-xl border border-white/5 overflow-hidden relative">
+               <img src="assets/images/export_csv_mockup.png" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" alt="CSV Example" onerror="this.classList.add('hidden')">
+               <div class="absolute inset-0 flex items-center justify-center text-gray-600 text-xs font-bold tracking-widest">[ CSV VOORBEELD HIER ]</div>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 6. FOOTER / CTA -->
+    <!-- 7. FOOTER / CTA -->
     <footer
       id="kontak"
       class="py-16 px-6 text-center border-t border-white/10 z-10 relative glass-card panel-texture"
@@ -630,6 +696,26 @@
     <!-- STILSEIN INTERACTIVITY SCRIPTS -->
     <script>
       // --- 1. SUB-PANEL SCROLL EFFECT ---
+      // --- MOBILE MENU TOGGLE ---
+      const btn = document.getElementById("mobile-menu-btn");
+      const menu = document.getElementById("mobile-menu");
+      const mobileLinks = document.querySelectorAll(".mobile-link");
+
+      btn.addEventListener("click", () => {
+        menu.classList.toggle("translate-y-0");
+        menu.classList.toggle("-translate-y-full");
+        menu.classList.toggle("opacity-100");
+        menu.classList.toggle("opacity-0");
+        menu.classList.toggle("hidden");
+      });
+
+      // Close menu when a link is clicked
+      mobileLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          menu.classList.add("-translate-y-full", "opacity-0", "hidden");
+          menu.classList.remove("translate-y-0", "opacity-100");
+        });
+      });
       const subPanel = document.getElementById("sub-panel");
       const tickerText = document.getElementById("ticker-text");
 
