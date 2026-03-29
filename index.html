@@ -113,6 +113,31 @@
   <!-- FIX 1: overflow-x-hidden strictly applied to prevent side-scrolling -->
   <body
     class="bg-stilsein-dark text-stilsein-text bg-texture-main relative overflow-x-hidden w-full"
+    <!-- 0. UNDER CONSTRUCTION MODAL -->
+    <div id="construction-modal" class="fixed inset-0 z-[100] flex items-center justify-center transition-opacity duration-500">
+      <div class="absolute inset-0 bg-black/80 backdrop-blur-md"></div>
+      <div class="relative glass-card panel-texture p-8 rounded-3xl w-[90%] max-w-lg border border-jakkals-orange/40 shadow-[0_0_40px_rgba(255,158,74,0.2)] transform scale-100 transition-transform duration-500" id="construction-modal-content">
+        <div class="w-16 h-16 mx-auto bg-jakkals-orange/10 rounded-full flex items-center justify-center mb-6 border border-jakkals-orange/30">
+          <svg class="w-8 h-8 text-jakkals-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+        </div>
+        <h3 class="text-2xl font-bold text-white font-garet text-center mb-2">STILSEIN IS IN ONTWIKKELING</h3>
+        <p class="text-stilsein-muted text-sm text-center mb-6 leading-relaxed">
+          Welkom by die toekoms van die veld. Ons is tans besig om die platform af te rond vir kommersiële ontplooiing.
+        </p>
+        <div class="bg-stilsein-dark/50 border border-white/10 rounded-xl p-4 mb-8">
+          <p class="text-xs text-white font-bold mb-3 tracking-widest text-stilsein-blue">BINNEKORT BESKIKBAAR:</p>
+          <ul class="text-xs text-gray-400 space-y-2">
+            <li class="flex gap-2"><span class="text-jakkals-orange">✓</span> Apple App Store & Google Play Bekendstelling</li>
+            <li class="flex gap-2"><span class="text-jakkals-orange">✓</span> WaterWolf (Damvlakke) & WagWolf (Sekuriteit)</li>
+            <li class="flex gap-2"><span class="text-jakkals-orange">✓</span> Interaktiewe Plaas-Bouer (Kry 'n Kwotasie op 'n Kaart)</li>
+            <li class="flex gap-2"><span class="text-jakkals-orange">✓</span> Vennote-portaal vir Installeerders</li>
+          </ul>
+        </div>
+        <button onclick="closeConstructionModal()" class="w-full py-4 bg-jakkals-orange text-stilsein-dark font-bold rounded-lg hover:bg-white transition-colors tracking-wide shadow-[0_0_15px_rgba(255,158,74,0.4)]">
+          EK VERSTAAN, LAAT MY IN
+        </button>
+      </div>
+    </div>
   >
     <!-- CSS VIGNETTE OVERLAY -->
     <div
@@ -295,76 +320,151 @@
       </div>
     </div>
 
-    <!-- HOW IT WORKS & ECOSYSTEM SECTIONS  -->
+    <!-- 3.8 WHAT WE OFFER (The Value Proposition) -->
+    <section class="py-24 px-6 bg-stilsein-dark relative z-10 w-full overflow-hidden">
+      <div class="max-w-5xl mx-auto text-center">
+        <h2 class="text-3xl md:text-4xl font-bold text-white mb-6 font-garet">
+          ONS BOU NIE NET SENSORS NIE. <br><span class="text-stilsein-blue">ONS BOU DIE PLATFORM.</span>
+        </h2>
+        <p class="text-stilsein-muted text-lg md:text-xl leading-relaxed mb-12 max-w-3xl mx-auto">
+          In sy kern is StilSein 'n slim app en 'n toegewyde 24/7 moniteringsdiens. Ons app vat al daai verskillende sensors op jou plaas en trek hulle netjies saam op een skerm. 
+          Ons netwerk van vennote kan die installasies vir jou doen, maar die ware krag lê in die app se veelsydigheid. Jy is nie vasgevang met net een tipe hardeware nie—as dit LoRaWAN praat, koppel ons dit aan Jakkals AI.
+        </p>
+        
+        <!-- The 8-Node Compatibility Grid -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-left">
+          
+          <!-- Rain -->
+          <div class="bg-stilsein-card/40 border border-stilsein-blue/20 p-4 rounded-2xl flex items-center gap-4 hover:bg-stilsein-card transition-colors">
+             <div class="w-10 h-10 rounded-full bg-stilsein-blue/10 flex items-center justify-center border border-stilsein-blue/30 shrink-0">
+               <svg class="w-5 h-5 text-stilsein-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+             </div>
+             <div class="text-white font-bold text-xs tracking-wider">REËNVAL</div>
+          </div>
+
+          <!-- Dam Levels -->
+          <div class="bg-stilsein-card/40 border border-[#6DBEA3]/20 p-4 rounded-2xl flex items-center gap-4 hover:bg-stilsein-card transition-colors">
+             <div class="w-10 h-10 rounded-full bg-[#6DBEA3]/10 flex items-center justify-center border border-[#6DBEA3]/30 shrink-0">
+               <svg class="w-5 h-5 text-[#6DBEA3]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path></svg>
+             </div>
+             <div class="text-white font-bold text-xs tracking-wider">DAMVLAKKE</div>
+          </div>
+
+          <!-- Security -->
+          <div class="bg-stilsein-card/40 border border-red-400/20 p-4 rounded-2xl flex items-center gap-4 hover:bg-stilsein-card transition-colors">
+             <div class="w-10 h-10 rounded-full bg-red-400/10 flex items-center justify-center border border-red-400/30 shrink-0">
+               <svg class="w-5 h-5 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+             </div>
+             <div class="text-white font-bold text-xs tracking-wider">SEKURITEIT</div>
+          </div>
+
+          <!-- Pipe Pressure -->
+          <div class="bg-stilsein-card/40 border border-cyan-400/20 p-4 rounded-2xl flex items-center gap-4 hover:bg-stilsein-card transition-colors">
+             <div class="w-10 h-10 rounded-full bg-cyan-400/10 flex items-center justify-center border border-cyan-400/30 shrink-0">
+               <svg class="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+             </div>
+             <div class="text-white font-bold text-xs tracking-wider">PYPDRUK</div>
+          </div>
+
+          <!-- Livestock Tracking -->
+          <div class="bg-stilsein-card/40 border border-[#A396D1]/20 p-4 rounded-2xl flex items-center gap-4 hover:bg-stilsein-card transition-colors">
+             <div class="w-10 h-10 rounded-full bg-[#A396D1]/10 flex items-center justify-center border border-[#A396D1]/30 shrink-0">
+               <svg class="w-5 h-5 text-[#A396D1]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+             </div>
+             <div class="text-white font-bold text-xs tracking-wider">VEE-OPSPORING</div>
+          </div>
+
+          <!-- Soil Moisture -->
+          <div class="bg-stilsein-card/40 border border-green-400/20 p-4 rounded-2xl flex items-center gap-4 hover:bg-stilsein-card transition-colors">
+             <div class="w-10 h-10 rounded-full bg-green-400/10 flex items-center justify-center border border-green-400/30 shrink-0">
+               <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+             </div>
+             <div class="text-white font-bold text-xs tracking-wider">GRONDVOG</div>
+          </div>
+
+          <!-- Fire Warning -->
+          <div class="bg-stilsein-card/40 border border-deep-orange-400/20 p-4 rounded-2xl flex items-center gap-4 hover:bg-stilsein-card transition-colors">
+             <div class="w-10 h-10 rounded-full bg-orange-600/10 flex items-center justify-center border border-orange-600/30 shrink-0">
+               <svg class="w-5 h-5 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"></path></svg>
+             </div>
+             <div class="text-white font-bold text-xs tracking-wider">BRANDE</div>
+          </div>
+
+          <!-- Weather Station -->
+          <div class="bg-stilsein-card/40 border border-jakkals-orange/20 p-4 rounded-2xl flex items-center gap-4 hover:bg-stilsein-card transition-colors">
+             <div class="w-10 h-10 rounded-full bg-jakkals-orange/10 flex items-center justify-center border border-jakkals-orange/30 shrink-0">
+               <svg class="w-5 h-5 text-jakkals-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+             </div>
+             <div class="text-white font-bold text-xs tracking-wider">WEERSTASIES</div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. HOW IT WORKS -->
     <section id="hoe-dit-werk" class="py-20 px-6 bg-black/20 border-y border-white/5 relative z-10 w-full overflow-hidden">
       <div class="max-w-6xl mx-auto">
-        <div class="text-center mb-16">
-          <h2 class="text-3xl md:text-4xl font-bold text-white mb-4 font-garet">HOE WERK DIE STILSEIN NETWERK?</h2>
+        <div class="text-center mb-10">
+          <!-- FIX 4: Two-Tone Header -->
+          <h2 class="text-3xl md:text-4xl font-bold text-white mb-4 font-garet">
+            HOE WERK DIE <span class="text-stilsein-blue">STILSEIN NETWERK?</span>
+          </h2>
           <p class="text-stilsein-muted max-w-2xl mx-auto leading-relaxed">
-            Vergeet van swak selfoonopvangs. <strong>StilSein</strong>, tesame met ons landwye netwerk van <strong>geakkrediteerde installasie-vennote</strong>, kom bou 'n private langafstand radionetwerk direk op jou plaas.
+            Vergeet van swak selfoonopvangs. <strong>StilSein</strong>, tesame met ons landwye netwerk van installeerders, kom bou 'n private langafstand radionetwerk direk op jou plaas.
           </p>
+          <!-- FIX 3: The Toggle Button -->
+          <button onclick="toggleHardwareSteps()" id="hardware-toggle-btn" class="mt-4 text-jakkals-orange text-sm font-bold tracking-wider hover:text-white transition-colors border-b border-jakkals-orange/30 hover:border-white pb-1">
+            ...indien jy reeds 'n LoRaWAN Gateway besit? Kliek Hier.
+          </button>
         </div>
-        <!-- </div>  -->
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
-          <div
-            class="hidden md:block absolute top-1/2 left-[10%] right-[10%] h-0.5 bg-stilsein-blue/20 -z-10"
-          ></div>
-          <div
-            class="text-center bg-stilsein-card/80 p-6 rounded-2xl border border-white/5 backdrop-blur-md"
-          >
-            <div
-              class="w-16 h-16 mx-auto bg-stilsein-dark border-2 border-stilsein-blue rounded-full flex items-center justify-center mb-4 z-10 relative"
-            >
-              <span class="text-2xl">📡</span>
+        
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 relative transition-all duration-500" id="steps-container">
+            <!-- Line connecting steps (Desktop only) -->
+            <div class="hidden md:block absolute top-1/2 left-[10%] right-[10%] h-0.5 bg-stilsein-blue/20 -z-10" id="steps-line"></div>
+            
+            <!-- STEP 1 & 2 (The Hardware - Can be hidden) -->
+            <div class="hardware-step text-center bg-stilsein-card/80 p-6 rounded-2xl border border-white/5 backdrop-blur-md transition-all duration-500">
+                <div class="w-16 h-16 mx-auto bg-stilsein-dark border-2 border-stilsein-blue rounded-full flex items-center justify-center mb-4 z-10 relative">
+                    <span class="text-2xl">📡</span>
+                </div>
+                <h3 class="text-lg font-bold text-white mb-2">1. Die Sensors</h3>
+                <p class="text-xs text-stilsein-muted leading-relaxed">Ons plaas battery-aangedrewe sensors (reënmeters, hekke, damme) in die veld. Die battery hou tot 10 jaar.</p>
             </div>
-            <h3 class="text-lg font-bold text-white mb-2">1. Die Sensors</h3>
-            <p class="text-xs text-stilsein-muted leading-relaxed">
-              Ons plaas battery-aangedrewe sensors (reënmeters, hekke, damme) in
-              die veld. Die battery hou tot 10 jaar.
-            </p>
-          </div>
-          <div
-            class="text-center bg-stilsein-card/80 p-6 rounded-2xl border border-white/5 backdrop-blur-md"
-          >
-            <div
-              class="w-16 h-16 mx-auto bg-stilsein-dark border-2 border-jakkals-orange rounded-full flex items-center justify-center mb-4 z-10 relative"
-            >
-              <span class="text-2xl">📻</span>
+
+            <div class="hardware-step text-center bg-stilsein-card/80 p-6 rounded-2xl border border-white/5 backdrop-blur-md transition-all duration-500">
+                <div class="w-16 h-16 mx-auto bg-stilsein-dark border-2 border-jakkals-orange rounded-full flex items-center justify-center mb-4 z-10 relative">
+                    <span class="text-2xl">📻</span>
+                </div>
+                <h3 class="text-lg font-bold text-white mb-2">2. Die Gateway</h3>
+                <p class="text-xs text-stilsein-muted leading-relaxed">Een sentrale basisstasie by die opstal vang radioseine van kilometers ver op. Geen SIM-kaarte benodig nie.</p>
             </div>
-            <h3 class="text-lg font-bold text-white mb-2">2. Die Gateway</h3>
-            <p class="text-xs text-stilsein-muted leading-relaxed">
-              Een sentrale basisstasie by die opstal vang radioseine van
-              kilometers ver op. Geen SIM-kaarte benodig op die landerye nie.
-            </p>
-          </div>
-          <div
-            class="text-center bg-stilsein-card/80 p-6 rounded-2xl border border-white/5 backdrop-blur-md"
-          >
-            <div
-              class="w-16 h-16 mx-auto bg-stilsein-dark border-2 border-stilsein-blue rounded-full flex items-center justify-center mb-4 z-10 relative"
-            >
-              <span class="text-2xl">☁️</span>
+
+            <!-- THE OPTION B STEP (Hidden by Default) -->
+            <div id="option-b-step" class="hidden col-span-1 md:col-span-2 text-center bg-stilsein-card/80 p-6 rounded-2xl border border-jakkals-orange/40 backdrop-blur-md shadow-[0_0_20px_rgba(255,158,74,0.1)] transition-all duration-500 opacity-0 scale-95">
+                <div class="w-16 h-16 mx-auto bg-jakkals-orange/10 border-2 border-jakkals-orange rounded-full flex items-center justify-center mb-4 z-10 relative">
+                    <svg class="w-8 h-8 text-jakkals-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
+                </div>
+                <h3 class="text-lg font-bold text-jakkals-orange mb-2">Skakel Direk In</h3>
+                <p class="text-xs text-white leading-relaxed">Het jy reeds The Things Network (TTN) hardeware? Fantasties. Jy benodig geen nuwe toerusting nie. Kontak ons vir jou unieke Plaas-Sleutel, stel ons Webhook op in jou TTN-konsole, en laai die App af.</p>
             </div>
-            <h3 class="text-lg font-bold text-white mb-2">3. Die Wolk</h3>
-            <p class="text-xs text-stilsein-muted leading-relaxed">
-              Die stelsel stuur data blitsvinnig na ons veilige bedieners waar
-              Jakkals-AI dit ontleed.
-            </p>
-          </div>
-          <div
-            class="text-center bg-stilsein-card/80 p-6 rounded-2xl border border-white/5 backdrop-blur-md"
-          >
-            <div
-              class="w-16 h-16 mx-auto bg-stilsein-dark border-2 border-jakkals-orange rounded-full flex items-center justify-center mb-4 z-10 relative"
-            >
-              <span class="text-2xl">📱</span>
+
+            <!-- STEP 3 & 4 (The Cloud & App - Always Visible) -->
+            <div class="text-center bg-stilsein-card/80 p-6 rounded-2xl border border-white/5 backdrop-blur-md">
+                <div class="w-16 h-16 mx-auto bg-stilsein-dark border-2 border-stilsein-blue rounded-full flex items-center justify-center mb-4 z-10 relative">
+                    <span class="text-2xl">☁️</span>
+                </div>
+                <h3 class="text-lg font-bold text-white mb-2">3. Die Wolk</h3>
+                <p class="text-xs text-stilsein-muted leading-relaxed">Jou data stroom veilig deur ons bedieners na jou ge-isoleerde databasis waar Jakkals-AI dit ontleed.</p>
             </div>
-            <h3 class="text-lg font-bold text-white mb-2">4. Die App</h3>
-            <p class="text-xs text-stilsein-muted leading-relaxed">
-              Alles vertoon onmiddellik en mooi georganiseerd op jou foon. Jy
-              kry waarskuwings nog voor 'n krisis tref.
-            </p>
-          </div>
+
+            <div class="text-center bg-stilsein-card/80 p-6 rounded-2xl border border-white/5 backdrop-blur-md">
+                <div class="w-16 h-16 mx-auto bg-stilsein-dark border-2 border-jakkals-orange rounded-full flex items-center justify-center mb-4 z-10 relative">
+                    <span class="text-2xl">📱</span>
+                </div>
+                <h3 class="text-lg font-bold text-white mb-2">4. Die App</h3>
+                <p class="text-xs text-stilsein-muted leading-relaxed">Alles vertoon onmiddellik en mooi georganiseerd op jou foon. Jy kry waarskuwings nog voor 'n krisis tref.</p>
+            </div>
         </div>
       </div>
     </section>
@@ -374,7 +474,7 @@
       <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12">
         <div class="w-full md:w-1/2">
           <h2 class="text-3xl md:text-4xl font-bold text-white mb-6 font-garet">
-            WIE HOU DIE WAG? <br><span class="text-stilsein-blue">ONS DOEN.</span>
+            ONS MONITOR <br><span class="text-stilsein-blue">EN HOU WAG.</span>
           </h2>
           <p class="text-stilsein-muted text-lg mb-6 leading-relaxed">
             StilSein is nie net 'n app wat jy aflaai en self moet uitsorteer nie. Ons is 'n toegewyde <strong>intydse moniteringsdiens</strong>.
@@ -493,7 +593,6 @@
     </section>
 
     <!-- 5.1 THE ECOSYSTEM (THE 3x3 INTERACTIVE GRID) -->
-
     <section
       id="ekosisteem"
       class="py-20 px-6 bg-black/40 border-y border-white/5 relative z-10 w-full overflow-hidden"
@@ -501,7 +600,7 @@
       <div class="max-w-7xl mx-auto">
         <div class="text-center mb-16">
           <h2 class="text-3xl md:text-4xl font-bold text-white mb-4 font-garet">
-            EEN APP. JOU HELE PLAAS ONDER EEN DAK.
+            EEN APP. <span class="text-stilsein-blue">JOU HELE PLAAS ONDER EEN DAK.</span>
           </h2>
           <p
             class="text-stilsein-muted text-lg max-w-2xl mx-auto leading-relaxed"
@@ -948,7 +1047,7 @@
           info@stilsein.co.za
         </a>
       </div>
-      <p class="text-sm text-gray-600 mt-10">
+      <p class="text-sm text-jakkals-orange mt-10">
         &copy; 2026 StilSein Industrial (Pty) Ltd. | Ontwerp in Suid-Afrika.
       </p>
     </footer>
@@ -1064,6 +1163,52 @@
         // Opens the user's default email client (Outlook, Mail, Gmail app) pre-filled!
         window.location.href = `mailto:info@stilsein.co.za?subject=Navraag: ${encodeURIComponent(name)}&body=${encodeURIComponent(msg)}`;
         closeModal();
+      }
+      // --- 0. CONSTRUCTION MODAL LOGIC ---
+      function closeConstructionModal() {
+          const modal = document.getElementById('construction-modal');
+          const content = document.getElementById('construction-modal-content');
+          modal.classList.add('opacity-0', 'pointer-events-none');
+          content.classList.add('scale-95');
+          // Completely remove from DOM after fade to prevent blocking clicks
+          setTimeout(() => modal.remove(), 500);
+      }
+      // --- HARDWARE TOGGLE LOGIC ---
+      let isHardwareHidden = false;
+      function toggleHardwareSteps() {
+          const hwSteps = document.querySelectorAll('.hardware-step');
+          const optionB = document.getElementById('option-b-step');
+          const container = document.getElementById('steps-container');
+          const line = document.getElementById('steps-line');
+          const btn = document.getElementById('hardware-toggle-btn');
+
+          if (!isHardwareHidden) {
+              // Hide 1 & 2, Show Option B
+              hwSteps.forEach(step => {
+                  step.classList.add('hidden');
+              });
+              optionB.classList.remove('hidden');
+              // Small delay to allow CSS to render block before fading in
+              setTimeout(() => {
+                  optionB.classList.remove('opacity-0', 'scale-95');
+                  optionB.classList.add('opacity-100', 'scale-100');
+              }, 50);
+              container.classList.remove('md:grid-cols-4');
+              container.classList.add('md:grid-cols-4'); // Keep grid structure but Option B spans 2
+              if (line) line.classList.add('hidden');
+              btn.innerText = "...wag, ek benodig toerusting. Hoe werk die opstelling?";
+          } else {
+              // Hide Option B, Show 1 & 2
+              optionB.classList.add('opacity-0', 'scale-95');
+              optionB.classList.remove('opacity-100', 'scale-100');
+              setTimeout(() => {
+                  optionB.classList.add('hidden');
+                  hwSteps.forEach(step => step.classList.remove('hidden'));
+                  if (line) line.classList.remove('hidden');
+              }, 300); // Wait for fade out
+              btn.innerText = "...indien jy reeds 'n LoRaWAN Gateway besit? Kliek Hier.";
+          }
+          isHardwareHidden = !isHardwareHidden;
       }
     </script>
   </body>
