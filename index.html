@@ -1,14 +1,14 @@
 <!doctype html>
-<html lang="af" class="scroll-smooth">
+<!-- FIX 1: Start as english -->
+<html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>StilSein | Data Sonder Grense</title>
     <link rel="icon" type="image/png" href="assets/images/wolf_icon.png" />
 
-    <!-- CRITICAL FIX 7: PREVENT FOUC (Flash of Unstyled Content for English) -->
     <style>
-      /* As die skerm 'n ander taal moet laai, steek ons die liggaam vinnig weg totdat i18n klaar is */
+      /* Prevent FOUC when a non-default language loads */
       html.lang-switching body {
         opacity: 0;
       }
@@ -16,9 +16,10 @@
     <script>
       (function () {
         const savedLang = localStorage.getItem("stilsein_lang");
-        if (savedLang && savedLang !== "af") {
+        // If a user saved AF previously, hide body to prevent english flashing first
+        if (savedLang && savedLang !== "en") {
           document.documentElement.classList.add("lang-switching");
-          document.documentElement.lang = savedLang; // Verander die <html lang> onmiddellik
+          document.documentElement.lang = savedLang;
         }
       })();
     </script>
@@ -162,14 +163,14 @@
           class="text-2xl font-bold text-white font-garet text-center mb-2"
           data-i18n="modal_title"
         >
-          STILSEIN IS IN ONTWIKKELING
+          STILSEIN IS IN DEVELOPMENT
         </h3>
         <p
           class="text-stilsein-muted text-sm text-center mb-6 leading-relaxed"
           data-i18n="modal_desc"
         >
-          Welkom by die toekoms van die veld. Ons is tans besig om die platform
-          af te rond vir kommersiële ontplooiing.
+          Welcome to the future of the field. We are currently finalizing the
+          platform for commercial deployment.
         </p>
         <div
           class="bg-stilsein-dark/50 border border-white/10 rounded-xl p-4 mb-8"
@@ -178,32 +179,30 @@
             class="text-xs text-white font-bold mb-3 tracking-widest text-stilsein-blue"
             data-i18n="modal_soon"
           >
-            BINNEKORT BESKIKBAAR:
+            COMING SOON:
           </p>
           <ul class="text-xs text-gray-400 space-y-2">
             <li class="flex gap-2">
               <span class="text-jakkals-orange">✓</span>
               <span data-i18n="modal_li1"
-                >Apple App Store & Google Play Bekendstelling</span
+                >Apple App Store & Google Play Launch</span
               >
             </li>
             <li class="flex gap-2">
               <span class="text-jakkals-orange">✓</span>
               <span data-i18n="modal_li2"
-                >WaterWolf (Damvlakke) & WagWolf (Sekuriteit)</span
+                >WaterWolf (Dam Levels) & WagWolf (Security)</span
               >
             </li>
             <li class="flex gap-2">
               <span class="text-jakkals-orange">✓</span>
               <span data-i18n="modal_li3"
-                >Interaktiewe Plaas-Bouer (Kry 'n Kwotasie op 'n Kaart)</span
+                >Interactive Farm Builder (Get a Quote on a Map)</span
               >
             </li>
             <li class="flex gap-2">
               <span class="text-jakkals-orange">✓</span>
-              <span data-i18n="modal_li4"
-                >Vennote-portaal vir Installeerders</span
-              >
+              <span data-i18n="modal_li4">Partner Portal for Installers</span>
             </li>
           </ul>
         </div>
@@ -212,7 +211,7 @@
           class="w-full py-4 bg-jakkals-orange text-stilsein-dark font-bold rounded-lg hover:bg-white transition-colors tracking-wide shadow-[0_0_15px_rgba(255,158,74,0.4)]"
           data-i18n="modal_btn"
         >
-          EK VERSTAAN, LAAT MY IN
+          I UNDERSTAND, LET ME IN
         </button>
       </div>
     </div>
@@ -252,20 +251,34 @@
           </div>
         </div>
 
+        <!-- Desktop Links -->
         <div
-          class="hidden md:flex items-center space-x-8 text-[11px] font-bold tracking-[0.2em] text-stilsein-muted uppercase"
+          class="hidden lg:flex items-center space-x-8 text-[11px] font-bold tracking-[0.2em] text-stilsein-muted uppercase"
         >
+          <!-- FIX 3: Added Home and What We Offer Links -->
+          <a
+            href="#home"
+            class="hover:text-jakkals-orange transition-colors"
+            data-i18n="nav_home"
+            >Home</a
+          >
+          <a
+            href="#wat-ons-doen"
+            class="hover:text-jakkals-orange transition-colors"
+            data-i18n="nav_what_we_offer"
+            >What We Offer</a
+          >
           <a
             href="#hoe-dit-werk"
             class="hover:text-jakkals-orange transition-colors"
             data-i18n="nav_how_it_works"
-            >Hoe Dit Werk</a
+            >How It Works</a
           >
           <a
             href="#monitering"
             class="hover:text-jakkals-orange transition-colors"
             data-i18n="nav_monitoring"
-            >Monitering</a
+            >Monitoring</a
           >
           <a
             href="#jakkals-ai"
@@ -277,7 +290,7 @@
             href="#ekosisteem"
             class="hover:text-jakkals-orange transition-colors"
             data-i18n="nav_ecosystem"
-            >Ekosisteem</a
+            >Ecosystem</a
           >
           <a
             href="#"
@@ -287,53 +300,35 @@
             "
             class="hover:text-jakkals-orange transition-colors"
             data-i18n="nav_contact"
-            >Kontak</a
+            >Contact</a
           >
 
-          <div
-            class="flex items-center space-x-1 border border-stilsein-blue/30 rounded-full px-1 py-1 bg-stilsein-dark/50 ml-6"
+          <!-- FIX 2: Sleek Toggle Switch for Desktop -->
+          <button
+            onclick="toggleLanguage()"
+            class="flex items-center ml-6 px-3 py-1.5 rounded-full border border-stilsein-blue/30 bg-stilsein-dark/80 text-[10px] font-bold tracking-widest text-stilsein-blue hover:bg-stilsein-blue hover:text-stilsein-dark transition-all"
           >
-            <button
-              onclick="changeLanguage('af')"
-              class="lang-btn lang-btn-af text-[10px] font-bold tracking-widest px-2 py-1 rounded-full transition-colors"
-            >
-              AF
-            </button>
-            <button
-              onclick="changeLanguage('en')"
-              class="lang-btn lang-btn-en text-[10px] font-bold tracking-widest px-2 py-1 rounded-full transition-colors"
-            >
-              EN
-            </button>
-          </div>
+            <span class="lang-toggle-text">AF</span>
+          </button>
         </div>
 
-        <div class="flex items-center space-x-3 md:hidden">
-          <div
-            class="flex items-center bg-stilsein-dark/50 rounded-full p-0.5 border border-stilsein-blue/20"
+        <!-- Mobile Controls (Language + Hamburger) -->
+        <div class="flex items-center space-x-4 lg:hidden">
+          <!-- FIX 2: Sleek Toggle Switch for Mobile (No more squishing) -->
+          <button
+            onclick="toggleLanguage()"
+            class="px-3 py-1.5 rounded-full border border-stilsein-blue/30 bg-stilsein-dark/80 text-[10px] font-bold tracking-widest text-stilsein-blue hover:bg-stilsein-blue hover:text-stilsein-dark transition-all shadow-md"
           >
-            <button
-              onclick="changeLanguage('af')"
-              class="lang-btn lang-btn-af text-[9px] font-bold px-2 py-1 rounded-full transition-colors"
-            >
-              AF
-            </button>
-            <button
-              onclick="changeLanguage('en')"
-              class="lang-btn lang-btn-en text-[9px] font-bold px-2 py-1 rounded-full transition-colors"
-            >
-              EN
-            </button>
-          </div>
+            <span class="lang-toggle-text">AF</span>
+          </button>
 
-          <!-- CRITICAL FIX 2: ARIA and Title Attributes translatable -->
           <button
             id="mobile-menu-btn"
             class="text-stilsein-blue focus:outline-none"
             data-i18n-aria-label="aria_menu_open"
             data-i18n-title="title_menu"
-            aria-label="Maak kieslys oop"
-            title="Kieslys"
+            aria-label="Open menu"
+            title="Menu"
           >
             <svg
               class="w-8 h-8"
@@ -354,21 +349,35 @@
     </nav>
 
     <!-- Mobile Dropdown Menu -->
+    <!-- FIX 4: Replaced 'hidden' with 'pointer-events-none' to ensure transitions animate correctly -->
     <div
       id="mobile-menu"
-      class="fixed top-[80px] w-full z-40 glass-card panel-texture border-b border-stilsein-blue/20 flex flex-col items-center space-y-6 py-6 transform -translate-y-full opacity-0 transition-all duration-300 ease-in-out md:hidden"
+      class="fixed top-[80px] w-full z-40 glass-card panel-texture border-b border-stilsein-blue/20 flex flex-col items-center space-y-6 py-6 transform -translate-y-full opacity-0 pointer-events-none transition-all duration-300 ease-in-out lg:hidden"
     >
+      <!-- FIX 3: Added Home and What We Offer Links to mobile -->
+      <a
+        href="#home"
+        class="mobile-link text-xs font-bold tracking-[0.2em] text-stilsein-muted uppercase hover:text-jakkals-orange"
+        data-i18n="nav_home"
+        >Home</a
+      >
+      <a
+        href="#wat-ons-doen"
+        class="mobile-link text-xs font-bold tracking-[0.2em] text-stilsein-muted uppercase hover:text-jakkals-orange"
+        data-i18n="nav_what_we_offer"
+        >What We Offer</a
+      >
       <a
         href="#hoe-dit-werk"
         class="mobile-link text-xs font-bold tracking-[0.2em] text-stilsein-muted uppercase hover:text-jakkals-orange"
         data-i18n="nav_how_it_works"
-        >Hoe Dit Werk</a
+        >How It Works</a
       >
       <a
         href="#monitering"
         class="mobile-link text-xs font-bold tracking-[0.2em] text-stilsein-muted uppercase hover:text-jakkals-orange"
         data-i18n="nav_monitoring"
-        >Monitering</a
+        >Monitoring</a
       >
       <a
         href="#jakkals-ai"
@@ -380,7 +389,7 @@
         href="#ekosisteem"
         class="mobile-link text-xs font-bold tracking-[0.2em] text-stilsein-muted uppercase hover:text-jakkals-orange"
         data-i18n="nav_ecosystem"
-        >Ekosisteem</a
+        >Ecosystem</a
       >
       <a
         href="#"
@@ -390,7 +399,7 @@
         "
         class="mobile-link text-xs font-bold tracking-[0.2em] text-stilsein-muted uppercase hover:text-jakkals-orange"
         data-i18n="nav_contact"
-        >Kontak</a
+        >Contact</a
       >
     </div>
 
@@ -403,19 +412,21 @@
         id="ticker-text"
         class="fade-transition text-[11px] md:text-xs tracking-[0.2em] text-stilsein-muted uppercase font-bold text-center px-6 font-garet max-w-3xl leading-relaxed"
       >
-        Industriële Langafstand Moniteringsagteware
+        Industrial Long-Range Monitoring Software
       </div>
     </div>
 
     <!-- 3. HERO SECTION -->
+    <!-- FIX 3: Added id="home" -->
     <section
+      id="home"
       class="pt-48 pb-20 px-6 min-h-[80vh] flex flex-col justify-center items-center text-center relative z-10 w-full overflow-hidden"
     >
       <div
         class="inline-block px-4 py-1 rounded-full border border-jakkals-orange/30 bg-jakkals-orange/10 text-jakkals-orange text-xs font-bold tracking-[0.2em] mb-6"
         data-i18n="hero_badge"
       >
-        DIE BEDRYFSTELSEL VIR DIE AFRIKA-PLAAS
+        THE OPERATING SYSTEM FOR THE AFRICAN FARM
       </div>
 
       <h1
@@ -431,15 +442,16 @@
         class="text-lg md:text-xl text-stilsein-muted max-w-2xl mx-auto mb-10 leading-relaxed"
         data-i18n="hero_desc"
       >
-        > Weet presies wat aangaan op die plaas. Jou oë en ore in sein-dooie
-        sones, met intydse data direk in die palm van jou hand.
+        > Know exactly what is happening on the farm. Your eyes and ears in
+        signal-dead zones, with real-time data directly in the palm of your
+        hand.
       </p>
       <div class="flex flex-col sm:flex-row gap-4">
         <a
           href="#hoe-dit-werk"
           class="px-8 py-4 bg-stilsein-blue text-stilsein-dark font-bold rounded-lg hover:bg-white transition-all shadow-[0_0_15px_rgba(145,172,200,0.4)] tracking-wide"
         >
-          <span data-i18n="hero_btn1">ONTDEK DIE STELSEL</span>
+          <span data-i18n="hero_btn1">DISCOVER THE SYSTEM</span>
         </a>
         <a
           href="https://wa.me/27718162636"
@@ -452,7 +464,7 @@
               d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.88-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.347-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.876 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"
             />
           </svg>
-          <span data-i18n="hero_btn2">WHATSAPP ONS</span>
+          <span data-i18n="hero_btn2">WHATSAPP US</span>
         </a>
       </div>
     </section>
@@ -466,7 +478,7 @@
           class="text-center text-stilsein-blue text-[17px] font-bold tracking-[0.3em] uppercase mb-8 font-garet"
           data-i18n="tech_title"
         >
-          Die Toekoms van Landbou, Aangedryf Deur Wêreldklas Tegnologie
+          The Future of Agriculture, Powered By World-Class Technology
         </p>
         <div
           class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center divide-y md:divide-y-0 md:divide-x divide-white/10"
@@ -482,9 +494,9 @@
               class="text-xs text-stilsein-muted leading-relaxed"
               data-i18n="tech_iot_desc"
             >
-              Die <strong>Internet van Dinge (IoT)</strong> beteken jou plaas
-              word "lewendig". Fisieke bates soos damme, pompe en hekke praat
-              direk met die internet sonder menslike ingryping.
+              The <strong>Internet of Things (IoT)</strong> means your farm
+              becomes "alive". Physical assets like dams, pumps, and gates talk
+              directly to the internet without human intervention.
             </p>
           </div>
           <div class="pt-6 md:pt-0 px-4">
@@ -498,9 +510,9 @@
               class="text-xs text-stilsein-muted leading-relaxed"
               data-i18n="tech_lora_desc"
             >
-              Langafstand, lae-krag radiogolwe. Dit is die towerkrag wat data
-              oor 15km ver stuur met 'n battery wat tot 10 jaar hou—heeltemal
-              onafhanklik van selfoonnetwerke.
+              Long-range, low-power radio waves. This is the magic that sends
+              data over 15km with a battery that lasts up to 10 years—completely
+              independent of cellular networks.
             </p>
           </div>
           <div class="pt-6 md:pt-0 px-4">
@@ -514,9 +526,9 @@
               class="text-xs text-stilsein-muted leading-relaxed"
               data-i18n="tech_ttn_desc"
             >
-              Die wêreld se mees betroubare roeteringstelsel. Jou data reis deur
-              geënkripteerde wolk-tonnels om te verseker dit land veilig, en
-              blitsvinnig, op jou foon.
+              The world's most reliable routing system. Your data travels
+              through encrypted cloud tunnels to ensure it lands safely, and
+              lightning-fast, on your phone.
             </p>
           </div>
         </div>
@@ -524,7 +536,9 @@
     </div>
 
     <!-- 3.8 WHAT WE OFFER -->
+    <!-- FIX 3: Added id="wat-ons-doen" -->
     <section
+      id="wat-ons-doen"
       class="py-24 px-6 bg-stilsein-dark relative z-10 w-full overflow-hidden"
     >
       <div class="max-w-5xl mx-auto text-center">
@@ -532,20 +546,20 @@
           class="text-3xl md:text-4xl font-bold text-white mb-6 font-garet"
           data-i18n="mon_title"
         >
-          MONITOR JOU PLAAS <br /><span class="text-stilsein-blue"
-            >OP DIE STILSEIN PLATFORM</span
+          MONITOR YOUR FARM <br /><span class="text-stilsein-blue"
+            >ON THE STILSEIN PLATFORM</span
           >
         </h2>
         <p
           class="text-stilsein-muted text-lg md:text-xl leading-relaxed mb-12 max-w-3xl mx-auto"
           data-i18n="mon_desc"
         >
-          In sy kern is StilSein 'n slim app en 'n toegewyde 24/7
-          moniteringsdiens. Ons app vat al daai verskillende sensors op jou
-          plaas en trek hulle netjies saam op een skerm. Ons netwerk van vennote
-          kan die installasies vir jou doen, maar die ware krag lê in die app se
-          veelsydigheid. Jy is nie vasgevang met net een tipe hardeware nie—as
-          dit LoRaWAN praat, koppel ons dit aan Jakkals AI.
+          At its core, StilSein is a smart app and a dedicated 24/7 monitoring
+          service. Our app neatly pulls together all those different sensors on
+          your farm onto one screen. Our partner network can do the
+          installations for you, but the true power lies in the app's
+          versatility. You are not locked into just one type of hardware—if it
+          speaks LoRaWAN, we connect it to Jakkals AI.
         </p>
 
         <div
@@ -575,7 +589,7 @@
               class="text-white font-bold text-xs tracking-wider"
               data-i18n="grid_rain"
             >
-              REËNVAL
+              RAINFALL
             </div>
           </div>
           <div
@@ -602,7 +616,7 @@
               class="text-white font-bold text-xs tracking-wider"
               data-i18n="grid_dam"
             >
-              DAMVLAKKE
+              DAM LEVELS
             </div>
           </div>
           <div
@@ -629,7 +643,7 @@
               class="text-white font-bold text-xs tracking-wider"
               data-i18n="grid_sec"
             >
-              SEKURITEIT
+              SECURITY
             </div>
           </div>
           <div
@@ -656,7 +670,7 @@
               class="text-white font-bold text-xs tracking-wider"
               data-i18n="grid_pipe"
             >
-              PYPDRUK
+              PIPE PRESSURE
             </div>
           </div>
           <div
@@ -689,7 +703,7 @@
               class="text-white font-bold text-xs tracking-wider"
               data-i18n="grid_live"
             >
-              VEE-OPSPORING
+              LIVESTOCK TRACKING
             </div>
           </div>
           <div
@@ -716,14 +730,15 @@
               class="text-white font-bold text-xs tracking-wider"
               data-i18n="grid_soil"
             >
-              GRONDVOG
+              SOIL MOISTURE
             </div>
           </div>
+          <!-- FIX 5: border-deep-orange-400 replaced with standard border-orange-500/20 to match opacity format -->
           <div
-            class="bg-stilsein-card/40 border border-deep-orange-400/20 p-4 rounded-2xl flex items-center gap-4 hover:bg-stilsein-card transition-colors"
+            class="bg-stilsein-card/40 border border-orange-500/20 p-4 rounded-2xl flex items-center gap-4 hover:bg-stilsein-card transition-colors"
           >
             <div
-              class="w-10 h-10 rounded-full bg-orange-600/10 flex items-center justify-center border border-orange-600/30 shrink-0"
+              class="w-10 h-10 rounded-full bg-orange-500/10 flex items-center justify-center border border-orange-500/30 shrink-0"
             >
               <svg
                 class="w-5 h-5 text-orange-500"
@@ -749,7 +764,7 @@
               class="text-white font-bold text-xs tracking-wider"
               data-i18n="grid_fire"
             >
-              BRANDE
+              FIRES
             </div>
           </div>
           <div
@@ -776,7 +791,7 @@
               class="text-white font-bold text-xs tracking-wider"
               data-i18n="grid_wea"
             >
-              WEERSTASIES
+              WEATHER STATIONS
             </div>
           </div>
         </div>
@@ -794,16 +809,16 @@
             class="text-3xl md:text-4xl font-bold text-white mb-4 font-garet"
             data-i18n="hw_title"
           >
-            HOE WERK DIE
-            <span class="text-stilsein-blue">STILSEIN NETWERK?</span>
+            HOW DOES THE
+            <span class="text-stilsein-blue">STILSEIN NETWORK WORK?</span>
           </h2>
           <p
             class="text-stilsein-muted max-w-2xl mx-auto leading-relaxed"
             data-i18n="hw_desc"
           >
-            Vergeet van swak selfoonopvangs. <strong>StilSein</strong>, tesame
-            met ons landwye netwerk van installeerders, kom bou 'n private
-            langafstand radionetwerk direk op jou plaas.
+            Forget about poor cell reception. <strong>StilSein</strong>,
+            together with our nationwide network of installers, builds a private
+            long-range radio network right on your farm.
           </p>
           <button
             onclick="toggleHardwareSteps()"
@@ -811,7 +826,7 @@
             class="mt-4 text-jakkals-orange text-sm font-bold tracking-wider hover:text-white transition-colors border-b border-jakkals-orange/30 hover:border-white pb-1"
             data-i18n="hw_toggle"
           >
-            ...indien jy reeds 'n LoRaWAN Gateway besit? Kliek Hier.
+            ...if you already own a LoRaWAN Gateway? Click Here.
           </button>
         </div>
 
@@ -836,14 +851,14 @@
               class="text-lg font-bold text-white mb-2"
               data-i18n="hw_step1_title"
             >
-              1. Die Sensors
+              1. The Sensors
             </h3>
             <p
               class="text-xs text-stilsein-muted leading-relaxed"
               data-i18n="hw_step1_desc"
             >
-              Ons plaas battery-aangedrewe sensors (reënmeters, hekke, damme) in
-              die veld. Die battery hou tot 10 jaar.
+              We place battery-powered sensors (rain gauges, gates, dams) in the
+              field. The battery lasts up to 10 years.
             </p>
           </div>
 
@@ -859,14 +874,14 @@
               class="text-lg font-bold text-white mb-2"
               data-i18n="hw_step2_title"
             >
-              2. Die Gateway
+              2. The Gateway
             </h3>
             <p
               class="text-xs text-stilsein-muted leading-relaxed"
               data-i18n="hw_step2_desc"
             >
-              Een sentrale basisstasie by die opstal vang radioseine van
-              kilometers ver op. Geen SIM-kaarte benodig nie.
+              One central base station at the homestead captures radio signals
+              from miles away. No SIM cards required.
             </p>
           </div>
 
@@ -895,16 +910,15 @@
               class="text-lg font-bold text-jakkals-orange mb-2"
               data-i18n="hw_opt_title"
             >
-              Skakel Direk In
+              Connect Directly
             </h3>
             <p
               class="text-xs text-white leading-relaxed"
               data-i18n="hw_opt_desc"
             >
-              Het jy reeds The Things Network (TTN) hardeware? Fantasties. Jy
-              benodig geen nuwe toerusting nie. Kontak ons vir jou unieke
-              Plaas-Sleutel, stel ons Webhook op in jou TTN-konsole, en laai die
-              App af.
+              Do you already have The Things Network (TTN) hardware? Fantastic.
+              You don't need any new equipment. Contact us for your unique Farm
+              Key, set up our Webhook in your TTN console, and download the App.
             </p>
           </div>
 
@@ -920,14 +934,14 @@
               class="text-lg font-bold text-white mb-2"
               data-i18n="hw_step3_title"
             >
-              3. Die Wolk
+              3. The Cloud
             </h3>
             <p
               class="text-xs text-stilsein-muted leading-relaxed"
               data-i18n="hw_step3_desc"
             >
-              Jou data stroom veilig deur ons bedieners na jou ge-isoleerde
-              databasis waar Jakkals-AI dit ontleed.
+              Your data streams securely through our servers to your isolated
+              database where Jakkals-AI analyzes it.
             </p>
           </div>
 
@@ -943,14 +957,14 @@
               class="text-lg font-bold text-white mb-2"
               data-i18n="hw_step4_title"
             >
-              4. Die App
+              4. The App
             </h3>
             <p
               class="text-xs text-stilsein-muted leading-relaxed"
               data-i18n="hw_step4_desc"
             >
-              Alles vertoon onmiddellik en mooi georganiseerd op jou foon. Jy
-              kry waarskuwings nog voor 'n krisis tref.
+              Everything displays instantly and neatly organized on your phone.
+              You get warnings even before a crisis hits.
             </p>
           </div>
         </div>
@@ -970,27 +984,28 @@
             class="text-3xl md:text-4xl font-bold text-white mb-6 font-garet"
             data-i18n="live_title"
           >
-            ONS MONITOR <br /><span class="text-stilsein-blue"
-              >EN HOU WAG.</span
+            WE MONITOR <br /><span class="text-stilsein-blue"
+              >AND KEEP WATCH.</span
             >
           </h2>
           <p
             class="text-stilsein-muted text-lg mb-6 leading-relaxed"
             data-i18n="live_p1"
           >
-            StilSein is nie net 'n app wat jy aflaai en self moet uitsorteer
-            nie. Ons is 'n toegewyde <strong>intydse moniteringsdiens</strong>.
+            StilSein is not just an app you download and have to figure out
+            yourself. We are a dedicated
+            <strong>real-time monitoring service</strong>.
           </p>
           <p
             class="text-stilsein-muted text-lg mb-8 leading-relaxed"
             data-i18n="live_p2"
           >
-            Terwyl Jakkals-AI jou weersomstandighede ontleed, sit regte mense by
-            StilSein HQ en hou wakker oog oor jou hardeware se gesondheid. As 'n
-            grondvog-sensor se battery pap raak, of 'n gateway se sein in die
-            verste kamp wegraak, flits die rooi ligte op ons hoofraam voor jy
-            eers weet daar is 'n fout. Ons kontak dadelik vir jou of die
-            installeerder.
+            While Jakkals-AI analyzes your weather conditions, real people sit
+            at StilSein HQ keeping a watchful eye over your hardware's health.
+            If a soil moisture sensor's battery runs low, or a gateway's signal
+            in the furthest camp drops, the red lights flash on our mainframe
+            before you even know there is a fault. We immediately contact you or
+            the installer.
           </p>
           <div
             class="flex items-center gap-4 bg-stilsein-card/80 border border-stilsein-blue/30 p-4 rounded-xl shadow-[0_0_15px_rgba(145,172,200,0.2)]"
@@ -1002,7 +1017,7 @@
               class="text-xs text-white m-0 font-bold tracking-widest uppercase"
               data-i18n="live_badge"
             >
-              StilSein HQ: 24/7 Infrastruktuur Wagtoring
+              StilSein HQ: 24/7 Infrastructure Watchtower
             </p>
           </div>
         </div>
@@ -1075,59 +1090,59 @@
                 d="M13 10V3L4 14h7v7l9-11h-7z"
               ></path>
             </svg>
-            <span data-i18n="ai_badge">DIE BREIN AGTER DIE BEDRYF</span>
+            <span data-i18n="ai_badge">THE BRAINS BEHIND THE OPERATION</span>
           </div>
 
           <h2
             class="text-4xl md:text-5xl font-bold text-white mb-6 font-garet leading-tight"
             data-i18n="ai_title"
           >
-            ONTMOET <span class="text-jakkals-orange">JAKKALS AI.</span>
+            MEET <span class="text-jakkals-orange">JAKKALS AI.</span>
           </h2>
 
           <p
             class="text-stilsein-muted text-lg mb-6 leading-relaxed"
             data-i18n="ai_p1"
           >
-            Terwyl ons hoofkwartier die hardeware oppas, ontleed Jakkals jou
+            While our headquarters guards the hardware, Jakkals analyzes your
             data.
           </p>
           <p
             class="text-stilsein-muted text-lg mb-8 leading-relaxed"
             data-i18n="ai_p2"
           >
-            Jakkals is nie 'n generiese "chatbot" nie. By installasie word hy
-            gekalibreer vir jou spesifieke plaas. Hy ken jou presiese
-            <strong>boerderytipe</strong>,
-            <strong> spesifieke reënval streek</strong>,
-            <strong>afstande tussen jou kampe</strong>, die
-            <strong>naaste dorp</strong>, en jou plaas se
-            <strong>unieke vloeddrempels</strong>.
+            Jakkals is not a generic "chatbot". At installation, he is
+            calibrated for your specific farm. He knows your exact
+            <strong>farming type</strong>,
+            <strong>specific rainfall region</strong>,
+            <strong>distances between your camps</strong>, the
+            <strong>nearest town</strong>, and your farm's
+            <strong>unique flood thresholds</strong>.
           </p>
 
           <ul class="space-y-4 mb-8 text-sm text-gray-300">
             <li class="flex items-start gap-3">
               <span class="text-jakkals-orange mt-1">✓</span>
               <span data-i18n="ai_li1"
-                ><strong>Proaktiewe Waarskuwings:</strong> Ontleed Open-Meteo
-                satellietdata teen jou plaas se drempels om hittegolwe of storms
-                dae vooruit te voorspel.</span
+                ><strong>Proactive Warnings:</strong> Analyzes Open-Meteo
+                satellite data against your farm's thresholds to predict
+                heatwaves or storms days in advance.</span
               >
             </li>
             <li class="flex items-start gap-3">
               <span class="text-jakkals-orange mt-1">✓</span>
               <span data-i18n="ai_li2"
-                ><strong>Konteks-Bewus:</strong> Hy weet of 15mm reën 'n
-                verligting vir jou skape is, en of dit 'n vloedgevaar vir
-                landerye inhou.</span
+                ><strong>Context-Aware:</strong> He knows whether 15mm of rain
+                is a relief for your sheep, or if it poses a flood risk for
+                crops.</span
               >
             </li>
             <li class="flex items-start gap-3">
               <span class="text-jakkals-orange mt-1">✓</span>
               <span data-i18n="ai_li3"
-                ><strong>Jou Persoonlike Assistent:</strong> Vra hom vrae in die
-                app, en kry dadelik 'n boerdery-spesifieke antwoord gebaseer op
-                vandag se syfers.</span
+                ><strong>Your Personal Assistant:</strong> Ask him questions in
+                the app, and instantly get a farming-specific answer based on
+                today's numbers.</span
               >
             </li>
           </ul>
@@ -1180,9 +1195,9 @@
                 </div>
                 <div class="text-white relative block pr-4">
                   <span data-i18n="ai_term_text"
-                    >"Boer, die hittegolf slaan vanmiddag 39°C. Maak seker die
-                    Noordgrens-kudde het genoeg skaduwee en water. Ek hou die
-                    wind dop."</span
+                    >"Farmer, the heatwave hits 39°C this afternoon. Make sure
+                    the North Boundary herd has enough shade and water. I'll
+                    keep an eye on the wind."</span
                   >
                   <span
                     class="animate-pulse bg-jakkals-orange w-2 h-4 inline-block align-middle ml-1"
@@ -1206,16 +1221,16 @@
             class="text-3xl md:text-4xl font-bold text-white mb-4 font-garet"
             data-i18n="eco_title"
           >
-            EEN APP.
+            ONE APP.
             <span class="text-stilsein-blue"
-              >JOU HELE PLAAS ONDER EEN DAK.</span
+              >YOUR ENTIRE FARM UNDER ONE ROOF.</span
             >
           </h2>
           <p
             class="text-stilsein-muted text-lg max-w-2xl mx-auto leading-relaxed"
             data-i18n="eco_desc"
           >
-            Raak aan enige skerm hieronder om diepte-analise te sien.
+            Touch any screen below to see in-depth analysis.
           </p>
         </div>
 
@@ -1238,7 +1253,7 @@
               class="absolute -bottom-8 w-full text-center text-stilsein-blue text-xs tracking-widest font-bold font-garet"
               data-i18n="eco_rain"
             >
-              WEERWOLF REËNVAL
+              WEERWOLF RAINFALL
             </div>
           </div>
           <div
@@ -1259,7 +1274,7 @@
               class="absolute -bottom-8 w-full text-center text-jakkals-orange text-xs tracking-widest font-bold font-garet"
               data-i18n="eco_sat"
             >
-              SATELLIET VOORSPELLING
+              SATELLITE FORECAST
             </div>
           </div>
           <div
@@ -1280,7 +1295,7 @@
               class="absolute -bottom-8 w-full text-center text-red-400 text-xs tracking-widest font-bold font-garet"
               data-i18n="eco_sec"
             >
-              WAGWOLF SEKURITEIT
+              WAGWOLF SECURITY
             </div>
           </div>
           <div
@@ -1301,7 +1316,7 @@
               class="absolute -bottom-8 w-full text-center text-teal-400 text-xs tracking-widest font-bold font-garet"
               data-i18n="eco_dam"
             >
-              WATERWOLF DAMVLAKKE
+              WATERWOLF DAM LEVELS
             </div>
           </div>
           <div
@@ -1322,7 +1337,7 @@
               class="absolute -bottom-8 w-full text-center text-white text-sm tracking-widest font-black font-garet drop-shadow-lg"
               data-i18n="eco_core"
             >
-              STILSEIN KERN
+              STILSEIN CORE
             </div>
           </div>
           <div
@@ -1343,7 +1358,7 @@
               class="absolute -bottom-8 w-full text-center text-cyan-400 text-xs tracking-widest font-bold font-garet"
               data-i18n="eco_pipe"
             >
-              DRUKWOLF PYPDRUK
+              DRUKWOLF PIPE PRESSURE
             </div>
           </div>
           <div
@@ -1364,7 +1379,7 @@
               class="absolute -bottom-8 w-full text-center text-purple-400 text-xs tracking-widest font-bold font-garet"
               data-i18n="eco_track"
             >
-              SPOORWOLF OPSPORING
+              SPOORWOLF TRACKING
             </div>
           </div>
           <div
@@ -1385,7 +1400,7 @@
               class="absolute -bottom-8 w-full text-center text-green-400 text-xs tracking-widest font-bold font-garet"
               data-i18n="eco_soil"
             >
-              GRONDWOLF GRONDVOG
+              GRONDWOLF SOIL MOISTURE
             </div>
           </div>
           <div
@@ -1406,7 +1421,7 @@
               class="absolute -bottom-8 w-full text-center text-deep-orange-400 text-xs tracking-widest font-bold font-garet"
               data-i18n="eco_fire"
             >
-              VELDWOLF BRANDE
+              VELDWOLF FIRES
             </div>
           </div>
         </div>
@@ -1416,18 +1431,18 @@
             class="text-stilsein-muted text-lg mb-6 leading-relaxed"
             data-i18n="eco_p1"
           >
-            Om 'n stelsel op te stel vir net een reënmeter is nogal nice. Maar
-            om 'n netwerk te bou wat pypdruk, plaashekke, damvlakke en uiterste
-            weer gelyktydig dophou?
-            <strong class="text-jakkals-orange">Dit verander die game.</strong>
+            Setting up a system for just one rain gauge is pretty nice. But
+            building a network that simultaneously monitors pipe pressure, farm
+            gates, dam levels, and extreme weather?
+            <strong class="text-jakkals-orange">That changes the game.</strong>
           </p>
           <p
             class="text-stilsein-muted text-lg mb-10 leading-relaxed"
             data-i18n="eco_p2"
           >
-            StilSein is modulêr. Belê in die hoofinfrastruktuur vandag, en voeg
-            nuwe sensors by op jou eie tyd—of dit nou môre of oor twee jaar is.
-            Jou app pas outomaties aan namate jou plaas groei.
+            StilSein is modular. Invest in the core infrastructure today, and
+            add new sensors on your own time—whether that's tomorrow or in two
+            years. Your app automatically adapts as your farm grows.
           </p>
           <div
             class="bg-stilsein-blue/10 border-l-4 border-stilsein-blue p-6 rounded-r-xl shadow-[0_0_15px_rgba(145,172,200,0.1)] text-left"
@@ -1436,11 +1451,11 @@
               class="text-sm md:text-base text-white italic m-0 leading-relaxed"
               data-i18n="eco_quote"
             >
-              "Monitor elke hoek en draai van jou plaas. Die wolf slaap wakker.
-              Weet wanneer die eerste druppels val, of wanneer die pype loop en
-              wanneer die boonste kamp se hek oop is. Stoor dan alles en hou 'n
-              10-jaar logboek van jou plaas se mikroklimaat om jou grondwaarde
-              te verhoog."
+              "Monitor every nook and cranny of your farm. The wolf stays awake.
+              Know when the first drops fall, or when the pipes are running and
+              when the top camp's gate is open. Then store everything and keep a
+              10-year logbook of your farm's microclimate to increase your land
+              value."
             </p>
           </div>
         </div>
@@ -1455,11 +1470,12 @@
             class="text-3xl md:text-4xl font-bold text-white mb-4 font-garet"
             data-i18n="rep_title"
           >
-            PROFESSIONELE VERSLAE, MET EEN KLIEK.
+            PROFESSIONAL REPORTS, WITH ONE CLICK.
           </h2>
           <p class="text-stilsein-muted max-w-2xl mx-auto" data-i18n="rep_desc">
-            Jou data is joune. Voer intydse weerverslae en rou data uit direk
-            vanaf jou foon, ideaal vir versekeringseise of argiefbestuur.
+            Your data is yours. Export real-time weather reports and raw data
+            directly from your phone, ideal for insurance claims or archive
+            management.
           </p>
         </div>
 
@@ -1496,10 +1512,9 @@
               class="text-stilsein-muted mb-6 text-sm leading-relaxed"
               data-i18n="rep_pdf_desc"
             >
-              Pragtige, maatskappy-gebrande PDF-verslae. Sluit outomatiese
-              weerkundige opsommings deur Jakkals in, asook kleurgekodeerde
-              intensiteitsgrafieke van jou storms. Raak aan die dokument om blad
-              2 te sien.
+              Beautiful, company-branded PDF reports. Includes automatic
+              meteorological summaries by Jakkals, as well as color-coded
+              intensity graphs of your storms. Touch the document to see page 2.
             </p>
             <div
               class="w-full mx-auto aspect-[1/1.414] bg-stilsein-dark/50 rounded-xl border border-white/5 overflow-hidden relative cursor-pointer shadow-lg"
@@ -1521,7 +1536,7 @@
                 class="absolute inset-0 flex items-center justify-center text-gray-600 text-xs font-bold tracking-widest -z-10"
                 data-i18n="rep_pdf_badge"
               >
-                [ PDF VOORBEELD HIER ]
+                [ PDF PREVIEW HERE ]
               </div>
             </div>
           </div>
@@ -1551,16 +1566,16 @@
                 class="text-2xl font-bold text-white font-garet"
                 data-i18n="rep_csv_title"
               >
-                ROU DATA CSV
+                RAW DATA CSV
               </h3>
             </div>
             <p
               class="text-stilsein-muted mb-6 text-sm leading-relaxed"
               data-i18n="rep_csv_desc"
             >
-              Kry onmiddellike toegang tot elke data pols wat deur jou sensors
-              gestuur is. Ideaal vir sigblaaie (Excel) en jou eie
-              landbou-analises. Raak aan die dokument om blad 2 te sien.
+              Get instant access to every data pulse sent by your sensors. Ideal
+              for spreadsheets (Excel) and your own agricultural analyses. Touch
+              the document to see page 2.
             </p>
             <div
               class="w-full mx-auto aspect-[1/1.414] bg-stilsein-dark/50 rounded-xl border border-white/5 overflow-hidden relative cursor-pointer shadow-lg"
@@ -1582,7 +1597,7 @@
                 class="absolute inset-0 flex items-center justify-center text-gray-600 text-xs font-bold tracking-widest -z-10"
                 data-i18n="rep_csv_badge"
               >
-                [ CSV VOORBEELD HIER ]
+                [ CSV PREVIEW HERE ]
               </div>
             </div>
           </div>
@@ -1603,14 +1618,13 @@
         class="relative glass-card panel-texture p-8 rounded-3xl w-[90%] max-w-lg border border-stilsein-blue/30 shadow-[0_0_30px_rgba(145,172,200,0.2)] transform scale-95 transition-transform duration-300"
         id="contact-modal-content"
       >
-        <!-- CRITICAL FIX 2: ARIA and Title Attributes translatable -->
         <button
           onclick="closeModal()"
           class="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors"
           data-i18n-aria-label="aria_menu_close"
           data-i18n-title="title_close"
-          aria-label="Maak toe"
-          title="Maak toe"
+          aria-label="Close menu"
+          title="Close"
         >
           <svg
             class="w-6 h-6"
@@ -1631,17 +1645,17 @@
           class="text-2xl font-bold text-white font-garet mb-2"
           data-i18n="contact_title"
         >
-          GESELS MET STILSEIN
+          CHAT WITH STILSEIN
         </h3>
         <p class="text-stilsein-muted text-sm mb-6" data-i18n="contact_desc">
-          Stuur vir ons 'n direkte boodskap of e-pos ons by info@stilsein.co.za.
+          Send us a direct message or email us at info@stilsein.co.za.
         </p>
         <form onsubmit="sendEmail(event)" class="space-y-4">
           <input
             type="text"
             id="form-name"
             data-i18n-placeholder="contact_name_placeholder"
-            placeholder="Jou Naam / Plaas Naam"
+            placeholder="Your Name / Farm Name"
             required
             class="w-full bg-stilsein-dark/50 border border-white/10 rounded-lg p-3 text-white placeholder-gray-500 focus:outline-none focus:border-stilsein-blue transition-colors"
           />
@@ -1649,7 +1663,7 @@
             id="form-message"
             rows="4"
             data-i18n-placeholder="contact_msg_placeholder"
-            placeholder="Hoe kan ons help?"
+            placeholder="How can we help?"
             required
             class="w-full bg-stilsein-dark/50 border border-white/10 rounded-lg p-3 text-white placeholder-gray-500 focus:outline-none focus:border-stilsein-blue transition-colors"
           ></textarea>
@@ -1658,7 +1672,7 @@
             class="w-full py-3 bg-stilsein-blue text-stilsein-dark font-bold rounded-lg hover:bg-white transition-colors tracking-wide"
             data-i18n="contact_btn"
           >
-            STUUR BOODSKAP
+            SEND MESSAGE
           </button>
         </form>
       </div>
@@ -1673,7 +1687,7 @@
         class="text-3xl font-bold text-white mb-8 font-garet"
         data-i18n="footer_title"
       >
-        GEREED OM JOU PLAAS TE KOPPEL?
+        READY TO CONNECT YOUR FARM?
       </h2>
       <div
         class="flex flex-col sm:flex-row justify-center items-center gap-6 mb-12"
@@ -1689,7 +1703,7 @@
               d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.88-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.347-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.876 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"
             />
           </svg>
-          <span data-i18n="footer_btn">GESELS MET ONS</span>
+          <span data-i18n="footer_btn">CHAT WITH US</span>
         </a>
         <a
           href="#"
@@ -1703,7 +1717,7 @@
         </a>
       </div>
       <p class="text-sm text-jakkals-orange mt-10" data-i18n="footer_copy">
-        &copy; 2026 StilSein Industrial (Pty) Ltd. | Ontwerp in Suid-Afrika.
+        &copy; 2026 StilSein Industrial (Pty) Ltd. | Designed in South Africa.
       </p>
     </footer>
 
@@ -1715,18 +1729,28 @@
       const menu = document.getElementById("mobile-menu");
       const mobileLinks = document.querySelectorAll(".mobile-link");
 
+      // FIX 4: Use pointer-events-none instead of hidden so CSS transitions trigger correctly
       btn.addEventListener("click", () => {
         menu.classList.toggle("translate-y-0");
         menu.classList.toggle("-translate-y-full");
         menu.classList.toggle("opacity-100");
         menu.classList.toggle("opacity-0");
-        menu.classList.toggle("hidden");
+        menu.classList.toggle("pointer-events-none");
+        menu.classList.toggle("pointer-events-auto");
       });
 
       mobileLinks.forEach((link) => {
         link.addEventListener("click", () => {
-          menu.classList.add("-translate-y-full", "opacity-0", "hidden");
-          menu.classList.remove("translate-y-0", "opacity-100");
+          menu.classList.add(
+            "-translate-y-full",
+            "opacity-0",
+            "pointer-events-none",
+          );
+          menu.classList.remove(
+            "translate-y-0",
+            "opacity-100",
+            "pointer-events-auto",
+          );
         });
       });
 
@@ -1759,7 +1783,7 @@
       // --- THE LIVING TEXT ENGINE ---
       let currentPhraseIndex = 0;
       window.i18nPhrases = window.i18nPhrases || [
-        "Industriële Langafstand Moniteringsagteware",
+        "Industrial Long-Range Monitoring Software",
       ];
 
       setInterval(() => {
@@ -1803,15 +1827,13 @@
         content.classList.add("scale-95");
       }
 
-      // CRITICAL FIX 3: Translate Email Subject
       function sendEmail(e) {
         e.preventDefault();
         const name = document.getElementById("form-name").value;
         const msg = document.getElementById("form-message").value;
 
-        // Kry die korrekte taal-voorvoegsel as 'n veranderlike. Waarborg 'n fallback
         const subjectPrefix =
-          window.translations[window.currentLang]?.email_subject || "Navraag: ";
+          window.translations[window.currentLang]?.email_subject || "Enquiry: ";
         const subject = encodeURIComponent(subjectPrefix + name);
 
         window.location.href = `mailto:info@stilsein.co.za?subject=${subject}&body=${encodeURIComponent(msg)}`;
