@@ -46,6 +46,11 @@
         background-image: url("assets/images/bg_texture_dark.png?v=2");
         background-repeat: repeat;
       }
+      .bg-texture-orange {
+        background-image: url("assets/images/bg_texture_orange.png?v=1");
+        background-repeat: repeat;
+        background-blend-mode: overlay;
+      }
       .topbar-texture {
         background-image: url("assets/images/topbar_texture.png?v=2");
         background-repeat: repeat;
@@ -150,34 +155,12 @@
         </div>
 
         <!-- Desktop Links -->
-        <div
-          class="hidden md:flex space-x-8 text-[11px] font-bold tracking-[0.2em] text-stilsein-muted uppercase"
-        >
-          <a
-            href="#hoe-dit-werk"
-            class="hover:text-jakkals-orange transition-colors"
-            >Hoe Dit Werk</a
-          >
-          <a
-            href="#die-stelsel"
-            class="hover:text-jakkals-orange transition-colors"
-            >Die Stelsel</a
-          >
-          <a
-            href="#ekosisteem"
-            class="hover:text-jakkals-orange transition-colors"
-            >Ekosisteem</a
-          >
-          <a
-            href="#"
-            onclick="
-              openModal();
-              return false;
-            "
-            class="hover:text-jakkals-orange transition-colors"
-            >Kontak</a
-          >
-        </div>
+        <div class="hidden md:flex space-x-8 text-[11px] font-bold tracking-[0.2em] text-stilsein-muted uppercase">
+          <a href="#hoe-dit-werk" class="hover:text-jakkals-orange transition-colors">Hoe Dit Werk</a>
+          <a href="#die-stelsel" class="hover:text-jakkals-orange transition-colors">Die Stelsel</a>
+          <a href="#ekosisteem" class="hover:text-jakkals-orange transition-colors">Ekosisteem</a>
+          <a href="#jakkals-ai" class="text-jakkals-orange hover:text-white transition-colors drop-shadow-[0_0_8px_rgba(255,158,74,0.5)]">Jakkals AI</a>
+          <a href="#" onclick="openModal(); return false;" class="hover:text-jakkals-orange transition-colors">Kontak</a>
 
         <!-- Mobile Hamburger Button -->
         <button
@@ -204,34 +187,13 @@
     </nav>
 
     <!-- Mobile Dropdown Menu -->
-    <div
-      id="mobile-menu"
-      class="fixed top-[80px] w-full z-40 glass-card panel-texture border-b border-stilsein-blue/20 flex flex-col items-center space-y-6 py-6 transform -translate-y-full opacity-0 transition-all duration-300 ease-in-out md:hidden"
-    >
-      <a
-        href="#hoe-dit-werk"
-        class="mobile-link text-xs font-bold tracking-[0.2em] text-stilsein-muted uppercase hover:text-jakkals-orange"
-        >Hoe Dit Werk</a
-      >
-      <a
-        href="#die-stelsel"
-        class="mobile-link text-xs font-bold tracking-[0.2em] text-stilsein-muted uppercase hover:text-jakkals-orange"
-        >Die Stelsel</a
-      >
-      <a
-        href="#ekosisteem"
-        class="mobile-link text-xs font-bold tracking-[0.2em] text-stilsein-muted uppercase hover:text-jakkals-orange"
-        >Ekosisteem</a
-      >
-      <a
-        href="#"
-        onclick="
-          openModal();
-          return false;
-        "
-        class="mobile-link text-xs font-bold tracking-[0.2em] text-stilsein-muted uppercase hover:text-jakkals-orange"
-        >Kontak</a
-      >
+    <div id="mobile-menu" class="fixed top-[80px] w-full z-40 glass-card panel-texture border-b border-stilsein-blue/20 flex flex-col items-center space-y-6 py-6 transform -translate-y-full opacity-0 transition-all duration-300 ease-in-out md:hidden">
+      <a href="#hoe-dit-werk" class="mobile-link text-xs font-bold tracking-[0.2em] text-stilsein-muted uppercase hover:text-jakkals-orange">Hoe Dit Werk</a>
+      <a href="#die-stelsel" class="mobile-link text-xs font-bold tracking-[0.2em] text-stilsein-muted uppercase hover:text-jakkals-orange">Die Stelsel</a>
+      <a href="#ekosisteem" class="mobile-link text-xs font-bold tracking-[0.2em] text-stilsein-muted uppercase hover:text-jakkals-orange">Ekosisteem</a>
+      <!-- --- NEW: JAKKALS MOBILE LINK --- -->
+      <a href="#jakkals-ai" class="mobile-link text-xs font-bold tracking-[0.2em] text-jakkals-orange uppercase hover:text-white drop-shadow-[0_0_8px_rgba(255,158,74,0.5)]">Jakkals AI</a>
+      <a href="#" onclick="openModal(); return false;" class="mobile-link text-xs font-bold tracking-[0.2em] text-stilsein-muted uppercase hover:text-jakkals-orange">Kontak</a>
     </div>
 
     <!-- 2. SUB-PANEL (The Living Text Ticker) -->
@@ -700,6 +662,89 @@
             </p>
           </div>
         </div>
+      </div>
+      </div>
+    </section>
+
+    <!--JAKKALS AI -->
+    <section id="jakkals-ai" class="py-24 px-6 bg-[#1A1F26] bg-texture-orange relative z-10 w-full overflow-hidden border-y border-jakkals-orange/20">
+      
+      <!-- Intense Orange Glow -->
+      <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-jakkals-orange/5 rounded-full blur-[100px] pointer-events-none"></div>
+
+      <div class="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-16 relative z-10">
+        
+        <!-- The Text (Left Side) -->
+        <div class="w-full lg:w-1/2">
+          <div class="inline-flex items-center gap-2 px-4 py-1 rounded-full border border-jakkals-orange/40 bg-jakkals-orange/20 text-jakkals-orange text-xs font-bold tracking-[0.2em] mb-6 shadow-[0_0_15px_rgba(255,158,74,0.2)]">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+            DIE BREIN AGTER DIE BEDRYF
+          </div>
+          
+          <h2 class="text-4xl md:text-5xl font-bold text-white mb-6 font-garet leading-tight">
+            ONTMOET <span class="text-jakkals-orange">JAKKALS AI.</span>
+          </h2>
+          
+          <p class="text-stilsein-muted text-lg mb-6 leading-relaxed">
+            Gewone sensors gee vir jou rou data. Jakkals gee vir jou <strong>insig.</strong>
+          </p>
+          <p class="text-stilsein-muted text-lg mb-8 leading-relaxed">
+            Jakkals is nie 'n generiese "chatbot" nie. By installasie word hy gekalibreer vir jou spesifieke plaas. Hy ken jou presiese <strong>boerderytipe</strong> (bv. besproeiing of vee), die <strong>afstande tussen jou kampe</strong>, en jou plaas se <strong>unieke vloeddrempels</strong>.
+          </p>
+          
+          <ul class="space-y-4 mb-8 text-sm text-gray-300">
+            <li class="flex items-start gap-3">
+              <span class="text-jakkals-orange mt-1">✓</span>
+              <span><strong>Proaktiewe Waarskuwings:</strong> Ontleed Open-Meteo satellietdata teen jou plaas se drempels om uiterste weersomstandighede (soos hittegolwe) dae vooruit te voorspel.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-jakkals-orange mt-1">✓</span>
+              <span><strong>Konteks-Bewus:</strong> Hy weet of 15mm reën 'n verligting vir jou skape is, en of dit 'n vloedgevaar vir jou pas-gesaaide landerye inhou.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-jakkals-orange mt-1">✓</span>
+              <span><strong>Jou Persoonlike Assistent:</strong> Vra hom vrae in die app, in suiwer Afrikaans of Engels, en kry dadelik 'n boerdery-spesifieke antwoord gebaseer op vandag se syfers.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- The "Terminal" Visual (Right Side) -->
+        <div class="w-full lg:w-1/2">
+          <div class="glass-card p-1 rounded-2xl border-2 border-jakkals-orange/40 shadow-[0_0_30px_rgba(255,158,74,0.15)] bg-[#0A0D14]">
+            
+            <!-- Terminal Header -->
+            <div class="bg-[#131821] px-4 py-3 rounded-t-xl border-b border-white/5 flex items-center gap-2">
+              <div class="w-3 h-3 rounded-full bg-red-500/50"></div>
+              <div class="w-3 h-3 rounded-full bg-yellow-500/50"></div>
+              <div class="w-3 h-3 rounded-full bg-green-500/50"></div>
+              <span class="ml-4 text-[10px] tracking-widest text-jakkals-orange/70 font-mono">JAKKALS_CORE_PROCESS.EXE</span>
+            </div>
+
+            <!-- Terminal Body -->
+            <div class="p-6 font-mono text-sm leading-relaxed text-green-400 h-[300px] overflow-hidden relative">
+              <div class="text-gray-500 mb-4">> Initializing Jakkals AI... <span class="text-green-400">OK</span></div>
+              <div class="text-gray-500 mb-4">> Loading Farm Context...</div>
+              
+              <div class="mb-2 text-cyan-300">FARM_TYPE: <span class="text-white">Dorper Stud</span></div>
+              <div class="mb-2 text-cyan-300">FLOOD_THRESHOLD: <span class="text-white">80mm / 24H</span></div>
+              <div class="mb-6 text-cyan-300">ACTIVE_NODES: <span class="text-white">Opstal, Noordgrens</span></div>
+              
+              <div class="text-gray-500 mb-4">> Analyzing Satellite Feed...</div>
+              <div class="mb-2 text-jakkals-orange">WARNING: <span class="text-white">Heatwave detected (39°C) expected at 14:00.</span></div>
+              
+              <div class="mt-6 border-l-2 border-jakkals-orange pl-4">
+                <div class="text-jakkals-orange font-bold mb-1">GENERATING RECOMMENDATION:</div>
+                <div class="text-white typewriter-text relative inline-block">
+                  "Boer Donnie, die hittegolf slaan vanmiddag 39°C. Maak seker die Noordgrens-kudde het genoeg skaduwee en water. Ek hou die wind dop."
+                  <!-- The blinking cursor -->
+                  <span class="animate-pulse bg-jakkals-orange w-2 h-4 inline-block align-middle ml-1"></span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
       </div>
     </section>
 
