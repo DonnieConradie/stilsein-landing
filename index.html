@@ -305,8 +305,9 @@
 
           <!-- FIX 2: Sleek Toggle Switch for Desktop -->
           <button
-            onclick="toggleLanguage()"
-            class="flex items-center ml-6 px-3 py-1.5 rounded-full border border-stilsein-blue/30 bg-stilsein-dark/80 text-[10px] font-bold tracking-widest text-stilsein-blue hover:bg-stilsein-blue hover:text-stilsein-dark transition-all"
+            type="button"
+            onclick="toggleLanguage(event)"
+            class="flex items-center justify-center w-8 h-8 ml-6 rounded border border-stilsein-blue/30 bg-stilsein-dark/80 text-[10px] font-bold tracking-widest text-stilsein-blue hover:bg-stilsein-blue hover:text-stilsein-dark transition-all"
           >
             <span class="lang-toggle-text">AF</span>
           </button>
@@ -314,16 +315,18 @@
 
         <!-- Mobile Controls (Language + Hamburger) -->
         <div class="flex items-center space-x-4 lg:hidden">
-          <!-- FIX 2: Sleek Toggle Switch for Mobile (No more squishing) -->
+          <!-- Square Toggle Switch for Mobile (Matches Hamburger dimensions) -->
           <button
-            onclick="toggleLanguage()"
-            class="px-3 py-1.5 rounded-full border border-stilsein-blue/30 bg-stilsein-dark/80 text-[10px] font-bold tracking-widest text-stilsein-blue hover:bg-stilsein-blue hover:text-stilsein-dark transition-all shadow-md"
+            type="button"
+            onclick="toggleLanguage(event)"
+            class="flex items-center justify-center w-8 h-8 rounded border border-stilsein-blue/30 bg-stilsein-dark/80 text-[10px] font-bold tracking-widest text-stilsein-blue hover:bg-stilsein-blue hover:text-stilsein-dark transition-all shadow-md"
           >
             <span class="lang-toggle-text">AF</span>
           </button>
 
           <button
             id="mobile-menu-btn"
+            type="button"
             class="text-stilsein-blue focus:outline-none"
             data-i18n-aria-label="aria_menu_open"
             data-i18n-title="title_menu"

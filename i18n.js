@@ -275,12 +275,12 @@ const translations = {
 };
 
 window.translations = translations;
-// FIX 1: Set English as default
 window.currentLang = localStorage.getItem('stilsein_lang') || 'en';
 
-// Helper for the elegant toggle switch
-window.toggleLanguage = function() {
-  const newLang = window.currentLang === 'en' ? 'af' : 'en';
+window.toggleLanguage = function(e) {
+  if (e) e.preventDefault();
+  const current = window.currentLang || 'en';
+  const newLang = current === 'en' ? 'af' : 'en';
   window.changeLanguage(newLang);
 };
 
