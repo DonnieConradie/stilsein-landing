@@ -567,17 +567,42 @@
         </p>
 
         <div
-          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 text-left"
+          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 text-left items-start"
         >
           <!-- 1. Live Rainfall -->
           <div
-            class="bg-stilsein-card/40 border border-stilsein-blue/20 p-4 rounded-2xl flex items-center gap-4 hover:bg-stilsein-card transition-colors"
+            class="relative bg-stilsein-card/40 border border-stilsein-blue/20 rounded-2xl transition-all duration-300 overflow-hidden group cursor-pointer shadow-sm hover:shadow-stilsein-blue/10"
+            onclick="toggleOffer('offer-1')"
           >
             <div
-              class="w-10 h-10 rounded-full bg-stilsein-blue/10 flex items-center justify-center border border-stilsein-blue/30 shrink-0"
+              class="p-4 flex items-center gap-4 z-10 relative bg-stilsein-card/80"
             >
+              <div
+                class="w-10 h-10 rounded-full bg-stilsein-blue/10 flex items-center justify-center border border-stilsein-blue/30 shrink-0"
+              >
+                <svg
+                  class="w-5 h-5 text-stilsein-blue"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"
+                  ></path>
+                </svg>
+              </div>
+              <div
+                class="text-white font-bold text-xs tracking-wider uppercase"
+                data-i18n="grid_rain"
+              >
+                LIVE RAINFALL
+              </div>
               <svg
-                class="w-5 h-5 text-stilsein-blue"
+                class="w-4 h-4 text-stilsein-muted ml-auto transition-transform duration-300 offer-chevron"
+                data-target="offer-1"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -586,27 +611,74 @@
                   stroke-linecap="round"
                   stroke-linejoin="round"
                   stroke-width="2"
-                  d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"
+                  d="M19 9l-7 7-7-7"
                 ></path>
               </svg>
             </div>
             <div
-              class="text-white font-bold text-xs tracking-wider uppercase"
-              data-i18n="grid_rain"
+              id="offer-1"
+              class="offer-content grid grid-rows-[0fr] transition-all duration-300 ease-in-out bg-stilsein-dark/50"
             >
-              LIVE RAINFALL
+              <div class="overflow-hidden">
+                <p
+                  class="p-4 pt-2 text-xs text-stilsein-muted leading-relaxed relative z-10"
+                  data-i18n="grid_rain_exp"
+                >
+                  Industrial-grade tipping bucket sensors capture every
+                  millimeter. They run on a 10-year battery and beam data over a
+                  15km LoRaWAN radio frequency directly to your homestead.
+                </p>
+                <svg
+                  class="absolute -bottom-4 -right-4 w-24 h-24 text-stilsein-blue opacity-5 pointer-events-none"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"
+                  ></path>
+                </svg>
+              </div>
             </div>
           </div>
 
           <!-- 2. Pipe Pressure -->
           <div
-            class="bg-stilsein-card/40 border border-cyan-400/20 p-4 rounded-2xl flex items-center gap-4 hover:bg-stilsein-card transition-colors"
+            class="relative bg-stilsein-card/40 border border-cyan-400/20 rounded-2xl transition-all duration-300 overflow-hidden group cursor-pointer shadow-sm hover:shadow-cyan-400/10"
+            onclick="toggleOffer('offer-2')"
           >
             <div
-              class="w-10 h-10 rounded-full bg-cyan-400/10 flex items-center justify-center border border-cyan-400/30 shrink-0"
+              class="p-4 flex items-center gap-4 z-10 relative bg-stilsein-card/80"
             >
+              <div
+                class="w-10 h-10 rounded-full bg-cyan-400/10 flex items-center justify-center border border-cyan-400/30 shrink-0"
+              >
+                <svg
+                  class="w-5 h-5 text-cyan-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M13 10V3L4 14h7v7l9-11h-7z"
+                  ></path>
+                </svg>
+              </div>
+              <div
+                class="text-white font-bold text-xs tracking-wider uppercase"
+                data-i18n="grid_pipe"
+              >
+                PIPE PRESSURE
+              </div>
               <svg
-                class="w-5 h-5 text-cyan-400"
+                class="w-4 h-4 text-stilsein-muted ml-auto transition-transform duration-300 offer-chevron"
+                data-target="offer-2"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -615,27 +687,74 @@
                   stroke-linecap="round"
                   stroke-linejoin="round"
                   stroke-width="2"
-                  d="M13 10V3L4 14h7v7l9-11h-7z"
+                  d="M19 9l-7 7-7-7"
                 ></path>
               </svg>
             </div>
             <div
-              class="text-white font-bold text-xs tracking-wider uppercase"
-              data-i18n="grid_pipe"
+              id="offer-2"
+              class="offer-content grid grid-rows-[0fr] transition-all duration-300 ease-in-out bg-stilsein-dark/50"
             >
-              PIPE PRESSURE
+              <div class="overflow-hidden">
+                <p
+                  class="p-4 pt-2 text-xs text-stilsein-muted leading-relaxed relative z-10"
+                  data-i18n="grid_pipe_exp"
+                >
+                  Heavy-duty pressure transducers tap directly into your
+                  mainlines. They read the exact 'bar' pressure and transmit it
+                  every few minutes so you know the water is flowing.
+                </p>
+                <svg
+                  class="absolute -bottom-4 -right-4 w-24 h-24 text-cyan-400 opacity-5 pointer-events-none"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M13 10V3L4 14h7v7l9-11h-7z"
+                  ></path>
+                </svg>
+              </div>
             </div>
           </div>
 
           <!-- 3. Smart Forecasts -->
           <div
-            class="bg-stilsein-card/40 border border-yellow-400/20 p-4 rounded-2xl flex items-center gap-4 hover:bg-stilsein-card transition-colors"
+            class="relative bg-stilsein-card/40 border border-yellow-400/20 rounded-2xl transition-all duration-300 overflow-hidden group cursor-pointer shadow-sm hover:shadow-yellow-400/10"
+            onclick="toggleOffer('offer-3')"
           >
             <div
-              class="w-10 h-10 rounded-full bg-yellow-400/10 flex items-center justify-center border border-yellow-400/30 shrink-0"
+              class="p-4 flex items-center gap-4 z-10 relative bg-stilsein-card/80"
             >
+              <div
+                class="w-10 h-10 rounded-full bg-yellow-400/10 flex items-center justify-center border border-yellow-400/30 shrink-0"
+              >
+                <svg
+                  class="w-5 h-5 text-yellow-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"
+                  ></path>
+                </svg>
+              </div>
+              <div
+                class="text-white font-bold text-xs tracking-wider uppercase"
+                data-i18n="grid_forecast"
+              >
+                SMART FORECASTS
+              </div>
               <svg
-                class="w-5 h-5 text-yellow-400"
+                class="w-4 h-4 text-stilsein-muted ml-auto transition-transform duration-300 offer-chevron"
+                data-target="offer-3"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -644,27 +763,74 @@
                   stroke-linecap="round"
                   stroke-linejoin="round"
                   stroke-width="2"
-                  d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"
+                  d="M19 9l-7 7-7-7"
                 ></path>
               </svg>
             </div>
             <div
-              class="text-white font-bold text-xs tracking-wider uppercase"
-              data-i18n="grid_forecast"
+              id="offer-3"
+              class="offer-content grid grid-rows-[0fr] transition-all duration-300 ease-in-out bg-stilsein-dark/50"
             >
-              SMART FORECASTS
+              <div class="overflow-hidden">
+                <p
+                  class="p-4 pt-2 text-xs text-stilsein-muted leading-relaxed relative z-10"
+                  data-i18n="grid_forecast_exp"
+                >
+                  We integrate with global satellite weather models. Instead of
+                  generic regional weather, the system pulls forecasts
+                  specifically for your farm's unique GPS coordinates.
+                </p>
+                <svg
+                  class="absolute -bottom-4 -right-4 w-24 h-24 text-yellow-400 opacity-5 pointer-events-none"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"
+                  ></path>
+                </svg>
+              </div>
             </div>
           </div>
 
           <!-- 4. Jakkals AI -->
           <div
-            class="bg-stilsein-card/40 border border-jakkals-orange/20 p-4 rounded-2xl flex items-center gap-4 hover:bg-stilsein-card transition-colors"
+            class="relative bg-stilsein-card/40 border border-jakkals-orange/20 rounded-2xl transition-all duration-300 overflow-hidden group cursor-pointer shadow-sm hover:shadow-jakkals-orange/10"
+            onclick="toggleOffer('offer-4')"
           >
             <div
-              class="w-10 h-10 rounded-full bg-jakkals-orange/10 flex items-center justify-center border border-jakkals-orange/30 shrink-0"
+              class="p-4 flex items-center gap-4 z-10 relative bg-stilsein-card/80"
             >
+              <div
+                class="w-10 h-10 rounded-full bg-jakkals-orange/10 flex items-center justify-center border border-jakkals-orange/30 shrink-0"
+              >
+                <svg
+                  class="w-5 h-5 text-jakkals-orange"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+                  ></path>
+                </svg>
+              </div>
+              <div
+                class="text-white font-bold text-xs tracking-wider uppercase"
+                data-i18n="grid_jakkals"
+              >
+                JAKKALS AI
+              </div>
               <svg
-                class="w-5 h-5 text-jakkals-orange"
+                class="w-4 h-4 text-stilsein-muted ml-auto transition-transform duration-300 offer-chevron"
+                data-target="offer-4"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -673,27 +839,74 @@
                   stroke-linecap="round"
                   stroke-linejoin="round"
                   stroke-width="2"
-                  d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+                  d="M19 9l-7 7-7-7"
                 ></path>
               </svg>
             </div>
             <div
-              class="text-white font-bold text-xs tracking-wider uppercase"
-              data-i18n="grid_jakkals"
+              id="offer-4"
+              class="offer-content grid grid-rows-[0fr] transition-all duration-300 ease-in-out bg-stilsein-dark/50"
             >
-              JAKKALS AI
+              <div class="overflow-hidden">
+                <p
+                  class="p-4 pt-2 text-xs text-stilsein-muted leading-relaxed relative z-10"
+                  data-i18n="grid_jakkals_exp"
+                >
+                  A localized AI model configured with your farm's size,
+                  livestock, and thresholds. It constantly scans incoming sensor
+                  data and flags anomalies before they become crises.
+                </p>
+                <svg
+                  class="absolute -bottom-4 -right-4 w-24 h-24 text-jakkals-orange opacity-5 pointer-events-none"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+                  ></path>
+                </svg>
+              </div>
             </div>
           </div>
 
           <!-- 5. Interactive Maps -->
           <div
-            class="bg-stilsein-card/40 border border-green-400/20 p-4 rounded-2xl flex items-center gap-4 hover:bg-stilsein-card transition-colors"
+            class="relative bg-stilsein-card/40 border border-green-400/20 rounded-2xl transition-all duration-300 overflow-hidden group cursor-pointer shadow-sm hover:shadow-green-400/10"
+            onclick="toggleOffer('offer-5')"
           >
             <div
-              class="w-10 h-10 rounded-full bg-green-400/10 flex items-center justify-center border border-green-400/30 shrink-0"
+              class="p-4 flex items-center gap-4 z-10 relative bg-stilsein-card/80"
             >
+              <div
+                class="w-10 h-10 rounded-full bg-green-400/10 flex items-center justify-center border border-green-400/30 shrink-0"
+              >
+                <svg
+                  class="w-5 h-5 text-green-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"
+                  ></path>
+                </svg>
+              </div>
+              <div
+                class="text-white font-bold text-xs tracking-wider uppercase"
+                data-i18n="grid_maps"
+              >
+                INTERACTIVE MAPS
+              </div>
               <svg
-                class="w-5 h-5 text-green-400"
+                class="w-4 h-4 text-stilsein-muted ml-auto transition-transform duration-300 offer-chevron"
+                data-target="offer-5"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -702,27 +915,74 @@
                   stroke-linecap="round"
                   stroke-linejoin="round"
                   stroke-width="2"
-                  d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"
+                  d="M19 9l-7 7-7-7"
                 ></path>
               </svg>
             </div>
             <div
-              class="text-white font-bold text-xs tracking-wider uppercase"
-              data-i18n="grid_maps"
+              id="offer-5"
+              class="offer-content grid grid-rows-[0fr] transition-all duration-300 ease-in-out bg-stilsein-dark/50"
             >
-              INTERACTIVE MAPS
+              <div class="overflow-hidden">
+                <p
+                  class="p-4 pt-2 text-xs text-stilsein-muted leading-relaxed relative z-10"
+                  data-i18n="grid_maps_exp"
+                >
+                  Every installed sensor is digitally pinned on your customized
+                  farm map. You instantly see a spatial layout of where issues
+                  are occurring without guessing.
+                </p>
+                <svg
+                  class="absolute -bottom-4 -right-4 w-24 h-24 text-green-400 opacity-5 pointer-events-none"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"
+                  ></path>
+                </svg>
+              </div>
             </div>
           </div>
 
-          <!-- 6. Alerts -->
+          <!-- 6. Instant Alerts -->
           <div
-            class="bg-stilsein-card/40 border border-red-400/20 p-4 rounded-2xl flex items-center gap-4 hover:bg-stilsein-card transition-colors"
+            class="relative bg-stilsein-card/40 border border-red-400/20 rounded-2xl transition-all duration-300 overflow-hidden group cursor-pointer shadow-sm hover:shadow-red-400/10"
+            onclick="toggleOffer('offer-6')"
           >
             <div
-              class="w-10 h-10 rounded-full bg-red-400/10 flex items-center justify-center border border-red-400/30 shrink-0"
+              class="p-4 flex items-center gap-4 z-10 relative bg-stilsein-card/80"
             >
+              <div
+                class="w-10 h-10 rounded-full bg-red-400/10 flex items-center justify-center border border-red-400/30 shrink-0"
+              >
+                <svg
+                  class="w-5 h-5 text-red-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
+                  ></path>
+                </svg>
+              </div>
+              <div
+                class="text-white font-bold text-xs tracking-wider uppercase"
+                data-i18n="grid_alerts"
+              >
+                INSTANT ALERTS
+              </div>
               <svg
-                class="w-5 h-5 text-red-400"
+                class="w-4 h-4 text-stilsein-muted ml-auto transition-transform duration-300 offer-chevron"
+                data-target="offer-6"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -731,27 +991,74 @@
                   stroke-linecap="round"
                   stroke-linejoin="round"
                   stroke-width="2"
-                  d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
+                  d="M19 9l-7 7-7-7"
                 ></path>
               </svg>
             </div>
             <div
-              class="text-white font-bold text-xs tracking-wider uppercase"
-              data-i18n="grid_alerts"
+              id="offer-6"
+              class="offer-content grid grid-rows-[0fr] transition-all duration-300 ease-in-out bg-stilsein-dark/50"
             >
-              INSTANT ALERTS
+              <div class="overflow-hidden">
+                <p
+                  class="p-4 pt-2 text-xs text-stilsein-muted leading-relaxed relative z-10"
+                  data-i18n="grid_alerts_exp"
+                >
+                  You set the rules. If pressure drops below 2 bar, or rainfall
+                  exceeds 50mm, the system instantly pushes a high-priority
+                  notification to your smartphone.
+                </p>
+                <svg
+                  class="absolute -bottom-4 -right-4 w-24 h-24 text-red-400 opacity-5 pointer-events-none"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
+                  ></path>
+                </svg>
+              </div>
             </div>
           </div>
 
           <!-- 7. Archives -->
           <div
-            class="bg-stilsein-card/40 border border-[#A396D1]/20 p-4 rounded-2xl flex items-center gap-4 hover:bg-stilsein-card transition-colors"
+            class="relative bg-stilsein-card/40 border border-[#A396D1]/20 rounded-2xl transition-all duration-300 overflow-hidden group cursor-pointer shadow-sm hover:shadow-[#A396D1]/10"
+            onclick="toggleOffer('offer-7')"
           >
             <div
-              class="w-10 h-10 rounded-full bg-[#A396D1]/10 flex items-center justify-center border border-[#A396D1]/30 shrink-0"
+              class="p-4 flex items-center gap-4 z-10 relative bg-stilsein-card/80"
             >
+              <div
+                class="w-10 h-10 rounded-full bg-[#A396D1]/10 flex items-center justify-center border border-[#A396D1]/30 shrink-0"
+              >
+                <svg
+                  class="w-5 h-5 text-[#A396D1]"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"
+                  ></path>
+                </svg>
+              </div>
+              <div
+                class="text-white font-bold text-xs tracking-wider uppercase"
+                data-i18n="grid_archive"
+              >
+                5-YEAR ARCHIVES
+              </div>
               <svg
-                class="w-5 h-5 text-[#A396D1]"
+                class="w-4 h-4 text-stilsein-muted ml-auto transition-transform duration-300 offer-chevron"
+                data-target="offer-7"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -760,27 +1067,74 @@
                   stroke-linecap="round"
                   stroke-linejoin="round"
                   stroke-width="2"
-                  d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"
+                  d="M19 9l-7 7-7-7"
                 ></path>
               </svg>
             </div>
             <div
-              class="text-white font-bold text-xs tracking-wider uppercase"
-              data-i18n="grid_archive"
+              id="offer-7"
+              class="offer-content grid grid-rows-[0fr] transition-all duration-300 ease-in-out bg-stilsein-dark/50"
             >
-              5-YEAR ARCHIVES
+              <div class="overflow-hidden">
+                <p
+                  class="p-4 pt-2 text-xs text-stilsein-muted leading-relaxed relative z-10"
+                  data-i18n="grid_archive_exp"
+                >
+                  Every single data pulse is permanently stored in a secure
+                  time-series database. Nothing is ever deleted, building a
+                  comprehensive micro-climate history of your land.
+                </p>
+                <svg
+                  class="absolute -bottom-4 -right-4 w-24 h-24 text-[#A396D1] opacity-5 pointer-events-none"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"
+                  ></path>
+                </svg>
+              </div>
             </div>
           </div>
 
           <!-- 8. Exports -->
           <div
-            class="bg-stilsein-card/40 border border-teal-400/20 p-4 rounded-2xl flex items-center gap-4 hover:bg-stilsein-card transition-colors"
+            class="relative bg-stilsein-card/40 border border-teal-400/20 rounded-2xl transition-all duration-300 overflow-hidden group cursor-pointer shadow-sm hover:shadow-teal-400/10"
+            onclick="toggleOffer('offer-8')"
           >
             <div
-              class="w-10 h-10 rounded-full bg-teal-400/10 flex items-center justify-center border border-teal-400/30 shrink-0"
+              class="p-4 flex items-center gap-4 z-10 relative bg-stilsein-card/80"
             >
+              <div
+                class="w-10 h-10 rounded-full bg-teal-400/10 flex items-center justify-center border border-teal-400/30 shrink-0"
+              >
+                <svg
+                  class="w-5 h-5 text-teal-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                  ></path>
+                </svg>
+              </div>
+              <div
+                class="text-white font-bold text-xs tracking-wider uppercase"
+                data-i18n="grid_export"
+              >
+                PDF & CSV EXPORTS
+              </div>
               <svg
-                class="w-5 h-5 text-teal-400"
+                class="w-4 h-4 text-stilsein-muted ml-auto transition-transform duration-300 offer-chevron"
+                data-target="offer-8"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -789,15 +1143,37 @@
                   stroke-linecap="round"
                   stroke-linejoin="round"
                   stroke-width="2"
-                  d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                  d="M19 9l-7 7-7-7"
                 ></path>
               </svg>
             </div>
             <div
-              class="text-white font-bold text-xs tracking-wider uppercase"
-              data-i18n="grid_export"
+              id="offer-8"
+              class="offer-content grid grid-rows-[0fr] transition-all duration-300 ease-in-out bg-stilsein-dark/50"
             >
-              PDF & CSV EXPORTS
+              <div class="overflow-hidden">
+                <p
+                  class="p-4 pt-2 text-xs text-stilsein-muted leading-relaxed relative z-10"
+                  data-i18n="grid_export_exp"
+                >
+                  With one tap, our cloud servers compile your historical data
+                  into beautiful, branded PDF reports or raw CSV
+                  spreadsheets—perfect for insurance claims or agronomists.
+                </p>
+                <svg
+                  class="absolute -bottom-4 -right-4 w-24 h-24 text-teal-400 opacity-5 pointer-events-none"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                  ></path>
+                </svg>
+              </div>
             </div>
           </div>
         </div>
@@ -1170,7 +1546,7 @@
               >
             </div>
             <div
-              class="p-6 font-mono text-sm leading-relaxed text-green-500 h-[400px] overflow-hidden relative"
+              class="p-6 font-mono text-sm leading-relaxed text-green-500 min-h-[400px] h-auto overflow-hidden relative pb-10"
             >
               <div class="text-gray-500 mb-4">
                 > Initializing Jakkals AI...
@@ -1888,6 +2264,35 @@
           img1.classList.add("opacity-0");
           img2.classList.remove("opacity-0");
         }
+      }
+
+      // --- OFFER ACCORDION LOGIC ---
+      function toggleOffer(id) {
+        const allOffers = document.querySelectorAll(".offer-content");
+        const allIcons = document.querySelectorAll(".offer-chevron");
+
+        allOffers.forEach((offer) => {
+          if (offer.id === id) {
+            if (offer.classList.contains("grid-rows-[0fr]")) {
+              offer.classList.remove("grid-rows-[0fr]");
+              offer.classList.add("grid-rows-[1fr]");
+            } else {
+              offer.classList.add("grid-rows-[0fr]");
+              offer.classList.remove("grid-rows-[1fr]");
+            }
+          } else {
+            offer.classList.add("grid-rows-[0fr]");
+            offer.classList.remove("grid-rows-[1fr]");
+          }
+        });
+
+        allIcons.forEach((icon) => {
+          if (icon.getAttribute("data-target") === id) {
+            icon.classList.toggle("rotate-180");
+          } else {
+            icon.classList.remove("rotate-180");
+          }
+        });
       }
 
       // --- CONTACT MODAL LOGIC ---
