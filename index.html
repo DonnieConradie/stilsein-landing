@@ -539,7 +539,6 @@
     </div>
 
     <!-- 3.8 WHAT WE OFFER -->
-    <!-- FIX 3: Added id="wat-ons-doen" -->
     <section
       id="wat-ons-doen"
       class="py-24 px-6 bg-stilsein-dark relative z-10 w-full overflow-hidden"
@@ -557,17 +556,20 @@
           class="text-stilsein-muted text-lg md:text-xl leading-relaxed mb-12 max-w-3xl mx-auto"
           data-i18n="mon_desc"
         >
-          At its core, StilSein is a smart app and a dedicated 24/7 monitoring
-          service. Our app neatly pulls together all those different sensors on
-          your farm onto one screen. Our partner network can do the
-          installations for you, but the true power lies in the app's
-          versatility. You are not locked into just one type of hardware—if it
-          speaks LoRaWAN, we connect it to Jakkals AI.
+          Farming in South Africa means managing vast distances and
+          unpredictable elements. StilSein gives you absolute certainty by
+          putting the heartbeat of your farm directly in your pocket. We
+          transform raw data from your lands—like live rainfall and pipe
+          pressure—into clear, actionable insights. With instant alerts, 5-year
+          digital archives, and Jakkals AI keeping a 24/7 watch, you'll know
+          exactly what's happening in your furthest camps, whether you're at the
+          co-op or sitting on the stoep.
         </p>
 
         <div
           class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 text-left"
         >
+          <!-- 1. Live Rainfall -->
           <div
             class="bg-stilsein-card/40 border border-stilsein-blue/20 p-4 rounded-2xl flex items-center gap-4 hover:bg-stilsein-card transition-colors"
           >
@@ -589,66 +591,14 @@
               </svg>
             </div>
             <div
-              class="text-white font-bold text-xs tracking-wider"
+              class="text-white font-bold text-xs tracking-wider uppercase"
               data-i18n="grid_rain"
             >
-              RAINFALL
+              LIVE RAINFALL
             </div>
           </div>
-          <div
-            class="bg-stilsein-card/40 border border-[#6DBEA3]/20 p-4 rounded-2xl flex items-center gap-4 hover:bg-stilsein-card transition-colors"
-          >
-            <div
-              class="w-10 h-10 rounded-full bg-[#6DBEA3]/10 flex items-center justify-center border border-[#6DBEA3]/30 shrink-0"
-            >
-              <svg
-                class="w-5 h-5 text-[#6DBEA3]"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"
-                ></path>
-              </svg>
-            </div>
-            <div
-              class="text-white font-bold text-xs tracking-wider"
-              data-i18n="grid_dam"
-            >
-              DAM LEVELS
-            </div>
-          </div>
-          <div
-            class="bg-stilsein-card/40 border border-red-400/20 p-4 rounded-2xl flex items-center gap-4 hover:bg-stilsein-card transition-colors"
-          >
-            <div
-              class="w-10 h-10 rounded-full bg-red-400/10 flex items-center justify-center border border-red-400/30 shrink-0"
-            >
-              <svg
-                class="w-5 h-5 text-red-400"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
-                ></path>
-              </svg>
-            </div>
-            <div
-              class="text-white font-bold text-xs tracking-wider"
-              data-i18n="grid_sec"
-            >
-              SECURITY
-            </div>
-          </div>
+
+          <!-- 2. Pipe Pressure -->
           <div
             class="bg-stilsein-card/40 border border-cyan-400/20 p-4 rounded-2xl flex items-center gap-4 hover:bg-stilsein-card transition-colors"
           >
@@ -670,20 +620,22 @@
               </svg>
             </div>
             <div
-              class="text-white font-bold text-xs tracking-wider"
+              class="text-white font-bold text-xs tracking-wider uppercase"
               data-i18n="grid_pipe"
             >
               PIPE PRESSURE
             </div>
           </div>
+
+          <!-- 3. Smart Forecasts -->
           <div
-            class="bg-stilsein-card/40 border border-[#A396D1]/20 p-4 rounded-2xl flex items-center gap-4 hover:bg-stilsein-card transition-colors"
+            class="bg-stilsein-card/40 border border-yellow-400/20 p-4 rounded-2xl flex items-center gap-4 hover:bg-stilsein-card transition-colors"
           >
             <div
-              class="w-10 h-10 rounded-full bg-[#A396D1]/10 flex items-center justify-center border border-[#A396D1]/30 shrink-0"
+              class="w-10 h-10 rounded-full bg-yellow-400/10 flex items-center justify-center border border-yellow-400/30 shrink-0"
             >
               <svg
-                class="w-5 h-5 text-[#A396D1]"
+                class="w-5 h-5 text-yellow-400"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -692,84 +644,19 @@
                   stroke-linecap="round"
                   stroke-linejoin="round"
                   stroke-width="2"
-                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                ></path>
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                  d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"
                 ></path>
               </svg>
             </div>
             <div
-              class="text-white font-bold text-xs tracking-wider"
-              data-i18n="grid_live"
+              class="text-white font-bold text-xs tracking-wider uppercase"
+              data-i18n="grid_forecast"
             >
-              LIVESTOCK TRACKING
+              SMART FORECASTS
             </div>
           </div>
-          <div
-            class="bg-stilsein-card/40 border border-green-400/20 p-4 rounded-2xl flex items-center gap-4 hover:bg-stilsein-card transition-colors"
-          >
-            <div
-              class="w-10 h-10 rounded-full bg-green-400/10 flex items-center justify-center border border-green-400/30 shrink-0"
-            >
-              <svg
-                class="w-5 h-5 text-green-400"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-                ></path>
-              </svg>
-            </div>
-            <div
-              class="text-white font-bold text-xs tracking-wider"
-              data-i18n="grid_soil"
-            >
-              SOIL MOISTURE
-            </div>
-          </div>
-          <!-- FIX 5: border-deep-orange-400 replaced with standard border-orange-500/20 to match opacity format -->
-          <div
-            class="bg-stilsein-card/40 border border-orange-500/20 p-4 rounded-2xl flex items-center gap-4 hover:bg-stilsein-card transition-colors"
-          >
-            <div
-              class="w-10 h-10 rounded-full bg-orange-500/10 flex items-center justify-center border border-orange-500/30 shrink-0"
-            >
-              <svg
-                class="w-5 h-5 text-orange-500"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"
-                ></path>
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"
-                ></path>
-              </svg>
-            </div>
-            <div
-              class="text-white font-bold text-xs tracking-wider"
-              data-i18n="grid_fire"
-            >
-              FIRES
-            </div>
-          </div>
+
+          <!-- 4. Jakkals AI -->
           <div
             class="bg-stilsein-card/40 border border-jakkals-orange/20 p-4 rounded-2xl flex items-center gap-4 hover:bg-stilsein-card transition-colors"
           >
@@ -786,15 +673,131 @@
                   stroke-linecap="round"
                   stroke-linejoin="round"
                   stroke-width="2"
-                  d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
                 ></path>
               </svg>
             </div>
             <div
-              class="text-white font-bold text-xs tracking-wider"
-              data-i18n="grid_wea"
+              class="text-white font-bold text-xs tracking-wider uppercase"
+              data-i18n="grid_jakkals"
             >
-              WEATHER STATIONS
+              JAKKALS AI
+            </div>
+          </div>
+
+          <!-- 5. Interactive Maps -->
+          <div
+            class="bg-stilsein-card/40 border border-green-400/20 p-4 rounded-2xl flex items-center gap-4 hover:bg-stilsein-card transition-colors"
+          >
+            <div
+              class="w-10 h-10 rounded-full bg-green-400/10 flex items-center justify-center border border-green-400/30 shrink-0"
+            >
+              <svg
+                class="w-5 h-5 text-green-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"
+                ></path>
+              </svg>
+            </div>
+            <div
+              class="text-white font-bold text-xs tracking-wider uppercase"
+              data-i18n="grid_maps"
+            >
+              INTERACTIVE MAPS
+            </div>
+          </div>
+
+          <!-- 6. Alerts -->
+          <div
+            class="bg-stilsein-card/40 border border-red-400/20 p-4 rounded-2xl flex items-center gap-4 hover:bg-stilsein-card transition-colors"
+          >
+            <div
+              class="w-10 h-10 rounded-full bg-red-400/10 flex items-center justify-center border border-red-400/30 shrink-0"
+            >
+              <svg
+                class="w-5 h-5 text-red-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
+                ></path>
+              </svg>
+            </div>
+            <div
+              class="text-white font-bold text-xs tracking-wider uppercase"
+              data-i18n="grid_alerts"
+            >
+              INSTANT ALERTS
+            </div>
+          </div>
+
+          <!-- 7. Archives -->
+          <div
+            class="bg-stilsein-card/40 border border-[#A396D1]/20 p-4 rounded-2xl flex items-center gap-4 hover:bg-stilsein-card transition-colors"
+          >
+            <div
+              class="w-10 h-10 rounded-full bg-[#A396D1]/10 flex items-center justify-center border border-[#A396D1]/30 shrink-0"
+            >
+              <svg
+                class="w-5 h-5 text-[#A396D1]"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"
+                ></path>
+              </svg>
+            </div>
+            <div
+              class="text-white font-bold text-xs tracking-wider uppercase"
+              data-i18n="grid_archive"
+            >
+              5-YEAR ARCHIVES
+            </div>
+          </div>
+
+          <!-- 8. Exports -->
+          <div
+            class="bg-stilsein-card/40 border border-teal-400/20 p-4 rounded-2xl flex items-center gap-4 hover:bg-stilsein-card transition-colors"
+          >
+            <div
+              class="w-10 h-10 rounded-full bg-teal-400/10 flex items-center justify-center border border-teal-400/30 shrink-0"
+            >
+              <svg
+                class="w-5 h-5 text-teal-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                ></path>
+              </svg>
+            </div>
+            <div
+              class="text-white font-bold text-xs tracking-wider uppercase"
+              data-i18n="grid_export"
+            >
+              PDF & CSV EXPORTS
             </div>
           </div>
         </div>
@@ -1237,228 +1240,300 @@
           </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-          <div
-            class="relative w-full max-w-[300px] mx-auto aspect-[1/2] transition-transform duration-300 hover:-translate-y-2 cursor-pointer"
-            onclick="toggleMockup(this)"
-          >
-            <img
-              src="assets/images/mockup_rain_1.png"
-              class="img-1 absolute inset-0 w-full h-full object-contain transition-opacity duration-700 ease-in-out"
-              alt="Rain Dashboard"
-            />
-            <img
-              src="assets/images/mockup_rain_2.png"
-              class="img-2 absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-700 ease-in-out"
-              alt="Rain Chart"
-            />
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-16"
+        >
+          <!-- 1. Gateway & Settings -->
+          <div class="flex flex-col items-center text-center group">
             <div
-              class="absolute -bottom-8 w-full text-center text-stilsein-blue text-xs tracking-widest font-bold font-garet"
-              data-i18n="eco_rain"
+              class="relative w-full max-w-[260px] mx-auto aspect-[1/2] transition-transform duration-300 group-hover:-translate-y-2 cursor-pointer mb-6"
+              onclick="toggleMockup(this)"
             >
-              WEERWOLF RAINFALL
+              <img
+                src="assets/images/mockup_gateway_1.png"
+                class="img-1 absolute inset-0 w-full h-full object-contain transition-opacity duration-700 ease-in-out drop-shadow-[0_0_20px_rgba(255,158,74,0.3)]"
+                alt="Gateway Preview"
+              />
+              <img
+                src="assets/images/mockup_gateway_2.png"
+                class="img-2 absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-700 ease-in-out drop-shadow-[0_0_20px_rgba(145,172,200,0.3)]"
+                alt="Settings Fullscreen"
+              />
             </div>
-          </div>
-          <div
-            class="relative w-full max-w-[300px] mx-auto aspect-[1/2] transition-transform duration-300 hover:-translate-y-2 cursor-pointer"
-            onclick="toggleMockup(this)"
-          >
-            <img
-              src="assets/images/mockup_forecast_1.png"
-              class="img-1 absolute inset-0 w-full h-full object-contain transition-opacity duration-700 ease-in-out"
-              alt="Forecast Dashboard"
-            />
-            <img
-              src="assets/images/mockup_forecast_2v2.png"
-              class="img-2 absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-700 ease-in-out"
-              alt="Forecast Chart"
-            />
-            <div
-              class="absolute -bottom-8 w-full text-center text-jakkals-orange text-xs tracking-widest font-bold font-garet"
-              data-i18n="eco_sat"
-            >
-              SATELLITE FORECAST
-            </div>
-          </div>
-          <div
-            class="relative w-full max-w-[300px] mx-auto aspect-[1/2] transition-transform duration-300 hover:-translate-y-2 cursor-pointer"
-            onclick="toggleMockup(this)"
-          >
-            <img
-              src="assets/images/mockup_security_1.png"
-              class="img-1 absolute inset-0 w-full h-full object-contain transition-opacity duration-700 ease-in-out"
-              alt="Security"
-            />
-            <img
-              src="assets/images/mockup_security_2v2.png"
-              class="img-2 absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-700 ease-in-out"
-              alt="Security Event"
-            />
-            <div
-              class="absolute -bottom-8 w-full text-center text-red-400 text-xs tracking-widest font-bold font-garet"
-              data-i18n="eco_sec"
-            >
-              WAGWOLF SECURITY
-            </div>
-          </div>
-          <div
-            class="relative w-full max-w-[300px] mx-auto aspect-[1/2] transition-transform duration-300 hover:-translate-y-2 cursor-pointer"
-            onclick="toggleMockup(this)"
-          >
-            <img
-              src="assets/images/mockup_dam_1.png"
-              class="img-1 absolute inset-0 w-full h-full object-contain transition-opacity duration-700 ease-in-out"
-              alt="Dam"
-            />
-            <img
-              src="assets/images/mockup_dam_2.png"
-              class="img-2 absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-700 ease-in-out"
-              alt="Dam Chart"
-            />
-            <div
-              class="absolute -bottom-8 w-full text-center text-teal-400 text-xs tracking-widest font-bold font-garet"
-              data-i18n="eco_dam"
-            >
-              WATERWOLF DAM LEVELS
-            </div>
-          </div>
-          <div
-            class="relative w-full max-w-[300px] mx-auto aspect-[1/2] transition-transform duration-300 hover:-translate-y-2 lg:scale-105 z-20 cursor-pointer"
-            onclick="toggleMockup(this)"
-          >
-            <img
-              src="assets/images/mockup_hub_1.png"
-              class="img-1 absolute inset-0 w-full h-full object-contain transition-opacity duration-700 ease-in-out drop-shadow-[0_0_20px_rgba(255,158,74,0.6)]"
-              alt="Hub"
-            />
-            <img
-              src="assets/images/mockup_hub_2v2.png"
-              class="img-2 absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-700 ease-in-out drop-shadow-[0_0_20px_rgba(145,172,200,0.6)]"
-              alt="Settings"
-            />
-            <div
-              class="absolute -bottom-8 w-full text-center text-white text-sm tracking-widest font-black font-garet drop-shadow-lg"
-              data-i18n="eco_core"
+            <h3
+              class="text-white text-sm tracking-widest font-black font-garet mb-3 uppercase"
+              data-i18n="eco_1_title"
             >
               STILSEIN CORE
-            </div>
-          </div>
-          <div
-            class="relative w-full max-w-[300px] mx-auto aspect-[1/2] transition-transform duration-300 hover:-translate-y-2 cursor-pointer"
-            onclick="toggleMockup(this)"
-          >
-            <img
-              src="assets/images/mockup_pipe_1v3.png"
-              class="img-1 absolute inset-0 w-full h-full object-contain transition-opacity duration-700 ease-in-out"
-              alt="Pipe"
-            />
-            <img
-              src="assets/images/mockup_pipe_2v2.png"
-              class="img-2 absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-700 ease-in-out"
-              alt="Pipe Chart"
-            />
-            <div
-              class="absolute -bottom-8 w-full text-center text-cyan-400 text-xs tracking-widest font-bold font-garet"
-              data-i18n="eco_pipe"
-            >
-              DRUKWOLF PIPE PRESSURE
-            </div>
-          </div>
-          <div
-            class="relative w-full max-w-[300px] mx-auto aspect-[1/2] transition-transform duration-300 hover:-translate-y-2 cursor-pointer"
-            onclick="toggleMockup(this)"
-          >
-            <img
-              src="assets/images/mockup_tracking_1.png"
-              class="img-1 absolute inset-0 w-full h-full object-contain transition-opacity duration-700 ease-in-out"
-              alt="Tracker"
-            />
-            <img
-              src="assets/images/mockup_tracking_2.png"
-              class="img-2 absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-700 ease-in-out"
-              alt="Tracker Map"
-            />
-            <div
-              class="absolute -bottom-8 w-full text-center text-purple-400 text-xs tracking-widest font-bold font-garet"
-              data-i18n="eco_track"
-            >
-              SPOORWOLF TRACKING
-            </div>
-          </div>
-          <div
-            class="relative w-full max-w-[300px] mx-auto aspect-[1/2] transition-transform duration-300 hover:-translate-y-2 cursor-pointer"
-            onclick="toggleMockup(this)"
-          >
-            <img
-              src="assets/images/mockup_soil_1v3.png"
-              class="img-1 absolute inset-0 w-full h-full object-contain transition-opacity duration-700 ease-in-out"
-              alt="Soil"
-            />
-            <img
-              src="assets/images/mockup_soil_2v2.png"
-              class="img-2 absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-700 ease-in-out"
-              alt="Soil Chart"
-            />
-            <div
-              class="absolute -bottom-8 w-full text-center text-green-400 text-xs tracking-widest font-bold font-garet"
-              data-i18n="eco_soil"
-            >
-              GRONDWOLF SOIL MOISTURE
-            </div>
-          </div>
-          <div
-            class="relative w-full max-w-[300px] mx-auto aspect-[1/2] transition-transform duration-300 hover:-translate-y-2 cursor-pointer"
-            onclick="toggleMockup(this)"
-          >
-            <img
-              src="assets/images/mockup_fire_1v2.png"
-              class="img-1 absolute inset-0 w-full h-full object-contain transition-opacity duration-700 ease-in-out"
-              alt="Fire"
-            />
-            <img
-              src="assets/images/mockup_fire_2v2.png"
-              class="img-2 absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-700 ease-in-out"
-              alt="Fire Map"
-            />
-            <div
-              class="absolute -bottom-8 w-full text-center text-deep-orange-400 text-xs tracking-widest font-bold font-garet"
-              data-i18n="eco_fire"
-            >
-              VELDWOLF FIRES
-            </div>
-          </div>
-        </div>
-
-        <div class="max-w-4xl mx-auto mt-24 text-center px-4">
-          <p
-            class="text-stilsein-muted text-lg mb-6 leading-relaxed"
-            data-i18n="eco_p1"
-          >
-            Setting up a system for just one rain gauge is pretty nice. But
-            building a network that simultaneously monitors pipe pressure, farm
-            gates, dam levels, and extreme weather?
-            <strong class="text-jakkals-orange">That changes the game.</strong>
-          </p>
-          <p
-            class="text-stilsein-muted text-lg mb-10 leading-relaxed"
-            data-i18n="eco_p2"
-          >
-            StilSein is modular. Invest in the core infrastructure today, and
-            add new sensors on your own time—whether that's tomorrow or in two
-            years. Your app automatically adapts as your farm grows.
-          </p>
-          <div
-            class="bg-stilsein-blue/10 border-l-4 border-stilsein-blue p-6 rounded-r-xl shadow-[0_0_15px_rgba(145,172,200,0.1)] text-left"
-          >
+            </h3>
             <p
-              class="text-sm md:text-base text-white italic m-0 leading-relaxed"
-              data-i18n="eco_quote"
+              class="text-stilsein-muted text-xs leading-relaxed max-w-[280px]"
+              data-i18n="eco_1_desc"
             >
-              "Monitor every nook and cranny of your farm. The wolf stays awake.
-              Know when the first drops fall, or when the pipes are running and
-              when the top camp's gate is open. Then store everything and keep a
-              10-year logbook of your farm's microclimate to increase your land
-              value."
+              Your central command. Monitor all connected devices, check battery
+              life and signal strength (RSSI), and configure bilingual
+              notifications.
+            </p>
+          </div>
+
+          <!-- 2. Rainfall Overview -->
+          <div class="flex flex-col items-center text-center group">
+            <div
+              class="relative w-full max-w-[260px] mx-auto aspect-[1/2] transition-transform duration-300 group-hover:-translate-y-2 cursor-pointer mb-6"
+              onclick="toggleMockup(this)"
+            >
+              <img
+                src="assets/images/mockup_rain_gauge_1.png"
+                class="img-1 absolute inset-0 w-full h-full object-contain transition-opacity duration-700 ease-in-out"
+                alt="Rain Gauge Preview"
+              />
+              <img
+                src="assets/images/mockup_rain_gauge_2.png"
+                class="img-2 absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-700 ease-in-out"
+                alt="Rain Chart Fullscreen"
+              />
+            </div>
+            <h3
+              class="text-stilsein-blue text-sm tracking-widest font-bold font-garet mb-3 uppercase"
+              data-i18n="eco_2_title"
+            >
+              RAINFALL GAUGE
+            </h3>
+            <p
+              class="text-stilsein-muted text-xs leading-relaxed max-w-[280px]"
+              data-i18n="eco_2_desc"
+            >
+              Watch your digital cylinder fill up dynamically as the rain falls.
+              Instantly toggle to detailed historical charts to track long-term
+              water metrics.
+            </p>
+          </div>
+
+          <!-- 3. Rainfall Live -->
+          <div class="flex flex-col items-center text-center group">
+            <div
+              class="relative w-full max-w-[260px] mx-auto aspect-[1/2] transition-transform duration-300 group-hover:-translate-y-2 cursor-pointer mb-6"
+              onclick="toggleMockup(this)"
+            >
+              <img
+                src="assets/images/mockup_rain_live_1.png"
+                class="img-1 absolute inset-0 w-full h-full object-contain transition-opacity duration-700 ease-in-out"
+                alt="Rain Live Preview"
+              />
+              <img
+                src="assets/images/mockup_rain_live_2.png"
+                class="img-2 absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-700 ease-in-out"
+                alt="Rain Live Graph"
+              />
+            </div>
+            <h3
+              class="text-stilsein-blue text-sm tracking-widest font-bold font-garet mb-3 uppercase"
+              data-i18n="eco_3_title"
+            >
+              LIVE RAIN SPELLS
+            </h3>
+            <p
+              class="text-stilsein-muted text-xs leading-relaxed max-w-[280px]"
+              data-i18n="eco_3_desc"
+            >
+              During a storm, the system shifts into high gear with 5-minute
+              pulse intervals. Watch animated raindrops intensify based on
+              real-time downpours.
+            </p>
+          </div>
+
+          <!-- 4. Pipe Pressure Overview -->
+          <div class="flex flex-col items-center text-center group">
+            <div
+              class="relative w-full max-w-[260px] mx-auto aspect-[1/2] transition-transform duration-300 group-hover:-translate-y-2 cursor-pointer mb-6"
+              onclick="toggleMockup(this)"
+            >
+              <img
+                src="assets/images/mockup_pipe_net_1.png"
+                class="img-1 absolute inset-0 w-full h-full object-contain transition-opacity duration-700 ease-in-out"
+                alt="Pipe Network Preview"
+              />
+              <img
+                src="assets/images/mockup_pipe_net_2.png"
+                class="img-2 absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-700 ease-in-out"
+                alt="Pipe Network Chart"
+              />
+            </div>
+            <h3
+              class="text-cyan-400 text-sm tracking-widest font-bold font-garet mb-3 uppercase"
+              data-i18n="eco_4_title"
+            >
+              PRESSURE NETWORK
+            </h3>
+            <p
+              class="text-stilsein-muted text-xs leading-relaxed max-w-[280px]"
+              data-i18n="eco_4_desc"
+            >
+              A bird's-eye view of your entire irrigation system. Compare live
+              pressure metrics from multiple gauges simultaneously on a single
+              fullscreen chart.
+            </p>
+          </div>
+
+          <!-- 5. Pipe Pressure Individual -->
+          <div class="flex flex-col items-center text-center group">
+            <div
+              class="relative w-full max-w-[260px] mx-auto aspect-[1/2] transition-transform duration-300 group-hover:-translate-y-2 cursor-pointer mb-6"
+              onclick="toggleMockup(this)"
+            >
+              <img
+                src="assets/images/mockup_pipe_ind_1.png"
+                class="img-1 absolute inset-0 w-full h-full object-contain transition-opacity duration-700 ease-in-out"
+                alt="Pipe Node Preview"
+              />
+              <img
+                src="assets/images/mockup_pipe_ind_2.png"
+                class="img-2 absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-700 ease-in-out"
+                alt="Pipe Node Chart"
+              />
+            </div>
+            <h3
+              class="text-cyan-400 text-sm tracking-widest font-bold font-garet mb-3 uppercase"
+              data-i18n="eco_5_title"
+            >
+              INDIVIDUAL PIPES
+            </h3>
+            <p
+              class="text-stilsein-muted text-xs leading-relaxed max-w-[280px]"
+              data-i18n="eco_5_desc"
+            >
+              Zoom in on a specific pipeline. See the animated water pressure
+              rise and drop, backed by precise fullscreen graphing to detect
+              leaks or blockages.
+            </p>
+          </div>
+
+          <!-- 6. Predictions -->
+          <div class="flex flex-col items-center text-center group">
+            <div
+              class="relative w-full max-w-[260px] mx-auto aspect-[1/2] transition-transform duration-300 group-hover:-translate-y-2 cursor-pointer mb-6"
+              onclick="toggleMockup(this)"
+            >
+              <img
+                src="assets/images/mockup_forecast_1.png"
+                class="img-1 absolute inset-0 w-full h-full object-contain transition-opacity duration-700 ease-in-out"
+                alt="Forecast Preview"
+              />
+              <img
+                src="assets/images/mockup_forecast_2.png"
+                class="img-2 absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-700 ease-in-out"
+                alt="Forecast Detail"
+              />
+            </div>
+            <h3
+              class="text-jakkals-orange text-sm tracking-widest font-bold font-garet mb-3 uppercase"
+              data-i18n="eco_6_title"
+            >
+              SATELLITE FORECAST
+            </h3>
+            <p
+              class="text-stilsein-muted text-xs leading-relaxed max-w-[280px]"
+              data-i18n="eco_6_desc"
+            >
+              Stay steps ahead. Advanced satellite data predicts upcoming
+              weather events specific to your farm's exact GPS coordinates.
+            </p>
+          </div>
+
+          <!-- 7. Maps -->
+          <div class="flex flex-col items-center text-center group">
+            <div
+              class="relative w-full max-w-[260px] mx-auto aspect-[1/2] transition-transform duration-300 group-hover:-translate-y-2 cursor-pointer mb-6"
+              onclick="toggleMockup(this)"
+            >
+              <img
+                src="assets/images/mockup_map_1.png"
+                class="img-1 absolute inset-0 w-full h-full object-contain transition-opacity duration-700 ease-in-out"
+                alt="Map Preview"
+              />
+              <img
+                src="assets/images/mockup_map_2.png"
+                class="img-2 absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-700 ease-in-out"
+                alt="Map Fullscreen"
+              />
+            </div>
+            <h3
+              class="text-green-400 text-sm tracking-widest font-bold font-garet mb-3 uppercase"
+              data-i18n="eco_7_title"
+            >
+              INTERACTIVE MAPS
+            </h3>
+            <p
+              class="text-stilsein-muted text-xs leading-relaxed max-w-[280px]"
+              data-i18n="eco_7_desc"
+            >
+              See your nodes plotted on the farm. Built-in GPS tracks your exact
+              location relative to your hardware and their live readings.
+            </p>
+          </div>
+
+          <!-- 8. Archive -->
+          <div class="flex flex-col items-center text-center group">
+            <div
+              class="relative w-full max-w-[260px] mx-auto aspect-[1/2] transition-transform duration-300 group-hover:-translate-y-2 cursor-pointer mb-6"
+              onclick="toggleMockup(this)"
+            >
+              <img
+                src="assets/images/mockup_archive_1.png"
+                class="img-1 absolute inset-0 w-full h-full object-contain transition-opacity duration-700 ease-in-out"
+                alt="Archive Preview"
+              />
+              <img
+                src="assets/images/mockup_archive_2.png"
+                class="img-2 absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-700 ease-in-out"
+                alt="Archive Fullscreen"
+              />
+            </div>
+            <h3
+              class="text-[#A396D1] text-sm tracking-widest font-bold font-garet mb-3 uppercase"
+              data-i18n="eco_8_title"
+            >
+              FARM ARCHIVE
+            </h3>
+            <p
+              class="text-stilsein-muted text-xs leading-relaxed max-w-[280px]"
+              data-i18n="eco_8_desc"
+            >
+              Your digital farm history. Every rainspell, heatwave, and critical
+              event is automatically logged, ready to be expanded into detailed
+              fullscreen charts.
+            </p>
+          </div>
+
+          <!-- 9. Jakkals AI & Export -->
+          <div class="flex flex-col items-center text-center group">
+            <div
+              class="relative w-full max-w-[260px] mx-auto aspect-[1/2] transition-transform duration-300 group-hover:-translate-y-2 cursor-pointer mb-6"
+              onclick="toggleMockup(this)"
+            >
+              <img
+                src="assets/images/mockup_jakkals_1.png"
+                class="img-1 absolute inset-0 w-full h-full object-contain transition-opacity duration-700 ease-in-out"
+                alt="Jakkals Preview"
+              />
+              <img
+                src="assets/images/mockup_export_2.png"
+                class="img-2 absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-700 ease-in-out"
+                alt="Export Panel"
+              />
+            </div>
+            <h3
+              class="text-jakkals-orange text-sm tracking-widest font-bold font-garet mb-3 uppercase drop-shadow-[0_0_8px_rgba(255,158,74,0.5)]"
+              data-i18n="eco_9_title"
+            >
+              JAKKALS & EXPORT
+            </h3>
+            <p
+              class="text-stilsein-muted text-xs leading-relaxed max-w-[280px]"
+              data-i18n="eco_9_desc"
+            >
+              Chat with Jakkals AI for tailored farm advice. When ready,
+              download filtered PDF and CSV reports with just a few taps.
             </p>
           </div>
         </div>
