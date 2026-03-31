@@ -10,6 +10,9 @@ const translations = {
     nav_jakkals_ai: "Jakkals AI",
     nav_ecosystem: "Ecosystem",
     nav_contact: "Contact",
+    nav_language: "Language",
+    lang_en: "English",
+    lang_af: "Afrikaans",
 
     // ARIA, Titles and Emails
     aria_menu_open: "Open menu",
@@ -163,6 +166,9 @@ const translations = {
     nav_jakkals_ai: "Jakkals AI",
     nav_ecosystem: "Ekosisteem",
     nav_contact: "Kontak",
+    nav_language: "Taal",
+    lang_en: "Engels",
+    lang_af: "Afrikaans",
 
     // ARIA, Titels en E-pos
     aria_menu_open: "Maak kieslys oop",
