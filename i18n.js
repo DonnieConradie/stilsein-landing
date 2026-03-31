@@ -89,8 +89,8 @@ const translations = {
     hw_opt_desc: "If you already have a LoRaWAN gateway connected to The Things Network (TTN), you are halfway there. You don't need to buy new infrastructure. Just request a secure Webhook key from us, link it to your TTN console, and your existing sensors will pop up in the StilSein app.",
     hw_step3_title: "3. THE CLOUD",
     hw_step3_desc: "The gateway takes all those radio signals and passes them through your homestead's internet connection securely into our cloud servers. Here, Jakkals AI organizes the raw numbers, checks your thresholds, and stores everything in your 5-year archive.",
-    hw_step4_title: "4. THE APP",
-    hw_step4_desc: "The final step is your phone. The processed data lands instantly on your StilSein dashboard. You get beautifully designed charts, immediate WhatsApp-style notifications, and a complete overview of your farm, accessible from anywhere in the world.",
+    hw_step4_title: "4. THE TAILORED APP",
+    hw_step4_desc: "The final step is your phone. You don't download a generic app and spend hours trying to configure it. Our engineering team hardcodes your specific farm layout, camp names, and equipment directly into the software before we hand it over. You open the app, and your farm is already there.",
 
     // Real-Time Monitoring
     live_title: "WE MONITOR <br><span class=\"text-stilsein-blue\">AND KEEP WATCH.</span>",
@@ -130,7 +130,7 @@ const translations = {
     eco_9_title: "JAKKALS & EXPORT",
     eco_9_desc: "It's like having a digital farm manager who never sleeps. Exporting this tailored advice gives you professional records to share with partners.",
     eco_p1: "Setting up a system for just one rain gauge is pretty nice. But building a network that simultaneously monitors pipe pressure, gateways, and extreme weather? <strong class=\"text-jakkals-orange\">That changes the game.</strong>",
-    eco_p2: "StilSein is modular. Invest in the core infrastructure today, and add new sensors on your own time—whether that's tomorrow or in two years. Your app automatically adapts as your farm grows.",
+    eco_p2: "Every farm is different, so we don't do 'one-size-fits-all'. Your StilSein app is uniquely coded for you. Our team builds your exact farm topology into the backend before delivery. This bespoke engineering is why the system feels so intuitive, and why it seamlessly adapts whenever you add new sensors to your network.",
     eco_quote: "\"Monitor every nook and cranny of your farm. The wolf stays awake. Know when the first drops fall, or when the pipes are running and when the top camp's gate is open. Then store everything and keep a 10-year logbook of your farm's microclimate to increase your land value.\"",
 
     // Reports
@@ -242,8 +242,8 @@ const translations = {
     hw_opt_desc: "As jy reeds 'n LoRaWAN basisstasie het wat aan The Things Network (TTN) gekoppel is, is jy halfpad daar. Jy hoef nie nuwe infrastruktuur te koop nie. Vra net vir 'n Webhook-sleutel by ons, koppel dit in jou TTN-konsole, en jou bestaande sensors sal in die StilSein app verskyn.",
     hw_step3_title: "3. DIE WOLK",
     hw_step3_desc: "Die basisstasie neem al daardie radioseine en stuur dit via jou opstal se internetverbinding veilig deur na ons wolkbedieners. Hier orden Jakkals AI die rou syfers, kontroleer jou drempels, en stoor alles in jou 5-jaar argief.",
-    hw_step4_title: "4. DIE APP",
-    hw_step4_desc: "Die laaste stap is jou foon. Die verwerkte data beland onmiddellik op jou StilSein-skerm. Jy kry pragtige grafieke, blitsige kennisgewings, en 'n volledige oorsig van jou plaas, toeganklik van enige plek in die wêreld.",
+    hw_step4_title: "4. DIE PASGEMAAKTE APP",
+    hw_step4_desc: "Die laaste stap is jou foon. Jy laai nie 'n generiese app af en spandeer ure om dit op te stel nie. Ons ingenieurspan skryf jou spesifieke plaasuitleg, kampname en toerusting hardekode in die sagteware in voordat ons dit oorgee. Jy maak die app oop, en jou plaas is reeds daar.",
 
     // Intydse Monitering
     live_title: "ONS MONITOR <br><span class=\"text-stilsein-blue\">EN HOU WAG.</span>",
@@ -283,7 +283,7 @@ const translations = {
     eco_9_title: "JAKKALS & UITVOER",
     eco_9_desc: "Dis soos om 'n digitale plaasbestuurder te hê wat nooit slaap nie. Deur hierdie advies uit te voer kry jy professionele rekords om met vennote te deel.",
     eco_p1: "Om 'n stelsel op te stel vir net een reënmeter is nogal nice. Maar om 'n netwerk te bou wat pypdruk, basisstasies, en uiterste weer gelyktydig dophou? <strong class=\"text-jakkals-orange\">Dit verander die game.</strong>",
-    eco_p2: "StilSein is modulêr. Belê in die hoofinfrastruktuur vandag, en voeg nuwe sensors by op jou eie tyd—of dit nou môre of oor twee jaar is. Jou app pas outomaties aan namate jou plaas groei.",
+    eco_p2: "Elke plaas is anders, daarom glo ons nie in 'een-grootte-pas-almal' nie. Jou StilSein app word uniek vir jou geskryf. Ons span bou jou presiese plaas-topologie in die agterkant in voor aflewering. Hierdie pasgemaakte ingenieurswese is hoekom die stelsel so natuurlik voel, en hoekom dit naatloos aanpas wanneer jy later nuwe sensors byvoeg.",
     eco_quote: "\"Monitor elke hoek en draai van jou plaas. Die wolf slaap wakker. Weet wanneer die eerste druppels val, of wanneer die pype loop en wanneer die boonste kamp se hek oop is. Stoor dan alles en hou 'n 10-jaar logboek van jou plaas se mikroklimaat om jou grondwaarde te verhoog.\"",
 
     // Verslae
