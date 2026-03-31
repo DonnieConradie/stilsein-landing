@@ -1213,69 +1213,31 @@
         </div>
 
         <div
-          class="grid grid-cols-1 md:grid-cols-4 gap-8 relative transition-all duration-500"
+          class="grid grid-cols-1 md:grid-cols-2 gap-4 relative transition-all duration-500 items-start text-left"
           id="steps-container"
         >
+          <!-- STEP 1 -->
           <div
-            class="hidden md:block absolute top-1/2 left-[10%] right-[10%] h-0.5 bg-stilsein-blue/20 -z-10"
-            id="steps-line"
-          ></div>
-
-          <div
-            class="hardware-step text-center bg-stilsein-card/80 p-6 rounded-2xl border border-white/5 backdrop-blur-md transition-all duration-500"
+            class="hardware-step relative bg-stilsein-card/40 border border-white/10 rounded-2xl transition-all duration-300 overflow-hidden group cursor-pointer shadow-sm hover:shadow-white/5"
+            onclick="toggleOffer('hw-1')"
           >
             <div
-              class="w-16 h-16 mx-auto bg-stilsein-dark border-2 border-stilsein-blue rounded-full flex items-center justify-center mb-4 z-10 relative"
+              class="p-4 flex items-center gap-4 z-10 relative bg-stilsein-card/80"
             >
-              <span class="text-2xl">📡</span>
-            </div>
-            <h3
-              class="text-lg font-bold text-white mb-2"
-              data-i18n="hw_step1_title"
-            >
-              1. The Sensors
-            </h3>
-            <p
-              class="text-xs text-stilsein-muted leading-relaxed"
-              data-i18n="hw_step1_desc"
-            >
-              We place battery-powered sensors (rain gauges, gates, dams) in the
-              field. The battery lasts up to 10 years.
-            </p>
-          </div>
-
-          <div
-            class="hardware-step text-center bg-stilsein-card/80 p-6 rounded-2xl border border-white/5 backdrop-blur-md transition-all duration-500"
-          >
-            <div
-              class="w-16 h-16 mx-auto bg-stilsein-dark border-2 border-jakkals-orange rounded-full flex items-center justify-center mb-4 z-10 relative"
-            >
-              <span class="text-2xl">📻</span>
-            </div>
-            <h3
-              class="text-lg font-bold text-white mb-2"
-              data-i18n="hw_step2_title"
-            >
-              2. The Gateway
-            </h3>
-            <p
-              class="text-xs text-stilsein-muted leading-relaxed"
-              data-i18n="hw_step2_desc"
-            >
-              One central base station at the homestead captures radio signals
-              from miles away. No SIM cards required.
-            </p>
-          </div>
-
-          <div
-            id="option-b-step"
-            class="hidden col-span-1 md:col-span-2 text-center bg-stilsein-card/80 p-6 rounded-2xl border border-jakkals-orange/40 backdrop-blur-md shadow-[0_0_20px_rgba(255,158,74,0.1)] transition-all duration-500 opacity-0 scale-95"
-          >
-            <div
-              class="w-16 h-16 mx-auto bg-jakkals-orange/10 border-2 border-jakkals-orange rounded-full flex items-center justify-center mb-4 z-10 relative"
-            >
+              <div
+                class="w-10 h-10 rounded-full bg-stilsein-blue/10 flex items-center justify-center border border-stilsein-blue/30 shrink-0 text-lg"
+              >
+                📡
+              </div>
+              <div
+                class="text-white font-bold text-xs tracking-wider uppercase"
+                data-i18n="hw_step1_title"
+              >
+                1. THE SENSORS
+              </div>
               <svg
-                class="w-8 h-8 text-jakkals-orange"
+                class="w-4 h-4 text-stilsein-muted ml-auto transition-transform duration-300 offer-chevron"
+                data-target="hw-1"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -1284,70 +1246,265 @@
                   stroke-linecap="round"
                   stroke-linejoin="round"
                   stroke-width="2"
-                  d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
+                  d="M19 9l-7 7-7-7"
                 ></path>
               </svg>
             </div>
-            <h3
-              class="text-lg font-bold text-jakkals-orange mb-2"
-              data-i18n="hw_opt_title"
+            <div
+              id="hw-1"
+              class="offer-content grid grid-rows-[0fr] transition-all duration-300 ease-in-out bg-stilsein-dark/50"
             >
-              Connect Directly
-            </h3>
-            <p
-              class="text-xs text-white leading-relaxed"
-              data-i18n="hw_opt_desc"
-            >
-              Do you already have The Things Network (TTN) hardware? Fantastic.
-              You don't need any new equipment. Contact us for your unique Farm
-              Key, set up our Webhook in your TTN console, and download the App.
-            </p>
+              <div class="overflow-hidden relative">
+                <p
+                  class="p-4 pt-2 text-xs text-stilsein-muted leading-relaxed relative z-10"
+                  data-i18n="hw_step1_desc"
+                >
+                  These aren't massive industrial machines. Think of a compact
+                  rain gauge with tiny tipping buckets inside, or a small
+                  pressure sensor screwed onto your water pipe. They run on
+                  long-lasting batteries and silently beam data across the farm
+                  without needing Wi-Fi or cell reception.
+                </p>
+                <div
+                  class="absolute -bottom-4 -right-2 text-6xl opacity-[0.03] pointer-events-none"
+                >
+                  📡
+                </div>
+              </div>
+            </div>
           </div>
 
+          <!-- STEP 2 -->
           <div
-            class="text-center bg-stilsein-card/80 p-6 rounded-2xl border border-white/5 backdrop-blur-md"
+            class="hardware-step relative bg-stilsein-card/40 border border-white/10 rounded-2xl transition-all duration-300 overflow-hidden group cursor-pointer shadow-sm hover:shadow-white/5"
+            onclick="toggleOffer('hw-2')"
           >
             <div
-              class="w-16 h-16 mx-auto bg-stilsein-dark border-2 border-stilsein-blue rounded-full flex items-center justify-center mb-4 z-10 relative"
+              class="p-4 flex items-center gap-4 z-10 relative bg-stilsein-card/80"
             >
-              <span class="text-2xl">☁️</span>
+              <div
+                class="w-10 h-10 rounded-full bg-jakkals-orange/10 flex items-center justify-center border border-jakkals-orange/30 shrink-0 text-lg"
+              >
+                📻
+              </div>
+              <div
+                class="text-white font-bold text-xs tracking-wider uppercase"
+                data-i18n="hw_step2_title"
+              >
+                2. THE GATEWAY
+              </div>
+              <svg
+                class="w-4 h-4 text-stilsein-muted ml-auto transition-transform duration-300 offer-chevron"
+                data-target="hw-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"
+                ></path>
+              </svg>
             </div>
-            <h3
-              class="text-lg font-bold text-white mb-2"
-              data-i18n="hw_step3_title"
+            <div
+              id="hw-2"
+              class="offer-content grid grid-rows-[0fr] transition-all duration-300 ease-in-out bg-stilsein-dark/50"
             >
-              3. The Cloud
-            </h3>
-            <p
-              class="text-xs text-stilsein-muted leading-relaxed"
-              data-i18n="hw_step3_desc"
-            >
-              Your data streams securely through our servers to your isolated
-              database where Jakkals-AI analyzes it.
-            </p>
+              <div class="overflow-hidden relative">
+                <p
+                  class="p-4 pt-2 text-xs text-stilsein-muted leading-relaxed relative z-10"
+                  data-i18n="hw_step2_desc"
+                >
+                  This is simply a device that looks like your home internet
+                  router, mounted at the homestead with a small antenna outside.
+                  It acts as the 'receiver', catching radio signals from sensors
+                  up to 15km away. No SIM cards or monthly data contracts are
+                  required for the sensors to talk to it.
+                </p>
+                <div
+                  class="absolute -bottom-4 -right-2 text-6xl opacity-[0.03] pointer-events-none"
+                >
+                  📻
+                </div>
+              </div>
+            </div>
           </div>
 
+          <!-- OPTION B (Replaces Step 1 & 2 when toggled) -->
           <div
-            class="text-center bg-stilsein-card/80 p-6 rounded-2xl border border-white/5 backdrop-blur-md"
+            id="option-b-step"
+            class="hidden md:col-span-2 relative bg-stilsein-card/40 border border-jakkals-orange/20 rounded-2xl transition-all duration-300 overflow-hidden group cursor-pointer shadow-sm hover:shadow-jakkals-orange/10 opacity-0 scale-95"
+            onclick="toggleOffer('hw-opt')"
           >
             <div
-              class="w-16 h-16 mx-auto bg-stilsein-dark border-2 border-jakkals-orange rounded-full flex items-center justify-center mb-4 z-10 relative"
+              class="p-4 flex items-center gap-4 z-10 relative bg-stilsein-card/80"
             >
-              <span class="text-2xl">📱</span>
+              <div
+                class="w-10 h-10 rounded-full bg-jakkals-orange/10 flex items-center justify-center border border-jakkals-orange/30 shrink-0 text-lg"
+              >
+                🔗
+              </div>
+              <div
+                class="text-white font-bold text-xs tracking-wider uppercase"
+                data-i18n="hw_opt_title"
+              >
+                ALREADY HAVE A GATEWAY?
+              </div>
+              <svg
+                class="w-4 h-4 text-stilsein-muted ml-auto transition-transform duration-300 offer-chevron"
+                data-target="hw-opt"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"
+                ></path>
+              </svg>
             </div>
-            <h3
-              class="text-lg font-bold text-white mb-2"
-              data-i18n="hw_step4_title"
+            <div
+              id="hw-opt"
+              class="offer-content grid grid-rows-[0fr] transition-all duration-300 ease-in-out bg-stilsein-dark/50"
             >
-              4. The App
-            </h3>
-            <p
-              class="text-xs text-stilsein-muted leading-relaxed"
-              data-i18n="hw_step4_desc"
+              <div class="overflow-hidden relative">
+                <p
+                  class="p-4 pt-2 text-xs text-stilsein-muted leading-relaxed relative z-10"
+                  data-i18n="hw_opt_desc"
+                >
+                  If you already have a LoRaWAN gateway connected to The Things
+                  Network (TTN), you are halfway there. You don't need to buy
+                  new infrastructure. Just request a secure Webhook key from us,
+                  link it to your TTN console, and your existing sensors will
+                  pop up in the StilSein app.
+                </p>
+                <div
+                  class="absolute -bottom-4 -right-2 text-6xl opacity-[0.03] pointer-events-none"
+                >
+                  🔗
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 3 -->
+          <div
+            class="relative bg-stilsein-card/40 border border-white/10 rounded-2xl transition-all duration-300 overflow-hidden group cursor-pointer shadow-sm hover:shadow-white/5"
+            onclick="toggleOffer('hw-3')"
+          >
+            <div
+              class="p-4 flex items-center gap-4 z-10 relative bg-stilsein-card/80"
             >
-              Everything displays instantly and neatly organized on your phone.
-              You get warnings even before a crisis hits.
-            </p>
+              <div
+                class="w-10 h-10 rounded-full bg-stilsein-blue/10 flex items-center justify-center border border-stilsein-blue/30 shrink-0 text-lg"
+              >
+                ☁️
+              </div>
+              <div
+                class="text-white font-bold text-xs tracking-wider uppercase"
+                data-i18n="hw_step3_title"
+              >
+                3. THE CLOUD
+              </div>
+              <svg
+                class="w-4 h-4 text-stilsein-muted ml-auto transition-transform duration-300 offer-chevron"
+                data-target="hw-3"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"
+                ></path>
+              </svg>
+            </div>
+            <div
+              id="hw-3"
+              class="offer-content grid grid-rows-[0fr] transition-all duration-300 ease-in-out bg-stilsein-dark/50"
+            >
+              <div class="overflow-hidden relative">
+                <p
+                  class="p-4 pt-2 text-xs text-stilsein-muted leading-relaxed relative z-10"
+                  data-i18n="hw_step3_desc"
+                >
+                  The gateway takes all those radio signals and passes them
+                  through your homestead's internet connection securely into our
+                  cloud servers. Here, Jakkals AI organizes the raw numbers,
+                  checks your thresholds, and stores everything in your 5-year
+                  archive.
+                </p>
+                <div
+                  class="absolute -bottom-4 -right-2 text-6xl opacity-[0.03] pointer-events-none"
+                >
+                  ☁️
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 4 -->
+          <div
+            class="relative bg-stilsein-card/40 border border-white/10 rounded-2xl transition-all duration-300 overflow-hidden group cursor-pointer shadow-sm hover:shadow-white/5"
+            onclick="toggleOffer('hw-4')"
+          >
+            <div
+              class="p-4 flex items-center gap-4 z-10 relative bg-stilsein-card/80"
+            >
+              <div
+                class="w-10 h-10 rounded-full bg-jakkals-orange/10 flex items-center justify-center border border-jakkals-orange/30 shrink-0 text-lg"
+              >
+                📱
+              </div>
+              <div
+                class="text-white font-bold text-xs tracking-wider uppercase"
+                data-i18n="hw_step4_title"
+              >
+                4. THE APP
+              </div>
+              <svg
+                class="w-4 h-4 text-stilsein-muted ml-auto transition-transform duration-300 offer-chevron"
+                data-target="hw-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"
+                ></path>
+              </svg>
+            </div>
+            <div
+              id="hw-4"
+              class="offer-content grid grid-rows-[0fr] transition-all duration-300 ease-in-out bg-stilsein-dark/50"
+            >
+              <div class="overflow-hidden relative">
+                <p
+                  class="p-4 pt-2 text-xs text-stilsein-muted leading-relaxed relative z-10"
+                  data-i18n="hw_step4_desc"
+                >
+                  The final step is your phone. The processed data lands
+                  instantly on your StilSein dashboard. You get beautifully
+                  designed charts, immediate WhatsApp-style notifications, and a
+                  complete overview of your farm, accessible from anywhere in
+                  the world.
+                </p>
+                <div
+                  class="absolute -bottom-4 -right-2 text-6xl opacity-[0.03] pointer-events-none"
+                >
+                  📱
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
