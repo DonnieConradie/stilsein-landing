@@ -1,6 +1,5 @@
 <!doctype html>
-<!-- FIX 1: Start as english -->
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="scroll-smooth scroll-pt-20">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -253,9 +252,8 @@
 
         <!-- Desktop Links -->
         <div
-          class="hidden lg:flex items-center space-x-8 text-[11px] font-bold tracking-[0.2em] text-stilsein-muted uppercase"
+          class="hidden lg:flex items-center space-x-4 xl:space-x-6 text-[10px] xl:text-[11px] font-bold tracking-[0.15em] text-stilsein-muted uppercase whitespace-nowrap"
         >
-          <!-- FIX 3: Added Home and What We Offer Links -->
           <a
             href="#home"
             class="hover:text-jakkals-orange transition-colors"
@@ -303,7 +301,14 @@
             >Contact</a
           >
 
-          <!-- FIX 2: Sleek Toggle Switch for Desktop -->
+          <a
+            href="vennote.html"
+            class="px-4 py-1.5 rounded-full border border-jakkals-orange/50 text-jakkals-orange hover:bg-jakkals-orange hover:text-stilsein-dark transition-all shadow-[0_0_10px_rgba(255,158,74,0.2)] ml-4"
+            data-i18n="nav_partners"
+            >Partners</a
+          >
+
+          <!-- Sleek Toggle Switch for Desktop -->
           <button
             type="button"
             onclick="toggleLanguage(event)"
@@ -391,10 +396,19 @@
           openModal();
           return false;
         "
-        class="mobile-link text-xs font-bold tracking-[0.2em] text-stilsein-muted uppercase hover:text-jakkals-orange"
+        class="mobile-link text-xs font-bold tracking-[0.2em] text-stilsein-muted uppercase hover:text-jakkals-orange mb-4"
         data-i18n="nav_contact"
         >Contact</a
       >
+
+      <div class="w-full px-6 pb-2">
+        <a
+          href="vennote.html"
+          class="mobile-link flex items-center justify-center w-full py-3.5 bg-jakkals-orange/10 border border-jakkals-orange/40 text-jakkals-orange text-[11px] font-bold tracking-[0.2em] uppercase rounded-xl hover:bg-jakkals-orange hover:text-stilsein-dark transition-all shadow-[0_0_15px_rgba(255,158,74,0.2)]"
+          data-i18n="nav_partners"
+          >Partners</a
+        >
+      </div>
 
       <!-- MOBILE LANGUAGE SELECTOR (Distinct Utility Section) -->
       <div
