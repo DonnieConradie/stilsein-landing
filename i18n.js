@@ -149,7 +149,7 @@ const translations = {
 
     // Contact & Footer
     contact_title: "CHAT WITH STILSEIN",
-    contact_desc: "Send us a direct message or email us at info@stilsein.co.za.",
+    contact_desc: "Send us a direct message or email us at admin@stilsein.co.za.",
     contact_btn: "SEND MESSAGE",
     contact_name_placeholder: "Your Name / Farm Name",
     contact_msg_placeholder: "How can we help?",
@@ -353,7 +353,7 @@ const translations = {
 
     // Kontak & Footer
     contact_title: "GESELS MET STILSEIN",
-    contact_desc: "Stuur vir ons 'n direkte boodskap of e-pos ons by info@stilsein.co.za.",
+    contact_desc: "Stuur vir ons 'n direkte boodskap of e-pos ons by admin@stilsein.co.za.",
     contact_btn: "STUUR BOODSKAP",
     contact_name_placeholder: "Jou Naam / Plaas Naam",
     contact_msg_placeholder: "Hoe kan ons help?",
