@@ -897,6 +897,7 @@
             </div>
 
             <button
+              id="partner-submit-btn"
               type="submit"
               class="w-full py-4 mt-4 bg-jakkals-orange text-stilsein-dark font-bold rounded-lg hover:bg-white transition-all shadow-[0_0_20px_rgba(255,158,74,0.3)] tracking-widest uppercase"
               data-i18n="p_form_submit"
@@ -967,15 +968,52 @@
       // --- FORM SUBMIT (Phase 1.3 Placeholder) ---
       function submitPartnerForm(e) {
         e.preventDefault();
-        const company = document.getElementById("partner-company").value;
-        const name = document.getElementById("partner-fname").value;
 
-        // Temporarily pop open user's email client until Phase 1.3 is built
-        const subject = encodeURIComponent("Vennote Aansoek: " + company);
-        const body = encodeURIComponent(
-          `Hi StilSein,\n\nI am interested in becoming a partner.\n\nName: ${name}\nCompany: ${company}`,
-        );
-        window.location.href = `mailto:info@stilsein.co.za?subject=${subject}&body=${body}`;
+        const payload = {
+          type: "partner_application",
+          firstName: document.getElementById("partner-fname").value,
+          lastName: document.getElementById("partner-lname").value,
+          company: document.getElementById("partner-company").value,
+          region: document.getElementById("partner-region").value,
+          experience: document.getElementById("partner-exp").value,
+          phone: document.getElementById("partner-phone").value,
+          email: document.getElementById("partner-email").value,
+        };
+
+        const btn = document.getElementById("partner-submit-btn");
+        const originalText = btn.innerText;
+
+        // UI Loading State
+        btn.innerText = "SENDING...";
+        btn.disabled = true;
+
+        // The Cloudflare Worker Endpoint
+        const endpoint = "https://stilsein-api.fragrant-mud-451a.workers.dev";
+
+        fetch(endpoint, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        })
+          .then((response) => {
+            // UI Success State
+            btn.innerText = "APPLICATION RECEIVED!";
+            btn.classList.add("!bg-green-500", "!text-white");
+
+            setTimeout(() => {
+              btn.innerText = originalText;
+              btn.disabled = false;
+              btn.classList.remove("!bg-green-500", "!text-white");
+              e.target.reset(); // Clears the form
+            }, 3000);
+          })
+          .catch((err) => {
+            btn.innerText = "ERROR - TRY AGAIN";
+            setTimeout(() => {
+              btn.innerText = originalText;
+              btn.disabled = false;
+            }, 3000);
+          });
       }
     </script>
   </body>

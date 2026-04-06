@@ -2408,6 +2408,7 @@
             class="w-full bg-stilsein-dark/50 border border-white/10 rounded-lg p-3 text-white placeholder-gray-500 focus:outline-none focus:border-stilsein-blue transition-colors"
           ></textarea>
           <button
+            id="contact-submit-btn"
             type="submit"
             class="w-full py-3 bg-stilsein-blue text-stilsein-dark font-bold rounded-lg hover:bg-white transition-colors tracking-wide"
             data-i18n="contact_btn"
@@ -2615,13 +2616,47 @@
         e.preventDefault();
         const name = document.getElementById("form-name").value;
         const msg = document.getElementById("form-message").value;
+        const btn = document.getElementById("contact-submit-btn");
+        const originalText = btn.innerText;
 
-        const subjectPrefix =
-          window.translations[window.currentLang]?.email_subject || "Enquiry: ";
-        const subject = encodeURIComponent(subjectPrefix + name);
+        // UI Loading State
+        btn.innerText = "SENDING...";
+        btn.disabled = true;
 
-        window.location.href = `mailto:info@stilsein.co.za?subject=${subject}&body=${encodeURIComponent(msg)}`;
-        closeModal();
+        // The Cloudflare Worker Endpoint
+        const endpoint = "https://stilsein-api.fragrant-mud-451a.workers.dev";
+
+        fetch(endpoint, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            type: "contact_inquiry",
+            name: name,
+            message: msg,
+          }),
+        })
+          .then((response) => {
+            // UI Success State
+            btn.innerText = "MESSAGE SENT!";
+            btn.classList.add("!bg-green-500", "!text-white");
+
+            setTimeout(() => {
+              closeModal();
+              btn.innerText = originalText;
+              btn.disabled = false;
+              btn.classList.remove("!bg-green-500", "!text-white");
+              document.getElementById("form-name").value = "";
+              document.getElementById("form-message").value = "";
+            }, 2000);
+          })
+          .catch((err) => {
+            // UI Error State
+            btn.innerText = "ERROR - TRY AGAIN";
+            setTimeout(() => {
+              btn.innerText = originalText;
+              btn.disabled = false;
+            }, 3000);
+          });
       }
 
       // --- CONSTRUCTION MODAL LOGIC ---
