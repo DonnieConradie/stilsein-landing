@@ -2399,6 +2399,22 @@
             required
             class="w-full bg-stilsein-dark/50 border border-white/10 rounded-lg p-3 text-white placeholder-gray-500 focus:outline-none focus:border-stilsein-blue transition-colors"
           />
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <input
+              type="tel"
+              id="form-phone"
+              placeholder="082 123 4567"
+              required
+              class="w-full bg-stilsein-dark/50 border border-white/10 rounded-lg p-3 text-white placeholder-gray-500 focus:outline-none focus:border-stilsein-blue transition-colors"
+            />
+            <input
+              type="email"
+              id="form-email"
+              placeholder="info@example.com"
+              required
+              class="w-full bg-stilsein-dark/50 border border-white/10 rounded-lg p-3 text-white placeholder-gray-500 focus:outline-none focus:border-stilsein-blue transition-colors"
+            />
+          </div>
           <textarea
             id="form-message"
             rows="4"
@@ -2615,6 +2631,8 @@
       function sendEmail(e) {
         e.preventDefault();
         const name = document.getElementById("form-name").value;
+        const phone = document.getElementById("form-phone").value;
+        const email = document.getElementById("form-email").value;
         const msg = document.getElementById("form-message").value;
         const btn = document.getElementById("contact-submit-btn");
         const originalText = btn.innerText;
@@ -2632,6 +2650,8 @@
           body: JSON.stringify({
             type: "contact_inquiry",
             name: name,
+            phone: phone,
+            email: email,
             message: msg,
           }),
         })
@@ -2646,6 +2666,8 @@
               btn.disabled = false;
               btn.classList.remove("!bg-green-500", "!text-white");
               document.getElementById("form-name").value = "";
+              document.getElementById("form-phone").value = "";
+              document.getElementById("form-email").value = "";
               document.getElementById("form-message").value = "";
             }, 2000);
           })
