@@ -112,30 +112,47 @@ const translations = {
     ai_li3: "<strong>Your Personal Assistant:</strong> Ask him questions in the app, and instantly get a farming-specific answer based on <em>today's</em> exact telemetry and historical patterns.",
     ai_term_text: "\"Farmer, the heatwave hits 39°C this afternoon. Make sure the North Boundary herd has enough shade and water. I'll keep an eye on the wind.\"",
 
-    // Ecosystem
-    eco_title: "ONE APP. <span class=\"text-stilsein-blue\">YOUR ENTIRE FARM UNDER ONE ROOF.</span>",
-    eco_desc: "Touch any screen below to see in-depth analysis.",
-    eco_1_title: "STILSEIN CORE",
-    eco_1_desc: "Your central command. Monitor all connected devices, check battery life and signal strength (RSSI), and configure bilingual notifications.",
-    eco_2_title: "RAINFALL GAUGE",
-    eco_2_desc: "Never drive 20km to check a rain gauge again. Know exactly which camps got water and which missed the storm, saving crucial fuel and time.",
-    eco_3_title: "LIVE RAIN SPELLS",
-    eco_3_desc: "Watch the storm unfold from your stoep. By monitoring live intensity, you can gauge immediate flood risks or soil absorption rates.",
-    eco_4_title: "PRESSURE NETWORK",
-    eco_4_desc: "Detect a burst pipe before the reservoir runs dry. Save thousands of liters of water and prevent pump burnouts with real-time pressure tracking.",
-    eco_5_title: "INDIVIDUAL PIPES",
-    eco_5_desc: "Zero in on the problem. Knowing the exact pressure behavior of a single pipeline helps you isolate blockages without digging up the whole farm.",
-    eco_6_title: "SATELLITE FORECAST",
-    eco_6_desc: "Plan your shearing, spraying, or planting with pinpoint accuracy. Stop relying on weather stations from the nearest town 50km away.",
-    eco_7_title: "INTERACTIVE MAPS",
-    eco_7_desc: "Direct your farm workers exactly to the right spot. 'Fix the pipe at North-Gate' is much easier when everyone sees the same map.",
-    eco_8_title: "FARM ARCHIVE",
-    eco_8_desc: "Data is the new gold. A 5-year proven logbook of your farm's micro-climate and rainfall can significantly increase your land's valuation and insurance leverage.",
-    eco_9_title: "JAKKALS & EXPORT",
-    eco_9_desc: "It's like having a digital farm manager who never sleeps. Exporting this tailored advice gives you professional records to share with partners.",
-    eco_p1: "Setting up a system for just one rain gauge is pretty nice. But building a network that simultaneously monitors pipe pressure, gateways, and extreme weather? <strong class=\"text-jakkals-orange\">That changes the game.</strong>",
-    eco_p2: "Every farm is different, so we don't do 'one-size-fits-all'. Your StilSein app is uniquely coded for you. Our team builds your exact farm topology into the backend before delivery. This bespoke engineering is why the system feels so intuitive, and why it seamlessly adapts whenever you add new sensors to your network.",
+    // Ecosystem - Headers & Footers
+    eco_main_title: "ONE APP. YOUR ENTIRE FARM UNDER ONE ROOF.",
+    eco_main_desc: "Touch any screen below to explore the architecture of a StilSein deployment.",
+    
+    // The Ever-Evolving Farm Section
+    eco_s7_title: "THE EVER-EVOLVING <span class=\"text-stilsein-blue\">FARM.</span>",
+    eco_s7_sub: "START SMALL. SCALE ENDLESSLY.",
+    eco_p1: "You don't need to digitize your entire operation overnight. Most of our clients start with a single Gateway and one Rain Gauge. As you see the value, you can seamlessly add Soil Moisture, Pipe Pressure, or Security nodes whenever you are ready. <strong class=\"text-jakkals-orange\">That is the power of a modular ecosystem.</strong>",
+    eco_p2: "Because every farm is unique, we do not believe in 'one-size-fits-all' templates. Our engineering team hardcodes your specific farm topology, camp distances, and alert thresholds into the backend before delivery. This bespoke architecture is why the StilSein OS feels so incredibly intuitive, adapting flawlessly as your network grows.",
+    
     eco_quote: "\"Monitor every nook and cranny of your farm. The wolf stays awake. Know when the first drops fall, or when the pipes are running and when the top camp's gate is open. Then store everything and keep a 10-year logbook of your farm's microclimate to increase your land value.\"",
+
+    // 1. Omni-Dashboard & Maps
+    eco_s1_title: "COMMAND CENTRAL.",
+    eco_s1_sub: "A living, breathing overview of your entire operation.",
+    eco_s1_body: "The StilSein Omni-Dashboard replaces scattered data with a unified 3x3 matrix. Instantly identify active storms, monitor hardware battery health, and watch tiles pulse aggressively if a hazard is detected anywhere on the farm. Tap the Gateway to open the Interactive Map, bringing your farm's layout to life with live GPS positioning and blurred, overlaid data widgets.",
+    
+    // 2. Rainfall Monitoring
+    eco_s2_title: "PRECISION HYDROMETRY.",
+    eco_s2_sub: "We don't just measure rain. We measure storms.",
+    eco_s2_body: "Experience rainfall tracking like never before. During an active event, the system shifts into a high-resolution 5-minute Live Storm Engine. The interface dynamically calculates drop velocity to classify the rain—from a gentle drizzle to a heavy cloudburst. We also hardcode custom flood-thresholds based on your specific district's soil and topology.",
+
+    // 3. Pipe Pressure
+    eco_s3_title: "HYDRAULIC INTELLIGENCE.",
+    eco_s3_sub: "Know the difference between a closed tap and a burst pipe.",
+    eco_s3_body: "The Drukwolf engine assigns a specific 'Goldilocks Zone' to every individual pipe on your farm. The physics-based interface displays flowing water and analog dials. It is smart enough to stay completely silent when you turn a pump off, but will instantly trigger critical red alarms the second it detects a pressure loss or dangerous blockage.",
+
+    // 4. Satellite Predictions
+    eco_s4_title: "PROACTIVE FORECASTING.",
+    eco_s4_sub: "Don't react to the weather. Prepare for it.",
+    eco_s4_body: "By pinging satellite arrays using your farm's exact GPS coordinates, StilSein builds a hyper-local meteorological profile. Explore 24-hour thermal gradients that shift color based on your crop's heat thresholds. Our automated watchers scan the horizon, sending you preemptive alerts 48 hours before heatwaves, floods, or gale-force winds strike.",
+
+    // 5. The Archivist & Jakkals AI
+    eco_s5_title: "THE ULTIMATE LEDGER.",
+    eco_s5_sub: "Your farm's history, analyzed by an Agricultural AI.",
+    eco_s5_body: "Every storm, heatwave, and pump cycle is permanently logged. Need advice? Ask Jakkals, our embedded Agentic AI. He analyzes your live data matrix to provide instant, localized advice with actionable shortcuts to failing hardware. He also generates professional weekly PDF reports sent directly to your email.",
+    
+    // 6. The Architecture (Layman's Terms)
+    eco_s6_title: "BANK-GRADE ARCHITECTURE.",
+    eco_s6_sub: "Military precision, built for the African Veld.",
+    eco_s6_body: "Under the hood, StilSein operates on a multi-tenant Edge-Cloud matrix. Your sensors send encrypted radio waves to a Gateway, which securely routes the data through Cloudflare directly into an isolated, private StilSein Vault dedicated solely to your farm. The mobile app then uses lightning-fast WebSockets and local 'Offline Caching' so it boots instantly—even when you are standing in a camp with zero cell reception.",
 
     // Reports
     rep_title: "PROFESSIONAL REPORTS, WITH ONE CLICK.",
@@ -181,7 +198,7 @@ const translations = {
     p_tech_title: "HARDWARE <span class=\"text-jakkals-orange\">AGNOSTIC.</span>",
     p_tech_p1: "You don't need to buy proprietary StilSein hardware or hold expensive stock. We are an Independent Software Vendor (ISV).",
     p_tech_p2: "Prefer Dragino? Milesight? Sensedge? If it speaks the LoRaWAN standard, our platform translates it. Just point your gateway to The Things Network (TTN), set up our Cloudflare KV Webhook, and pass us the Device EUI.",
-    p_tech_p3: "Our automated systems instantly spawn a dedicated Google Vault database and activate the farmer's app. You handle the hardware; we handle the complex cloud routing.",
+    p_tech_p3: "Our automated systems instantly spawn a dedicated StilSein Vault database and activate the farmer's app. You handle the hardware; we handle the complex cloud routing.",
     
     p_flow_title: "THE PARTNER <span class=\"text-stilsein-blue\">JOURNEY</span>",
     p_flow_1_title: "1. SECURE THE CLIENT",
@@ -316,30 +333,47 @@ const translations = {
     ai_li3: "<strong>Jou Persoonlike Assistent:</strong> Vra hom vrae in die app, en kry dadelik 'n boerdery-spesifieke antwoord gebaseer op <em>vandag</em> se presiese syfers en historiese patrone.",
     ai_term_text: "\"Boer, die hittegolf slaan vanmiddag 39°C. Maak seker die Noordgrens-kudde het genoeg skaduwee en water. Ek hou die wind dop.\"",
 
-    // Ekosisteem
-    eco_title: "EEN APP. <span class=\"text-stilsein-blue\">JOU HELE PLAAS ONDER EEN DAK.</span>",
-    eco_desc: "Raak aan enige skerm hieronder om diepte-analise te sien.",
-    eco_1_title: "STILSEIN KERN",
-    eco_1_desc: "Jou sentrale beheersentrum. Monitor alle gekoppelde toestelle, dop batterykrag en seinsterkte (RSSI), en stel jou kennisgewings op.",
-    eco_2_title: "REËNVALMETER",
-    eco_2_desc: "Moet nooit weer 20km ry om 'n reënmeter te gaan kyk nie. Weet presies watter kampe water gekry het en watter verbygegaan is, en bespaar brandstof en tyd.",
-    eco_3_title: "LEWENDIGE REËNBUIE",
-    eco_3_desc: "Kyk hoe die storm uitsak van jou stoep af. Deur lewendige intensiteit te monitor, kan jy onmiddellike vloedgevare of grondabsorpsie skat.",
-    eco_4_title: "DRUKNETWERK",
-    eco_4_desc: "Spoor 'n gebarste pyp op voor die dam leegloop. Bespaar duisende liters water en voorkom dat pompe uitbrand met intydse druk-monitering.",
-    eco_5_title: "INDIVIDUELE PYPE",
-    eco_5_desc: "Fokus presies op die probleem. Om die presiese drukgedrag van 'n enkele pyplyn te sien, help jou om blokkasies te isoleer sonder om die hele plaas oop te grawe.",
-    eco_6_title: "SATELLIET VOORSPELLING",
-    eco_6_desc: "Beplan jou skeer, spuit, of plant met absolute akkuraatheid. Hou op om staat te maak op weerstasies van die naaste dorp 50km ver.",
-    eco_7_title: "INTERAKTIEWE KAARTE",
-    eco_7_desc: "Stuur jou werkers presies na die regte plek. 'Maak die pyp heel by Noordhek' is baie makliker as almal na dieselfde kaart kyk.",
-    eco_8_title: "PLAAS ARGIEF",
-    eco_8_desc: "Data is die nuwe goud. 'n 5-jaar bewese logboek van jou plaas se mikroklimaat en reënval kan jou grondwaarde en versekeringsvoordele aansienlik verhoog.",
-    eco_9_title: "JAKKALS & UITVOER",
-    eco_9_desc: "Dis soos om 'n digitale plaasbestuurder te hê wat nooit slaap nie. Deur hierdie advies uit te voer kry jy professionele rekords om met vennote te deel.",
-    eco_p1: "Om 'n stelsel op te stel vir net een reënmeter is nogal nice. Maar om 'n netwerk te bou wat pypdruk, basisstasies, en uiterste weer gelyktydig dophou? <strong class=\"text-jakkals-orange\">Dit verander die game.</strong>",
-    eco_p2: "Elke plaas is anders, daarom glo ons nie in 'een-grootte-pas-almal' nie. Jou StilSein app word uniek vir jou geskryf. Ons span bou jou presiese plaas-topologie in die agterkant in voor aflewering. Hierdie pasgemaakte ingenieurswese is hoekom die stelsel so natuurlik voel, en hoekom dit naatloos aanpas wanneer jy later nuwe sensors byvoeg.",
+    // Ekosisteem - Headers & Footers
+    eco_main_title: "EEN APP. JOU HELE PLAAS ONDER EEN DAK.",
+    eco_main_desc: "Raak aan enige skerm hieronder om die argitektuur van 'n StilSein stelsel te verken.",
+    
+    // The Ever-Evolving Farm Section
+    eco_s7_title: "DIE TOEKOMSGERIGTE <span class=\"text-stilsein-blue\">PLAAS.</span>",
+    eco_s7_sub: "BEGIN KLEIN. BREI EINDELOOS UIT.",
+    eco_p1: "Jy hoef nie jou hele boerdery oornag te digitaliseer nie. Die meeste van ons kliënte begin met 'n enkele Basisstasie en een Reënmeter. Soos jy die waarde sien, kan jy naatloos Grondvog, Pypdruk of Sekuriteit sensors byvoeg wanneer jy gereed is. <strong class=\"text-jakkals-orange\">Dit is die krag van 'n modulêre ekosisteem.</strong>",
+    eco_p2: "Omdat elke plaas uniek is, glo ons nie in 'een-grootte-pas-almal' templates nie. Ons ingenieurspan skryf jou spesifieke plaas-topologie, kamp-afstande, en waarskuwings-drempels in die agterkant in voor aflewering. Hierdie pasgemaakte argitektuur is hoekom die StilSein stelsel so natuurlik voel en foutloos aanpas soos jou netwerk groei.",
+    
     eco_quote: "\"Monitor elke hoek en draai van jou plaas. Die wolf slaap wakker. Weet wanneer die eerste druppels val, of wanneer die pype loop en wanneer die boonste kamp se hek oop is. Stoor dan alles en hou 'n 10-jaar logboek van jou plaas se mikroklimaat om jou grondwaarde te verhoog.\"",
+
+    // 1. Omni-Dashboard & Maps
+    eco_s1_title: "SENTRALE BEHEER.",
+    eco_s1_sub: "'n Lewendige oorsig van jou hele boerdery.",
+    eco_s1_body: "Die StilSein Omni-Dashboard vervang verspreide data met 'n verenigde 3x3 matriks. Sien dadelik aktiewe storms, monitor batterykrag, en kyk hoe teëls aggressief pols as 'n gevaar iewers op die plaas opgespoor word. Tik op die Basisstasie om die Interaktiewe Kaart oop te maak, wat jou plaasuitleg lewendig maak met GPS en pragtige oorvleuelende data-skerms.",
+    
+    // 2. Rainfall Monitoring
+    eco_s2_title: "PRESIESIE HIDROMETRIE.",
+    eco_s2_sub: "Ons meet nie net reën nie. Ons meet storms.",
+    eco_s2_body: "Ervaar reënval-monitering soos nog nooit tevore nie. Tydens 'n storm skakel die stelsel oor na 'n hoë-resolusie 5-minute Lewendige Storm Enjin. Die koppelvlak bereken die val-snelheid om die reën te klassifiseer—van 'n ligte motreën tot 'n swaar wolkbreuk. Ons bou ook pasgemaakte vloed-drempels in gebaseer op jou streek se spesifieke grondtipe.",
+
+    // 3. Pipe Pressure
+    eco_s3_title: "HIDROULIESE INTELLIGENSIE.",
+    eco_s3_sub: "Weet die verskil tussen 'n toe kraan en 'n gebarste pyp.",
+    eco_s3_body: "Die Drukwolf-enjin ken 'n spesifieke 'Gouelokkies-Sone' toe aan elke individuele pyp op jou plaas. Die fisika-gebaseerde koppelvlak wys vloeiende water en analoog meters. Dit is slim genoeg om heeltemal stil te bly wanneer jy 'n pomp afsit, maar sal onmiddellik kritiese rooi alarms stuur die sekonde wat dit 'n drukdaling of gevaarlike blokkasie opspoor.",
+
+    // 4. Satellite Predictions
+    eco_s4_title: "PROAKTIEWE VOORSPELLINGS.",
+    eco_s4_sub: "Moenie reageer op die weer nie. Berei voor daarvoor.",
+    eco_s4_body: "Deur satellietnetwerke te ping met jou plaas se presiese GPS-koördinate, bou StilSein 'n hiper-lokale meteorologiese profiel. Verken 24-uur termiese grafieke wat van kleur verander gebaseer op jou gewas se hitte-drempels. Ons stelsel skandeer die horison en stuur proaktiewe waarskuwings 48 uur voordat hittegolwe, vloede of stormwinde uitslaan.",
+
+    // 5. The Archivist & Jakkals AI
+    eco_s5_title: "DIE UITIEMSTE REKORD.",
+    eco_s5_sub: "Jou plaas se geskiedenis, ontleed deur 'n Landbou AI.",
+    eco_s5_body: "Elke storm, hittegolf en pompsiklus word permanent gestoor. Kort jy raad? Vra Jakkals, ons ingeboude AI-Agent. Hy ontleed jou lewendige data om onmiddellike, plaaslike advies te gee met direkte kortpaaie na fouterende hardeware. Hy genereer ook professionele weeklikse PDF-verslae wat direk na jou e-pos gestuur word.",
+    
+    // 6. The Architecture (Layman's Terms)
+    eco_s6_title: "BANK-GRAAD ARGITEKTUUR.",
+    eco_s6_sub: "Militêre presisie, gebou vir die Afrika-Veld.",
+    eco_s6_body: "Onder die enjinkap werk StilSein op 'n geïsoleerde wolk-matriks. Jou sensors stuur geënkripteerde radiogolwe na 'n Basisstasie, wat die data veilig deur Cloudflare stuur na 'n private StilSein Vault wat uitsluitlik aan jou plaas toegewy is. Die mobiele app gebruik blitsvinnige WebSockets en 'Vanlyn Kasgeheue' sodat dit onmiddellik oopmaak—selfs wanneer jy in 'n kamp staan met nul selfoonopvangs.",
 
     // Verslae
     rep_title: "PROFESSIONELE VERSLAE, MET EEN KLIEK.",
@@ -385,7 +419,7 @@ const translations = {
     p_tech_title: "HARDEWARE <span class=\"text-jakkals-orange\">AGNOSTIES.</span>",
     p_tech_p1: "Jy hoef nie eksklusiewe StilSein hardeware te koop of duur voorraad te hou nie. Ons is 'n Onafhanklike Sagtewareverkoper (ISV).",
     p_tech_p2: "Verkies jy Dragino? Milesight? Sensedge? As dit die LoRaWAN-standaard praat, vertaal ons platform dit. Wys net jou basisstasie na The Things Network (TTN), stel ons Cloudflare KV Webhook op, en stuur vir ons die Device EUI.",
-    p_tech_p3: "Ons outomatiese stelsels skep onmiddellik 'n toegewyde Google Vault databasis en aktiveer die boer se app. Jy hanteer die hardeware; ons hanteer die komplekse wolk-roetering.",
+    p_tech_p3: "Ons outomatiese stelsels skep onmiddellik 'n toegewyde StilSein Vault databasis en aktiveer die boer se app. Jy hanteer die hardeware; ons hanteer die komplekse wolk-roetering.",
     
     p_flow_title: "DIE VENNOOT <span class=\"text-stilsein-blue\">REIS</span>",
     p_flow_1_title: "1. KRY DIE KLIËNT",
