@@ -42,6 +42,13 @@
       })();
     </script>
 
+    <!-- LEAFLET.JS FOR MAPS -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -897,6 +904,86 @@
               </div>
             </div>
 
+            <!-- 🛠️ PHASE 14.1: WEBSITE & HQ MAP -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label
+                  for="partner-website"
+                  class="block text-xs font-bold text-stilsein-blue tracking-widest uppercase mb-2"
+                  >Company Website (Optional)</label
+                >
+                <input
+                  type="text"
+                  id="partner-website"
+                  name="partner-website"
+                  placeholder="www.yourcompany.co.za"
+                  aria-label="Company Website"
+                  class="w-full bg-stilsein-dark/80 border border-white/10 rounded-lg p-3 text-white placeholder-gray-500 focus:outline-none focus:border-jakkals-orange focus:ring-1 focus:ring-jakkals-orange transition-all"
+                />
+
+                <!-- 🛠️ COMPANY LOGO UPLOAD -->
+                <label
+                  for="partner-logo"
+                  class="block text-xs font-bold text-stilsein-blue tracking-widest uppercase mb-2 mt-6"
+                  >Company Logo (Optional)</label
+                >
+                <div class="flex items-center gap-4">
+                  <input
+                    type="file"
+                    id="partner-logo"
+                    name="partner-logo"
+                    accept="image/*"
+                    aria-label="Company Logo Upload"
+                    class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-stilsein-blue/10 file:text-stilsein-blue hover:file:bg-stilsein-blue/20 transition-all"
+                  />
+                  <img
+                    id="logo-preview"
+                    class="hidden w-10 h-10 object-contain rounded border border-white/10"
+                    alt="Logo Preview"
+                  />
+                </div>
+
+                <label
+                  for="installer-map"
+                  class="block text-xs font-bold text-stilsein-blue tracking-widest uppercase mb-2 mt-6"
+                  >Drop a Pin on your HQ</label
+                >
+                <p class="text-xs text-stilsein-muted mb-2">
+                  This ensures we route leads in your exact radius to you.
+                </p>
+                <!-- Hidden inputs to store the coordinates -->
+                <input
+                  type="hidden"
+                  id="partner-lat"
+                  name="partner-lat"
+                  aria-label="Latitude"
+                  required
+                />
+                <input
+                  type="hidden"
+                  id="partner-lon"
+                  name="partner-lon"
+                  aria-label="Longitude"
+                  required
+                />
+                <div
+                  class="text-xs text-jakkals-orange font-bold mt-2"
+                  id="coord-display"
+                  aria-live="polite"
+                >
+                  Waiting for pin...
+                </div>
+              </div>
+
+              <!-- The Leaflet Map Container -->
+              <div
+                class="w-full h-48 md:h-full min-h-[200px] bg-stilsein-dark/80 border border-white/10 rounded-lg overflow-hidden relative z-0"
+                id="installer-map"
+                aria-label="Interactive Map for HQ Location"
+                role="region"
+              ></div>
+            </div>
+
             <button
               id="partner-submit-btn"
               type="submit"
@@ -966,9 +1053,86 @@
         }
       }
 
-      // --- FORM SUBMIT (Phase 1.3 Placeholder) ---
+      // --- 🛠️ LOGO COMPRESSOR ENGINE ---
+      let compressedLogoBase64 = "";
+      document
+        .getElementById("partner-logo")
+        .addEventListener("change", function (e) {
+          const file = e.target.files[0];
+          if (!file) return;
+
+          const reader = new FileReader();
+          reader.onload = function (event) {
+            const img = new Image();
+            img.onload = function () {
+              const canvas = document.createElement("canvas");
+              const MAX_WIDTH = 200; // Shrink it to fit Google Sheets comfortably
+              const scaleSize = MAX_WIDTH / img.width;
+              canvas.width = MAX_WIDTH;
+              canvas.height = img.height * scaleSize;
+
+              const ctx = canvas.getContext("2d");
+              ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+              // Compress to WebP at 80% quality
+              compressedLogoBase64 = canvas.toDataURL("image/webp", 0.8);
+
+              const preview = document.getElementById("logo-preview");
+              preview.src = compressedLogoBase64;
+              preview.classList.remove("hidden");
+            };
+            img.src = event.target.result;
+          };
+          reader.readAsDataURL(file);
+        });
+
+      // --- 🛠️ PHASE 14.1: LEAFLET MAP INITIALIZATION ---
+      // Default to Bloemfontein (Center of SA)
+      const map = L.map("installer-map").setView([-29.1141, 26.223], 5);
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution: "&copy; OpenStreetMap contributors",
+      }).addTo(map);
+
+      let installerMarker;
+      map.on("click", function (e) {
+        const lat = e.latlng.lat;
+        const lng = e.latlng.lng;
+
+        if (installerMarker) {
+          map.removeLayer(installerMarker);
+        }
+        installerMarker = L.marker([lat, lng]).addTo(map);
+
+        document.getElementById("partner-lat").value = lat;
+        document.getElementById("partner-lon").value = lng;
+        document.getElementById("coord-display").innerText =
+          `HQ Locked: ${lat.toFixed(4)}, ${lng.toFixed(4)}`;
+        document
+          .getElementById("coord-display")
+          .classList.add("text-green-400");
+      });
+
+      // --- FORM SUBMIT ---
       function submitPartnerForm(e) {
         e.preventDefault();
+
+        const lat = document.getElementById("partner-lat").value;
+        const lon = document.getElementById("partner-lon").value;
+
+        if (!lat || !lon) {
+          alert("Please drop a pin on the map to set your HQ location.");
+          return;
+        }
+
+        // 🛠️ FORGIVING URL FIX
+        let rawWeb = document.getElementById("partner-website").value.trim();
+        if (
+          rawWeb !== "" &&
+          !rawWeb.startsWith("http://") &&
+          !rawWeb.startsWith("https://")
+        ) {
+          rawWeb = "https://" + rawWeb;
+        }
 
         const payload = {
           type: "partner_application",
@@ -979,6 +1143,10 @@
           experience: document.getElementById("partner-exp").value,
           phone: document.getElementById("partner-phone").value,
           email: document.getElementById("partner-email").value,
+          website: rawWeb,
+          logoBase64: compressedLogoBase64, // 🛠️ NEW: Injected Logo
+          lat: lat,
+          lon: lon,
         };
 
         const btn = document.getElementById("partner-submit-btn");
@@ -989,7 +1157,8 @@
         btn.disabled = true;
 
         // The Cloudflare Worker Endpoint
-        const endpoint = "https://stilsein-api.fragrant-mud-451a.workers.dev";
+        const endpoint =
+          "https://weerwolf-bridge.donnieconradie30.workers.dev/api/quote";
 
         fetch(endpoint, {
           method: "POST",

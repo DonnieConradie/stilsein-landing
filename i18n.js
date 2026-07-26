@@ -219,9 +219,18 @@ const translations = {
     p_form_exp: "Brief description of your IoT / Electrical experience",
     p_form_phone: "Phone Number",
     p_form_email: "Email Address",
-    p_form_submit: "SUBMIT APPLICATION"
+    p_form_submit: "SUBMIT APPLICATION",
+    hero_btn_build: "BUILD YOUR FARM",
+    pb_instruction: "TAP THE MAP TO DROP YOUR GATEWAY",
+    pb_step1: "1. ADD SENSORS",
+    pb_hint: "Hardware pricing is calculated dynamically by your local installer to ensure best rates for panels, brackets, and labor.",
+    pb_step2: "2. LIVE ESTIMATE",
+    pb_empty_receipt: "Add sensors to see estimate...",
+    pb_step3: "3. LOCAL INSTALLERS",
+    pb_waiting_gw: "Waiting for Gateway location..."
   },
 
+  
   af: {
     // Navigasie
     nav_home: "Tuis",
@@ -440,7 +449,15 @@ const translations = {
     p_form_exp: "Kort beskrywing van jou IoT / Elektriese ondervinding",
     p_form_phone: "Telefoonnommer",
     p_form_email: "E-posadres",
-    p_form_submit: "STUUR AANSOEK"
+    p_form_submit: "STUUR AANSOEK",
+    hero_btn_build: "BOU JOU PLAAS",
+    pb_instruction: "TIK DIE KAART OM JOU GATEWAY TE PLAAS",
+    pb_step1: "1. VOEG SENSORS BY",
+    pb_hint: "Hardeware pryse word dinamies deur jou plaaslike installeerder bereken om die beste tariewe vir panele en arbeid te verseker.",
+    pb_step2: "2. LEWENDIGE KWOTASIE",
+    pb_empty_receipt: "Voeg sensors by om kwotasie te sien...",
+    pb_step3: "3. PLAASLIKE INSTALLEERDERS",
+    pb_waiting_gw: "Wag vir Gateway ligging..."
   }
 };
 

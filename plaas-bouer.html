@@ -1,0 +1,1171 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>StilSein | Plaas-Bouer</title>
+    <link rel="icon" type="image/png" href="assets/images/wolf_icon.png" />
+
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              "stilsein-dark": "#1A1F26",
+              "stilsein-card": "#232B38",
+              "stilsein-blue": "#91ACC8",
+              "jakkals-orange": "#FF9E4A",
+              "stilsein-text": "#E4E8EC",
+              "stilsein-muted": "#ADBAB7",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      @font-face {
+        font-family: "TTOctasquares";
+        src: url("assets/fonts/TTOctasquares-Bold.ttf") format("truetype");
+        font-weight: bold;
+      }
+      @font-face {
+        font-family: "Garet";
+        src: url("assets/fonts/Garet-Bold.otf") format("opentype");
+        font-weight: bold;
+      }
+      body {
+        font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
+      }
+
+      .font-garet {
+        font-family: "Garet", sans-serif;
+      }
+      .font-octasquares {
+        font-family: "TTOctasquares", sans-serif;
+      }
+
+      .glass-panel {
+        background-color: rgba(26, 31, 38, 0.85);
+        -webkit-backdrop-filter: blur(15px);
+        backdrop-filter: blur(15px);
+        border: 1px solid rgba(145, 172, 200, 0.2);
+      }
+
+      .stilsein-dash-line {
+        stroke-dasharray: 10, 10;
+        animation: dash-flow 40s linear infinite;
+      }
+      .stilsein-dash-line-error {
+        stroke-dasharray: 10, 10;
+        animation: dash-flow 20s linear infinite;
+        stroke: #ef4444 !important;
+      }
+      @keyframes dash-flow {
+        to {
+          stroke-dashoffset: -1000;
+        }
+      }
+      .custom-div-icon {
+        background: transparent;
+        border: none;
+      }
+
+      /* Override Leaflet Popup Styles for Dark Mode */
+      .leaflet-popup-content-wrapper {
+        background-color: #232b38;
+        color: #fff;
+        border: 1px solid #91acc8;
+        border-radius: 8px;
+      }
+      .leaflet-popup-tip {
+        background-color: #232b38;
+        border: 1px solid #91acc8;
+      }
+
+      /* 🛠️ CRUSH LEAFLET'S GREY SQUARES NATIVELY */
+      .leaflet-div-icon {
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+      }
+      .custom-div-icon {
+        background: transparent;
+        border: none;
+      }
+
+      /* 🛠️ Map Controls Repositioned */
+      @media (min-width: 768px) {
+        .leaflet-left {
+          margin-left: 330px !important;
+        }
+        .leaflet-top {
+          margin-top: 15px !important;
+        }
+      }
+      @media (max-width: 767px) {
+        .leaflet-bottom {
+          margin-bottom: 300px !important;
+        }
+      }
+
+      /* Hide scrollbar for cleanly designed accordions */
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: rgba(145, 172, 200, 0.3);
+        border-radius: 10px;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-stilsein-dark text-stilsein-text h-screen w-screen flex flex-col"
+  >
+    <!-- 🛠️ ONBOARDING WIZARD MODAL -->
+    <div
+      id="pb-wizard-modal"
+      class="fixed inset-0 z-[100] flex items-center justify-center transition-opacity duration-500"
+    >
+      <div class="absolute inset-0 bg-black/90 backdrop-blur-md"></div>
+      <div
+        class="relative glass-panel p-8 rounded-3xl w-[90%] max-w-lg shadow-[0_0_40px_rgba(145,172,200,0.2)]"
+        id="pb-wizard-content"
+      >
+        <!-- STEP 1 -->
+        <div id="wizard-step-1" class="transition-all duration-300">
+          <div
+            class="w-16 h-16 mx-auto bg-stilsein-blue/10 rounded-full flex items-center justify-center mb-6 border border-stilsein-blue/30"
+          >
+            <svg
+              class="w-8 h-8 text-stilsein-blue"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+              ></path>
+            </svg>
+          </div>
+          <h3 class="text-2xl font-bold text-white font-garet text-center mb-2">
+            WELCOME TO FARM BUILDER
+          </h3>
+          <p class="text-stilsein-muted text-sm text-center mb-8">
+            Let's blueprint your digital farm. What is the name of your
+            operation?
+          </p>
+
+          <input
+            type="text"
+            id="wizard-farm-name"
+            placeholder="e.g., Wolwekloof Boerdery"
+            class="w-full bg-stilsein-dark/80 border border-white/10 rounded-lg p-4 text-white text-center text-lg placeholder-gray-600 focus:outline-none focus:border-stilsein-blue mb-4"
+          />
+          <input
+            type="text"
+            id="wizard-owner-name"
+            placeholder="Your Name"
+            class="w-full bg-stilsein-dark/80 border border-white/10 rounded-lg p-4 text-white text-center placeholder-gray-600 focus:outline-none focus:border-stilsein-blue mb-8"
+          />
+
+          <button
+            onclick="nextWizardStep()"
+            class="w-full py-4 bg-stilsein-blue text-stilsein-dark font-bold rounded-lg hover:bg-white transition-colors tracking-wide"
+          >
+            CONTINUE
+          </button>
+        </div>
+
+        <!-- STEP 2 -->
+        <div
+          id="wizard-step-2"
+          class="hidden opacity-0 transition-all duration-300 transform scale-95"
+        >
+          <h3 class="text-2xl font-bold text-white font-garet text-center mb-2">
+            HARDWARE STATUS
+          </h3>
+          <p class="text-stilsein-muted text-sm text-center mb-8">
+            Do you already own LoRaWAN hardware configured on The Things Network
+            (TTN)?
+          </p>
+
+          <div class="space-y-4">
+            <button
+              onclick="finishWizard(true)"
+              class="w-full p-4 bg-[#1A1F26] border border-white/10 rounded-xl hover:border-jakkals-orange text-left flex items-center gap-4 transition-all group"
+            >
+              <div
+                class="w-10 h-10 rounded-full bg-jakkals-orange/10 flex items-center justify-center text-jakkals-orange border border-jakkals-orange/30 group-hover:scale-110"
+              >
+                🔗
+              </div>
+              <div>
+                <div class="text-white font-bold text-sm tracking-wide">
+                  YES, I HAVE HARDWARE
+                </div>
+                <div class="text-gray-500 text-xs mt-1">
+                  I just need the StilSein App and Cloud Routing.
+                </div>
+              </div>
+            </button>
+            <button
+              onclick="finishWizard(false)"
+              class="w-full p-4 bg-[#1A1F26] border border-white/10 rounded-xl hover:border-stilsein-blue text-left flex items-center gap-4 transition-all group"
+            >
+              <div
+                class="w-10 h-10 rounded-full bg-stilsein-blue/10 flex items-center justify-center text-stilsein-blue border border-stilsein-blue/30 group-hover:scale-110"
+              >
+                🛠️
+              </div>
+              <div>
+                <div class="text-white font-bold text-sm tracking-wide">
+                  NO, I AM STARTING FRESH
+                </div>
+                <div class="text-gray-500 text-xs mt-1">
+                  I want to build a blueprint and get a quote.
+                </div>
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NAVBAR -->
+    <nav
+      class="w-full z-40 glass-panel h-16 flex items-center px-4 shrink-0 shadow-md"
+    >
+      <a
+        href="index.html"
+        class="flex items-center space-x-3 cursor-pointer hover:opacity-80 transition-opacity"
+      >
+        <img
+          src="assets/images/wolf_white.png"
+          alt="StilSein Logo"
+          class="h-8 w-auto object-contain"
+        />
+        <span
+          class="text-white font-bold font-octasquares tracking-widest text-sm hidden sm:block"
+          >STIL<span class="text-stilsein-blue">SEIN</span></span
+        >
+      </a>
+      <div class="mx-4 w-px h-6 bg-white/20"></div>
+      <span
+        class="text-jakkals-orange font-bold text-xs tracking-widest uppercase"
+        id="nav-farm-name"
+        >FARM BUILDER</span
+      >
+
+      <div class="ml-auto flex items-center">
+        <a
+          href="index.html"
+          class="text-[10px] font-bold tracking-widest text-stilsein-muted hover:text-white uppercase hidden sm:block"
+          >EXIT BUILDER</a
+        >
+        <button
+          type="button"
+          onclick="
+            window.changeLanguage(window.currentLang === 'en' ? 'af' : 'en')
+          "
+          class="flex items-center justify-center w-8 h-8 ml-4 rounded border border-stilsein-blue/30 bg-stilsein-dark/80 text-[10px] font-bold tracking-widest text-stilsein-blue hover:bg-stilsein-blue hover:text-stilsein-dark transition-all"
+        >
+          <span class="lang-toggle-text">AF</span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- MAIN BUILDER AREA -->
+    <main
+      class="flex-1 relative flex flex-col md:flex-row overflow-hidden opacity-0 transition-opacity duration-1000"
+      id="main-ui"
+    >
+      <div id="pb-map" class="absolute inset-0 z-0 bg-[#0A0D14]"></div>
+
+      <div
+        id="pb-map-overlay"
+        class="absolute inset-0 bg-black/60 flex flex-col items-center justify-center pointer-events-none transition-opacity duration-300 z-10"
+      >
+        <div
+          class="w-20 h-20 bg-jakkals-orange/20 rounded-full flex items-center justify-center mb-4 animate-bounce border border-jakkals-orange/50 shadow-[0_0_30px_rgba(255,158,74,0.3)]"
+        >
+          <span class="text-4xl">📍</span>
+        </div>
+        <p
+          class="text-white font-garet font-bold tracking-widest text-lg drop-shadow-md text-center px-4"
+        >
+          TAP THE MAP TO DROP YOUR GATEWAY
+        </p>
+      </div>
+
+      <!-- LEFT PANEL: THE ACCORDION ARMORY -->
+      <div
+        id="armory-panel"
+        class="z-20 md:w-80 h-auto md:h-full flex flex-col pointer-events-none p-4 pb-0 md:pb-4 transition-transform"
+      >
+        <div
+          class="glass-panel rounded-2xl p-4 flex-1 pointer-events-auto flex flex-col shadow-xl overflow-hidden"
+        >
+          <h3
+            class="text-white font-garet tracking-widest text-xs mb-4 border-b border-white/10 pb-2 flex justify-between items-center shrink-0"
+          >
+            <span>1. SENSORS & LAYOUT</span>
+            <button
+              onclick="resetMap()"
+              class="text-red-400 hover:text-red-300"
+              title="Reset Map"
+            >
+              <svg
+                class="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                ></path>
+              </svg>
+            </button>
+          </h3>
+
+          <div
+            class="space-y-3 flex-grow overflow-y-auto pr-2"
+            id="accordion-container"
+          >
+            <!-- Rain Accordion -->
+            <div
+              class="bg-[#1A1F26] border border-stilsein-blue/30 rounded-xl overflow-hidden"
+            >
+              <button
+                onclick="toggleAccordion('acc-rain')"
+                class="w-full p-3 flex items-center justify-between hover:bg-stilsein-blue/5 transition-colors"
+              >
+                <div class="flex items-center gap-3">
+                  <div
+                    class="w-8 h-8 rounded-full bg-stilsein-blue/10 flex items-center justify-center text-stilsein-blue border border-stilsein-blue/30"
+                  >
+                    💧
+                  </div>
+                  <div class="text-white font-bold text-[11px] tracking-wider">
+                    RAIN GAUGES
+                  </div>
+                </div>
+                <div
+                  class="text-stilsein-blue text-xs font-bold"
+                  id="badge-rain"
+                >
+                  0
+                </div>
+              </button>
+              <div
+                id="acc-rain"
+                class="hidden bg-black/20 p-2 border-t border-white/5"
+              >
+                <div id="list-rain" class="space-y-2 mb-2"></div>
+                <button
+                  onclick="addNode('Rain')"
+                  class="w-full py-2 bg-stilsein-blue/10 border border-stilsein-blue/30 text-stilsein-blue text-[10px] font-bold rounded-lg hover:bg-stilsein-blue hover:text-[#1A1F26] transition-colors tracking-widest"
+                >
+                  + ADD NEW
+                </button>
+              </div>
+            </div>
+
+            <!-- Pipe Accordion -->
+            <div
+              class="bg-[#1A1F26] border border-cyan-400/30 rounded-xl overflow-hidden"
+            >
+              <button
+                onclick="toggleAccordion('acc-pipe')"
+                class="w-full p-3 flex items-center justify-between hover:bg-cyan-400/5 transition-colors"
+              >
+                <div class="flex items-center gap-3">
+                  <div
+                    class="w-8 h-8 rounded-full bg-cyan-400/10 flex items-center justify-center text-cyan-400 border border-cyan-400/30"
+                  >
+                    🚰
+                  </div>
+                  <div class="text-white font-bold text-[11px] tracking-wider">
+                    PIPE PRESSURE
+                  </div>
+                </div>
+                <div class="text-cyan-400 text-xs font-bold" id="badge-pipe">
+                  0
+                </div>
+              </button>
+              <div
+                id="acc-pipe"
+                class="hidden bg-black/20 p-2 border-t border-white/5"
+              >
+                <div id="list-pipe" class="space-y-2 mb-2"></div>
+                <button
+                  onclick="addNode('Pipe')"
+                  class="w-full py-2 bg-cyan-400/10 border border-cyan-400/30 text-cyan-400 text-[10px] font-bold rounded-lg hover:bg-cyan-400 hover:text-[#1A1F26] transition-colors tracking-widest"
+                >
+                  + ADD NEW
+                </button>
+              </div>
+            </div>
+
+            <!-- Dam Accordion -->
+            <div
+              class="bg-[#1A1F26] border border-[#c2a995]/40 rounded-xl overflow-hidden"
+            >
+              <button
+                onclick="toggleAccordion('acc-dam')"
+                class="w-full p-3 flex items-center justify-between hover:bg-[#c2a995]/5 transition-colors"
+              >
+                <div class="flex items-center gap-3">
+                  <div
+                    class="w-8 h-8 rounded-full bg-[#c2a995]/10 flex items-center justify-center text-[#c2a995] border border-[#c2a995]/40"
+                  >
+                    🌊
+                  </div>
+                  <div class="text-white font-bold text-[11px] tracking-wider">
+                    DAM LEVELS
+                  </div>
+                </div>
+                <div class="text-[#c2a995] text-xs font-bold" id="badge-dam">
+                  0
+                </div>
+              </button>
+              <div
+                id="acc-dam"
+                class="hidden bg-black/20 p-2 border-t border-white/5"
+              >
+                <div id="list-dam" class="space-y-2 mb-2"></div>
+                <button
+                  onclick="addNode('Dam')"
+                  class="w-full py-2 bg-[#c2a995]/10 border border-[#c2a995]/40 text-[#c2a995] text-[10px] font-bold rounded-lg hover:bg-[#c2a995] hover:text-[#1A1F26] transition-colors tracking-widest"
+                >
+                  + ADD NEW
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex-1 hidden md:block"></div>
+
+      <!-- RIGHT PANEL: THE RECEIPT & INSTALLERS -->
+      <div
+        id="receipt-panel"
+        class="z-20 md:w-80 h-auto md:h-full flex flex-col pointer-events-none p-4 pt-2 md:pt-4 transition-transform"
+      >
+        <div
+          class="glass-panel rounded-2xl p-4 flex-1 pointer-events-auto flex flex-col shadow-xl"
+        >
+          <h3
+            class="text-white font-garet tracking-widest text-xs mb-3 border-b border-white/10 pb-2"
+          >
+            2. SAAS SUBSCRIPTION
+          </h3>
+          <div class="flex-grow overflow-y-auto pr-1">
+            <div class="flex justify-between items-end mb-2">
+              <div>
+                <div class="text-white text-[10px] font-bold tracking-wider">
+                  STILSEIN PLATFORM
+                </div>
+                <div class="text-gray-500 text-[9px]">
+                  Jakkals AI, Forecasts, App
+                </div>
+              </div>
+              <div class="text-jakkals-orange font-bold text-xs">
+                R399<span class="text-[9px] text-gray-500">/mo</span>
+              </div>
+            </div>
+            <div
+              id="receipt-items"
+              class="space-y-2 pt-2 border-t border-white/5 mt-2"
+            >
+              <div class="text-center text-gray-600 text-[10px] italic py-2">
+                Add sensors to see estimate...
+              </div>
+            </div>
+          </div>
+
+          <div class="border-t border-white/10 pt-3 mt-2">
+            <div
+              class="flex justify-between items-center mb-4 bg-stilsein-dark/50 p-2 rounded-lg border border-white/5"
+            >
+              <div
+                class="text-jakkals-orange text-[10px] tracking-widest font-bold"
+              >
+                TOTAL SAAS:
+              </div>
+              <div
+                class="text-jakkals-orange font-black text-base"
+                id="total-saas"
+              >
+                R 399<span class="text-[10px]">/mo</span>
+              </div>
+            </div>
+
+            <h3
+              class="text-white font-garet tracking-widest text-xs mb-3 border-b border-white/10 pb-2"
+              data-i18n="pb_step3"
+            >
+              3. LOCAL INSTALLERS
+            </h3>
+
+            <div
+              class="bg-black/40 rounded-lg border border-white/5 mb-4 overflow-hidden"
+            >
+              <div
+                id="installer-results"
+                class="p-2 text-center max-h-[180px] overflow-y-auto pr-2"
+              >
+                <p class="text-[10px] text-stilsein-muted py-2">
+                  Waiting for Gateway location...
+                </p>
+              </div>
+            </div>
+
+            <button
+              id="pb-submit-btn"
+              onclick="window.openPlaasBouerModal()"
+              class="w-full py-3 bg-jakkals-orange text-stilsein-dark font-bold rounded-lg hover:bg-white transition-all shadow-[0_0_15px_rgba(255,158,74,0.3)] tracking-widest text-[10px] uppercase disabled:opacity-50 disabled:cursor-not-allowed"
+              disabled
+            >
+              SUBMIT FARM BLUEPRINT
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="i18n.js"></script>
+    <script>
+      // ==========================================
+      // ONBOARDING WIZARD LOGIC
+      // ==========================================
+      let farmName = "";
+      let ownerName = "";
+      let hasExistingHW = false;
+
+      function nextWizardStep() {
+        const fInput = document.getElementById("wizard-farm-name").value.trim();
+        const oInput = document
+          .getElementById("wizard-owner-name")
+          .value.trim();
+        if (!fInput || !oInput) {
+          alert("Please enter your Farm Name and Your Name.");
+          return;
+        }
+
+        farmName = fInput;
+        ownerName = oInput;
+        document.getElementById("nav-farm-name").innerText =
+          farmName.toUpperCase();
+
+        document
+          .getElementById("wizard-step-1")
+          .classList.add("hidden", "opacity-0");
+        const s2 = document.getElementById("wizard-step-2");
+        s2.classList.remove("hidden");
+        setTimeout(() => {
+          s2.classList.remove("opacity-0", "scale-95");
+          s2.classList.add("opacity-100", "scale-100");
+        }, 50);
+      }
+
+      function finishWizard(existingHwFlag) {
+        hasExistingHW = existingHwFlag;
+        const modal = document.getElementById("pb-wizard-modal");
+        modal.classList.add("opacity-0", "pointer-events-none");
+
+        const mainUI = document.getElementById("main-ui");
+        mainUI.classList.remove("opacity-0");
+
+        initMap(); // Boot the map engine now that they are in!
+      }
+
+      // ==========================================
+      // PLAAS-BOUER MAP & CAD ENGINE
+      // ==========================================
+      let pbMap = null;
+      let pbGatewayMarker = null;
+      let gatewayCircle = null;
+      let pbNodes = {};
+      let nodeCounter = 0;
+
+      const PRICES = {
+        BaseSaaS: 399,
+        Rain: { saas: 49, color: "#91ACC8", icon: "💧", prefix: "Rain" },
+        Pipe: { saas: 89, color: "#22d3ee", icon: "🚰", prefix: "Pipe" },
+        Dam: { saas: 89, color: "#c2a995", icon: "🌊", prefix: "Dam" },
+      };
+
+      function initMap() {
+        pbMap = L.map("pb-map", { zoomControl: false }).setView(
+          [-28.5, 24.5],
+          5,
+        );
+        L.control.zoom({ position: "topleft" }).addTo(pbMap);
+
+        const darkLayer = L.tileLayer(
+          "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",
+          { attribution: "&copy; CARTO" },
+        );
+        const satLayer = L.tileLayer(
+          "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+          { attribution: "&copy; Esri" },
+        );
+        darkLayer.addTo(pbMap);
+
+        L.control
+          .layers({ "Dark Mode": darkLayer, Satellite: satLayer }, null, {
+            position: "topleft",
+          })
+          .addTo(pbMap);
+
+        pbMap.on("click", function (e) {
+          if (!pbGatewayMarker) {
+            document
+              .getElementById("pb-map-overlay")
+              .classList.add("opacity-0");
+
+            const gwIcon = L.divIcon({
+              className: "", // 🛠️ THE ULTIMATE FIX: An empty string completely removes Leaflet's default grey square!
+              html: `<div class="relative flex flex-col items-center">
+                       <div class="w-10 h-10 bg-[#232B38] border-2 border-jakkals-orange rounded-[12px] flex items-center justify-center shadow-[0_0_20px_rgba(255,158,74,0.6)] z-50">
+                         <img src="assets/images/wolf_white.png" class="w-6 h-6 object-contain" />
+                       </div>
+                       <div class="absolute top-11 bg-black/60 px-2 py-0.5 rounded text-[9px] font-bold text-jakkals-orange tracking-widest whitespace-nowrap border border-white/10 shadow-lg">${farmName.toUpperCase()}</div>
+                     </div>`,
+              iconSize: [40, 60],
+              iconAnchor: [20, 20],
+            });
+
+            pbGatewayMarker = L.marker(e.latlng, {
+              icon: gwIcon,
+              draggable: true,
+            }).addTo(pbMap);
+
+            gatewayCircle = L.circle(e.latlng, {
+              color: "#91ACC8",
+              fillColor: "#91ACC8",
+              fillOpacity: 0.05,
+              weight: 1,
+              radius: 15000,
+            }).addTo(pbMap);
+
+            pbGatewayMarker.on("drag", function (ev) {
+              const newPos = ev.latlng;
+              gatewayCircle.setLatLng(newPos);
+
+              Object.values(pbNodes).forEach((node) => {
+                updateNodeConnection(node, newPos, node.marker.getLatLng());
+              });
+            });
+
+            // If they said YES to existing hardware, we skip the installer fetch!
+            if (!hasExistingHW) {
+              fetchInstallers(e.latlng.lat, e.latlng.lng);
+            } else {
+              document.getElementById("installer-results").innerHTML =
+                `<p class="text-[10px] text-stilsein-muted py-2">You selected Existing Hardware. Click Submit when blueprint is done.</p>`;
+              document.getElementById("pb-submit-btn").disabled = false;
+            }
+
+            pbMap.setView(e.latlng, 12);
+
+            // Open the Rain accordion by default to guide them
+            toggleAccordion("acc-rain");
+          }
+        });
+      }
+
+      function updateNodeConnection(node, gwPos, nodePos) {
+        node.line.setLatLngs([gwPos, nodePos]);
+        const distMeters = gwPos.distanceTo(nodePos);
+        if (distMeters > 15000) {
+          node.line.setStyle({ color: "#ef4444" });
+          node.marker.getElement().querySelector("div").style.borderColor =
+            "#ef4444";
+          node.marker.getElement().querySelector("div").style.boxShadow =
+            "0 0 15px rgba(239,68,68,0.6)";
+        } else {
+          node.line.setStyle({ color: PRICES[node.type].color });
+          node.marker.getElement().querySelector("div").style.borderColor =
+            PRICES[node.type].color;
+          node.marker.getElement().querySelector("div").style.boxShadow =
+            `0 0 15px ${PRICES[node.type].color}60`;
+        }
+      }
+
+      // ==========================================
+      // ACCORDION & 2-WAY DATA BINDING ENGINE
+      // ==========================================
+      function toggleAccordion(id) {
+        const acc = document.getElementById(id);
+        if (acc.classList.contains("hidden")) {
+          // Close others
+          ["acc-rain", "acc-pipe", "acc-dam"].forEach((a) => {
+            if (a !== id) document.getElementById(a).classList.add("hidden");
+          });
+          acc.classList.remove("hidden");
+        } else {
+          acc.classList.add("hidden");
+        }
+      }
+
+      window.addNode = function (type) {
+        if (!pbGatewayMarker) {
+          alert("Please tap the map to place your Gateway first!");
+          return;
+        }
+
+        const gwPos = pbGatewayMarker.getLatLng();
+        const offsetLat = gwPos.lat + (Math.random() - 0.5) * 0.02;
+        const offsetLng = gwPos.lng + (Math.random() - 0.5) * 0.02;
+        const nodePos = L.latLng(offsetLat, offsetLng);
+
+        const conf = PRICES[type];
+        const nodeId = nodeCounter++;
+        const defaultName = `${conf.prefix} ${document.getElementById(`list-${type.toLowerCase()}`).children.length + 1}`;
+
+        const nodeIcon = L.divIcon({
+          className: "", // 🛠️ THE ULTIMATE FIX: An empty string completely removes Leaflet's default grey square!
+          html: `<div class="relative flex flex-col items-center">
+                   <div class="w-8 h-8 rounded-[10px] border-2 flex items-center justify-center shadow-lg bg-[#1A1F26] cursor-pointer" style="border-color: ${conf.color}; box-shadow: 0 0 15px ${conf.color}60;">
+                     <span class="text-sm">${conf.icon}</span>
+                   </div>
+                   <div id="map-label-${nodeId}" class="absolute top-9 bg-black/60 px-1.5 py-0.5 rounded text-[8px] font-bold text-white tracking-wider whitespace-nowrap border border-white/10 shadow-lg">${defaultName.toUpperCase()}</div>
+                 </div>`,
+          iconSize: [32, 50],
+          iconAnchor: [16, 16],
+        });
+
+        const marker = L.marker(nodePos, {
+          icon: nodeIcon,
+          draggable: true,
+        }).addTo(pbMap);
+
+        // 🛠️ REMOVE POPUP FIX: Ensuring window context is explicitly called
+        marker.bindPopup(`
+          <div class="text-center p-1 min-w-[100px]">
+            <div class="text-[10px] font-bold text-white mb-2 uppercase">${type} SENSOR</div>
+            <button onclick="window.removeNode(${nodeId})" class="bg-red-500/20 hover:bg-red-500/40 border border-red-500/50 text-red-400 px-3 py-1 rounded text-[10px] font-bold w-full transition-colors">🗑️ REMOVE</button>
+          </div>
+        `);
+        const line = L.polyline([gwPos, nodePos], {
+          color: conf.color,
+          weight: 2,
+          opacity: 0.8,
+          className: "stilsein-dash-line",
+        }).addTo(pbMap);
+
+        const nodeObj = {
+          id: nodeId,
+          type: type,
+          name: defaultName,
+          marker: marker,
+          line: line,
+        };
+        pbNodes[nodeId] = nodeObj;
+
+        // Create the UI Input Card in the Accordion
+        const listDiv = document.getElementById(`list-${type.toLowerCase()}`);
+        const cardHtml = document.createElement("div");
+        cardHtml.id = `node-card-${nodeId}`;
+        cardHtml.className =
+          "bg-[#1A1F26] p-2 rounded-lg border border-white/5 shadow-inner relative group";
+        cardHtml.innerHTML = `
+          <input type="text" id="n-name-${nodeId}" value="${defaultName}" class="w-full bg-transparent text-white font-bold text-[10px] uppercase tracking-wide focus:outline-none mb-1 border-b border-transparent focus:border-${conf.color} transition-colors" onchange="updateNodeData(${nodeId})"/>
+          <div class="flex gap-2">
+            <input type="number" step="any" id="n-lat-${nodeId}" value="${nodePos.lat.toFixed(5)}" class="w-1/2 bg-black/40 text-gray-400 text-[9px] p-1 rounded focus:outline-none focus:text-white" onchange="updateNodePosFromInput(${nodeId})" />
+            <input type="number" step="any" id="n-lon-${nodeId}" value="${nodePos.lng.toFixed(5)}" class="w-1/2 bg-black/40 text-gray-400 text-[9px] p-1 rounded focus:outline-none focus:text-white" onchange="updateNodePosFromInput(${nodeId})" />
+          </div>
+          <button onclick="removeNode(${nodeId})" class="absolute top-2 right-2 text-red-500 opacity-0 group-hover:opacity-100 transition-opacity"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg></button>
+        `;
+        listDiv.appendChild(cardHtml);
+
+        // Map Drag -> Updates Inputs
+        marker.on("drag", function (ev) {
+          updateNodeConnection(nodeObj, pbGatewayMarker.getLatLng(), ev.latlng);
+          document.getElementById(`n-lat-${nodeId}`).value =
+            ev.latlng.lat.toFixed(5);
+          document.getElementById(`n-lon-${nodeId}`).value =
+            ev.latlng.lng.toFixed(5);
+        });
+
+        // Click Marker to bounce the UI card
+        marker.on("click", function () {
+          const card = document.getElementById(`node-card-${nodeId}`);
+          card.classList.add("bg-white/10");
+          setTimeout(() => card.classList.remove("bg-white/10"), 300);
+        });
+
+        updateReceipt();
+      };
+
+      window.updateNodeData = function (id) {
+        const newName = document.getElementById(`n-name-${id}`).value;
+        pbNodes[id].name = newName;
+        // 🛠️ FS.33: Two-Way Data Binding! Updates the map label instantly.
+        const labelEl = document.getElementById(`map-label-${id}`);
+        if (labelEl) labelEl.innerText = newName.toUpperCase();
+      };
+
+      window.updateNodePosFromInput = function (id) {
+        const lat = parseFloat(document.getElementById(`n-lat-${id}`).value);
+        const lon = parseFloat(document.getElementById(`n-lon-${id}`).value);
+        if (!isNaN(lat) && !isNaN(lon)) {
+          const newPos = L.latLng(lat, lon);
+          pbNodes[id].marker.setLatLng(newPos);
+          updateNodeConnection(
+            pbNodes[id],
+            pbGatewayMarker.getLatLng(),
+            newPos,
+          );
+        }
+      };
+
+      window.removeNode = function (id) {
+        const node = pbNodes[id];
+        if (node) {
+          pbMap.removeLayer(node.marker);
+          pbMap.removeLayer(node.line);
+          document.getElementById(`node-card-${id}`).remove();
+          delete pbNodes[id];
+          updateReceipt();
+        }
+      };
+
+      window.resetMap = function () {
+        if (confirm("Reset the entire map and start over?")) {
+          Object.keys(pbNodes).forEach((id) => removeNode(id));
+          if (pbGatewayMarker) pbMap.removeLayer(pbGatewayMarker);
+          if (gatewayCircle) pbMap.removeLayer(gatewayCircle);
+          pbGatewayMarker = null;
+          document
+            .getElementById("pb-map-overlay")
+            .classList.remove("opacity-0");
+          document.getElementById("pb-submit-btn").disabled = true;
+          document.getElementById("installer-results").innerHTML =
+            `<p class="text-[10px] text-stilsein-muted py-2">Waiting for Gateway location...</p>`;
+          updateReceipt();
+        }
+      };
+
+      function updateReceipt() {
+        let totalSaas = PRICES.BaseSaaS;
+        let counts = { Rain: 0, Pipe: 0, Dam: 0 };
+
+        Object.values(pbNodes).forEach((n) => counts[n.type]++);
+
+        const container = document.getElementById("receipt-items");
+        container.innerHTML = "";
+
+        Object.keys(counts).forEach((type) => {
+          document.getElementById(`badge-${type.toLowerCase()}`).innerText =
+            counts[type]; // Update accordion badges
+
+          if (counts[type] > 0) {
+            const conf = PRICES[type];
+            const qty = counts[type];
+            const saasCost = qty * conf.saas;
+            totalSaas += saasCost;
+
+            const name =
+              type === "Rain"
+                ? "RAIN GAUGE"
+                : type === "Pipe"
+                  ? "PIPE SENSOR"
+                  : "DAM LEVEL";
+
+            container.innerHTML += `
+              <div class="flex justify-between items-end border-b border-white/5 pb-2">
+                <div>
+                  <div class="text-white text-[10px] font-bold tracking-wider">${qty}x ${name}</div>
+                </div>
+                <div class="text-right">
+                  <div class="text-jakkals-orange text-xs font-bold">+R${saasCost}<span class="text-[9px]">/mo</span></div>
+                </div>
+              </div>
+            `;
+          }
+        });
+
+        if (Object.keys(pbNodes).length === 0)
+          container.innerHTML =
+            '<div class="text-center text-gray-600 text-[10px] italic py-2">Add sensors to see estimate...</div>';
+        document.getElementById("total-saas").innerHTML =
+          `R ${totalSaas.toLocaleString()}<span class="text-[10px]">/mo</span>`;
+      }
+
+      // ==========================================
+      // LIVE INSTALLER MATCHMAKER ENGINE
+      // ==========================================
+      let selectedInstallerEmail = null;
+
+      async function fetchInstallers(lat, lng) {
+        const container = document.getElementById("installer-results");
+
+        // 🛠️ UI FIX: Forcefully clear the container so "Waiting for Gateway" disappears instantly!
+        container.innerHTML = "";
+        container.innerHTML = `<div class="flex items-center justify-center gap-2 py-4"><div class="w-4 h-4 rounded-full border-2 border-jakkals-orange border-t-transparent animate-spin"></div><span class="text-[10px] text-jakkals-orange font-bold tracking-widest">SCANNING REGION...</span></div>`;
+
+        document.getElementById("pb-submit-btn").disabled = true;
+        selectedInstallerEmail = null;
+
+        // 🛠️ FS.33: Create the immortal base HTML containing the DIY card
+        let listHtml = `
+          <div class="installer-card bg-[#1A1F26] border border-white/10 rounded-xl p-3 mb-2 cursor-pointer hover:border-stilsein-blue/50 transition-all text-left flex items-center gap-3" 
+               onclick="selectInstaller(this, 'DIY_SELF_INSTALL')">
+            <div class="w-8 h-8 rounded bg-stilsein-blue/10 flex items-center justify-center border border-stilsein-blue/30"><span class="text-xs">🧑‍🌾</span></div>
+            <div class="flex-1">
+              <div class="text-stilsein-blue text-[11px] font-bold tracking-wide">SELF-INSTALL (DIY)</div>
+              <div class="text-stilsein-muted text-[9px]">Ship the hardware directly to me</div>
+            </div>
+            <div class="w-4 h-4 rounded-full border border-gray-500 flex items-center justify-center check-ring"></div>
+          </div>
+        `;
+
+        try {
+          const res = await fetch(
+            `https://weerwolf-bridge.donnieconradie30.workers.dev/api/installers?lat=${lat}&lon=${lng}`,
+            { redirect: "follow" },
+          );
+
+          // 🛠️ DIAGNOSTIC FIX: Capture exact error codes from Cloudflare/Google!
+          if (!res.ok) {
+            const errText = await res.text();
+            throw new Error(`HTTP ${res.status}: ${errText.substring(0, 50)}`);
+          }
+
+          const data = await res.json();
+
+          if (data.status === "success" && data.installers.length > 0) {
+            listHtml += `<div class="text-[9px] text-green-400 font-bold tracking-widest my-3 border-t border-white/5 pt-2">${data.installers.length} CERTIFIED PARTNER(S) FOUND</div>`;
+
+            data.installers.forEach((inst, idx) => {
+              const logoHtml =
+                inst.logo && inst.logo.startsWith("data:image")
+                  ? `<img src="${inst.logo}" class="w-8 h-8 object-contain rounded bg-white p-1" />`
+                  : `<div class="w-8 h-8 rounded bg-white/10 flex items-center justify-center"><span class="text-xs">🛠️</span></div>`;
+
+              listHtml += `
+                  <div class="installer-card bg-[#1A1F26] border border-white/10 rounded-xl p-3 mb-2 cursor-pointer hover:border-jakkals-orange/50 transition-all text-left flex items-center gap-3" 
+                       onclick="selectInstaller(this, '${inst.email}')">
+                    ${logoHtml}
+                    <div class="flex-1">
+                      <div class="text-white text-[11px] font-bold tracking-wide">${inst.company.toUpperCase()}</div>
+                      <div class="text-stilsein-muted text-[9px]">${inst.distance}km away</div>
+                    </div>
+                    <div class="w-4 h-4 rounded-full border border-gray-500 flex items-center justify-center check-ring"></div>
+                  </div>
+                `;
+            });
+          } else {
+            listHtml += `<p class="text-[9px] text-gray-500 mt-2">No local partners found in 150km radius. We will ship directly to you.</p>`;
+          }
+        } catch (err) {
+          console.error("Installer Fetch Error:", err);
+          // 🛠️ DIAGNOSTIC FIX: Print the error directly to the UI panel!
+          listHtml += `<p class="text-[9px] text-red-400 mt-2 font-bold">Sync Error: ${err.message}</p>
+                       <p class="text-[9px] text-gray-500 mt-1">Displaying DIY only. Check console for details.</p>`;
+        }
+
+        container.innerHTML = listHtml;
+      }
+
+      window.selectInstaller = function (cardElement, email) {
+        // 🛠️ IMPROVEMENT 1: Allow un-selecting an installer!
+        if (selectedInstallerEmail === email) {
+          cardElement.classList.remove(
+            "border-jakkals-orange",
+            "bg-jakkals-orange/10",
+            "border-stilsein-blue",
+            "bg-stilsein-blue/10",
+          );
+          cardElement.classList.add("border-white/10", "bg-[#1A1F26]");
+          cardElement.querySelector(".check-ring").innerHTML = "";
+          cardElement
+            .querySelector(".check-ring")
+            .classList.replace("border-jakkals-orange", "border-gray-500");
+          cardElement
+            .querySelector(".check-ring")
+            .classList.replace("border-stilsein-blue", "border-gray-500");
+          selectedInstallerEmail = null;
+          document.getElementById("pb-submit-btn").disabled = true;
+          return;
+        }
+
+        // Reset all cards visually
+        document.querySelectorAll(".installer-card").forEach((c) => {
+          c.classList.remove(
+            "border-jakkals-orange",
+            "bg-jakkals-orange/10",
+            "border-stilsein-blue",
+            "bg-stilsein-blue/10",
+          );
+          c.classList.add("border-white/10", "bg-[#1A1F26]");
+          c.querySelector(".check-ring").innerHTML = "";
+          c.querySelector(".check-ring").classList.replace(
+            "border-jakkals-orange",
+            "border-gray-500",
+          );
+          c.querySelector(".check-ring").classList.replace(
+            "border-stilsein-blue",
+            "border-gray-500",
+          );
+        });
+
+        // Highlight the selected card
+        const isDIY = email === "DIY_SELF_INSTALL";
+        const activeColor = isDIY ? "stilsein-blue" : "jakkals-orange";
+
+        cardElement.classList.remove("border-white/10", "bg-[#1A1F26]");
+        cardElement.classList.add(
+          `border-${activeColor}`,
+          `bg-${activeColor}/10`,
+        );
+        cardElement
+          .querySelector(".check-ring")
+          .classList.replace("border-gray-500", `border-${activeColor}`);
+        cardElement.querySelector(".check-ring").innerHTML =
+          `<div class="w-2 h-2 bg-${activeColor} rounded-full"></div>`;
+
+        // Save selection and unlock the Quote button!
+        selectedInstallerEmail = email;
+        document.getElementById("pb-submit-btn").disabled = false;
+      };
+
+      // ==========================================
+      // 🛠️ PLAAS BOUER MODAL & DISPATCH LOGIC
+      // ==========================================
+      window.openPlaasBouerModal = function () {
+        if (!pbGatewayMarker || !selectedInstallerEmail) return;
+        const modal = document.getElementById("pb-wizard-modal"); // Reusing the wizard modal background
+        const content = document.getElementById("pb-wizard-content");
+
+        // Hide Step 1 & 2, Show Step 3 (The Quote Form)
+        document.getElementById("wizard-step-1").classList.add("hidden");
+        document.getElementById("wizard-step-2").classList.add("hidden");
+
+        // If we don't have a Step 3 yet, let's build it dynamically!
+        let step3 = document.getElementById("wizard-step-3");
+        if (!step3) {
+          step3 = document.createElement("div");
+          step3.id = "wizard-step-3";
+          step3.innerHTML = `
+              <h3 class="text-2xl font-bold text-white font-garet mb-2 text-center">GET YOUR QUOTE</h3>
+              <p class="text-stilsein-muted text-xs mb-6 leading-relaxed text-center">
+                We will send your custom network blueprint to the selected StilSein partner.
+              </p>
+              <form onsubmit="submitPlaasBouer(event)" class="space-y-4">
+                <input type="tel" id="pb-phone" placeholder="Phone Number" required class="w-full bg-stilsein-dark/50 border border-white/10 rounded-lg p-3 text-white placeholder-gray-500 focus:outline-none focus:border-jakkals-orange" />
+                <input type="email" id="pb-email" placeholder="Email Address" required class="w-full bg-stilsein-dark/50 border border-white/10 rounded-lg p-3 text-white placeholder-gray-500 focus:outline-none focus:border-jakkals-orange" />
+                <button id="pb-final-btn" type="submit" class="w-full py-4 mt-2 bg-jakkals-orange text-stilsein-dark font-bold rounded-lg hover:bg-white transition-colors tracking-widest text-xs">
+                  SEND REQUEST TO INSTALLER
+                </button>
+              </form>
+              <button type="button" onclick="closePlaasBouerModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
+            `;
+          content.appendChild(step3);
+        }
+        step3.classList.remove("hidden");
+
+        modal.classList.remove("opacity-0", "pointer-events-none");
+        content.classList.remove("scale-95");
+      };
+
+      window.closePlaasBouerModal = function () {
+        const modal = document.getElementById("pb-wizard-modal");
+        const content = document.getElementById("pb-wizard-content");
+        modal.classList.add("opacity-0", "pointer-events-none");
+        content.classList.add("scale-95");
+
+        setTimeout(() => {
+          const step3 = document.getElementById("wizard-step-3");
+          if (step3) step3.classList.add("hidden");
+        }, 300);
+      };
+
+      window.submitPlaasBouer = function (e) {
+        e.preventDefault();
+
+        // Gather all placed nodes
+        const layout = Object.values(pbNodes).map((n) => {
+          return {
+            type: n.type,
+            name: n.name,
+            lat: n.marker.getLatLng().lat,
+            lon: n.marker.getLatLng().lng,
+          };
+        });
+
+        // 🛠️ SAFETY CATCH: Force them to add sensors!
+        if (layout.length === 0) {
+          alert(
+            "Please add at least one sensor to your farm blueprint before submitting!",
+          );
+          return;
+        }
+
+        const btn = document.getElementById("pb-final-btn");
+        const origText = btn.innerText;
+        btn.innerText = "ROUTING TO INSTALLER...";
+        btn.disabled = true;
+        const payload = {
+          type: "farm_builder_quote",
+          name: ownerName, // Captured from Step 1
+          farm: farmName, // Captured from Step 1
+          phone: document.getElementById("pb-phone").value,
+          email: document.getElementById("pb-email").value,
+          installerEmail: selectedInstallerEmail,
+          gatewayLat: pbGatewayMarker.getLatLng().lat,
+          gatewayLon: pbGatewayMarker.getLatLng().lng,
+          nodes: layout,
+        };
+
+        // ⚠️ DISPATCH TO CLOUDFLARE WORKER!
+        const endpoint =
+          "https://weerwolf-bridge.donnieconradie30.workers.dev/api/quote";
+        fetch(endpoint, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        })
+          .then((response) => {
+            btn.innerText = "QUOTE SENT!";
+            btn.classList.add("!bg-green-500", "!text-white");
+            setTimeout(() => {
+              closePlaasBouerModal();
+              btn.innerText = origText;
+              btn.disabled = false;
+              btn.classList.remove("!bg-green-500", "!text-white");
+            }, 2000);
+          })
+          .catch((err) => {
+            btn.innerText = "ERROR - TRY AGAIN";
+            setTimeout(() => {
+              btn.innerText = origText;
+              btn.disabled = false;
+            }, 3000);
+          });
+      };
+    </script>
+  </body>
+</html>
