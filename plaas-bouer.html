@@ -944,7 +944,7 @@
 
         try {
           const res = await fetch(
-            `https://weerwolf-bridge.donnieconradie30.workers.dev/api/installers?lat=${lat}&lon=${lng}`,
+            `https://stilsein-api.fragrant-mud-451a.workers.dev/api/installers?lat=${lat}&lon=${lng}`,
             { redirect: "follow" },
           );
 
@@ -960,6 +960,10 @@
             listHtml += `<div class="text-[9px] text-green-400 font-bold tracking-widest my-3 border-t border-white/5 pt-2">${data.installers.length} CERTIFIED PARTNER(S) FOUND</div>`;
 
             data.installers.forEach((inst, idx) => {
+              // 🛠️ SYNC FIX: Ensure Farm Builder uses the exact same pipe separator!
+              const safeEmail = inst.email ? inst.email : "";
+              const uniqueId = `${inst.company} | ${safeEmail}`;
+
               const logoHtml =
                 inst.logo && inst.logo.startsWith("data:image")
                   ? `<img src="${inst.logo}" class="w-8 h-8 object-contain rounded bg-white p-1" />`
@@ -967,7 +971,7 @@
 
               listHtml += `
                   <div class="installer-card bg-[#1A1F26] border border-white/10 rounded-xl p-3 mb-2 cursor-pointer hover:border-jakkals-orange/50 transition-all text-left flex items-center gap-3" 
-                       onclick="selectInstaller(this, '${inst.email}')">
+                       onclick="selectInstaller(this, '${uniqueId}')">
                     ${logoHtml}
                     <div class="flex-1">
                       <div class="text-white text-[11px] font-bold tracking-wide">${inst.company.toUpperCase()}</div>
@@ -1142,7 +1146,7 @@
 
         // ⚠️ DISPATCH TO CLOUDFLARE WORKER!
         const endpoint =
-          "https://weerwolf-bridge.donnieconradie30.workers.dev/api/quote";
+          "https://stilsein-api.fragrant-mud-451a.workers.dev/api/quote";
         fetch(endpoint, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
