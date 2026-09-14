@@ -1,0 +1,1498 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth scroll-pt-20">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>StilSein | App Handleiding</title>
+    <link rel="icon" type="image/png" href="assets/images/wolf_icon.png" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              "stilsein-dark": "#1A1F26",
+              "stilsein-card": "#232B38",
+              "stilsein-blue": "#91ACC8",
+              "jakkals-orange": "#FF9E4A",
+              "stilsein-text": "#E4E8EC",
+              "stilsein-muted": "#ADBAB7",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      @font-face {
+        font-family: "TTOctasquares";
+        src: url("assets/fonts/TTOctasquares-Bold.ttf") format("truetype");
+        font-weight: bold;
+      }
+      @font-face {
+        font-family: "Garet";
+        src: url("assets/fonts/Garet-Bold.otf") format("opentype");
+        font-weight: bold;
+      }
+      body {
+        font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      }
+      html,
+      body {
+        max-width: 100vw;
+        overflow-x: hidden;
+      }
+      .bg-texture-main {
+        background-image: url("assets/images/bg_texture_dark.png?v=2");
+        background-repeat: repeat;
+      }
+      .glass-card {
+        background-color: rgba(35, 43, 56, 0.85);
+        -webkit-backdrop-filter: blur(12px);
+        backdrop-filter: blur(12px);
+      }
+      .glass-nav {
+        background-color: rgba(26, 31, 38, 0.4) !important;
+        -webkit-backdrop-filter: blur(20px);
+        backdrop-filter: blur(20px);
+      }
+      .font-brand-title {
+        font-family: "TTOctasquares", sans-serif;
+        font-size: 20.2px;
+        letter-spacing: 0.372em;
+        line-height: 1;
+      }
+      .font-brand-subtitle {
+        font-family: "Roboto", sans-serif;
+        font-size: 11.7px;
+        letter-spacing: 0.418em;
+        text-transform: uppercase;
+      }
+      .font-garet {
+        font-family: "Garet", sans-serif;
+      }
+
+      /* Accordion Smooth Expand */
+      .accordion-content {
+        display: grid;
+        grid-template-rows: 0fr;
+        transition: grid-template-rows 0.4s ease-in-out;
+      }
+      .accordion-content.expanded {
+        grid-template-rows: 1fr;
+      }
+      .accordion-inner {
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-stilsein-dark text-stilsein-text bg-texture-main relative overflow-x-hidden w-full"
+  >
+    <!-- Background Glows -->
+    <div
+      class="fixed inset-0 pointer-events-none shadow-[inset_0_0_150px_rgba(0,0,0,0.9)] z-0"
+    ></div>
+    <div
+      class="fixed top-0 left-1/4 w-96 h-96 bg-stilsein-blue/10 rounded-full blur-3xl -z-10"
+    ></div>
+    <div
+      class="fixed bottom-1/4 right-1/4 w-96 h-96 bg-jakkals-orange/10 rounded-full blur-3xl -z-10"
+    ></div>
+
+    <!-- NAVIGATION BAR -->
+    <nav
+      class="fixed top-0 w-full z-50 glass-nav border-b border-stilsein-blue/20 h-[80px] flex items-center"
+    >
+      <div
+        class="max-w-7xl mx-auto w-full px-6 flex justify-between items-center"
+      >
+        <a
+          href="index.html"
+          class="flex items-center space-x-4 cursor-pointer group"
+        >
+          <img
+            src="assets/images/wolf_white.png"
+            alt="StilSein Logo"
+            class="h-12 w-auto object-contain transition-transform group-hover:scale-105"
+            onerror="this.classList.add('hidden')"
+          />
+          <div class="flex flex-col justify-center mt-1">
+            <span class="text-white font-bold font-brand-title"
+              >STIL<span class="text-stilsein-blue">SEIN</span></span
+            >
+            <span
+              class="text-stilsein-muted mt-[4px] font-bold font-brand-subtitle"
+              >Data Sonder Grense</span
+            >
+          </div>
+        </a>
+
+        <div class="flex items-center gap-4">
+          <a
+            href="index.html"
+            class="hidden sm:flex items-center gap-2 text-[10px] font-bold tracking-[0.15em] text-stilsein-muted hover:text-jakkals-orange uppercase transition-colors"
+          >
+            <svg
+              class="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M10 19l-7-7m0 0l7-7m-7 7h18"
+              ></path>
+            </svg>
+            <span data-dict="nav_back">Back to Main Site</span>
+          </a>
+          <!-- Sleek Toggle Switch -->
+          <button
+            type="button"
+            onclick="toggleManualLang()"
+            class="flex items-center justify-center w-8 h-8 rounded border border-stilsein-blue/30 bg-stilsein-dark/80 text-[10px] font-bold tracking-widest text-stilsein-blue hover:bg-stilsein-blue hover:text-stilsein-dark transition-all shadow-[0_0_10px_rgba(145,172,200,0.2)]"
+          >
+            <span id="lang-toggle-text">AF</span>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="pt-32 pb-12 px-6 relative z-10 w-full">
+      <div class="max-w-4xl mx-auto text-center">
+        <div
+          class="inline-flex items-center gap-2 px-4 py-1 rounded-full border border-stilsein-blue/40 bg-stilsein-blue/10 text-stilsein-blue text-xs font-bold tracking-[0.2em] mb-6 shadow-[0_0_15px_rgba(145,172,200,0.15)]"
+          data-dict="hero_badge"
+        >
+          OFFICIAL DOCUMENTATION
+        </div>
+        <h1
+          class="text-4xl md:text-5xl font-bold text-white mb-6 font-garet uppercase leading-tight"
+          data-dict="hero_title"
+        >
+          STILSEIN <span class="text-stilsein-blue">USER MANUAL</span>
+        </h1>
+        <p
+          class="text-stilsein-muted text-lg max-w-2xl mx-auto leading-relaxed"
+          data-dict="hero_desc"
+        >
+          Welcome to the control center. Learn how to navigate your digital
+          farm, interpret advanced telemetry, and configure your Jakkals AI
+          alerts.
+        </p>
+      </div>
+    </section>
+
+    <!-- THE ACCORDION ARMORY -->
+    <section class="pb-24 px-6 relative z-10 w-full">
+      <div class="max-w-4xl mx-auto space-y-6" id="manual-accordions">
+        <!-- SECTION 1: OMNI-DASHBOARD -->
+        <div
+          class="glass-card rounded-2xl border border-stilsein-blue/20 overflow-hidden shadow-lg group"
+        >
+          <button
+            onclick="toggleSection('sec-1')"
+            class="w-full px-6 py-5 flex items-center justify-between hover:bg-white/5 transition-colors"
+          >
+            <div class="flex items-center gap-4">
+              <div
+                class="w-10 h-10 rounded-xl bg-stilsein-blue/10 flex items-center justify-center border border-stilsein-blue/30 text-xl"
+              >
+                <svg
+                  class="w-5 h-5 text-stilsein-blue"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"
+                  ></path>
+                </svg>
+              </div>
+              <h2
+                class="text-white font-garet font-bold tracking-widest text-sm md:text-base"
+                data-dict="s1_title"
+              >
+                1. THE OMNI-DASHBOARD
+              </h2>
+            </div>
+            <svg
+              id="icon-sec-1"
+              class="w-5 h-5 text-stilsein-blue transition-transform duration-300"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 9l-7 7-7-7"
+              ></path>
+            </svg>
+          </button>
+          <div id="sec-1" class="accordion-content bg-[#1A1F26]/50">
+            <div class="accordion-inner px-6 pb-8 pt-2">
+              <p
+                class="text-stilsein-muted text-sm leading-relaxed mb-6"
+                data-dict="s1_desc"
+              >
+                The Command Central of your farm. A unified 3x3 grid that gives
+                you an instant overview of your entire operation.
+              </p>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Text Content -->
+                <div class="space-y-6">
+                  <div>
+                    <h4
+                      class="text-stilsein-blue font-bold text-xs tracking-widest uppercase mb-2"
+                      data-dict="s1_h1"
+                    >
+                      The Global Top-Dock
+                    </h4>
+                    <ul class="list-disc pl-5 text-sm text-gray-300 space-y-2">
+                      <li>
+                        <strong class="text-white">The Pulse Dot:</strong>
+                        Indicates connection health.
+                        <span class="text-stilsein-blue font-bold">Blue</span> =
+                        Fresh (< 15 mins).
+                        <span class="text-yellow-500 font-bold">Yellow</span> =
+                        Delayed.
+                        <span class="text-jakkals-orange font-bold"
+                          >Orange</span
+                        >
+                        = Stale.
+                        <span class="text-red-500 font-bold">Red</span> =
+                        Offline.
+                      </li>
+                      <li>
+                        <strong class="text-white">Module Dropdown:</strong>
+                        Filter the grid to show only Rain, Pipes, Dams, or
+                        Forecasts.
+                      </li>
+                      <li>
+                        <strong class="text-white">Timechip Dropdown:</strong>
+                        Shift the entire dashboard back in time (Live, 24H, 7D,
+                        30D, 1Y).
+                      </li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4
+                      class="text-stilsein-blue font-bold text-xs tracking-widest uppercase mb-2"
+                      data-dict="s1_h2"
+                    >
+                      Hardware & Software Cards
+                    </h4>
+                    <ul class="list-disc pl-5 text-sm text-gray-300 space-y-2">
+                      <li>
+                        <strong class="text-white">Physical Nodes:</strong>
+                        Tiles displaying live animations (Rain cylinders, Pipe
+                        flows, Dam waves).
+                      </li>
+                      <li>
+                        <strong class="text-white"
+                          >Virtual Nodes (Average/Overview):</strong
+                        >
+                        Tiles showing the mathematical average of an entire
+                        network.
+                      </li>
+                      <li>
+                        <strong class="text-white">Add Node:</strong> Tapping an
+                        empty transparent tile allows you to instantly request a
+                        quote to expand your hardware network.
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <!-- Image Placeholder -->
+                <div
+                  class="bg-[#1A1F26] border border-white/5 rounded-xl flex items-center justify-center min-h-[250px] overflow-hidden shadow-inner"
+                >
+                  <div class="text-center opacity-30">
+                    <svg
+                      class="w-12 h-12 mx-auto mb-2 text-stilsein-blue"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                      ></path>
+                    </svg>
+                    <span class="text-xs font-bold tracking-widest uppercase"
+                      >[ OMNI-DASHBOARD SCREENSHOT ]</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION 2: RADAR MAP -->
+        <div
+          class="glass-card rounded-2xl border border-green-500/20 overflow-hidden shadow-lg group"
+        >
+          <button
+            onclick="toggleSection('sec-2')"
+            class="w-full px-6 py-5 flex items-center justify-between hover:bg-white/5 transition-colors"
+          >
+            <div class="flex items-center gap-4">
+              <div
+                class="w-10 h-10 rounded-xl bg-green-500/10 flex items-center justify-center border border-green-500/30 text-xl"
+              >
+                <svg
+                  class="w-5 h-5 text-green-500"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"
+                  ></path>
+                </svg>
+              </div>
+              <h2
+                class="text-white font-garet font-bold tracking-widest text-sm md:text-base"
+                data-dict="s2_title"
+              >
+                2. THE RADAR MAP
+              </h2>
+            </div>
+            <svg
+              id="icon-sec-2"
+              class="w-5 h-5 text-green-500 transition-transform duration-300"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 9l-7 7-7-7"
+              ></path>
+            </svg>
+          </button>
+          <div id="sec-2" class="accordion-content bg-[#1A1F26]/50">
+            <div class="accordion-inner px-6 pb-8 pt-2">
+              <p
+                class="text-stilsein-muted text-sm leading-relaxed mb-6"
+                data-dict="s2_desc"
+              >
+                Your farm rendered in geospatial reality. Tap the Gateway node
+                in the center of the Omni-Dashboard, or the Map icon in the
+                bottom taskbar to enter.
+              </p>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Text Content -->
+                <div class="space-y-6">
+                  <div>
+                    <h4
+                      class="text-green-400 font-bold text-xs tracking-widest uppercase mb-2"
+                      data-dict="s2_h1"
+                    >
+                      Navigation & Tools
+                    </h4>
+                    <ul class="list-disc pl-5 text-sm text-gray-300 space-y-2">
+                      <li>
+                        <strong class="text-white">Filtering:</strong> Expand
+                        the bottom dock menu to toggle specific hardware types
+                        (Rain, Pipe, Dam) on and off.
+                      </li>
+                      <li>
+                        <strong class="text-white"
+                          >Live Location (Blue Dot):</strong
+                        >
+                        Toggle 'Position' to see your physical GPS location on
+                        the farm, including your exact distance (km) to the
+                        Gateway.
+                      </li>
+                      <li>
+                        <strong class="text-white">Center Focus:</strong> Tap
+                        the crosshair icon to instantly zoom out and fit the
+                        entire farm boundary back on the screen.
+                      </li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4
+                      class="text-green-400 font-bold text-xs tracking-widest uppercase mb-2"
+                      data-dict="s2_h2"
+                    >
+                      Interacting with Nodes
+                    </h4>
+                    <ul class="list-disc pl-5 text-sm text-gray-300 space-y-2">
+                      <li>
+                        <strong class="text-white">Signal Paths:</strong> Dashed
+                        lines indicate active radio paths. If a node is raining,
+                        the path thickens and pulses rapidly.
+                      </li>
+                      <li>
+                        <strong class="text-white">The Floating Stage:</strong>
+                        Tapping any node marker on the map blurs the background
+                        and opens that specific sensor's Live Stage directly
+                        over the map for quick analysis.
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <!-- Image Placeholder -->
+                <div
+                  class="bg-[#1A1F26] border border-white/5 rounded-xl flex items-center justify-center min-h-[250px] overflow-hidden shadow-inner"
+                >
+                  <div class="text-center opacity-30">
+                    <svg
+                      class="w-12 h-12 mx-auto mb-2 text-green-500"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                      ></path>
+                    </svg>
+                    <span class="text-xs font-bold tracking-widest uppercase"
+                      >[ RADAR MAP SCREENSHOT ]</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION 3: LIVE SENSOR STAGES -->
+        <div
+          class="glass-card rounded-2xl border border-cyan-400/20 overflow-hidden shadow-lg group"
+        >
+          <button
+            onclick="toggleSection('sec-3')"
+            class="w-full px-6 py-5 flex items-center justify-between hover:bg-white/5 transition-colors"
+          >
+            <div class="flex items-center gap-4">
+              <div
+                class="w-10 h-10 rounded-xl bg-cyan-400/10 flex items-center justify-center border border-cyan-400/30 text-xl"
+              >
+                <svg
+                  class="w-5 h-5 text-cyan-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M13 10V3L4 14h7v7l9-11h-7z"
+                  ></path>
+                </svg>
+              </div>
+              <h2
+                class="text-white font-garet font-bold tracking-widest text-sm md:text-base"
+                data-dict="s3_title"
+              >
+                3. LIVE SENSOR STAGES
+              </h2>
+            </div>
+            <svg
+              id="icon-sec-3"
+              class="w-5 h-5 text-cyan-400 transition-transform duration-300"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 9l-7 7-7-7"
+              ></path>
+            </svg>
+          </button>
+          <div id="sec-3" class="accordion-content bg-[#1A1F26]/50">
+            <div class="accordion-inner px-6 pb-8 pt-2">
+              <p
+                class="text-stilsein-muted text-sm leading-relaxed mb-6"
+                data-dict="s3_desc"
+              >
+                The deep-dive view. Accessed by selecting a specific module from
+                the top dropdown, or tapping a specific node on the Map or
+                Omni-Dashboard.
+              </p>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Text Content -->
+                <div class="space-y-6">
+                  <div>
+                    <h4
+                      class="text-cyan-400 font-bold text-xs tracking-widest uppercase mb-2"
+                      data-dict="s3_h1"
+                    >
+                      The Data Cockpit
+                    </h4>
+                    <ul class="list-disc pl-5 text-sm text-gray-300 space-y-2">
+                      <li>
+                        <strong class="text-white">Status Banner:</strong> A
+                        dynamic pulse indicator below the main value. Green =
+                        STABLE/HEALTHY. Red = LEAK/OVERPRESSURE/OFFLINE. Orange
+                        = LOW BATT.
+                      </li>
+                      <li>
+                        <strong class="text-white">Timers (Top Right):</strong>
+                        Shows exactly when the next data pulse is arriving. It
+                        shifts to "LISTENING..." and "LATE" if interference
+                        occurs.
+                      </li>
+                      <li>
+                        <strong class="text-white">Health Stats:</strong> Signal
+                        strength (dBm) and Battery % are always visible flanking
+                        the status banner.
+                      </li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4
+                      class="text-cyan-400 font-bold text-xs tracking-widest uppercase mb-2"
+                      data-dict="s3_h2"
+                    >
+                      Interactive Elements
+                    </h4>
+                    <ul class="list-disc pl-5 text-sm text-gray-300 space-y-2">
+                      <li>
+                        <strong class="text-white">Mini-Charts:</strong> Tap the
+                        small chart at the bottom of the card to open the
+                        Fullscreen Analytical God-Mode.
+                      </li>
+                      <li>
+                        <strong class="text-white">Expand/Collapse:</strong> Use
+                        the arrows on the right to reveal the comparative grid
+                        of all other nodes in that category.
+                      </li>
+                      <li>
+                        <strong class="text-white">Swipe Navigation:</strong>
+                        Swipe the main cylinder left or right to seamlessly
+                        switch between nodes in the field.
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <!-- Image Placeholder -->
+                <div
+                  class="bg-[#1A1F26] border border-white/5 rounded-xl flex items-center justify-center min-h-[250px] overflow-hidden shadow-inner"
+                >
+                  <div class="text-center opacity-30">
+                    <svg
+                      class="w-12 h-12 mx-auto mb-2 text-cyan-400"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                      ></path>
+                    </svg>
+                    <span class="text-xs font-bold tracking-widest uppercase"
+                      >[ SENSOR STAGE SCREENSHOT ]</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION 4: FULLSCREEN CHARTS -->
+        <div
+          class="glass-card rounded-2xl border border-jakkals-orange/20 overflow-hidden shadow-lg group"
+        >
+          <button
+            onclick="toggleSection('sec-4')"
+            class="w-full px-6 py-5 flex items-center justify-between hover:bg-white/5 transition-colors"
+          >
+            <div class="flex items-center gap-4">
+              <div
+                class="w-10 h-10 rounded-xl bg-jakkals-orange/10 flex items-center justify-center border border-jakkals-orange/30 text-xl"
+              >
+                <svg
+                  class="w-5 h-5 text-jakkals-orange"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"
+                  ></path>
+                </svg>
+              </div>
+              <h2
+                class="text-white font-garet font-bold tracking-widest text-sm md:text-base"
+                data-dict="s4_title"
+              >
+                4. FULLSCREEN CHARTS
+              </h2>
+            </div>
+            <svg
+              id="icon-sec-4"
+              class="w-5 h-5 text-jakkals-orange transition-transform duration-300"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 9l-7 7-7-7"
+              ></path>
+            </svg>
+          </button>
+          <div id="sec-4" class="accordion-content bg-[#1A1F26]/50">
+            <div class="accordion-inner px-6 pb-8 pt-2">
+              <p
+                class="text-stilsein-muted text-sm leading-relaxed mb-6"
+                data-dict="s4_desc"
+              >
+                The analytical God-Mode. Designed for deep dives into historical
+                telemetry, leak investigations, and PDF report generation.
+              </p>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Text Content -->
+                <div class="space-y-6">
+                  <div>
+                    <h4
+                      class="text-jakkals-orange font-bold text-xs tracking-widest uppercase mb-2"
+                      data-dict="s4_h1"
+                    >
+                      Navigation & Analysis
+                    </h4>
+                    <ul class="list-disc pl-5 text-sm text-gray-300 space-y-2">
+                      <li>
+                        <strong class="text-white">Sticky Y-Axis:</strong> When
+                        zooming or panning horizontally through time, the
+                        measurement scale (left) stays securely pinned to the
+                        screen.
+                      </li>
+                      <li>
+                        <strong class="text-white"
+                          >Double-Tap to Isolate:</strong
+                        >
+                        For dual-charts (e.g., Pipe Line Chart + Gantt Status
+                        Track), double-tapping either chart expands it to
+                        full-screen mode for easier viewing.
+                      </li>
+                      <li>
+                        <strong class="text-white">Interactive HUD:</strong> Tap
+                        any point on a line or bar to reveal the exact Date,
+                        Time, Value, and specific hazard warnings (e.g., 🔴
+                        OVERPRESSURE).
+                      </li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4
+                      class="text-jakkals-orange font-bold text-xs tracking-widest uppercase mb-2"
+                      data-dict="s4_h2"
+                    >
+                      Action Bar
+                    </h4>
+                    <ul class="list-disc pl-5 text-sm text-gray-300 space-y-2">
+                      <li>
+                        <strong class="text-white">Jakkals AI Paw:</strong> Tap
+                        the orange paw icon to instantly send the currently
+                        viewed chart data to Jakkals for an expert Agricultural
+                        analysis.
+                      </li>
+                      <li>
+                        <strong class="text-white">Unit Toggle:</strong> Tap the
+                        '%' or 'kL' icon to switch the mathematical rendering of
+                        Dam levels on the fly.
+                      </li>
+                      <li>
+                        <strong class="text-white">PDF/CSV Export:</strong> Tap
+                        the download arrow to instantly generate a branded PDF
+                        or raw Excel spreadsheet of the chart.
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <!-- Image Placeholder -->
+                <div
+                  class="bg-[#1A1F26] border border-white/5 rounded-xl flex items-center justify-center min-h-[250px] overflow-hidden shadow-inner"
+                >
+                  <div class="text-center opacity-30">
+                    <svg
+                      class="w-12 h-12 mx-auto mb-2 text-jakkals-orange"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                      ></path>
+                    </svg>
+                    <span class="text-xs font-bold tracking-widest uppercase"
+                      >[ FULLSCREEN CHART SCREENSHOT ]</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION 5: SATELLITE FORECASTS -->
+        <div
+          class="glass-card rounded-2xl border border-yellow-500/20 overflow-hidden shadow-lg group"
+        >
+          <button
+            onclick="toggleSection('sec-5')"
+            class="w-full px-6 py-5 flex items-center justify-between hover:bg-white/5 transition-colors"
+          >
+            <div class="flex items-center gap-4">
+              <div
+                class="w-10 h-10 rounded-xl bg-yellow-500/10 flex items-center justify-center border border-yellow-500/30 text-xl"
+              >
+                <svg
+                  class="w-5 h-5 text-yellow-500"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"
+                  ></path>
+                </svg>
+              </div>
+              <h2
+                class="text-white font-garet font-bold tracking-widest text-sm md:text-base"
+                data-dict="s5_title"
+              >
+                5. SATELLITE FORECASTS
+              </h2>
+            </div>
+            <svg
+              id="icon-sec-5"
+              class="w-5 h-5 text-yellow-500 transition-transform duration-300"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 9l-7 7-7-7"
+              ></path>
+            </svg>
+          </button>
+          <div id="sec-5" class="accordion-content bg-[#1A1F26]/50">
+            <div class="accordion-inner px-6 pb-8 pt-2">
+              <p
+                class="text-stilsein-muted text-sm leading-relaxed mb-6"
+                data-dict="s5_desc"
+              >
+                Hyper-local meteorological predictions based on your farm's
+                exact GPS coordinates. Accessed from the top-left dropdown menu.
+              </p>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Text Content -->
+                <div class="space-y-6">
+                  <div>
+                    <h4
+                      class="text-yellow-500 font-bold text-xs tracking-widest uppercase mb-2"
+                      data-dict="s5_h1"
+                    >
+                      The 7-Day Overview
+                    </h4>
+                    <ul class="list-disc pl-5 text-sm text-gray-300 space-y-2">
+                      <li>
+                        <strong class="text-white">The Grid:</strong> A
+                        high-level view of the upcoming week. Days with expected
+                        rainfall are highlighted with a glowing blue border.
+                      </li>
+                      <li>
+                        <strong class="text-white">Quick Navigation:</strong>
+                        Tap on any specific day in the grid to instantly jump to
+                        its detailed triple-chart view.
+                      </li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4
+                      class="text-yellow-500 font-bold text-xs tracking-widest uppercase mb-2"
+                      data-dict="s5_h2"
+                    >
+                      The Triple-Chart View
+                    </h4>
+                    <ul class="list-disc pl-5 text-sm text-gray-300 space-y-2">
+                      <li>
+                        <strong class="text-white">Temperature (Top):</strong>
+                        The color gradient shifts from Cold (Blue) to Perfect
+                        (Green) to Heatwave Threshold (Red).
+                      </li>
+                      <li>
+                        <strong class="text-white"
+                          >Precipitation (Middle):</strong
+                        >
+                        Hour-by-hour bar charts showing exact expected
+                        accumulation.
+                      </li>
+                      <li>
+                        <strong class="text-white"
+                          >Wind Profile (Bottom):</strong
+                        >
+                        Blue-to-Lavender gradients indicate wind speeds, peaking
+                        on gale-force days.
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <!-- Image Placeholder -->
+                <div
+                  class="bg-[#1A1F26] border border-white/5 rounded-xl flex items-center justify-center min-h-[250px] overflow-hidden shadow-inner"
+                >
+                  <div class="text-center opacity-30">
+                    <svg
+                      class="w-12 h-12 mx-auto mb-2 text-yellow-500"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"
+                      ></path>
+                    </svg>
+                    <span class="text-xs font-bold tracking-widest uppercase"
+                      >[ FORECAST SCREENSHOT ]</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION 6: THE ARCHIVIST -->
+        <div
+          class="glass-card rounded-2xl border border-[#A396D1]/20 overflow-hidden shadow-lg group"
+        >
+          <button
+            onclick="toggleSection('sec-6')"
+            class="w-full px-6 py-5 flex items-center justify-between hover:bg-white/5 transition-colors"
+          >
+            <div class="flex items-center gap-4">
+              <div
+                class="w-10 h-10 rounded-xl bg-[#A396D1]/10 flex items-center justify-center border border-[#A396D1]/30 text-xl"
+              >
+                <svg
+                  class="w-5 h-5 text-[#A396D1]"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"
+                  ></path>
+                </svg>
+              </div>
+              <h2
+                class="text-white font-garet font-bold tracking-widest text-sm md:text-base"
+                data-dict="s6_title"
+              >
+                6. THE ARCHIVIST
+              </h2>
+            </div>
+            <svg
+              id="icon-sec-6"
+              class="w-5 h-5 text-[#A396D1] transition-transform duration-300"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 9l-7 7-7-7"
+              ></path>
+            </svg>
+          </button>
+          <div id="sec-6" class="accordion-content bg-[#1A1F26]/50">
+            <div class="accordion-inner px-6 pb-8 pt-2">
+              <p
+                class="text-stilsein-muted text-sm leading-relaxed mb-6"
+                data-dict="s6_desc"
+              >
+                Your farm's permanent historical ledger. Every critical event is
+                safely locked away here for future reference.
+              </p>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Text Content -->
+                <div class="space-y-6">
+                  <div>
+                    <h4
+                      class="text-[#A396D1] font-bold text-xs tracking-widest uppercase mb-2"
+                      data-dict="s6_h1"
+                    >
+                      The Ticker-Tape Inbox
+                    </h4>
+                    <ul class="list-disc pl-5 text-sm text-gray-300 space-y-2">
+                      <li>
+                        <strong class="text-white">Unread Events:</strong>
+                        Events you haven't viewed yet will pulse with an orange
+                        border and a "NEW" tag.
+                      </li>
+                      <li>
+                        <strong class="text-white">Event Types:</strong>
+                        Displays Rain Spells (Total mm), Pipe Incidents (Min/Max
+                        Bar), Dam Incidents (Rapid Drains), and System Logs
+                        (Green microchip icon).
+                      </li>
+                      <li>
+                        <strong class="text-white">Interacting:</strong> Tap any
+                        event in the list to instantly open its high-resolution,
+                        isolated fullscreen chart.
+                      </li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4
+                      class="text-[#A396D1] font-bold text-xs tracking-widest uppercase mb-2"
+                      data-dict="s6_h2"
+                    >
+                      Data Management
+                    </h4>
+                    <ul class="list-disc pl-5 text-sm text-gray-300 space-y-2">
+                      <li>
+                        <strong class="text-white">PDF / CSV Export:</strong>
+                        Tap the download arrow icon on any event to export a
+                        professional, branded PDF or an Excel-ready CSV file.
+                      </li>
+                      <li>
+                        <strong class="text-white">Loading History:</strong>
+                        Scroll to the bottom of the list and tap "LOAD PREVIOUS
+                        WEEK" to pull older archives from Deep Freeze storage.
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <!-- Image Placeholder -->
+                <div
+                  class="bg-[#1A1F26] border border-white/5 rounded-xl flex items-center justify-center min-h-[250px] overflow-hidden shadow-inner"
+                >
+                  <div class="text-center opacity-30">
+                    <svg
+                      class="w-12 h-12 mx-auto mb-2 text-[#A396D1]"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"
+                      ></path>
+                    </svg>
+                    <span class="text-xs font-bold tracking-widest uppercase"
+                      >[ ARCHIVE SCREENSHOT ]</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION 7: WOLF CAVE -->
+        <div
+          class="glass-card rounded-2xl border border-gray-400/20 overflow-hidden shadow-lg group"
+        >
+          <button
+            onclick="toggleSection('sec-7')"
+            class="w-full px-6 py-5 flex items-center justify-between hover:bg-white/5 transition-colors"
+          >
+            <div class="flex items-center gap-4">
+              <div
+                class="w-10 h-10 rounded-xl bg-gray-400/10 flex items-center justify-center border border-gray-400/30 text-xl"
+              >
+                <svg
+                  class="w-5 h-5 text-gray-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+                  ></path>
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                  ></path>
+                </svg>
+              </div>
+              <h2
+                class="text-white font-garet font-bold tracking-widest text-sm md:text-base"
+                data-dict="s7_title"
+              >
+                7. THE WOLF CAVE
+              </h2>
+            </div>
+            <svg
+              id="icon-sec-7"
+              class="w-5 h-5 text-gray-400 transition-transform duration-300"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 9l-7 7-7-7"
+              ></path>
+            </svg>
+          </button>
+          <div id="sec-7" class="accordion-content bg-[#1A1F26]/50">
+            <div class="accordion-inner px-6 pb-8 pt-2">
+              <p
+                class="text-stilsein-muted text-sm leading-relaxed mb-6"
+                data-dict="s7_desc"
+              >
+                The IT Dashboard. Manage your app settings, push notifications,
+                and monitor global hardware health.
+              </p>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Text Content -->
+                <div class="space-y-6">
+                  <div>
+                    <h4
+                      class="text-gray-400 font-bold text-xs tracking-widest uppercase mb-2"
+                      data-dict="s7_h1"
+                    >
+                      Settings & Notifications
+                    </h4>
+                    <ul class="list-disc pl-5 text-sm text-gray-300 space-y-2">
+                      <li>
+                        <strong class="text-white">Alarms:</strong> Turn
+                        specific module notifications on/off. Use the "Snooze"
+                        button to silence all alarms for 8 hours.
+                      </li>
+                      <li>
+                        <strong class="text-white">Preferences:</strong> Toggle
+                        Haptic Feedback (vibrations), switch between Dark and
+                        Light mode, and change the app language.
+                      </li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4
+                      class="text-gray-400 font-bold text-xs tracking-widest uppercase mb-2"
+                      data-dict="s7_h2"
+                    >
+                      Hardware Diagnostics
+                    </h4>
+                    <ul class="list-disc pl-5 text-sm text-gray-300 space-y-2">
+                      <li>
+                        <strong class="text-white">Status Dots:</strong> Check
+                        the Active Sensors list. Green = Healthy, Orange = Low
+                        Battery, Red = Offline.
+                      </li>
+                      <li>
+                        <strong class="text-white">Health Charts:</strong>
+                        Double-tap the Battery or Signal (RSSI) line charts to
+                        open fullscreen, 24-hour diagnostic views.
+                      </li>
+                      <li>
+                        <strong class="text-white">Clear Cache:</strong> If you
+                        suspect your app data is stuck, tap "Clear Cache & Sync"
+                        to force a fresh download from the Vault.
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <!-- Image Placeholder -->
+                <div
+                  class="bg-[#1A1F26] border border-white/5 rounded-xl flex items-center justify-center min-h-[250px] overflow-hidden shadow-inner"
+                >
+                  <div class="text-center opacity-30">
+                    <svg
+                      class="w-12 h-12 mx-auto mb-2 text-gray-400"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+                      ></path>
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                      ></path>
+                    </svg>
+                    <span class="text-xs font-bold tracking-widest uppercase"
+                      >[ WOLF CAVE SCREENSHOT ]</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION 8: AUTOMATED REPORTS -->
+        <div
+          class="glass-card rounded-2xl border border-green-400/20 overflow-hidden shadow-lg group"
+        >
+          <button
+            onclick="toggleSection('sec-8')"
+            class="w-full px-6 py-5 flex items-center justify-between hover:bg-white/5 transition-colors"
+          >
+            <div class="flex items-center gap-4">
+              <div
+                class="w-10 h-10 rounded-xl bg-green-400/10 flex items-center justify-center border border-green-400/30 text-xl"
+              >
+                <svg
+                  class="w-5 h-5 text-green-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                  ></path>
+                </svg>
+              </div>
+              <h2
+                class="text-white font-garet font-bold tracking-widest text-sm md:text-base"
+                data-dict="s8_title"
+              >
+                8. WEEKLY REPORTS
+              </h2>
+            </div>
+            <svg
+              id="icon-sec-8"
+              class="w-5 h-5 text-green-400 transition-transform duration-300"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 9l-7 7-7-7"
+              ></path>
+            </svg>
+          </button>
+          <div id="sec-8" class="accordion-content bg-[#1A1F26]/50">
+            <div class="accordion-inner px-6 pb-8 pt-2">
+              <p
+                class="text-stilsein-muted text-sm leading-relaxed mb-6"
+                data-dict="s8_desc"
+              >
+                Every Sunday night at midnight, Jakkals complies your entire
+                week's telemetry into a beautiful PDF and CSV ledger.
+              </p>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Text Content -->
+                <div class="space-y-6">
+                  <div>
+                    <h4
+                      class="text-green-400 font-bold text-xs tracking-widest uppercase mb-2"
+                      data-dict="s8_h1"
+                    >
+                      The Sunday Night Protocol
+                    </h4>
+                    <ul class="list-disc pl-5 text-sm text-gray-300 space-y-2">
+                      <li>
+                        <strong class="text-white">Automated Delivery:</strong>
+                        You don't need to do anything. The report is
+                        automatically emailed to you, ensuring your farm's data
+                        is safely backed up and ready for Monday morning.
+                      </li>
+                      <li>
+                        <strong class="text-white">AI Summaries:</strong> The
+                        report includes a witty, professional "Looking Back"
+                        summary of the past week, and a "Looking Forward"
+                        summary of the upcoming week's weather.
+                      </li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4
+                      class="text-green-400 font-bold text-xs tracking-widest uppercase mb-2"
+                      data-dict="s8_h2"
+                    >
+                      Manual Exports
+                    </h4>
+                    <ul class="list-disc pl-5 text-sm text-gray-300 space-y-2">
+                      <li>
+                        <strong class="text-white">Export Tool:</strong> You can
+                        manually generate PDF or CSV exports at any time by
+                        tapping the Export icon in the bottom taskbar, allowing
+                        you to select specific nodes and timeframes.
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <!-- Image Placeholder -->
+                <div
+                  class="bg-[#1A1F26] border border-white/5 rounded-xl flex items-center justify-center min-h-[250px] overflow-hidden shadow-inner"
+                >
+                  <div class="text-center opacity-30">
+                    <svg
+                      class="w-12 h-12 mx-auto mb-2 text-green-400"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                      ></path>
+                    </svg>
+                    <span class="text-xs font-bold tracking-widest uppercase"
+                      >[ PDF REPORT SCREENSHOT ]</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer
+      class="py-12 px-6 text-center border-t border-white/10 z-10 relative glass-card panel-texture w-full mt-10"
+    >
+      <p class="text-sm text-jakkals-orange">
+        &copy; 2026 StilSein Industrial (Pty) Ltd. | Designed in South Africa.
+      </p>
+    </footer>
+
+    <!-- TRANSLATION LOGIC SCRIPT -->
+    <script>
+      // Self-contained dictionary for the Manual to keep i18n.js clean
+      const manualDict = {
+        en: {
+          nav_back: "Back to Main Site",
+          hero_badge: "OFFICIAL DOCUMENTATION",
+          hero_title:
+            "STILSEIN <span class='text-stilsein-blue'>USER MANUAL</span>",
+          hero_desc:
+            "Welcome to the control center. Learn how to navigate your digital farm, interpret advanced telemetry, and configure your Jakkals AI alerts.",
+
+          s1_title: "1. THE OMNI-DASHBOARD",
+          s1_desc:
+            "The Command Central of your farm. A unified 3x3 grid that gives you an instant overview of your entire operation.",
+          s1_h1: "The Global Top-Dock",
+          s1_h2: "Hardware & Software Cards",
+
+          s2_title: "2. THE RADAR MAP",
+          s2_desc:
+            "Your farm rendered in geospatial reality. Tap the Gateway node in the center of the Omni-Dashboard, or the Map icon in the bottom taskbar to enter.",
+          s2_h1: "Navigation & Tools",
+          s2_h2: "Interacting with Nodes",
+
+          s3_title: "3. LIVE SENSOR STAGES",
+          s3_desc:
+            "The deep-dive view. Accessed by selecting a specific module from the top dropdown, or tapping a specific node on the Map or Omni-Dashboard.",
+          s3_h1: "The Data Cockpit",
+          s3_h2: "Interactive Elements",
+
+          s4_title: "4. FULLSCREEN CHARTS",
+          s4_desc:
+            "The analytical God-Mode. Designed for deep dives into historical telemetry, leak investigations, and PDF report generation.",
+          s4_h1: "Navigation & Analysis",
+          s4_h2: "Action Bar",
+
+          s5_title: "5. SATELLITE FORECASTS",
+          s5_desc:
+            "Hyper-local meteorological predictions based on your farm's exact GPS coordinates. Accessed from the top-left dropdown menu.",
+          s5_h1: "The 7-Day Overview",
+          s5_h2: "The Triple-Chart View",
+
+          s6_title: "6. THE ARCHIVIST",
+          s6_desc:
+            "Your farm's permanent historical ledger. Every critical event is safely locked away here for future reference.",
+          s6_h1: "The Ticker-Tape Inbox",
+          s6_h2: "Data Management",
+
+          s7_title: "7. THE WOLF CAVE",
+          s7_desc:
+            "The IT Dashboard. Manage your app settings, push notifications, and monitor global hardware health.",
+          s7_h1: "Settings & Notifications",
+          s7_h2: "Hardware Diagnostics",
+
+          s8_title: "8. WEEKLY REPORTS",
+          s8_desc:
+            "Every Sunday night at midnight, Jakkals complies your entire week's telemetry into a beautiful PDF and CSV ledger.",
+          s8_h1: "The Sunday Night Protocol",
+          s8_h2: "Manual Exports",
+        },
+        af: {
+          nav_back: "Terug na Hoofblad",
+          hero_badge: "AMPTELIKE DOKUMENTASIE",
+          hero_title:
+            "STILSEIN <span class='text-stilsein-blue'>GEBRUIKERSGIDS</span>",
+          hero_desc:
+            "Welkom by die beheersentrum. Leer hoe om jou digitale plaas te navigeer, gevorderde telemetrie te ontsyfer, en Jakkals AI waarskuwings op te stel.",
+
+          s1_title: "1. DIE OMNI-DASHBOARD",
+          s1_desc:
+            "Die sentrale beheerkamer van jou plaas. 'n 3x3 rooster wat jou 'n onmiddellike oorsig van jou hele boerdery gee.",
+          s1_h1: "Die Boonste Beheerpaneel",
+          s1_h2: "Hardeware & Sagteware Kaarte",
+
+          s2_title: "2. DIE RADAR KAART",
+          s2_desc:
+            "Jou plaas in geospatiale realiteit. Tik op die Basisstasie in die middel van die Omni-Dashboard, of die Kaart-ikoon onder in die taakbalk om in te gaan.",
+          s2_h1: "Navigasie & Gereedskap",
+          s2_h2: "Interaksie met Knope (Nodes)",
+
+          s3_title: "3. LEWENDIGE SENSOR SKERME",
+          s3_desc:
+            "Die diep-duik aansig. Maak oop deur 'n spesifieke module bo in die kieslys te kies, of deur op 'n spesifieke node op die Kaart te tik.",
+          s3_h1: "Die Data Kajuit",
+          s3_h2: "Interaktiewe Elemente",
+
+          s4_title: "4. VOLSKERM GRAFIEKE",
+          s4_desc:
+            "Die analitiese God-Mode. Ontwerp vir diep duike in historiese telemetrie, lek-ondersoeke, en PDF verslag generering.",
+          s4_h1: "Navigasie & Analise",
+          s4_h2: "Aksie-Balk",
+
+          s5_title: "5. SATELLIET VOORSPELLINGS",
+          s5_desc:
+            "Hiper-lokale meteorologiese voorspellings gebaseer op jou plaas se presiese GPS-koördinate. Beskikbaar in die boonste kieslys.",
+          s5_h1: "Die 7-Dae Oorsig",
+          s5_h2: "Die Drie-Grafiek Aansig",
+
+          s6_title: "6. DIE ARGIEF",
+          s6_desc:
+            "Jou plaas se permanente historiese grootboek. Elke kritiese gebeurtenis word hier veilig toegesluit vir toekomstige verwysing.",
+          s6_h1: "Die Nuuslyn Inboks",
+          s6_h2: "Data Bestuur",
+
+          s7_title: "7. DIE WOLF-GROT",
+          s7_desc:
+            "Die IT Skerm. Bestuur jou app instellings, waarskuwings, en monitor jou wêreldwye hardeware gesondheid.",
+          s7_h1: "Instellings & Waarskuwings",
+          s7_h2: "Hardeware Diagnostiek",
+
+          s8_title: "8. WEEKLIKSE VERSLAE",
+          s8_desc:
+            "Elke Sondagaand om middernag sit Jakkals jou hele week se telemetrie saam in 'n pragtige PDF en CSV grootboek.",
+          s8_h1: "Die Sondagaand Protokol",
+          s8_h2: "Handmatige Uitvoere",
+        },
+      };
+
+      let currentLang = localStorage.getItem("stilsein_lang") || "en";
+      document.getElementById("lang-toggle-text").innerText =
+        currentLang === "en" ? "AF" : "EN";
+
+      function applyTranslations() {
+        const dict = manualDict[currentLang];
+        document.querySelectorAll("[data-dict]").forEach((el) => {
+          const key = el.getAttribute("data-dict");
+          if (dict[key]) el.innerHTML = dict[key];
+        });
+      }
+
+      function toggleManualLang() {
+        currentLang = currentLang === "en" ? "af" : "en";
+        localStorage.setItem("stilsein_lang", currentLang);
+        document.getElementById("lang-toggle-text").innerText =
+          currentLang === "en" ? "AF" : "EN";
+        applyTranslations();
+      }
+
+      // Accordion Engine
+      function toggleSection(id) {
+        const content = document.getElementById(id);
+        const icon = document.getElementById("icon-" + id);
+
+        if (content.classList.contains("expanded")) {
+          content.classList.remove("expanded");
+          icon.classList.remove("rotate-180");
+        } else {
+          // Close all others first
+          document
+            .querySelectorAll(".accordion-content")
+            .forEach((el) => el.classList.remove("expanded"));
+          document
+            .querySelectorAll('[id^="icon-sec-"]')
+            .forEach((el) => el.classList.remove("rotate-180"));
+
+          // Open target
+          content.classList.add("expanded");
+          icon.classList.add("rotate-180");
+        }
+      }
+
+      // Init on load
+      applyTranslations();
+    </script>
+  </body>
+</html>
