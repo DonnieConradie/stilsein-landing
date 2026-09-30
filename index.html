@@ -1,4 +1,5 @@
 <!doctype html>
+<!-- 🛠️ SCROLL OFFSET FIX: Set global offset for Nav Bar -->
 <html lang="en" class="scroll-smooth scroll-pt-20">
   <head>
     <meta charset="UTF-8" />
@@ -146,6 +147,11 @@
         font-weight: 400;
         letter-spacing: 0.6em;
         text-transform: uppercase;
+      }
+
+      /* 🛠️ ECOSYSTEM SCROLL FIX: Adds invisible padding above ecosystem sections so the fixed header doesn't cover the title! */
+      section[id^="eco-"] {
+        scroll-margin-top: 80px;
       }
     </style>
   </head>
@@ -551,26 +557,23 @@
           <span data-i18n="hero_btn1">DISCOVER THE SYSTEM</span>
         </a>
 
-        <!-- 🛠️ PLAAS-BOUER QUICK ACCESS -->
-        <a
-          href="plaas-bouer.html"
-          class="px-8 py-4 bg-jakkals-orange text-stilsein-dark font-bold rounded-lg hover:bg-white transition-all shadow-[0_0_15px_rgba(255,158,74,0.4)] tracking-wide flex items-center gap-2"
-        >
-          <svg
-            class="w-5 h-5"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"
-            ></path>
-          </svg>
-          <span data-i18n="hero_btn_build">BUILD YOUR FARM</span>
-        </a>
+        <!-- 🛠️ APP STORE BADGES -->
+        <div class="flex items-center gap-4">
+          <a href="#" class="transition-transform hover:scale-105 duration-300">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg"
+              alt="Download on the App Store"
+              class="h-12 object-contain"
+            />
+          </a>
+          <a href="#" class="transition-transform hover:scale-105 duration-300">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
+              alt="Get it on Google Play"
+              class="h-12 object-contain"
+            />
+          </a>
+        </div>
 
         <a
           href="https://wa.me/27718162636"
@@ -630,7 +633,7 @@
               data-i18n="tech_lora_desc"
             >
               Long-range, low-power radio waves. This is the magic that sends
-              data over 15km with a battery that lasts up to 5 years—completely
+              data over 15km with a battery that lasts up to 5 years completely
               independent of cellular networks.
             </p>
           </div>
@@ -675,15 +678,16 @@
           Farming in South Africa means managing vast distances and
           unpredictable elements. StilSein gives you absolute certainty by
           putting the heartbeat of your farm directly in your pocket. We
-          transform raw data from your lands—like live rainfall and pipe
-          pressure—into clear, actionable insights. With instant alerts, 5-year
+          transform raw data from your lands like live rainfall and pipe
+          pressure into clear, actionable insights. With instant alerts, 5-year
           digital archives, and Jakkals AI keeping a 24/7 watch, you'll know
           exactly what's happening in your furthest camps, whether you're at the
           co-op or sitting on the stoep.
         </p>
 
+        <!-- 🛠️ 3x3 GRID FIX: Changed md:grid-cols-4 to md:grid-cols-3 to perfectly accommodate the 9th item! -->
         <div
-          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 text-left items-start"
+          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-left items-start"
         >
           <!-- 1. Live Rainfall -->
           <div
@@ -737,13 +741,20 @@
             >
               <div class="overflow-hidden">
                 <p
-                  class="p-4 pt-2 text-xs text-stilsein-muted leading-relaxed relative z-10"
+                  class="px-4 pt-2 text-xs text-stilsein-muted leading-relaxed relative z-10"
                   data-i18n="grid_rain_exp"
                 >
                   Industrial-grade tipping bucket sensors capture every
-                  millimeter. They run on a 10-year battery and beam data over a
-                  15km LoRaWAN radio frequency directly to your homestead.
+                  millimeter. They feature a battery life of up to 5 years and
+                  beam data over a 15km LoRaWAN radio frequency directly to your
+                  homestead.
                 </p>
+                <a
+                  href="#eco-rain"
+                  class="relative z-10 block px-4 pb-4 pt-2 text-[10px] text-stilsein-blue hover:text-white font-bold tracking-widest uppercase transition-colors"
+                  data-i18n="grid_link"
+                  >Read more below...</a
+                >
                 <svg
                   class="absolute -bottom-4 -right-4 w-24 h-24 text-stilsein-blue opacity-5 pointer-events-none"
                   fill="none"
@@ -813,13 +824,19 @@
             >
               <div class="overflow-hidden">
                 <p
-                  class="p-4 pt-2 text-xs text-stilsein-muted leading-relaxed relative z-10"
+                  class="px-4 pt-2 text-xs text-stilsein-muted leading-relaxed relative z-10"
                   data-i18n="grid_pipe_exp"
                 >
                   Heavy-duty pressure transducers tap directly into your
                   mainlines. They read the exact 'bar' pressure and transmit it
                   every few minutes so you know the water is flowing.
                 </p>
+                <a
+                  href="#eco-pipe"
+                  class="relative z-10 block px-4 pb-4 pt-2 text-[10px] text-cyan-400 hover:text-white font-bold tracking-widest uppercase transition-colors"
+                  data-i18n="grid_link"
+                  >Read more below...</a
+                >
                 <svg
                   class="absolute -bottom-4 -right-4 w-24 h-24 text-cyan-400 opacity-5 pointer-events-none"
                   fill="none"
@@ -831,6 +848,89 @@
                     stroke-linejoin="round"
                     stroke-width="2"
                     d="M13 10V3L4 14h7v7l9-11h-7z"
+                  ></path>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2.5. Dam Levels -->
+          <div
+            class="relative bg-stilsein-card/40 border border-[#7D6B5D]/20 rounded-2xl transition-all duration-300 overflow-hidden group cursor-pointer shadow-sm hover:shadow-[#7D6B5D]/10"
+            onclick="toggleOffer('offer-dam')"
+          >
+            <div
+              class="p-4 flex items-center gap-4 z-10 relative bg-stilsein-card/80"
+            >
+              <div
+                class="w-10 h-10 rounded-full bg-[#7D6B5D]/10 flex items-center justify-center border border-[#7D6B5D]/30 shrink-0"
+              >
+                <svg
+                  class="w-5 h-5 text-[#7D6B5D]"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                  ></path>
+                </svg>
+              </div>
+              <div
+                class="text-white font-bold text-xs tracking-wider uppercase"
+                data-i18n="grid_dam"
+              >
+                DAM LEVELS
+              </div>
+              <svg
+                class="w-4 h-4 text-stilsein-muted ml-auto transition-transform duration-300 offer-chevron"
+                data-target="offer-dam"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"
+                ></path>
+              </svg>
+            </div>
+            <div
+              id="offer-dam"
+              class="offer-content grid grid-rows-[0fr] transition-all duration-300 ease-in-out bg-stilsein-dark/50"
+            >
+              <div class="overflow-hidden">
+                <p
+                  class="px-4 pt-2 text-xs text-stilsein-muted leading-relaxed relative z-10"
+                  data-i18n="grid_dam_exp"
+                >
+                  Sonic or submersible sensors measure reservoir depth. The
+                  Waterwolf AI converts this into Liters and Percentages,
+                  calculating exactly how many days of water you have left
+                  before the dam runs dry.
+                </p>
+                <a
+                  href="#eco-dam"
+                  class="relative z-10 block px-4 pb-4 pt-2 text-[10px] text-[#7D6B5D] hover:text-white font-bold tracking-widest uppercase transition-colors"
+                  data-i18n="grid_link"
+                  >Read more below...</a
+                >
+                <svg
+                  class="absolute -bottom-4 -right-4 w-24 h-24 text-[#7D6B5D] opacity-5 pointer-events-none"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
                   ></path>
                 </svg>
               </div>
@@ -889,13 +989,19 @@
             >
               <div class="overflow-hidden">
                 <p
-                  class="p-4 pt-2 text-xs text-stilsein-muted leading-relaxed relative z-10"
+                  class="px-4 pt-2 text-xs text-stilsein-muted leading-relaxed relative z-10"
                   data-i18n="grid_forecast_exp"
                 >
                   We integrate with global satellite weather models. Instead of
                   generic regional weather, the system pulls forecasts
                   specifically for your farm's unique GPS coordinates.
                 </p>
+                <a
+                  href="#eco-forecast"
+                  class="relative z-10 block px-4 pb-4 pt-2 text-[10px] text-yellow-400 hover:text-white font-bold tracking-widest uppercase transition-colors"
+                  data-i18n="grid_link"
+                  >Read more below...</a
+                >
                 <svg
                   class="absolute -bottom-4 -right-4 w-24 h-24 text-yellow-400 opacity-5 pointer-events-none"
                   fill="none"
@@ -965,13 +1071,19 @@
             >
               <div class="overflow-hidden">
                 <p
-                  class="p-4 pt-2 text-xs text-stilsein-muted leading-relaxed relative z-10"
+                  class="px-4 pt-2 text-xs text-stilsein-muted leading-relaxed relative z-10"
                   data-i18n="grid_jakkals_exp"
                 >
                   A localized AI model configured with your farm's size,
                   livestock, and thresholds. It constantly scans incoming sensor
                   data and flags anomalies before they become crises.
                 </p>
+                <a
+                  href="#jakkals-ai"
+                  class="relative z-10 block px-4 pb-4 pt-2 text-[10px] text-jakkals-orange hover:text-white font-bold tracking-widest uppercase transition-colors"
+                  data-i18n="grid_link"
+                  >Read more below...</a
+                >
                 <svg
                   class="absolute -bottom-4 -right-4 w-24 h-24 text-jakkals-orange opacity-5 pointer-events-none"
                   fill="none"
@@ -1041,13 +1153,19 @@
             >
               <div class="overflow-hidden">
                 <p
-                  class="p-4 pt-2 text-xs text-stilsein-muted leading-relaxed relative z-10"
+                  class="px-4 pt-2 text-xs text-stilsein-muted leading-relaxed relative z-10"
                   data-i18n="grid_maps_exp"
                 >
                   Every installed sensor is digitally pinned on your customized
                   farm map. You instantly see a spatial layout of where issues
                   are occurring without guessing.
                 </p>
+                <a
+                  href="#eco-maps"
+                  class="relative z-10 block px-4 pb-4 pt-2 text-[10px] text-green-400 hover:text-white font-bold tracking-widest uppercase transition-colors"
+                  data-i18n="grid_link"
+                  >Read more below...</a
+                >
                 <svg
                   class="absolute -bottom-4 -right-4 w-24 h-24 text-green-400 opacity-5 pointer-events-none"
                   fill="none"
@@ -1117,13 +1235,20 @@
             >
               <div class="overflow-hidden">
                 <p
-                  class="p-4 pt-2 text-xs text-stilsein-muted leading-relaxed relative z-10"
+                  class="px-4 pt-2 text-xs text-stilsein-muted leading-relaxed relative z-10"
                   data-i18n="grid_alerts_exp"
                 >
                   You set the rules. If pressure drops below 2 bar, or rainfall
                   exceeds 50mm, the system instantly pushes a high-priority
                   notification to your smartphone.
                 </p>
+                <!-- Alerts are technically covered by Wolf Cave / Omni Dashboard -->
+                <a
+                  href="#eco-omni"
+                  class="relative z-10 block px-4 pb-4 pt-2 text-[10px] text-red-400 hover:text-white font-bold tracking-widest uppercase transition-colors"
+                  data-i18n="grid_link"
+                  >Read more below...</a
+                >
                 <svg
                   class="absolute -bottom-4 -right-4 w-24 h-24 text-red-400 opacity-5 pointer-events-none"
                   fill="none"
@@ -1193,13 +1318,19 @@
             >
               <div class="overflow-hidden">
                 <p
-                  class="p-4 pt-2 text-xs text-stilsein-muted leading-relaxed relative z-10"
+                  class="px-4 pt-2 text-xs text-stilsein-muted leading-relaxed relative z-10"
                   data-i18n="grid_archive_exp"
                 >
                   Every single data pulse is permanently stored in a secure
                   time-series database. Nothing is ever deleted, building a
                   comprehensive micro-climate history of your land.
                 </p>
+                <a
+                  href="#eco-archive"
+                  class="relative z-10 block px-4 pb-4 pt-2 text-[10px] text-[#A396D1] hover:text-white font-bold tracking-widest uppercase transition-colors"
+                  data-i18n="grid_link"
+                  >Read more below...</a
+                >
                 <svg
                   class="absolute -bottom-4 -right-4 w-24 h-24 text-[#A396D1] opacity-5 pointer-events-none"
                   fill="none"
@@ -1269,13 +1400,19 @@
             >
               <div class="overflow-hidden">
                 <p
-                  class="p-4 pt-2 text-xs text-stilsein-muted leading-relaxed relative z-10"
+                  class="px-4 pt-2 text-xs text-stilsein-muted leading-relaxed relative z-10"
                   data-i18n="grid_export_exp"
                 >
                   With one tap, our cloud servers compile your historical data
                   into beautiful, branded PDF reports or raw CSV
                   spreadsheets—perfect for insurance claims or agronomists.
                 </p>
+                <a
+                  href="#eco-export"
+                  class="relative z-10 block px-4 pb-4 pt-2 text-[10px] text-teal-400 hover:text-white font-bold tracking-widest uppercase transition-colors"
+                  data-i18n="grid_link"
+                  >Read more below...</a
+                >
                 <svg
                   class="absolute -bottom-4 -right-4 w-24 h-24 text-teal-400 opacity-5 pointer-events-none"
                   fill="none"
@@ -1623,6 +1760,106 @@
             </div>
           </div>
         </div>
+
+        <!-- NEW: THE SOFTWARE PITCH -->
+        <div class="mt-24 pt-12 border-t border-white/5">
+          <div class="text-center mb-12">
+            <h3
+              class="text-3xl md:text-4xl font-bold text-white mb-6 font-garet"
+              data-i18n="hw_soft_title"
+            >
+              SO HOW DOES THE
+              <span class="text-stilsein-blue">SOFTWARE</span> ACTUALLY WORK?
+            </h3>
+            <p
+              class="text-stilsein-muted max-w-3xl mx-auto leading-relaxed text-lg"
+              data-i18n="hw_soft_desc"
+            >
+              You download the app for free. There are no massive upfront
+              software development fees. You submit your farm details, our
+              engineering team hardcodes your specific farm topology and
+              thresholds, and you simply pay a small monthly SaaS (Software as a
+              Service) fee to keep the intelligence engine running.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div
+              class="glass-card p-8 rounded-3xl border border-white/5 hover:border-stilsein-blue/30 transition-colors relative overflow-hidden group shadow-lg"
+            >
+              <div
+                class="w-12 h-12 bg-stilsein-blue/10 rounded-xl flex items-center justify-center border border-stilsein-blue/30 mb-6 group-hover:scale-110 transition-transform"
+              >
+                <span class="text-xl">🧬</span>
+              </div>
+              <h4
+                class="text-lg font-bold text-white mb-3 tracking-widest text-sm"
+                data-i18n="hw_soft_1_title"
+              >
+                YOUR DIGITAL TWIN
+              </h4>
+              <p
+                class="text-stilsein-muted text-sm leading-relaxed"
+                data-i18n="hw_soft_1_desc"
+              >
+                We build a digital replica of your farm. If Pump A feeds Dam B,
+                the software knows it. If pressure drops, the app doesn't just
+                show a generic error—it shows you exactly which pipeline is
+                failing on your customized radar map.
+              </p>
+            </div>
+
+            <div
+              class="glass-card p-8 rounded-3xl border border-white/5 hover:border-jakkals-orange/30 transition-colors relative overflow-hidden group shadow-lg"
+            >
+              <div
+                class="w-12 h-12 bg-jakkals-orange/10 rounded-xl flex items-center justify-center border border-jakkals-orange/30 mb-6 group-hover:scale-110 transition-transform"
+              >
+                <span class="text-xl">📵</span>
+              </div>
+              <h4
+                class="text-lg font-bold text-white mb-3 tracking-widest text-sm"
+                data-i18n="hw_soft_2_title"
+              >
+                JUMPING THE GAP
+              </h4>
+              <p
+                class="text-stilsein-muted text-sm leading-relaxed"
+                data-i18n="hw_soft_2_desc"
+              >
+                Zero cell reception in the field? No problem. The app uses
+                advanced 'Offline Caching'. It boots instantly using the last
+                known data, meaning you can still analyze historical charts
+                while standing in a signal-dead zone.
+              </p>
+            </div>
+
+            <div
+              class="glass-card p-8 rounded-3xl border border-white/5 hover:border-red-400/30 transition-colors relative overflow-hidden group shadow-lg"
+            >
+              <div
+                class="w-12 h-12 bg-red-400/10 rounded-xl flex items-center justify-center border border-red-400/30 mb-6 group-hover:scale-110 transition-transform"
+              >
+                <span class="text-xl">🚨</span>
+              </div>
+              <h4
+                class="text-lg font-bold text-white mb-3 tracking-widest text-sm"
+                data-i18n="hw_soft_3_title"
+              >
+                NOTIFICATIONS THAT MATTER
+              </h4>
+              <p
+                class="text-stilsein-muted text-sm leading-relaxed"
+                data-i18n="hw_soft_3_desc"
+              >
+                We don't spam you. The system is designed to stay completely
+                silent when things are operating normally. You only get a push
+                notification when a pump drops below your specific minimum Bar,
+                or when a dam drains unexplainably fast.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -1815,45 +2052,59 @@
               <div class="w-3 h-3 rounded-full bg-green-500/50"></div>
               <span
                 class="ml-4 text-[10px] tracking-widest text-jakkals-orange/70 font-mono"
-                >JAKKALS_CORE_PROCESS.EXE</span
+                >JAKKALS_VISION_ENGINE.EXE</span
               >
             </div>
             <div
-              class="p-6 font-mono text-sm leading-relaxed text-green-500 min-h-[400px] h-auto overflow-hidden relative pb-10"
+              class="p-6 font-mono text-[11px] leading-relaxed text-green-500 min-h-[400px] h-auto overflow-hidden relative pb-10"
             >
-              <div class="text-gray-500 mb-4">
-                > Initializing Jakkals AI...
-                <span class="text-green-400">OK</span>
+              <div class="text-gray-500 mb-3">
+                > Initializing Vision Engine...
+                <span class="text-green-400">OK</span><br />
+                > Scanning Topography & Elevation...
               </div>
-              <div class="text-gray-500 mb-4">> Loading Farm Context...</div>
+
               <div class="mb-2 text-cyan-300">
-                FARM_TYPE: <span class="text-white">Dorper Stud</span>
-              </div>
-              <div class="mb-2 text-cyan-300">
-                FLOOD_THRESHOLD: <span class="text-white">80mm / 24H</span>
-              </div>
-              <div class="mb-6 text-cyan-300">
-                ACTIVE_NODES: <span class="text-white">Opstal, Noordgrens</span>
-              </div>
-              <div class="text-gray-500 mb-4">
-                > Analyzing Satellite Feed...
-              </div>
-              <div class="mb-2 text-jakkals-orange">
-                WARNING:
+                CATCHMENT_ANALYSIS: <br />
                 <span class="text-white"
-                  >Heatwave detected (39°C) expected at 14:00.</span
+                  >Runoff moves from the elevated terrace of RAIN 1 (461m ASL)
+                  southward toward the depression of DAM 1 (460m ASL). This
+                  concentrates surface water into the Dwars River
+                  catchment.</span
                 >
               </div>
-              <div class="mt-6 border-l-2 border-jakkals-orange pl-4">
+
+              <div class="mb-2 text-cyan-300">
+                RISK_CLASSIFICATION [DAM 1]: <br />
+                <span class="text-white"
+                  >Located at the lowest point (460m). Highly susceptible to
+                  cold air pooling (frost risk) and waterlogging if 24H rain
+                  exceeds the 55mm flood threshold. Moderate fire-risk interface
+                  due to dense residential treeline fuel loads.</span
+                >
+              </div>
+
+              <div class="mb-6 text-cyan-300">
+                RISK_CLASSIFICATION [PIPE 1]: <br />
+                <span class="text-white"
+                  >Situated on the open valley floor adjacent to the railway
+                  corridor. Lacks topographic shielding, exposing it to high
+                  wind run-up and amplifying heatwave risks for stone fruit
+                  orchards.</span
+                >
+              </div>
+
+              <div class="text-gray-500 mb-3">
+                > Injecting Landscape Context into Global Prompt Matrix...
+                <span class="text-green-400">SUCCESS</span>
+              </div>
+
+              <div class="mt-4 border-l-2 border-jakkals-orange pl-4">
                 <div class="text-jakkals-orange font-bold mb-1">
-                  GENERATING RECOMMENDATION:
+                  AWAITING QUERY:
                 </div>
                 <div class="text-white relative block pr-4">
-                  <span data-i18n="ai_term_text"
-                    >"Farmer, the heatwave hits 39°C this afternoon. Make sure
-                    the North Boundary herd has enough shade and water. I'll
-                    keep an eye on the wind."</span
-                  >
+                  <span>"Howzit Jakkals, any risks for Pipe 1 today?"</span>
                   <span
                     class="animate-pulse bg-jakkals-orange w-2 h-4 inline-block align-middle ml-1"
                   ></span>
@@ -1890,8 +2141,9 @@
       </div>
     </section>
 
-    <!-- SECTION 1: OMNI DASHBOARD & MAPS -->
+    <!-- SECTION 1: OMNI DASHBOARD -->
     <section
+      id="eco-omni"
       class="py-24 px-6 bg-[#232B38] border-y border-white/5 relative z-10 w-full overflow-hidden bg-[url('assets/images/bg_texture_dark.png')] bg-repeat bg-blend-overlay"
     >
       <div
@@ -1906,7 +2158,7 @@
             <span
               class="w-2 h-2 rounded-full bg-stilsein-blue animate-pulse"
             ></span>
-            <span data-i18n="eco_s1_sub">A LIVING, BREATHING OVERVIEW</span>
+            <span data-i18n="eco_s1_sub">WHERE IT ALL COMES TOGETHER</span>
           </div>
           <h2
             class="text-4xl font-bold text-white mb-6 font-garet leading-tight"
@@ -1921,12 +2173,10 @@
             The StilSein Omni-Dashboard replaces scattered data with a unified
             3x3 matrix. Instantly identify active storms, monitor hardware
             battery health, and watch tiles pulse aggressively if a hazard is
-            detected anywhere on the farm. Tap the Gateway to open the
-            Interactive Map, bringing your farm's layout to life with live GPS
-            positioning and blurred, overlaid data widgets.
+            detected anywhere on the farm. Tap an empty tile at any time to
+            request a quote and expand your sensor network seamlessly.
           </p>
         </div>
-        <!-- Dual Phones: Stack on Mobile, Row on Desktop -->
         <div
           class="w-full lg:w-1/2 flex flex-col sm:flex-row justify-center items-center sm:items-start gap-12 sm:gap-8"
         >
@@ -1945,7 +2195,7 @@
               <img
                 src="assets/images/mockup_gateway_02.png"
                 class="img-2 absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-700 drop-shadow-[0_0_20px_rgba(145,172,200,0.2)]"
-                alt="Hub Detail"
+                alt="Upsale"
               />
             </div>
             <h3
@@ -1958,8 +2208,8 @@
               class="text-stilsein-muted text-xs leading-relaxed"
               data-i18n="eco_1_desc"
             >
-              Monitor all connected devices, check battery life and signal
-              strength, and configure bilingual notifications.
+              Monitor all connected devices, check battery life, signal
+              strength, and access your 3x3 grid overview.
             </p>
           </div>
           <div
@@ -1970,45 +2220,46 @@
               onclick="toggleMockup(this)"
             >
               <img
-                src="assets/images/mockup_map_01.png"
+                src="assets/images/mockup_wolfcave_01.png"
                 class="img-1 absolute inset-0 w-full h-full object-contain transition-opacity duration-700 drop-shadow-[0_0_20px_rgba(145,172,200,0.2)]"
-                alt="Map"
+                alt="Wolf Cave"
               />
               <img
-                src="assets/images/mockup_map_02.png"
+                src="assets/images/mockup_wolfcave_02.png"
                 class="img-2 absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-700 drop-shadow-[0_0_20px_rgba(145,172,200,0.2)]"
-                alt="Map Fullscreen"
+                alt="Health Chart"
               />
             </div>
             <h3
-              class="text-green-400 text-sm tracking-widest font-black font-garet mb-3 uppercase"
-              data-i18n="eco_7_title"
+              class="text-white text-sm tracking-widest font-black font-garet mb-3 uppercase"
+              data-i18n="eco_1_title_b"
             >
-              INTERACTIVE MAPS
+              WOLF CAVE
             </h3>
             <p
               class="text-stilsein-muted text-xs leading-relaxed"
-              data-i18n="eco_7_desc"
+              data-i18n="eco_1_desc_b"
             >
-              See your nodes plotted on the farm. Built-in GPS tracks your exact
-              location relative to your hardware.
+              Your IT Dashboard. Configure push notifications, mute alarms, and
+              view deep 24-hour diagnostic health charts.
             </p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 2: RAINFALL -->
+    <!-- SECTION 2: RADAR MAPS -->
     <section
-      class="py-24 px-6 bg-[#1A1F26] border-b border-white/5 relative z-10 w-full overflow-hidden bg-[url('assets/images/bg_texture_blue.png')] bg-repeat bg-blend-overlay"
+      id="eco-maps"
+      class="py-24 px-6 bg-[#1A1F26] border-b border-white/5 relative z-10 w-full overflow-hidden bg-[url('assets/images/bg_texture_dark.png')] bg-repeat bg-blend-overlay"
     >
       <div
-        class="absolute top-1/2 right-0 transform translate-x-1/4 -translate-y-1/2 w-[600px] h-[600px] bg-stilsein-blue/5 rounded-full blur-[100px] pointer-events-none"
+        class="absolute top-1/2 left-0 transform -translate-x-1/4 -translate-y-1/2 w-[600px] h-[600px] bg-green-500/5 rounded-full blur-[100px] pointer-events-none"
       ></div>
       <div
         class="max-w-6xl mx-auto flex flex-col lg:flex-row items-start gap-16 relative z-10"
       >
-        <!-- Dual Phones: Stack on Mobile, Row on Desktop -->
+        <!-- Dual Phones -->
         <div
           class="w-full lg:w-1/2 flex flex-col sm:flex-row justify-center items-center sm:items-start gap-12 sm:gap-8 order-2 lg:order-1"
         >
@@ -2020,28 +2271,28 @@
               onclick="toggleMockup(this)"
             >
               <img
-                src="assets/images/mockup_rain_gauge_01.png"
-                class="img-1 absolute inset-0 w-full h-full object-contain transition-opacity duration-700 drop-shadow-[0_0_20px_rgba(145,172,200,0.2)]"
-                alt="Rain Cylinder"
+                src="assets/images/mockup_map_01.png"
+                class="img-1 absolute inset-0 w-full h-full object-contain transition-opacity duration-700 drop-shadow-[0_0_20px_rgba(74,222,128,0.2)]"
+                alt="Map View"
               />
               <img
-                src="assets/images/mockup_rain_gauge_02.png"
-                class="img-2 absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-700 drop-shadow-[0_0_20px_rgba(145,172,200,0.2)]"
-                alt="Rain History"
+                src="assets/images/mockup_map_02.png"
+                class="img-2 absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-700 drop-shadow-[0_0_20px_rgba(74,222,128,0.2)]"
+                alt="Blurred Dam Overlay"
               />
             </div>
             <h3
-              class="text-stilsein-blue text-sm tracking-widest font-black font-garet mb-3 uppercase"
-              data-i18n="eco_2_title"
+              class="text-green-400 text-sm tracking-widest font-black font-garet mb-3 uppercase"
+              data-i18n="eco_map_1_title"
             >
-              RAINFALL GAUGE
+              FARM RADAR
             </h3>
             <p
               class="text-stilsein-muted text-xs leading-relaxed"
-              data-i18n="eco_2_desc"
+              data-i18n="eco_map_1_desc"
             >
-              Watch your digital cylinder fill up dynamically. Instantly toggle
-              to detailed historical charts to track water metrics.
+              A bird's-eye view of your entire operation with real-time status
+              indicators and active radio links.
             </p>
           </div>
           <div
@@ -2052,28 +2303,135 @@
               onclick="toggleMockup(this)"
             >
               <img
-                src="assets/images/mockup_rain_live_01.png"
-                class="img-1 absolute inset-0 w-full h-full object-contain transition-opacity duration-700 drop-shadow-[0_0_20px_rgba(145,172,200,0.2)]"
-                alt="Live Storm"
+                src="assets/images/mockup_map_03.png"
+                class="img-1 absolute inset-0 w-full h-full object-contain transition-opacity duration-700 drop-shadow-[0_0_20px_rgba(74,222,128,0.2)]"
+                alt="Zoomed Map"
               />
               <img
-                src="assets/images/mockup_rain_live_02.png"
+                src="assets/images/mockup_map_04.png"
+                class="img-2 absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-700 drop-shadow-[0_0_20px_rgba(74,222,128,0.2)]"
+                alt="Node Cockpit"
+              />
+            </div>
+            <h3
+              class="text-green-400 text-sm tracking-widest font-black font-garet mb-3 uppercase"
+              data-i18n="eco_map_2_title"
+            >
+              THE FLOATING STAGE
+            </h3>
+            <p
+              class="text-stilsein-muted text-xs leading-relaxed"
+              data-i18n="eco_map_2_desc"
+            >
+              Tap any node on the map to blur the background and instantly
+              interact with its data cockpit.
+            </p>
+          </div>
+        </div>
+        <div
+          class="w-full lg:w-1/2 pt-4 order-1 lg:order-2 text-center flex flex-col items-center"
+        >
+          <div
+            class="inline-flex items-center gap-2 px-4 py-1 rounded-full border border-green-500/40 bg-green-500/10 text-green-400 text-xs font-bold tracking-[0.2em] mb-6 shadow-[0_0_15px_rgba(74,222,128,0.15)]"
+          >
+            <span data-i18n="eco_s_map_sub">GEOSPATIAL REALITY</span>
+          </div>
+          <h2
+            class="text-4xl font-bold text-white mb-6 font-garet leading-tight"
+            data-i18n="eco_s_map_title"
+          >
+            RADAR <span class="text-green-400">MAPS.</span>
+          </h2>
+          <p
+            class="text-stilsein-muted text-lg leading-relaxed"
+            data-i18n="eco_s_map_body"
+          >
+            Every installed sensor is digitally pinned on your customized farm
+            map. You instantly see a spatial layout of where issues are
+            occurring without guessing. Track live signal paths, identify
+            rainfall severity bubbles over specific camps, and view your exact
+            physical distance to the gateway.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: PRECISION HYDROMETRY -->
+    <section
+      id="eco-rain"
+      class="py-24 px-6 bg-[#232B38] border-b border-white/5 relative z-10 w-full overflow-hidden bg-[url('assets/images/bg_texture_blue.png')] bg-repeat bg-blend-overlay"
+    >
+      <div
+        class="absolute top-1/2 right-0 transform translate-x-1/4 -translate-y-1/2 w-[600px] h-[600px] bg-stilsein-blue/5 rounded-full blur-[100px] pointer-events-none"
+      ></div>
+      <div
+        class="max-w-6xl mx-auto flex flex-col lg:flex-row items-start gap-16 relative z-10"
+      >
+        <div
+          class="w-full lg:w-1/2 flex flex-col sm:flex-row justify-center items-center sm:items-start gap-12 sm:gap-8 order-2 lg:order-1"
+        >
+          <div
+            class="flex flex-col items-center text-center group w-full sm:w-1/2 max-w-[280px]"
+          >
+            <div
+              class="relative w-full aspect-[1/2] transition-transform duration-300 hover:-translate-y-2 cursor-pointer mb-6"
+              onclick="toggleMockup(this)"
+            >
+              <img
+                src="assets/images/mockup_rain_net_01.png"
+                class="img-1 absolute inset-0 w-full h-full object-contain transition-opacity duration-700 drop-shadow-[0_0_20px_rgba(145,172,200,0.2)]"
+                alt="Rain Network"
+              />
+              <img
+                src="assets/images/mockup_rain_net_02.png"
                 class="img-2 absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-700 drop-shadow-[0_0_20px_rgba(145,172,200,0.2)]"
-                alt="Storm Graph"
+                alt="Rain Network Chart"
+              />
+            </div>
+            <h3
+              class="text-stilsein-blue text-sm tracking-widest font-black font-garet mb-3 uppercase"
+              data-i18n="eco_2_title"
+            >
+              RAINFALL NETWORK
+            </h3>
+            <p
+              class="text-stilsein-muted text-xs leading-relaxed"
+              data-i18n="eco_2_desc"
+            >
+              Compare accumulation across multiple camps simultaneously with
+              dynamic, animated bar charts.
+            </p>
+          </div>
+          <div
+            class="flex flex-col items-center text-center group w-full sm:w-1/2 max-w-[280px]"
+          >
+            <div
+              class="relative w-full aspect-[1/2] transition-transform duration-300 hover:-translate-y-2 cursor-pointer mb-6"
+              onclick="toggleMockup(this)"
+            >
+              <img
+                src="assets/images/mockup_rain_gauge_01.png"
+                class="img-1 absolute inset-0 w-full h-full object-contain transition-opacity duration-700 drop-shadow-[0_0_20px_rgba(145,172,200,0.2)]"
+                alt="Rain Gauge"
+              />
+              <img
+                src="assets/images/mockup_rain_gauge_02.png"
+                class="img-2 absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-700 drop-shadow-[0_0_20px_rgba(145,172,200,0.2)]"
+                alt="Rain History"
               />
             </div>
             <h3
               class="text-stilsein-blue text-sm tracking-widest font-black font-garet mb-3 uppercase"
               data-i18n="eco_3_title"
             >
-              LIVE RAIN SPELLS
+              RAINFALL GAUGE
             </h3>
             <p
               class="text-stilsein-muted text-xs leading-relaxed"
               data-i18n="eco_3_desc"
             >
-              Watch animated raindrops intensify based on real-time downpours
-              and instant 5-minute telemetry.
+              Watch your digital cylinder fill up dynamically during a storm.
+              Dive into the historical chart to track long-term water metrics.
             </p>
           </div>
         </div>
@@ -2096,18 +2454,122 @@
             data-i18n="eco_s2_body"
           >
             Experience rainfall tracking like never before. During an active
-            event, the system shifts into a high-resolution 5-minute Live Storm
-            Engine. The interface dynamically calculates drop velocity to
-            classify the rain—from a gentle drizzle to a heavy cloudburst. We
-            also hardcode custom flood-thresholds based on your specific
-            district's soil and topology.
+            event, the system shifts into a high-resolution Live Storm Engine.
+            Watch animated drops intensify based on real-time downpours, while
+            the backend dynamically calculates drop velocity to classify the
+            severity from a gentle drizzle to a heavy cloudburst.
           </p>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 3: PIPE PRESSURE -->
+    <!-- SECTION 4: DAM LEVELS -->
     <section
+      id="eco-dam"
+      class="py-24 px-6 bg-[#1A1F26] border-b border-white/5 relative z-10 w-full overflow-hidden bg-[url('assets/images/bg_texture_dark.png')] bg-repeat bg-blend-overlay"
+    >
+      <div
+        class="max-w-6xl mx-auto flex flex-col lg:flex-row items-start gap-16 relative z-10"
+      >
+        <div
+          class="w-full lg:w-1/2 pt-4 text-center flex flex-col items-center"
+        >
+          <div
+            class="inline-flex items-center gap-2 px-4 py-1 rounded-full border border-[#7D6B5D]/40 bg-[#7D6B5D]/10 text-[#7D6B5D] text-xs font-bold tracking-[0.2em] mb-6 shadow-[0_0_15px_rgba(125,107,93,0.15)]"
+          >
+            <span data-i18n="eco_s_dam_sub">VOLUMETRIC OVERSIGHT</span>
+          </div>
+          <h2
+            class="text-4xl font-bold text-white mb-6 font-garet leading-tight"
+            data-i18n="eco_s_dam_title"
+          >
+            DAM <span class="text-[#7D6B5D]">LEVELS.</span>
+          </h2>
+          <p
+            class="text-stilsein-muted text-lg leading-relaxed"
+            data-i18n="eco_s_dam_body"
+          >
+            The Waterwolf module converts raw depth metrics into exact Liters
+            (kL) and Percentages (%). It uses advanced analytics to calculate
+            your 'Water Runway' (days until empty) based on recent usage, and
+            sends critical push notifications if it detects rapid, unexplainable
+            drainage or overflowing reservoirs.
+          </p>
+        </div>
+        <div
+          class="w-full lg:w-1/2 flex flex-col sm:flex-row justify-center items-center sm:items-start gap-12 sm:gap-8"
+        >
+          <div
+            class="flex flex-col items-center text-center group w-full sm:w-1/2 max-w-[280px]"
+          >
+            <div
+              class="relative w-full aspect-[1/2] transition-transform duration-300 hover:-translate-y-2 cursor-pointer mb-6"
+              onclick="toggleMockup(this)"
+            >
+              <img
+                src="assets/images/mockup_dam_net_01.png"
+                class="img-1 absolute inset-0 w-full h-full object-contain transition-opacity duration-700 drop-shadow-[0_0_20px_rgba(125,107,93,0.2)]"
+                alt="Dam Network"
+              />
+              <img
+                src="assets/images/mockup_dam_net_02.png"
+                class="img-2 absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-700 drop-shadow-[0_0_20px_rgba(125,107,93,0.2)]"
+                alt="Dam Network Chart"
+              />
+            </div>
+            <h3
+              class="text-[#7D6B5D] text-sm tracking-widest font-black font-garet mb-3 uppercase"
+              data-i18n="eco_dam_1_title"
+            >
+              RESERVOIR NETWORK
+            </h3>
+            <p
+              class="text-stilsein-muted text-xs leading-relaxed"
+              data-i18n="eco_dam_1_desc"
+            >
+              Monitor all your dams at a glance. Easily compare current fill
+              levels to historical averages.
+            </p>
+          </div>
+          <div
+            class="flex flex-col items-center text-center group w-full sm:w-1/2 max-w-[280px]"
+          >
+            <div
+              class="relative w-full aspect-[1/2] transition-transform duration-300 hover:-translate-y-2 cursor-pointer mb-6"
+              onclick="toggleMockup(this)"
+            >
+              <img
+                src="assets/images/mockup_dam_ind_01.png"
+                class="img-1 absolute inset-0 w-full h-full object-contain transition-opacity duration-700 drop-shadow-[0_0_20px_rgba(125,107,93,0.2)]"
+                alt="Individual Dam"
+              />
+              <img
+                src="assets/images/mockup_dam_ind_02.png"
+                class="img-2 absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-700 drop-shadow-[0_0_20px_rgba(125,107,93,0.2)]"
+                alt="Dam Chart"
+              />
+            </div>
+            <h3
+              class="text-[#7D6B5D] text-sm tracking-widest font-black font-garet mb-3 uppercase"
+              data-i18n="eco_dam_2_title"
+            >
+              INDIVIDUAL DAMS
+            </h3>
+            <p
+              class="text-stilsein-muted text-xs leading-relaxed"
+              data-i18n="eco_dam_2_desc"
+            >
+              Beautifully animated sloshing water physics react to live fill
+              percentages, with dedicated rapid-drain warnings.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: PIPE PRESSURE -->
+    <section
+      id="eco-pipe"
       class="py-24 px-6 bg-[#232B38] border-b border-white/5 relative z-10 w-full overflow-hidden bg-[url('assets/images/bg_texture_cyan.png')] bg-repeat bg-blend-overlay"
     >
       <div
@@ -2172,8 +2634,8 @@
               class="text-stilsein-muted text-xs leading-relaxed"
               data-i18n="eco_4_desc"
             >
-              A bird's-eye view of your entire irrigation system with live
-              pressure metrics.
+              A bird's-eye view of your entire irrigation system. Calculates
+              live systemic load (%) across all active pumps.
             </p>
           </div>
           <div
@@ -2204,16 +2666,17 @@
               class="text-stilsein-muted text-xs leading-relaxed"
               data-i18n="eco_5_desc"
             >
-              See the animated water pressure rise and drop, backed by precise
-              fullscreen graphing.
+              See the animated water pressure rise and drop. Analyze daily pump
+              duty cycles and operational uptime.
             </p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 4: SATELLITE PREDICTIONS -->
+    <!-- SECTION 6: SATELLITE PREDICTIONS -->
     <section
+      id="eco-forecast"
       class="py-24 px-6 bg-[#1A1F26] border-b border-white/5 relative z-10 w-full overflow-hidden bg-[url('assets/images/bg_texture_orange.png')] bg-repeat bg-blend-overlay"
     >
       <div
@@ -2222,10 +2685,12 @@
       <div
         class="max-w-6xl mx-auto flex flex-col lg:flex-row items-start gap-16 relative z-10"
       >
-        <!-- Single Phone (Centered) -->
-        <div class="w-full lg:w-1/2 flex justify-center order-2 lg:order-1">
+        <!-- Dual Phones -->
+        <div
+          class="w-full lg:w-1/2 flex flex-col sm:flex-row justify-center items-center sm:items-start gap-12 sm:gap-8 order-2 lg:order-1"
+        >
           <div
-            class="flex flex-col items-center text-center group w-full max-w-[280px]"
+            class="flex flex-col items-center text-center group w-full sm:w-1/2 max-w-[280px]"
           >
             <div
               class="relative w-full aspect-[1/2] transition-transform duration-300 hover:-translate-y-2 cursor-pointer mb-6"
@@ -2239,21 +2704,53 @@
               <img
                 src="assets/images/mockup_forecast_02.png"
                 class="img-2 absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-700 drop-shadow-[0_0_20px_rgba(255,158,74,0.2)]"
-                alt="Thermal"
+                alt="Forecast Specific Day"
               />
             </div>
             <h3
               class="text-jakkals-orange text-sm tracking-widest font-black font-garet mb-3 uppercase"
               data-i18n="eco_6_title"
             >
-              SATELLITE FORECAST
+              SATELLITE OVERVIEW
             </h3>
             <p
               class="text-stilsein-muted text-xs leading-relaxed"
               data-i18n="eco_6_desc"
             >
-              Advanced satellite data predicts upcoming weather events specific
-              to your farm's exact GPS coordinates.
+              Quickly scan the 7-day outlook. Days with expected rainfall or
+              extreme weather are clearly highlighted.
+            </p>
+          </div>
+          <div
+            class="flex flex-col items-center text-center group w-full sm:w-1/2 max-w-[280px]"
+          >
+            <div
+              class="relative w-full aspect-[1/2] transition-transform duration-300 hover:-translate-y-2 cursor-pointer mb-6"
+              onclick="toggleMockup(this)"
+            >
+              <img
+                src="assets/images/mockup_forecast_03.png"
+                class="img-1 absolute inset-0 w-full h-full object-contain transition-opacity duration-700 drop-shadow-[0_0_20px_rgba(255,158,74,0.2)]"
+                alt="Thermal Profiling"
+              />
+              <img
+                src="assets/images/mockup_forecast_04.png"
+                class="img-2 absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-700 drop-shadow-[0_0_20px_rgba(255,158,74,0.2)]"
+                alt="Thermal Detail"
+              />
+            </div>
+            <h3
+              class="text-jakkals-orange text-sm tracking-widest font-black font-garet mb-3 uppercase"
+              data-i18n="eco_6_title_b"
+            >
+              THERMAL PROFILING
+            </h3>
+            <p
+              class="text-stilsein-muted text-xs leading-relaxed"
+              data-i18n="eco_6_desc_b"
+            >
+              Dive into the triple-chart view to analyze exact hour-by-hour
+              temperature, precipitation, and wind speeds.
             </p>
           </div>
         </div>
@@ -2286,8 +2783,9 @@
       </div>
     </section>
 
-    <!-- SECTION 5: ARCHIVE & JAKKALS AI -->
+    <!-- SECTION 7: THE ARCHIVIST -->
     <section
+      id="eco-archive"
       class="py-24 px-6 bg-[#232B38] border-b border-white/5 relative z-10 w-full overflow-hidden bg-[url('assets/images/bg_texture_lavender.png')] bg-repeat bg-blend-overlay"
     >
       <div
@@ -2311,14 +2809,14 @@
             class="text-stilsein-muted text-lg leading-relaxed mb-4"
             data-i18n="eco_s5_body"
           >
-            Every storm, heatwave, and pump cycle is permanently logged. Need
-            advice? Ask Jakkals, our embedded Agentic AI. He analyzes your live
-            data matrix to provide instant, localized advice with actionable
-            shortcuts to failing hardware. He also generates professional weekly
-            PDF reports sent directly to your email.
+            Every single data pulse is permanently stored in a secure
+            time-series database. Every storm, heatwave, and pump cycle is
+            permanently logged. Nothing is ever deleted, building a
+            comprehensive micro-climate history of your land that drastically
+            increases your farm's operational value.
           </p>
         </div>
-        <!-- Dual Phones: Stack on Mobile, Row on Desktop -->
+        <!-- Dual Phones -->
         <div
           class="w-full lg:w-1/2 flex flex-col sm:flex-row justify-center items-center sm:items-start gap-12 sm:gap-8"
         >
@@ -2332,26 +2830,26 @@
               <img
                 src="assets/images/mockup_archive_01.png"
                 class="img-1 absolute inset-0 w-full h-full object-contain transition-opacity duration-700 drop-shadow-[0_0_20px_rgba(163,150,209,0.2)]"
-                alt="Archive"
+                alt="Archive Inbox"
               />
               <img
                 src="assets/images/mockup_archive_02.png"
                 class="img-2 absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-700 drop-shadow-[0_0_20px_rgba(163,150,209,0.2)]"
-                alt="Archive Chart"
+                alt="Archive Deep Dive"
               />
             </div>
             <h3
               class="text-[#A396D1] text-sm tracking-widest font-black font-garet mb-3 uppercase"
               data-i18n="eco_8_title"
             >
-              FARM ARCHIVE
+              THE ARCHIVIST
             </h3>
             <p
               class="text-stilsein-muted text-xs leading-relaxed"
               data-i18n="eco_8_desc"
             >
-              Every rainspell, heatwave, and critical event is automatically
-              logged and expanded into charts.
+              A ticker-tape inbox of every critical event. Unread incidents
+              pulse in orange so you never miss a beat.
             </p>
           </div>
           <div
@@ -2362,125 +2860,257 @@
               onclick="toggleMockup(this)"
             >
               <img
-                src="assets/images/mockup_jakkals_01.png"
-                class="img-1 absolute inset-0 w-full h-full object-contain transition-opacity duration-700 drop-shadow-[0_0_20px_rgba(255,158,74,0.2)]"
-                alt="Jakkals"
+                src="assets/images/mockup_archive_03.png"
+                class="img-1 absolute inset-0 w-full h-full object-contain transition-opacity duration-700 drop-shadow-[0_0_20px_rgba(163,150,209,0.2)]"
+                alt="Archive Chart"
               />
               <img
-                src="assets/images/mockup_export_02.png"
-                class="img-2 absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-700 drop-shadow-[0_0_20px_rgba(145,172,200,0.2)]"
-                alt="Export"
+                src="assets/images/mockup_archive_04.png"
+                class="img-2 absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-700 drop-shadow-[0_0_20px_rgba(163,150,209,0.2)]"
+                alt="Archive Data"
               />
             </div>
             <h3
-              class="text-jakkals-orange text-sm tracking-widest font-black font-garet mb-3 uppercase"
-              data-i18n="eco_9_title"
+              class="text-[#A396D1] text-sm tracking-widest font-black font-garet mb-3 uppercase"
+              data-i18n="eco_8_title_b"
             >
-              JAKKALS & EXPORT
+              DEEP INVESTIGATIONS
             </h3>
             <p
               class="text-stilsein-muted text-xs leading-relaxed"
-              data-i18n="eco_9_desc"
+              data-i18n="eco_8_desc_b"
             >
-              Chat with Jakkals AI for tailored farm advice, or download
-              filtered PDF and CSV reports.
+              Tap any event in the archive to open a high-resolution, isolated
+              fullscreen chart to analyze the exact minute a pipe burst.
             </p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 6: ARCHITECTURE -->
+    <!-- SECTION 8: JAKKALS AI -->
     <section
-      class="py-24 px-6 bg-[#1A1F26] border-b border-white/5 relative z-10 w-full overflow-hidden bg-[url('assets/images/bg_texture_dark.png')] bg-repeat bg-blend-overlay"
+      class="py-24 px-6 bg-[#1A1F26] border-b border-white/5 relative z-10 w-full overflow-hidden bg-[url('assets/images/bg_texture_orange.png')] bg-repeat bg-blend-overlay"
     >
-      <div class="max-w-4xl mx-auto text-center px-4">
+      <div
+        class="absolute top-1/2 left-0 transform -translate-x-1/4 -translate-y-1/2 w-[600px] h-[600px] bg-jakkals-orange/5 rounded-full blur-[100px] pointer-events-none"
+      ></div>
+      <div
+        class="max-w-6xl mx-auto flex flex-col lg:flex-row items-start gap-16 relative z-10"
+      >
+        <!-- Dual Phones -->
         <div
-          class="inline-flex items-center gap-2 px-4 py-1 rounded-full border border-gray-500/40 bg-gray-500/10 text-gray-300 text-xs font-bold tracking-[0.2em] mb-6"
+          class="w-full lg:w-1/2 flex flex-col sm:flex-row justify-center items-center sm:items-start gap-12 sm:gap-8 order-2 lg:order-1"
         >
-          <span data-i18n="eco_s6_sub">MILITARY PRECISION</span>
-        </div>
-        <h3
-          class="text-white text-4xl font-bold font-garet mb-6"
-          data-i18n="eco_s6_title"
-        >
-          BANK-GRADE <span class="text-stilsein-blue">ARCHITECTURE.</span>
-        </h3>
-        <p
-          class="text-stilsein-muted text-lg max-w-3xl mx-auto leading-relaxed"
-          data-i18n="eco_s6_body"
-        >
-          Under the hood, StilSein operates on a multi-tenant Edge-Cloud matrix.
-          Your sensors send encrypted radio waves to a Gateway, which securely
-          routes the data through Cloudflare directly into an isolated, private
-          Google Vault dedicated solely to your farm. The mobile app then uses
-          lightning-fast WebSockets and local 'Offline Caching' so it boots
-          instantly—even when you are standing in a camp with zero cell
-          reception.
-        </p>
-      </div>
-    </section>
-
-    <!-- SECTION 7: THE MODULAR PITCH -->
-    <section
-      class="py-24 px-6 bg-[#232B38] border-b border-white/5 relative z-10 w-full overflow-hidden bg-[url('assets/images/bg_texture_blue.png')] bg-repeat bg-blend-overlay"
-    >
-      <div class="max-w-4xl mx-auto text-center px-4">
-        <div
-          class="inline-flex items-center gap-2 px-4 py-1 rounded-full border border-stilsein-blue/40 bg-stilsein-blue/10 text-stilsein-blue text-xs font-bold tracking-[0.2em] mb-6 shadow-[0_0_15px_rgba(145,172,200,0.15)]"
-        >
-          <span data-i18n="eco_s7_sub">START SMALL. SCALE ENDLESSLY.</span>
-        </div>
-        <h3
-          class="text-white text-4xl font-bold font-garet mb-6"
-          data-i18n="eco_s7_title"
-          v-html="eco_s7_title"
-        >
-          THE EVER-EVOLVING <span class="text-stilsein-blue">FARM.</span>
-        </h3>
-
-        <p
-          class="text-stilsein-muted text-lg mb-6 max-w-3xl mx-auto leading-relaxed"
-          data-i18n="eco_p1"
-        >
-          You don't need to digitize your entire operation overnight. Most of
-          our clients start with a single Gateway and one Rain Gauge. As you see
-          the value, you can seamlessly add Soil Moisture, Pipe Pressure, or
-          Security nodes whenever you are ready.
-          <strong class="text-jakkals-orange"
-            >That is the power of a modular ecosystem.</strong
+          <div
+            class="flex flex-col items-center text-center group w-full sm:w-1/2 max-w-[280px]"
           >
-        </p>
-        <p
-          class="text-stilsein-muted text-lg mb-12 max-w-3xl mx-auto leading-relaxed"
-          data-i18n="eco_p2"
-        >
-          Because every farm is unique, we do not believe in 'one-size-fits-all'
-          templates. Our engineering team hardcodes your specific farm topology,
-          camp distances, and alert thresholds into the backend before delivery.
-          This bespoke architecture is why the StilSein OS feels so incredibly
-          intuitive, adapting flawlessly as your network grows.
-        </p>
-
+            <div
+              class="relative w-full aspect-[1/2] transition-transform duration-300 hover:-translate-y-2 cursor-pointer mb-6"
+              onclick="toggleMockup(this)"
+            >
+              <img
+                src="assets/images/mockup_jakkals_01.png"
+                class="img-1 absolute inset-0 w-full h-full object-contain transition-opacity duration-700 drop-shadow-[0_0_20px_rgba(255,158,74,0.2)]"
+                alt="Jakkals Analyze"
+              />
+              <img
+                src="assets/images/mockup_jakkals_02.png"
+                class="img-2 absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-700 drop-shadow-[0_0_20px_rgba(255,158,74,0.2)]"
+                alt="Jakkals Insight"
+              />
+            </div>
+            <h3
+              class="text-jakkals-orange text-sm tracking-widest font-black font-garet mb-3 uppercase"
+              data-i18n="eco_jak_1_title"
+            >
+              DEEP ANALYSIS
+            </h3>
+            <p
+              class="text-stilsein-muted text-xs leading-relaxed"
+              data-i18n="eco_jak_1_desc"
+            >
+              Select any node or timeframe and Jakkals will write a
+              professional, highly technical summary of the data.
+            </p>
+          </div>
+          <div
+            class="flex flex-col items-center text-center group w-full sm:w-1/2 max-w-[280px]"
+          >
+            <div
+              class="relative w-full aspect-[1/2] transition-transform duration-300 hover:-translate-y-2 cursor-pointer mb-6"
+              onclick="toggleMockup(this)"
+            >
+              <img
+                src="assets/images/mockup_jakkals_03.png"
+                class="img-1 absolute inset-0 w-full h-full object-contain transition-opacity duration-700 drop-shadow-[0_0_20px_rgba(255,158,74,0.2)]"
+                alt="Jakkals Chat"
+              />
+              <img
+                src="assets/images/mockup_jakkals_04.png"
+                class="img-2 absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-700 drop-shadow-[0_0_20px_rgba(255,158,74,0.2)]"
+                alt="Jakkals Chat Reply"
+              />
+            </div>
+            <h3
+              class="text-jakkals-orange text-sm tracking-widest font-black font-garet mb-3 uppercase"
+              data-i18n="eco_jak_2_title"
+            >
+              CONVERSATIONAL AI
+            </h3>
+            <p
+              class="text-stilsein-muted text-xs leading-relaxed"
+              data-i18n="eco_jak_2_desc"
+            >
+              Chat with Jakkals natively. Ask him about the weather, battery
+              levels, or how to fix a specific sensor.
+            </p>
+          </div>
+        </div>
         <div
-          class="bg-[#1A1F26]/80 border-l-4 border-jakkals-orange p-8 rounded-r-xl shadow-[0_0_30px_rgba(255,158,74,0.1)] text-left max-w-3xl mx-auto backdrop-blur-md"
+          class="w-full lg:w-1/2 pt-4 order-1 lg:order-2 text-center flex flex-col items-center"
         >
+          <div
+            class="inline-flex items-center gap-2 px-4 py-1 rounded-full border border-jakkals-orange/40 bg-jakkals-orange/10 text-jakkals-orange text-xs font-bold tracking-[0.2em] mb-6 shadow-[0_0_15px_rgba(255,158,74,0.15)]"
+          >
+            <span data-i18n="eco_s_jak_sub">AGRICULTURAL INTELLIGENCE</span>
+          </div>
+          <h2
+            class="text-4xl font-bold text-white mb-6 font-garet leading-tight"
+            data-i18n="eco_s_jak_title"
+          >
+            JAKKALS <span class="text-jakkals-orange">AI.</span>
+          </h2>
           <p
-            class="text-base md:text-lg text-white italic m-0 leading-relaxed font-light"
-            data-i18n="eco_quote"
+            class="text-stilsein-muted text-lg leading-relaxed"
+            data-i18n="eco_s_jak_body"
           >
-            "Monitor every nook and cranny of your farm. The wolf stays awake.
-            Know when the first drops fall, or when the pipes are running and
-            when the top camp's gate is open. Then store everything and keep a
-            10-year logbook of your farm's microclimate to increase your land
-            value."
+            An agriculture-specialized AI that fuses your live hardware
+            telemetry, satellite weather, and historical database. Ask him
+            questions in the app, and instantly get a farming-specific answer
+            based on today's exact telemetry and historical patterns. He
+            provides localized advice with actionable shortcuts to failing
+            hardware.
           </p>
         </div>
       </div>
     </section>
 
-    <!-- 6. DATA & REPORTS SECTION -->
-    <section class="py-20 px-6 relative z-10 w-full overflow-hidden">
+    <!-- SECTION 9: IN-APP FARM BUILDER -->
+    <section
+      class="py-24 px-6 bg-[#1A1F26] border-b border-white/5 relative z-10 w-full overflow-hidden bg-[url('assets/images/bg_texture_lavender.png')] bg-repeat bg-blend-overlay"
+    >
+      <div
+        class="absolute top-1/2 right-0 transform translate-x-1/4 -translate-y-1/2 w-[600px] h-[600px] bg-jakkals-orange/5 rounded-full blur-[100px] pointer-events-none"
+      ></div>
+      <div
+        class="max-w-6xl mx-auto flex flex-col lg:flex-row items-start gap-16 relative z-10"
+      >
+        <!-- Text Content (Moved to Left) -->
+        <div
+          class="w-full lg:w-1/2 pt-4 text-center lg:text-left flex flex-col items-center lg:items-start order-1"
+        >
+          <div
+            class="inline-flex items-center gap-2 px-4 py-1 rounded-full border border-jakkals-orange/40 bg-jakkals-orange/10 text-jakkals-orange text-xs font-bold tracking-[0.2em] mb-6 shadow-[0_0_15px_rgba(255,158,74,0.15)]"
+          >
+            <span data-i18n="eco_s_bld_sub">EXPAND WITH CONFIDENCE</span>
+          </div>
+          <h2
+            class="text-4xl font-bold text-white mb-6 font-garet leading-tight"
+            data-i18n="eco_s_bld_title"
+          >
+            IN-APP <span class="text-jakkals-orange">NETWORK BUILDER.</span>
+          </h2>
+          <p
+            class="text-stilsein-muted text-lg leading-relaxed lg:text-left"
+            data-i18n="eco_s_bld_body"
+          >
+            Growing your network shouldn't require phone calls or complicated
+            quotes. Our integrated Farm Builder allows you to drop virtual
+            sensors on your customized farm map, configure exact thresholds, and
+            instantly calculate the live SaaS MRR impact. Once submitted, our
+            match-maker connects you with certified local installers to deploy
+            the hardware.
+          </p>
+        </div>
+
+        <!-- Dual Phones (Moved to Right) -->
+        <div
+          class="w-full lg:w-1/2 flex flex-col sm:flex-row justify-center items-center sm:items-start gap-12 sm:gap-8 order-2"
+        >
+          <div
+            class="flex flex-col items-center text-center group w-full sm:w-1/2 max-w-[280px]"
+          >
+            <div
+              class="relative w-full aspect-[1/2] transition-transform duration-300 hover:-translate-y-2 cursor-pointer mb-6"
+              onclick="toggleMockup(this)"
+            >
+              <img
+                src="assets/images/mockup_builder_01.png"
+                class="img-1 absolute inset-0 w-full h-full object-contain transition-opacity duration-700 drop-shadow-[0_0_20px_rgba(255,158,74,0.2)]"
+                alt="Farm Builder Map"
+              />
+              <img
+                src="assets/images/mockup_builder_02.png"
+                class="img-2 absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-700 drop-shadow-[0_0_20px_rgba(255,158,74,0.2)]"
+                alt="Farm Builder Config"
+              />
+            </div>
+            <h3
+              class="text-jakkals-orange text-sm tracking-widest font-black font-garet mb-3 uppercase"
+              data-i18n="eco_bld_1_title"
+            >
+              FARM BLUEPRINTS
+            </h3>
+            <p
+              class="text-stilsein-muted text-xs leading-relaxed"
+              data-i18n="eco_bld_1_desc"
+            >
+              Tap the map to drop Rain, Pipe, or Dam sensors. Build complex
+              hydraulic topologies visually before spending a cent.
+            </p>
+          </div>
+          <div
+            class="flex flex-col items-center text-center group w-full sm:w-1/2 max-w-[280px]"
+          >
+            <div
+              class="relative w-full aspect-[1/2] transition-transform duration-300 hover:-translate-y-2 cursor-pointer mb-6"
+              onclick="toggleMockup(this)"
+            >
+              <img
+                src="assets/images/mockup_upsell_01.png"
+                class="img-1 absolute inset-0 w-full h-full object-contain transition-opacity duration-700 drop-shadow-[0_0_20px_rgba(255,158,74,0.2)]"
+                alt="Live Quoting"
+              />
+              <img
+                src="assets/images/mockup_upsell_02.png"
+                class="img-2 absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-700 drop-shadow-[0_0_20px_rgba(255,158,74,0.2)]"
+                alt="Matchmaker"
+              />
+            </div>
+            <h3
+              class="text-jakkals-orange text-sm tracking-widest font-black font-garet mb-3 uppercase"
+              data-i18n="eco_bld_2_title"
+            >
+              LIVE QUOTING & INSTALLERS
+            </h3>
+            <p
+              class="text-stilsein-muted text-xs leading-relaxed"
+              data-i18n="eco_bld_2_desc"
+            >
+              See exactly how much your monthly software subscription will
+              change, and instantly forward the blueprint to local partners.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 10: DATA & REPORTS -->
+    <section
+      id="eco-export"
+      class="py-20 px-6 relative z-10 w-full overflow-hidden"
+    >
       <div class="max-w-6xl mx-auto">
         <div class="text-center mb-16">
           <h2
@@ -2622,6 +3252,53 @@
       </div>
     </section>
 
+    <!-- SECTION 11: ARCHITECTURE -->
+    <section
+      class="py-24 px-6 bg-[#1A1F26] border-b border-white/5 relative z-10 w-full overflow-hidden bg-[url('assets/images/bg_texture_dark.png')] bg-repeat bg-blend-overlay"
+    >
+      <div class="max-w-4xl mx-auto text-center px-4">
+        <div
+          class="inline-flex items-center gap-2 px-4 py-1 rounded-full border border-gray-500/40 bg-gray-500/10 text-gray-300 text-xs font-bold tracking-[0.2em] mb-6"
+        >
+          <span data-i18n="eco_s6_sub">MILITARY PRECISION</span>
+        </div>
+        <h3
+          class="text-white text-4xl font-bold font-garet mb-6"
+          data-i18n="eco_s6_title"
+        >
+          BANK-GRADE <span class="text-stilsein-blue">ARCHITECTURE.</span>
+        </h3>
+        <p
+          class="text-stilsein-muted text-lg max-w-3xl mx-auto leading-relaxed mb-12"
+          data-i18n="eco_s6_body"
+        >
+          Under the hood, StilSein operates on a multi-tenant Edge-Cloud matrix.
+          Your sensors send encrypted radio waves to a Gateway, which securely
+          routes the data through Cloudflare directly into an isolated, private
+          Vault dedicated solely to your farm. The mobile app then uses
+          lightning-fast WebSockets and local 'Offline Caching' so it boots
+          instantly—even when you are standing in a camp with zero cell
+          reception.
+        </p>
+
+        <!-- 🛠️ The Quote is now a gorgeous capstone to the Ecosystem! -->
+        <div
+          class="bg-[#232B38]/80 border-l-4 border-jakkals-orange p-8 rounded-r-xl shadow-[0_0_30px_rgba(255,158,74,0.1)] text-left max-w-3xl mx-auto backdrop-blur-md"
+        >
+          <p
+            class="text-base md:text-lg text-white italic m-0 leading-relaxed font-light"
+            data-i18n="eco_quote"
+          >
+            "Monitor every nook and cranny of your farm. The wolf stays awake.
+            Know when the first drops fall, or when the pipes are running and
+            when the top camp's gate is open. Then store everything and keep a
+            10-year logbook of your farm's microclimate to increase your land
+            value."
+          </p>
+        </div>
+      </div>
+    </section>
+
     <!-- CONTACT MODAL -->
     <div
       id="contact-modal"
@@ -2726,26 +3403,25 @@
       <div
         class="flex flex-col sm:flex-row justify-center items-center gap-6 mb-12"
       >
-        <!-- 🛠️ FOOTER PLAAS-BOUER QUICK ACCESS -->
-        <a
-          href="plaas-bouer.html"
-          class="px-8 py-4 bg-jakkals-orange text-stilsein-dark font-bold rounded-lg hover:bg-white transition-all shadow-[0_0_15px_rgba(255,158,74,0.4)] tracking-wide flex items-center gap-2"
+        <!-- 🛠️ FOOTER APP STORE BADGES -->
+        <div
+          class="flex items-center gap-4 bg-stilsein-card/50 p-4 rounded-xl border border-white/10"
         >
-          <svg
-            class="w-5 h-5"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"
-            ></path>
-          </svg>
-          <span data-i18n="hero_btn_build">BUILD YOUR FARM</span>
-        </a>
+          <a href="#" class="transition-transform hover:scale-105 duration-300">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg"
+              alt="Download on the App Store"
+              class="h-10 object-contain"
+            />
+          </a>
+          <a href="#" class="transition-transform hover:scale-105 duration-300">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
+              alt="Get it on Google Play"
+              class="h-10 object-contain"
+            />
+          </a>
+        </div>
 
         <a
           href="https://wa.me/27718162636"
@@ -2753,17 +3429,6 @@
           rel="noopener noreferrer"
           class="px-8 py-4 bg-[#25D366] text-white font-bold rounded-lg hover:bg-white hover:text-[#25D366] transition-all tracking-wide flex items-center gap-2 shadow-[0_0_15px_rgba(37,211,102,0.4)]"
         >
-          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.88-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.347-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.876 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
-          <span data-i18n="footer_btn">CHAT WITH US</span>
-        </a>
-        <a
-          href="#"
-          onclick="openModal(); return false;"
-          class="px-8 py-4 bg-[#eef6ff] text-[#1A1F26] font-bold rounded-lg hover:bg-white transition-all tracking-wide shadow-md"
-        >
-          admin@stilsein.co.za
-        </a>
-      </div>
           <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
             <path
               d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.88-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.347-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.876 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"
@@ -2777,13 +3442,17 @@
             openModal();
             return false;
           "
-          class="px-8 py-4 bg-transparent border-2 border-stilsein-card text-white font-bold rounded-lg hover:border-stilsein-blue hover:text-stilsein-blue transition-all tracking-wide"
+          class="px-8 py-4 bg-[#eef6ff] text-[#1A1F26] font-bold rounded-lg hover:bg-white transition-all tracking-wide shadow-md"
         >
           admin@stilsein.co.za
         </a>
       </div>
       <div class="mt-10 flex flex-col items-center gap-4">
-        <a href="privacy.html" class="text-xs text-stilsein-muted hover:text-white tracking-widest uppercase">Privacy Policy / Privaatheidsbeleid</a>
+        <a
+          href="privacy.html"
+          class="text-xs text-stilsein-muted hover:text-white tracking-widest uppercase"
+          >Privacy Policy / Privaatheidsbeleid</a
+        >
         <p class="text-sm text-jakkals-orange m-0" data-i18n="footer_copy">
           &copy; 2026 StilSein Industrial (Pty) Ltd. | Designed in South Africa.
         </p>
@@ -2954,7 +3623,8 @@
         btn.disabled = true;
 
         // The Cloudflare Worker Endpoint
-        const endpoint = "https://stilsein-api.fragrant-mud-451a.workers.dev/api/quote";
+        const endpoint =
+          "https://stilsein-api.fragrant-mud-451a.workers.dev/api/quote";
 
         fetch(endpoint, {
           method: "POST",

@@ -834,21 +834,43 @@
                   class="w-full bg-stilsein-dark/80 border border-white/10 rounded-lg p-3 text-white placeholder-gray-500 focus:outline-none focus:border-jakkals-orange focus:ring-1 focus:ring-jakkals-orange transition-all"
                 />
               </div>
-              <div>
-                <label
-                  for="partner-region"
-                  class="block text-xs font-bold text-stilsein-blue tracking-widest uppercase mb-2"
-                  data-i18n="p_form_region"
-                  >Operating Region (Provinces / Towns)</label
-                >
-                <input
-                  type="text"
-                  id="partner-region"
-                  name="partner-region"
-                  placeholder="e.g. Free State / Pretoria"
-                  required
-                  class="w-full bg-stilsein-dark/80 border border-white/10 rounded-lg p-3 text-white placeholder-gray-500 focus:outline-none focus:border-jakkals-orange focus:ring-1 focus:ring-jakkals-orange transition-all"
-                />
+              <div class="grid grid-cols-2 gap-4">
+                <div class="col-span-1">
+                  <label
+                    for="partner-region"
+                    class="block text-xs font-bold text-stilsein-blue tracking-widest uppercase mb-2"
+                    data-i18n="p_form_region"
+                    >Base Region</label
+                  >
+                  <input
+                    type="text"
+                    id="partner-region"
+                    name="partner-region"
+                    placeholder="e.g. Bloemfontein"
+                    required
+                    class="w-full bg-stilsein-dark/80 border border-white/10 rounded-lg p-3 text-white placeholder-gray-500 focus:outline-none focus:border-jakkals-orange focus:ring-1 focus:ring-jakkals-orange transition-all"
+                  />
+                </div>
+                <div class="col-span-1">
+                  <label
+                    for="partner-radius"
+                    class="block text-xs font-bold text-stilsein-blue tracking-widest uppercase mb-2"
+                    data-i18n="p_form_radius"
+                    >Coverage Area</label
+                  >
+                  <select
+                    id="partner-radius"
+                    name="partner-radius"
+                    required
+                    class="w-full bg-stilsein-dark/80 border border-white/10 rounded-lg p-3 text-white focus:outline-none focus:border-jakkals-orange focus:ring-1 focus:ring-jakkals-orange transition-all"
+                  >
+                    <option value="50">50 km Radius</option>
+                    <option value="150" selected>150 km Radius</option>
+                    <option value="300">300 km Radius</option>
+                    <option value="500">500 km Radius</option>
+                    <option value="1000">1000 km Radius</option>
+                  </select>
+                </div>
               </div>
             </div>
 
@@ -1144,9 +1166,10 @@
           phone: document.getElementById("partner-phone").value,
           email: document.getElementById("partner-email").value,
           website: rawWeb,
-          logoBase64: compressedLogoBase64, // 🛠️ NEW: Injected Logo
+          logoBase64: compressedLogoBase64,
           lat: lat,
           lon: lon,
+          radius: document.getElementById("partner-radius").value, // 🛠️ NEW: Operating Radius!
         };
 
         const btn = document.getElementById("partner-submit-btn");
@@ -1156,9 +1179,8 @@
         btn.innerText = "SENDING...";
         btn.disabled = true;
 
-        // The Cloudflare Worker Endpoint
-        const endpoint =
-          "https://stilsein-api.fragrant-mud-451a.workers.dev/api/quote";
+        // 🛠️ The Edge Partner API
+        const endpoint = "https://api.stilsein.co.za/api/partner_application";
 
         fetch(endpoint, {
           method: "POST",
