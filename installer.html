@@ -211,12 +211,13 @@
         // Render Forms & Node Markers
         const formContainer = document.getElementById("nodes-form");
         quoteData.nodes_json.forEach((n, i) => {
+          const safeType = n.nodeType || n.type || "Rain";
           // Node Marker
           L.circleMarker([n.lat, n.lon], {
             color:
-              n.nodeType === "Pipe"
+              safeType === "Pipe"
                 ? "#00bcd4"
-                : n.nodeType === "Dam"
+                : safeType === "Dam"
                   ? "#7D6B5D"
                   : "#91ACC8",
             radius: 8,
@@ -226,15 +227,16 @@
             .bindPopup(`<b>${n.nodeName}</b><br>${n.nodeType}`);
 
           // Form Row
-          const isRain = n.nodeType === "Rain";
-          const isPipe = n.nodeType === "Pipe";
-          const isDam = n.nodeType === "Dam";
+          const safeName = n.nodeName || n.name || "Unknown";
+          const isRain = safeType === "Rain";
+          const isPipe = safeType === "Pipe";
+          const isDam = safeType === "Dam";
 
           let html = `
           <div class="p-4 bg-black/20 rounded-xl border border-white/5">
             <h3 class="text-white font-bold mb-3 flex items-center gap-2">
               <span class="w-6 h-6 rounded-full bg-stilsein-blue/20 flex items-center justify-center text-xs">${i + 1}</span>
-              ${n.nodeName.toUpperCase()} <span class="text-gray-500 font-normal text-xs ml-2">(${n.nodeType})</span>
+              ${safeName.toUpperCase()} <span class="text-gray-500 font-normal text-xs ml-2">(${safeType})</span>
             </h3>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
@@ -276,60 +278,69 @@
         btn.innerText = "SAVING...";
         btn.disabled = true;
 
-        // Extract form values
-        let updatedNodes = JSON.parse(JSON.stringify(quoteData.nodes_json));
-        let hasError = false;
+        try {
+          // Extract form values
+          let updatedNodes = JSON.parse(JSON.stringify(quoteData.nodes_json));
+          let hasError = false;
 
-        updatedNodes.forEach((n, i) => {
-          const eui = document
-            .getElementById(`eui_${i}`)
-            .value.trim()
-            .toUpperCase();
-          if (!eui) hasError = true;
+          updatedNodes.forEach((n, i) => {
+            const eui = document
+              .getElementById(`eui_${i}`)
+              .value.trim()
+              .toUpperCase();
+            if (!eui) hasError = true;
 
-          n.devEUI = eui;
-          n.devEui = eui;
-          n.brand = document.getElementById(`brand_${i}`).value;
-          n.interval = document.getElementById(`int_${i}`).value;
+            const safeType = n.nodeType || n.type || "Rain";
+            n.devEUI = eui;
+            n.devEui = eui;
+            n.brand = document.getElementById(`brand_${i}`).value;
+            n.interval = document.getElementById(`int_${i}`).value;
 
-          if (n.nodeType === "Rain") {
-            n.bucketSize = document.getElementById(`buck_${i}`).value;
-            n.thresholds = `Tip: ${n.bucketSize}mm`;
-          } else if (n.nodeType === "Pipe") {
-            n.minBar = document.getElementById(`pmin_${i}`).value;
-            n.maxBar = document.getElementById(`pmax_${i}`).value;
-            n.thresholds = `Min: ${n.minBar} | Max: ${n.maxBar}`;
-          } else if (n.nodeType === "Dam") {
-            n.capacity = document.getElementById(`dcap_${i}`).value;
-            n.depthEmpty = document.getElementById(`dempty_${i}`).value;
-            n.depthFull = document.getElementById(`dfull_${i}`).value;
-            n.thresholds = `Cap: ${n.capacity}L | Empty: ${n.depthEmpty}m | Full: ${n.depthFull}m`;
-          }
-        });
+            if (safeType === "Rain") {
+              n.bucketSize = document.getElementById(`buck_${i}`).value;
+              n.thresholds = `Tip: ${n.bucketSize}mm`;
+            } else if (safeType === "Pipe") {
+              n.minBar = document.getElementById(`pmin_${i}`).value;
+              n.maxBar = document.getElementById(`pmax_${i}`).value;
+              n.thresholds = `Min: ${n.minBar} | Max: ${n.maxBar}`;
+            } else if (safeType === "Dam") {
+              n.capacity = document.getElementById(`dcap_${i}`).value;
+              n.depthEmpty = document.getElementById(`dempty_${i}`).value;
+              n.depthFull = document.getElementById(`dfull_${i}`).value;
+              n.thresholds = `Cap: ${n.capacity}L | Empty: ${n.depthEmpty}m | Full: ${n.depthFull}m`;
+            }
+          });
 
-        if (hasError) {
-          alert("Please enter a DevEUI for all nodes.");
-          btn.innerText = "FINALIZE & SUBMIT TO HQ";
-          btn.disabled = false;
-          return;
-        }
-
-        fetch("https://api.stilsein.co.za/api/installer/quote", {
-          method: "PATCH",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ quote_id: quoteId, nodes: updatedNodes }),
-        })
-          .then((res) => {
-            if (res.ok) {
-              document.getElementById("content-area").classList.add("hidden");
-              document.getElementById("success-msg").classList.remove("hidden");
-            } else throw new Error();
-          })
-          .catch(() => {
-            alert("Server Error. Please try again.");
+          if (hasError) {
+            alert("Please enter a DevEUI for all nodes.");
             btn.innerText = "FINALIZE & SUBMIT TO HQ";
             btn.disabled = false;
-          });
+            return;
+          }
+
+          fetch("https://api.stilsein.co.za/api/installer/quote", {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ quote_id: quoteId, nodes: updatedNodes }),
+          })
+            .then((res) => {
+              if (res.ok) {
+                document.getElementById("content-area").classList.add("hidden");
+                document
+                  .getElementById("success-msg")
+                  .classList.remove("hidden");
+              } else throw new Error();
+            })
+            .catch((err) => {
+              alert("Network Error: " + err.message);
+              btn.innerText = "FINALIZE & SUBMIT TO HQ";
+              btn.disabled = false;
+            });
+        } catch (e) {
+          alert("Data Parsing Error: " + e.message);
+          btn.innerText = "FINALIZE & SUBMIT TO HQ";
+          btn.disabled = false;
+        }
       }
     </script>
   </body>
