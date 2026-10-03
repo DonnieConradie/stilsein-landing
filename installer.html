@@ -119,22 +119,52 @@
 
         <!-- NODE CONFIGURATOR -->
         <div class="glass-card p-6 rounded-2xl">
-          <div class="flex justify-between items-center mb-6">
-            <h2 class="text-stilsein-blue text-xs font-bold tracking-widest">
+          <div class="mb-6">
+            <h2
+              class="text-stilsein-blue text-xs font-bold tracking-widest mb-2"
+            >
               HARDWARE REGISTRY
             </h2>
-            <a
-              href="ttn_gids.html"
-              target="_blank"
-              class="px-4 py-2 bg-stilsein-blue/10 text-stilsein-blue text-xs font-bold rounded hover:bg-stilsein-blue hover:text-stilsein-dark transition border border-stilsein-blue/30"
-              >📖 OPEN TTN GUIDE</a
-            >
+            <p class="text-xs text-gray-400">
+              Review the client's layout below. Enter the DevEUIs, configure
+              specific sensor thresholds, and correct any GPS coordinates if
+              they were inaccurately pinned.
+            </p>
           </div>
 
           <form id="nodes-form" class="space-y-6"></form>
         </div>
 
-        <!-- SUBMIT BUTTON -->
+        <!-- TTN GUIDE & SUBMIT -->
+        <div
+          class="glass-card p-6 rounded-2xl border-jakkals-orange/50 text-center"
+        >
+          <h2
+            class="text-jakkals-orange text-sm font-bold tracking-widest mb-2"
+          >
+            NETWORK BRIDGING
+          </h2>
+          <p class="text-xs text-gray-400 mb-6">
+            Before submitting this form to StilSein HQ, you MUST register the
+            DevEUIs on the official TTN Console and configure the StilSein
+            Cloudflare webhook.
+          </p>
+
+          <a
+            href="ttn_gids.html"
+            target="_blank"
+            class="inline-block mb-8 px-6 py-3 bg-stilsein-blue/10 text-stilsein-blue text-xs font-bold tracking-widest rounded hover:bg-stilsein-blue hover:text-stilsein-dark transition border border-stilsein-blue/30"
+            >📖 OPEN TTN INTEGRATION GUIDE</a
+          >
+
+          <button
+            id="submit-btn"
+            onclick="submitHardware()"
+            class="w-full py-4 bg-jakkals-orange text-stilsein-dark font-bold tracking-widest rounded-xl hover:bg-white transition-all shadow-[0_0_20px_rgba(255,158,74,0.3)]"
+          >
+            FINALIZE & SUBMIT TO HQ
+          </button>
+        </div>
         <button
           id="submit-btn"
           onclick="submitHardware()"
@@ -206,12 +236,13 @@
         // Gateway Marker
         L.marker([quoteData.gateway_lat, quoteData.gateway_lon])
           .addTo(map)
-          .bindPopup("<b>Gateway (HQ)</b>");
+          .bindPopup(`<b>Gateway: ${quoteData.farm_name}</b>`);
 
         // Render Forms & Node Markers
         const formContainer = document.getElementById("nodes-form");
         quoteData.nodes_json.forEach((n, i) => {
           const safeType = n.nodeType || n.type || "Rain";
+          const safeName = n.nodeName || n.name || "Unknown";
           // Node Marker
           L.circleMarker([n.lat, n.lon], {
             color:
@@ -224,10 +255,11 @@
             fillOpacity: 0.8,
           })
             .addTo(map)
-            .bindPopup(`<b>${n.nodeName}</b><br>${n.nodeType}`);
+            .bindPopup(
+              `<b>${safeName}</b><br>${safeType}<br><span style="font-size: 10px; color: gray;">${n.lat}, ${n.lon}</span>`,
+            );
 
           // Form Row
-          const safeName = n.nodeName || n.name || "Unknown";
           const isRain = safeType === "Rain";
           const isPipe = safeType === "Pipe";
           const isDam = safeType === "Dam";
@@ -239,10 +271,24 @@
               ${safeName.toUpperCase()} <span class="text-gray-500 font-normal text-xs ml-2">(${safeType})</span>
             </h3>
             
+             <div class="mb-4">
+              <label class="block text-xs text-stilsein-blue mb-1">Node Name</label>
+              <input type="text" id="name_${i}" value="${safeName}" class="w-full bg-black/40 border border-white/10 rounded p-2 text-white text-sm" required>
+            </div>
+            ${
+              n.installerNote
+                ? `
+            <div class="mb-4 p-3 bg-jakkals-orange/10 border border-jakkals-orange/30 rounded-lg">
+              <span class="text-jakkals-orange text-[10px] font-bold uppercase tracking-wider block mb-1">Farmer's Note:</span>
+              <p class="text-white text-sm italic">"${n.installerNote}"</p>
+            </div>
+            `
+                : ""
+            }
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
               <div>
                 <label class="block text-xs text-stilsein-blue mb-1">DevEUI</label>
-                <input type="text" id="eui_${i}" class="w-full bg-black/40 border border-white/10 rounded p-2 text-white font-mono text-sm uppercase" placeholder="Enter 16-char EUI" required>
+                <input type="text" id="eui_${i}" value="${n.devEUI === "PENDING_INSTALLER" ? "" : n.devEUI}" class="w-full bg-black/40 border border-white/10 rounded p-2 text-white font-mono text-sm uppercase" placeholder="Enter 16-char EUI" required>
               </div>
               <div>
                 <label class="block text-xs text-stilsein-blue mb-1">Brand</label>
@@ -263,12 +309,23 @@
             html += `<div><label class="block text-[10px] text-gray-400 mb-1">Min Bar (Leak)</label><input type="number" step="0.1" id="pmin_${i}" value="1.5" class="w-full bg-black/40 border border-white/10 rounded p-2 text-white text-xs"></div>`;
             html += `<div><label class="block text-[10px] text-gray-400 mb-1">Max Bar (Block)</label><input type="number" step="0.1" id="pmax_${i}" value="5.0" class="w-full bg-black/40 border border-white/10 rounded p-2 text-white text-xs"></div>`;
           } else if (isDam) {
-            html += `<div><label class="block text-[10px] text-gray-400 mb-1">Capacity (Liters)</label><input type="number" id="dcap_${i}" value="100000" class="w-full bg-black/40 border border-white/10 rounded p-2 text-white text-xs"></div>`;
-            html += `<div><label class="block text-[10px] text-gray-400 mb-1">Depth 0% (m)</label><input type="number" step="0.1" id="dempty_${i}" value="5.0" class="w-full bg-black/40 border border-white/10 rounded p-2 text-white text-xs"></div>`;
-            html += `<div><label class="block text-[10px] text-gray-400 mb-1">Depth 100% (m)</label><input type="number" step="0.1" id="dfull_${i}" value="0.5" class="w-full bg-black/40 border border-white/10 rounded p-2 text-white text-xs"></div>`;
+            html += `<div><label class="block text-[10px] text-gray-400 mb-1">Capacity (Liters)</label><input type="number" id="dcap_${i}" value="${n.capacity || "100000"}" class="w-full bg-black/40 border border-white/10 rounded p-2 text-white text-xs"></div>`;
+            html += `<div><label class="block text-[10px] text-gray-400 mb-1">Depth 0% (m)</label><input type="number" step="0.1" id="dempty_${i}" value="${n.depthEmpty || "5.0"}" class="w-full bg-black/40 border border-white/10 rounded p-2 text-white text-xs"></div>`;
+            html += `<div><label class="block text-[10px] text-gray-400 mb-1">Depth 100% (m)</label><input type="number" step="0.1" id="dfull_${i}" value="${n.depthFull || "0.5"}" class="w-full bg-black/40 border border-white/10 rounded p-2 text-white text-xs"></div>`;
           }
 
-          html += `</div></div>`;
+          html += `</div>
+            <div class="grid grid-cols-2 gap-4 mt-4">
+              <div>
+                <label class="block text-[10px] text-gray-400 mb-1">Latitude</label>
+                <input type="number" step="any" id="lat_${i}" value="${n.lat}" class="w-full bg-black/40 border border-white/10 rounded p-2 text-white text-xs" required>
+              </div>
+              <div>
+                <label class="block text-[10px] text-gray-400 mb-1">Longitude</label>
+                <input type="number" step="any" id="lon_${i}" value="${n.lon}" class="w-full bg-black/40 border border-white/10 rounded p-2 text-white text-xs" required>
+              </div>
+            </div>
+          </div>`;
           formContainer.insertAdjacentHTML("beforeend", html);
         });
       }
@@ -293,6 +350,10 @@
             const safeType = n.nodeType || n.type || "Rain";
             n.devEUI = eui;
             n.devEui = eui;
+            n.nodeName = document.getElementById(`name_${i}`).value.trim();
+            n.name = n.nodeName;
+            n.lat = parseFloat(document.getElementById(`lat_${i}`).value);
+            n.lon = parseFloat(document.getElementById(`lon_${i}`).value);
             n.brand = document.getElementById(`brand_${i}`).value;
             n.interval = document.getElementById(`int_${i}`).value;
 
