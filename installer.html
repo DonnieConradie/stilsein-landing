@@ -197,6 +197,8 @@
               quoteData = data.data;
               if (quoteData.status !== "INSTALLER_PENDING") {
                 // IT HAS ALREADY BEEN SUBMITTED!
+                document.getElementById("farm-subtitle").innerText =
+                  quoteData.farm_name.toUpperCase();
                 document.getElementById("loader").classList.add("hidden");
                 document
                   .getElementById("success-msg")
