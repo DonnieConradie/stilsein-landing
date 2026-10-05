@@ -246,17 +246,24 @@
         quoteData.nodes_json.forEach((n, i) => {
           const safeType = n.nodeType || n.type || "Rain";
           const safeName = n.nodeName || n.name || "Unknown";
+
           // Node Marker
-          L.circleMarker([n.lat, n.lon], {
-            color:
-              safeType === "Pipe"
-                ? "#00bcd4"
-                : safeType === "Dam"
-                  ? "#7D6B5D"
-                  : "#91ACC8",
-            radius: 8,
-            fillOpacity: 0.8,
-          })
+          const bgCol =
+            safeType === "Pipe"
+              ? "#00bcd4"
+              : safeType === "Dam"
+                ? "#7D6B5D"
+                : "#91ACC8";
+          const emoji =
+            safeType === "Pipe" ? "🚰" : safeType === "Dam" ? "🌊" : "💧";
+          const customIcon = L.divIcon({
+            html: `<div style="background-color: ${bgCol}; width: 28px; height: 28px; border-radius: 50%; border: 2px solid white; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 6px rgba(0,0,0,0.5); font-size: 14px;">${emoji}</div>`,
+            className: "",
+            iconSize: [28, 28],
+            iconAnchor: [14, 14],
+          });
+
+          L.marker([n.lat, n.lon], { icon: customIcon })
             .addTo(map)
             .bindPopup(
               `<b>${safeName}</b><br>${safeType}<br><span style="font-size: 10px; color: gray;">Lat: ${n.lat}, Lon: ${n.lon}</span>`,
