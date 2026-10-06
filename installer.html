@@ -318,10 +318,10 @@
         `;
 
           if (isRain) {
-            html += `<div><label class="block text-[10px] text-gray-400 mb-1">Bucket Size (mm)</label><input type="number" step="0.1" id="buck_${i}" value="0.2" class="w-full bg-black/40 border border-white/10 rounded p-2 text-white text-xs"></div>`;
+            html += `<div><label class="block text-[10px] text-gray-400 mb-1">Bucket Size (mm)</label><input type="number" step="0.1" id="buck_${i}" value="${n.bucketSize || "0.2"}" oninput="validateForm()" class="w-full bg-black/40 border border-white/10 rounded p-2 text-white text-xs" required></div>`;
           } else if (isPipe) {
-            html += `<div><label class="block text-[10px] text-gray-400 mb-1">Min Bar (Leak)</label><input type="number" step="0.1" id="pmin_${i}" value="1.5" class="w-full bg-black/40 border border-white/10 rounded p-2 text-white text-xs"></div>`;
-            html += `<div><label class="block text-[10px] text-gray-400 mb-1">Max Bar (Block)</label><input type="number" step="0.1" id="pmax_${i}" value="5.0" class="w-full bg-black/40 border border-white/10 rounded p-2 text-white text-xs"></div>`;
+            html += `<div><label class="block text-[10px] text-gray-400 mb-1">Min Bar (Leak)</label><input type="number" step="0.1" id="pmin_${i}" value="${n.minBar || "1.5"}" oninput="validateForm()" class="w-full bg-black/40 border border-white/10 rounded p-2 text-white text-xs" required></div>`;
+            html += `<div><label class="block text-[10px] text-gray-400 mb-1">Max Bar (Block)</label><input type="number" step="0.1" id="pmax_${i}" value="${n.maxBar || "5.0"}" oninput="validateForm()" class="w-full bg-black/40 border border-white/10 rounded p-2 text-white text-xs" required></div>`;
           } else if (isDam) {
             html += `<div><label class="block text-[10px] text-gray-400 mb-1">Capacity (Liters)</label><input type="number" id="dcap_${i}" value="${n.capacity || "100000"}" class="w-full bg-black/40 border border-white/10 rounded p-2 text-white text-xs"></div>`;
             html += `<div><label class="block text-[10px] text-gray-400 mb-1">Depth 0% (m)</label><input type="number" step="0.1" id="dempty_${i}" value="${n.depthEmpty || "5.0"}" class="w-full bg-black/40 border border-white/10 rounded p-2 text-white text-xs"></div>`;
