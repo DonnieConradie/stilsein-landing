@@ -139,24 +139,6 @@
         <div
           class="glass-card p-6 rounded-2xl border-jakkals-orange/50 text-center"
         >
-          <h2
-            class="text-jakkals-orange text-sm font-bold tracking-widest mb-2"
-          >
-            NETWORK BRIDGING
-          </h2>
-          <p class="text-xs text-gray-400 mb-6">
-            Before submitting this form to StilSein HQ, you MUST register the
-            DevEUIs on the official TTN Console and configure the StilSein
-            Cloudflare webhook.
-          </p>
-
-          <a
-            href="ttn_gids.html"
-            target="_blank"
-            class="inline-block mb-8 px-6 py-3 bg-stilsein-blue/10 text-stilsein-blue text-xs font-bold tracking-widest rounded hover:bg-stilsein-blue hover:text-stilsein-dark transition border border-stilsein-blue/30"
-            >📖 OPEN TTN INTEGRATION GUIDE</a
-          >
-
           <button
             id="submit-btn"
             onclick="submitHardware()"
@@ -298,7 +280,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
               <div>
                 <label class="block text-xs text-stilsein-blue mb-1">DevEUI</label>
-                <input type="text" id="eui_${i}" value="${n.devEUI === "PENDING_INSTALLER" ? "" : n.devEUI}" class="w-full bg-black/40 border border-white/10 rounded p-2 text-white font-mono text-sm uppercase" placeholder="Enter 16-char EUI" required>
+                <input type="text" id="eui_${i}" value="${n.devEUI === "PENDING_INSTALLER" ? "" : n.devEUI}" oninput="validateForm()" class="w-full bg-black/40 border border-white/10 rounded p-2 text-white font-mono text-sm uppercase" placeholder="Enter 16-char EUI" required>
               </div>
               <div>
                 <label class="block text-xs text-stilsein-blue mb-1">Brand</label>
@@ -310,19 +292,29 @@
               </div>
             </div>
             
-            <div class="mb-4 p-3 bg-stilsein-blue/10 border border-stilsein-blue/30 rounded-lg flex justify-between items-center">
-              <div>
-                <span class="text-stilsein-blue text-[10px] font-bold uppercase tracking-wider block mb-1">Network Routing</span>
-                <p class="text-white text-xs">${n.ttnRouting || "StilSein Managed TTN"}</p>
+            <div class="mb-4 p-3 bg-stilsein-blue/10 border border-stilsein-blue/30 rounded-lg">
+              <div class="flex justify-between items-center">
+                <div>
+                  <span class="text-stilsein-blue text-[10px] font-bold uppercase tracking-wider block mb-1">Network Routing</span>
+                  <p class="text-white text-xs">Where does this sensor send its data?</p>
+                </div>
+                <select id="ttn_${i}" onchange="toggleTtnGuide(${i}); validateForm();" class="bg-black/40 border border-white/10 rounded p-1 text-white text-xs w-36 cursor-pointer">
+                  <option value="StilSein Managed TTN">StilSein TTN</option>
+                  <option value="Custom / Private LNS">Custom LNS</option>
+                </select>
               </div>
-              <select id="ttn_${i}" class="bg-black/40 border border-white/10 rounded p-1 text-white text-xs w-32">
-                <option value="StilSein Managed TTN">StilSein TTN</option>
-                <option value="Custom / Private LNS">Custom LNS</option>
-              </select>
+              <div id="ttn_guide_${i}" class="hidden mt-3 p-3 bg-jakkals-orange/10 border border-jakkals-orange/30 rounded-lg text-left">
+                <p class="text-[10px] text-gray-300 mb-2">You selected <strong class="text-jakkals-orange">Custom LNS</strong>. You MUST register this DevEUI on your own TTN console and point the Webhook to StilSein.</p>
+                <a href="ttn_gids.html" target="_blank" class="text-[10px] text-jakkals-orange font-bold underline mb-3 inline-block">📖 READ INTEGRATION GUIDE</a>
+                <label class="flex items-center gap-2 cursor-pointer mt-1">
+                  <input type="checkbox" id="ttn_confirm_${i}" onchange="validateForm()" class="w-4 h-4 rounded bg-black/40 border-white/10 text-jakkals-orange focus:ring-jakkals-orange">
+                  <span class="text-[10px] text-white">I confirm the webhook is configured for this node.</span>
+                </label>
+              </div>
             </div>
             
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-              <div><label class="block text-[10px] text-gray-400 mb-1">Interval (Mins)</label><input type="number" id="int_${i}" value="10" class="w-full bg-black/40 border border-white/10 rounded p-2 text-white text-xs"></div>
+              <div><label class="block text-[10px] text-gray-400 mb-1">Interval (Mins)</label><input type="number" id="int_${i}" value="${n.interval === "PENDING" ? "" : n.interval || "10"}" oninput="validateForm()" class="w-full bg-black/40 border border-white/10 rounded p-2 text-white text-xs" required></div>
         `;
 
           if (isRain) {
@@ -370,9 +362,54 @@
             const ttnDrop = document.getElementById(`ttn_${i}`);
             if (ttnDrop && n.ttnRouting) {
               ttnDrop.value = n.ttnRouting;
+              toggleTtnGuide(i); // Trigger visual guide state instantly
             }
           }, 50);
         });
+
+        setTimeout(validateForm, 100); // 🛠️ Initial lock on page load
+      }
+
+      function toggleTtnGuide(index) {
+        const ttnDrop = document.getElementById(`ttn_${index}`).value;
+        const guideDiv = document.getElementById(`ttn_guide_${index}`);
+        const confirmCb = document.getElementById(`ttn_confirm_${index}`);
+
+        if (ttnDrop === "Custom / Private LNS") {
+          guideDiv.classList.remove("hidden");
+          confirmCb.checked = false; // Force them to check it manually
+        } else {
+          guideDiv.classList.add("hidden");
+          confirmCb.checked = true; // Auto-true for Managed TTN
+        }
+      }
+
+      function validateForm() {
+        let isValid = true;
+        if (!quoteData || !quoteData.nodes_json) return;
+
+        quoteData.nodes_json.forEach((n, i) => {
+          const eui = document.getElementById(`eui_${i}`)?.value.trim();
+          if (!eui || eui.length < 5) isValid = false; // Simple safety check
+
+          const interval = document.getElementById(`int_${i}`)?.value.trim();
+          if (!interval) isValid = false;
+
+          const ttnDrop = document.getElementById(`ttn_${i}`)?.value;
+          if (ttnDrop === "Custom / Private LNS") {
+            const cb = document.getElementById(`ttn_confirm_${i}`);
+            if (!cb || !cb.checked) isValid = false;
+          }
+        });
+
+        const btn = document.getElementById("submit-btn");
+        if (isValid) {
+          btn.disabled = false;
+          btn.classList.remove("opacity-50", "cursor-not-allowed");
+        } else {
+          btn.disabled = true;
+          btn.classList.add("opacity-50", "cursor-not-allowed");
+        }
       }
 
       function submitHardware() {
