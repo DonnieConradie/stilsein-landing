@@ -305,8 +305,20 @@
                 <select id="brand_${i}" class="w-full bg-black/40 border border-white/10 rounded p-2 text-white text-sm">
                   <option value="Dragino">Dragino</option><option value="Milesight">Milesight</option><option value="SenseCAP">SenseCAP</option>
                   <option value="Netvox">Netvox</option><option value="NCD">NCD</option><option value="Browan">Browan</option>
+                  <option value="Other">Other</option>
                 </select>
               </div>
+            </div>
+            
+            <div class="mb-4 p-3 bg-stilsein-blue/10 border border-stilsein-blue/30 rounded-lg flex justify-between items-center">
+              <div>
+                <span class="text-stilsein-blue text-[10px] font-bold uppercase tracking-wider block mb-1">Network Routing</span>
+                <p class="text-white text-xs">${n.ttnRouting || "StilSein Managed TTN"}</p>
+              </div>
+              <select id="ttn_${i}" class="bg-black/40 border border-white/10 rounded p-1 text-white text-xs w-32">
+                <option value="StilSein Managed TTN">StilSein TTN</option>
+                <option value="Custom / Private LNS">Custom LNS</option>
+              </select>
             </div>
             
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -337,6 +349,29 @@
             </div>
           </div>`;
           formContainer.insertAdjacentHTML("beforeend", html);
+
+          // 🛠️ AUTO-SELECT THE CLIENT'S CHOSEN BRAND & NETWORK ON RENDER
+          setTimeout(() => {
+            const brandDrop = document.getElementById(`brand_${i}`);
+            if (brandDrop && n.brand && n.brand !== "PENDING_INSTALLER") {
+              let found = false;
+              for (let o of brandDrop.options) {
+                if (o.value === n.brand) found = true;
+              }
+              if (!found) {
+                const opt = document.createElement("option");
+                opt.value = n.brand;
+                opt.text = n.brand;
+                brandDrop.appendChild(opt);
+              }
+              brandDrop.value = n.brand;
+            }
+
+            const ttnDrop = document.getElementById(`ttn_${i}`);
+            if (ttnDrop && n.ttnRouting) {
+              ttnDrop.value = n.ttnRouting;
+            }
+          }, 50);
         });
       }
 
@@ -366,6 +401,7 @@
             n.lon = parseFloat(document.getElementById(`lon_${i}`).value);
             n.brand = document.getElementById(`brand_${i}`).value;
             n.interval = document.getElementById(`int_${i}`).value;
+            n.ttnRouting = document.getElementById(`ttn_${i}`).value;
 
             if (safeType === "Rain") {
               n.bucketSize = document.getElementById(`buck_${i}`).value;
