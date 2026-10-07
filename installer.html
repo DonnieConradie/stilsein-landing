@@ -280,7 +280,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
               <div>
                 <label class="block text-xs text-stilsein-blue mb-1">DevEUI</label>
-                <input type="text" id="eui_${i}" value="${n.devEUI === "PENDING_INSTALLER" ? "" : n.devEUI}" oninput="validateForm()" class="w-full bg-black/40 border border-white/10 rounded p-2 text-white font-mono text-sm uppercase" placeholder="Enter 16-char EUI" required>
+                <input type="text" id="eui_${i}" value="${(n.devEUI || n.devEui) === "PENDING_INSTALLER" ? "" : n.devEUI || n.devEui || ""}" oninput="validateForm()" class="w-full bg-black/40 border border-white/10 rounded p-2 text-white font-mono text-sm uppercase" placeholder="Enter 16-char EUI" required>
               </div>
               <div>
                 <label class="block text-xs text-stilsein-blue mb-1">Brand</label>
