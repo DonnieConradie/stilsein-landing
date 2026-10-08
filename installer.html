@@ -130,6 +130,20 @@
               specific sensor thresholds, and correct any GPS coordinates if
               they were inaccurately pinned.
             </p>
+
+            <div
+              class="mt-4 p-3 bg-stilsein-blue/10 border-l-2 border-stilsein-blue rounded-r text-[10px] text-gray-300"
+            >
+              <strong class="text-stilsein-blue uppercase tracking-widest"
+                >Notice on Custom Fields:</strong
+              ><br />
+              Fields surrounded by a
+              <strong class="text-stilsein-blue">Blue Border</strong> indicate
+              values that the Farmer explicitly selected during the quoting
+              process. Please ensure your hardware deployment matches these
+              <strong>[EXPECTED]</strong> specifications, or contact the farmer
+              to negotiate changes. All other fields are system defaults.
+            </div>
           </div>
 
           <form id="nodes-form" class="space-y-6"></form>
@@ -256,6 +270,14 @@
           const isPipe = safeType === "Pipe";
           const isDam = safeType === "Dam";
 
+          const isExplicit = n.isDelegated === false;
+          const explicitClass = isExplicit
+            ? "border-stilsein-blue/60 bg-stilsein-blue/5 shadow-[0_0_10px_rgba(145,172,200,0.2)]"
+            : "border-white/10 bg-black/40";
+          const explicitBadge = isExplicit
+            ? `<span class="text-stilsein-blue text-[8px] font-bold tracking-widest uppercase ml-2 bg-stilsein-blue/10 px-2 py-0.5 rounded border border-stilsein-blue/30">[EXPECTED]</span>`
+            : "";
+
           let html = `
           <div class="p-4 bg-black/20 rounded-xl border border-white/5">
             <h3 class="text-white font-bold mb-3 flex items-center gap-2">
@@ -283,8 +305,8 @@
                 <input type="text" id="eui_${i}" value="${(n.devEUI || n.devEui) === "PENDING_INSTALLER" ? "" : n.devEUI || n.devEui || ""}" oninput="validateForm()" class="w-full bg-black/40 border border-white/10 rounded p-2 text-white font-mono text-sm uppercase" placeholder="Enter 16-char EUI" required>
               </div>
               <div>
-                <label class="block text-xs text-stilsein-blue mb-1">Brand</label>
-                <select id="brand_${i}" class="w-full bg-black/40 border border-white/10 rounded p-2 text-white text-sm">
+                <label class="block text-xs text-stilsein-blue mb-1">Brand ${explicitBadge}</label>
+                <select id="brand_${i}" class="w-full ${explicitClass} rounded p-2 text-white text-sm">
                   <option value="Dragino">Dragino</option><option value="Milesight">Milesight</option><option value="SenseCAP">SenseCAP</option>
                   <option value="Netvox">Netvox</option><option value="NCD">NCD</option><option value="Browan">Browan</option>
                   <option value="Other">Other</option>
@@ -292,40 +314,19 @@
               </div>
             </div>
             
-            <div class="mb-4 p-3 bg-stilsein-blue/10 border border-stilsein-blue/30 rounded-lg">
-              <div class="flex justify-between items-center">
-                <div>
-                  <span class="text-stilsein-blue text-[10px] font-bold uppercase tracking-wider block mb-1">Network Routing</span>
-                  <p class="text-white text-xs">Where does this sensor send its data?</p>
-                </div>
-                <select id="ttn_${i}" onchange="toggleTtnGuide(${i}); validateForm();" class="bg-black/40 border border-white/10 rounded p-1 text-white text-xs w-36 cursor-pointer">
-                  <option value="StilSein Managed TTN">StilSein TTN</option>
-                  <option value="Custom / Private LNS">Custom LNS</option>
-                </select>
-              </div>
-              <div id="ttn_guide_${i}" class="hidden mt-3 p-3 bg-jakkals-orange/10 border border-jakkals-orange/30 rounded-lg text-left">
-                <p class="text-[10px] text-gray-300 mb-2">You selected <strong class="text-jakkals-orange">Custom LNS</strong>. You MUST register this DevEUI on your own TTN console and point the Webhook to StilSein.</p>
-                <a href="ttn_gids.html" target="_blank" class="text-[10px] text-jakkals-orange font-bold underline mb-3 inline-block">📖 READ INTEGRATION GUIDE</a>
-                <label class="flex items-center gap-2 cursor-pointer mt-1">
-                  <input type="checkbox" id="ttn_confirm_${i}" onchange="validateForm()" class="w-4 h-4 rounded bg-black/40 border-white/10 text-jakkals-orange focus:ring-jakkals-orange">
-                  <span class="text-[10px] text-white">I confirm the webhook is configured for this node.</span>
-                </label>
-              </div>
-            </div>
-            
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-              <div><label class="block text-[10px] text-gray-400 mb-1">Interval (Mins)</label><input type="number" id="int_${i}" value="${n.interval === "PENDING" ? "" : n.interval || "10"}" oninput="validateForm()" class="w-full bg-black/40 border border-white/10 rounded p-2 text-white text-xs" required></div>
+              <div><label class="block text-[10px] text-gray-400 mb-1">Interval (Mins) ${explicitBadge}</label><input type="number" id="int_${i}" value="${n.interval === "PENDING" ? "" : n.interval || "10"}" oninput="validateForm()" class="w-full ${explicitClass} rounded p-2 text-white text-xs" required></div>
         `;
 
           if (isRain) {
-            html += `<div><label class="block text-[10px] text-gray-400 mb-1">Bucket Size (mm)</label><input type="number" step="0.1" id="buck_${i}" value="${n.bucketSize || "0.2"}" oninput="validateForm()" class="w-full bg-black/40 border border-white/10 rounded p-2 text-white text-xs" required></div>`;
+            html += `<div><label class="block text-[10px] text-gray-400 mb-1">Bucket Size (mm) ${explicitBadge}</label><input type="number" step="0.1" id="buck_${i}" value="${n.bucketSize || "0.2"}" oninput="validateForm()" class="w-full ${explicitClass} rounded p-2 text-white text-xs" required></div>`;
           } else if (isPipe) {
-            html += `<div><label class="block text-[10px] text-gray-400 mb-1">Min Bar (Leak)</label><input type="number" step="0.1" id="pmin_${i}" value="${n.minBar || "1.5"}" oninput="validateForm()" class="w-full bg-black/40 border border-white/10 rounded p-2 text-white text-xs" required></div>`;
-            html += `<div><label class="block text-[10px] text-gray-400 mb-1">Max Bar (Block)</label><input type="number" step="0.1" id="pmax_${i}" value="${n.maxBar || "5.0"}" oninput="validateForm()" class="w-full bg-black/40 border border-white/10 rounded p-2 text-white text-xs" required></div>`;
+            html += `<div><label class="block text-[10px] text-gray-400 mb-1">Min Bar (Leak) ${explicitBadge}</label><input type="number" step="0.1" id="pmin_${i}" value="${n.minBar || "1.5"}" oninput="validateForm()" class="w-full ${explicitClass} rounded p-2 text-white text-xs" required></div>`;
+            html += `<div><label class="block text-[10px] text-gray-400 mb-1">Max Bar (Block) ${explicitBadge}</label><input type="number" step="0.1" id="pmax_${i}" value="${n.maxBar || "5.0"}" oninput="validateForm()" class="w-full ${explicitClass} rounded p-2 text-white text-xs" required></div>`;
           } else if (isDam) {
-            html += `<div><label class="block text-[10px] text-gray-400 mb-1">Capacity (Liters)</label><input type="number" id="dcap_${i}" value="${n.capacity || "100000"}" class="w-full bg-black/40 border border-white/10 rounded p-2 text-white text-xs"></div>`;
-            html += `<div><label class="block text-[10px] text-gray-400 mb-1">Depth 0% (m)</label><input type="number" step="0.1" id="dempty_${i}" value="${n.depthEmpty || "5.0"}" class="w-full bg-black/40 border border-white/10 rounded p-2 text-white text-xs"></div>`;
-            html += `<div><label class="block text-[10px] text-gray-400 mb-1">Depth 100% (m)</label><input type="number" step="0.1" id="dfull_${i}" value="${n.depthFull || "0.5"}" class="w-full bg-black/40 border border-white/10 rounded p-2 text-white text-xs"></div>`;
+            html += `<div><label class="block text-[10px] text-gray-400 mb-1">Capacity (Liters) ${explicitBadge}</label><input type="number" id="dcap_${i}" value="${n.capacity || "100000"}" class="w-full ${explicitClass} rounded p-2 text-white text-xs"></div>`;
+            html += `<div><label class="block text-[10px] text-gray-400 mb-1">Depth 0% (m) ${explicitBadge}</label><input type="number" step="0.1" id="dempty_${i}" value="${n.depthEmpty || "5.0"}" class="w-full ${explicitClass} rounded p-2 text-white text-xs"></div>`;
+            html += `<div><label class="block text-[10px] text-gray-400 mb-1">Depth 100% (m) ${explicitBadge}</label><input type="number" step="0.1" id="dfull_${i}" value="${n.depthFull || "0.5"}" class="w-full ${explicitClass} rounded p-2 text-white text-xs"></div>`;
           }
 
           html += `</div>
