@@ -1108,6 +1108,18 @@
               </div>
             </div>
 
+            <!-- 🛠️ NEW: REGION-SPECIFIC SERVICES -->
+            <div class="mb-6 p-4 bg-black/20 rounded-lg border border-white/5">
+              <label class="block text-[10px] font-bold text-stilsein-blue tracking-widest uppercase mb-3">Supported Services in this Region</label>
+              <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+                <label class="flex items-center space-x-2 text-white text-xs cursor-pointer"><input type="checkbox" value="Rain" class="service-cb-${branchId} form-checkbox text-jakkals-orange bg-black/40 border-white/10 rounded" checked><span>Rain / Weerwolf</span></label>
+                <label class="flex items-center space-x-2 text-white text-xs cursor-pointer"><input type="checkbox" value="Pipe" class="service-cb-${branchId} form-checkbox text-jakkals-orange bg-black/40 border-white/10 rounded" checked><span>Pipes / Drukwolf</span></label>
+                <label class="flex items-center space-x-2 text-white text-xs cursor-pointer"><input type="checkbox" value="Dam" class="service-cb-${branchId} form-checkbox text-jakkals-orange bg-black/40 border-white/10 rounded" checked><span>Dams / Waterwolf</span></label>
+                <label class="flex items-center space-x-2 text-white text-xs cursor-pointer"><input type="checkbox" value="Soil" class="service-cb-${branchId} form-checkbox text-jakkals-orange bg-black/40 border-white/10 rounded"><span>Soil / Grondwolf</span></label>
+                <label class="flex items-center space-x-2 text-white text-xs cursor-pointer"><input type="checkbox" value="Security" class="service-cb-${branchId} form-checkbox text-jakkals-orange bg-black/40 border-white/10 rounded"><span>Security / Wagwolf</span></label>
+              </div>
+            </div>
+
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div class="flex flex-col justify-center">
                 <label class="block text-xs font-bold text-stilsein-blue tracking-widest uppercase mb-2">Drop a Pin on this HQ</label>
@@ -1170,6 +1182,15 @@
         document.getElementById(`branch-card-${id}`).remove();
         delete maps[id];
         delete markers[id];
+        updateBranchNumbers(); // 🛠️ FIX 1: Recalculate numbers!
+      }
+
+      function updateBranchNumbers() {
+        const branches = document.querySelectorAll(".branch-item");
+        branches.forEach((branch, index) => {
+          const title = branch.querySelector("h4");
+          if (title) title.innerText = `BRANCH ${index + 1}`;
+        });
       }
 
       // Initialize the first required branch on load
@@ -1189,9 +1210,18 @@
 
           if (!lat || !lon) missingPins = true;
 
+          // 🛠️ FIX 3: Extract Region-Specific Services
+          const serviceCbs = document.querySelectorAll(
+            `.service-cb-${id}:checked`,
+          );
+          const selectedServices = Array.from(serviceCbs)
+            .map((cb) => cb.value)
+            .join(", ");
+
           branches.push({
             region: document.getElementById(`region-${id}`).value,
             radius: document.getElementById(`radius-${id}`).value,
+            services: selectedServices || "General",
             lat: lat,
             lon: lon,
           });
@@ -1236,7 +1266,7 @@
           body: JSON.stringify(payload),
         })
           .then((response) => {
-            btn.innerText = "APPLICATION RECEIVED!";
+            btn.innerText = "RECEIVED! PLEASE CHECK EMAIL."; // 🛠️ FIX 2: Success Message Update
             btn.classList.add("!bg-green-500", "!text-white");
             setTimeout(() => {
               btn.innerText = originalText;
