@@ -782,6 +782,40 @@
             onsubmit="submitPartnerForm(event)"
             class="space-y-6 relative z-10"
           >
+            <!-- COMPANY & CONTACT DETAILS -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label
+                  for="partner-company"
+                  class="block text-xs font-bold text-stilsein-blue tracking-widest uppercase mb-2"
+                  data-i18n="p_form_company"
+                  >Company Name</label
+                >
+                <input
+                  type="text"
+                  id="partner-company"
+                  name="partner-company"
+                  placeholder="e.g. AgriTech Installs"
+                  required
+                  class="w-full bg-stilsein-dark/80 border border-white/10 rounded-lg p-3 text-white placeholder-gray-500 focus:outline-none focus:border-jakkals-orange focus:ring-1 focus:ring-jakkals-orange transition-all"
+                />
+              </div>
+              <div>
+                <label
+                  for="partner-website"
+                  class="block text-xs font-bold text-stilsein-blue tracking-widest uppercase mb-2"
+                  >Company Website (Optional)</label
+                >
+                <input
+                  type="text"
+                  id="partner-website"
+                  name="partner-website"
+                  placeholder="www.yourcompany.co.za"
+                  class="w-full bg-stilsein-dark/80 border border-white/10 rounded-lg p-3 text-white placeholder-gray-500 focus:outline-none focus:border-jakkals-orange focus:ring-1 focus:ring-jakkals-orange transition-all"
+                />
+              </div>
+            </div>
+
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <label
@@ -820,80 +854,6 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <label
-                  for="partner-company"
-                  class="block text-xs font-bold text-stilsein-blue tracking-widest uppercase mb-2"
-                  data-i18n="p_form_company"
-                  >Company Name</label
-                >
-                <input
-                  type="text"
-                  id="partner-company"
-                  name="partner-company"
-                  placeholder="e.g. AgriTech Installs"
-                  required
-                  class="w-full bg-stilsein-dark/80 border border-white/10 rounded-lg p-3 text-white placeholder-gray-500 focus:outline-none focus:border-jakkals-orange focus:ring-1 focus:ring-jakkals-orange transition-all"
-                />
-              </div>
-              <div class="grid grid-cols-2 gap-4">
-                <div class="col-span-1">
-                  <label
-                    for="partner-region"
-                    class="block text-xs font-bold text-stilsein-blue tracking-widest uppercase mb-2"
-                    data-i18n="p_form_region"
-                    >Base Region</label
-                  >
-                  <input
-                    type="text"
-                    id="partner-region"
-                    name="partner-region"
-                    placeholder="e.g. Bloemfontein"
-                    required
-                    class="w-full bg-stilsein-dark/80 border border-white/10 rounded-lg p-3 text-white placeholder-gray-500 focus:outline-none focus:border-jakkals-orange focus:ring-1 focus:ring-jakkals-orange transition-all"
-                  />
-                </div>
-                <div class="col-span-1">
-                  <label
-                    for="partner-radius"
-                    class="block text-xs font-bold text-stilsein-blue tracking-widest uppercase mb-2"
-                    data-i18n="p_form_radius"
-                    >Coverage Area</label
-                  >
-                  <select
-                    id="partner-radius"
-                    name="partner-radius"
-                    required
-                    class="w-full bg-stilsein-dark/80 border border-white/10 rounded-lg p-3 text-white focus:outline-none focus:border-jakkals-orange focus:ring-1 focus:ring-jakkals-orange transition-all"
-                  >
-                    <option value="50">50 km Radius</option>
-                    <option value="150" selected>150 km Radius</option>
-                    <option value="300">300 km Radius</option>
-                    <option value="500">500 km Radius</option>
-                    <option value="1000">1000 km Radius</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-
-            <div>
-              <label
-                for="partner-exp"
-                class="block text-xs font-bold text-stilsein-blue tracking-widest uppercase mb-2"
-                data-i18n="p_form_exp"
-                >Brief description of your IoT / Electrical experience</label
-              >
-              <textarea
-                id="partner-exp"
-                name="partner-exp"
-                rows="3"
-                placeholder="..."
-                required
-                class="w-full bg-stilsein-dark/80 border border-white/10 rounded-lg p-3 text-white placeholder-gray-500 focus:outline-none focus:border-jakkals-orange focus:ring-1 focus:ring-jakkals-orange transition-all"
-              ></textarea>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <label
                   for="partner-phone"
                   class="block text-xs font-bold text-stilsein-blue tracking-widest uppercase mb-2"
                   data-i18n="p_form_phone"
@@ -926,90 +886,72 @@
               </div>
             </div>
 
-            <!-- 🛠️ PHASE 14.1: WEBSITE & HQ MAP -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <label
-                  for="partner-website"
-                  class="block text-xs font-bold text-stilsein-blue tracking-widest uppercase mb-2"
-                  >Company Website (Optional)</label
-                >
-                <input
-                  type="text"
-                  id="partner-website"
-                  name="partner-website"
-                  placeholder="www.yourcompany.co.za"
-                  aria-label="Company Website"
-                  class="w-full bg-stilsein-dark/80 border border-white/10 rounded-lg p-3 text-white placeholder-gray-500 focus:outline-none focus:border-jakkals-orange focus:ring-1 focus:ring-jakkals-orange transition-all"
-                />
+            <div>
+              <label
+                for="partner-exp"
+                class="block text-xs font-bold text-stilsein-blue tracking-widest uppercase mb-2"
+                data-i18n="p_form_exp"
+                >Brief description of your IoT / Electrical experience</label
+              >
+              <textarea
+                id="partner-exp"
+                name="partner-exp"
+                rows="2"
+                placeholder="..."
+                required
+                class="w-full bg-stilsein-dark/80 border border-white/10 rounded-lg p-3 text-white placeholder-gray-500 focus:outline-none focus:border-jakkals-orange focus:ring-1 focus:ring-jakkals-orange transition-all"
+              ></textarea>
+            </div>
 
-                <!-- 🛠️ COMPANY LOGO UPLOAD -->
-                <label
-                  for="partner-logo"
-                  class="block text-xs font-bold text-stilsein-blue tracking-widest uppercase mb-2 mt-6"
-                  >Company Logo (Optional)</label
-                >
-                <div class="flex items-center gap-4">
-                  <input
-                    type="file"
-                    id="partner-logo"
-                    name="partner-logo"
-                    accept="image/*"
-                    aria-label="Company Logo Upload"
-                    class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-stilsein-blue/10 file:text-stilsein-blue hover:file:bg-stilsein-blue/20 transition-all"
-                  />
-                  <img
-                    id="logo-preview"
-                    class="hidden w-10 h-10 object-contain rounded border border-white/10"
-                    alt="Logo Preview"
-                  />
-                </div>
+            <div class="border-t border-white/10 pt-4">
+              <label
+                for="partner-logo"
+                class="block text-xs font-bold text-stilsein-blue tracking-widest uppercase mb-2"
+                >Company Logo (Optional)</label
+              >
+              <div class="flex items-center gap-4">
+                <input
+                  type="file"
+                  id="partner-logo"
+                  name="partner-logo"
+                  accept="image/*"
+                  class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-stilsein-blue/10 file:text-stilsein-blue hover:file:bg-stilsein-blue/20 transition-all"
+                />
+                <img
+                  id="logo-preview"
+                  class="hidden w-10 h-10 object-contain rounded border border-white/10"
+                  alt="Logo Preview"
+                />
+              </div>
+            </div>
 
-                <label
-                  for="installer-map"
-                  class="block text-xs font-bold text-stilsein-blue tracking-widest uppercase mb-2 mt-6"
-                  >Drop a Pin on your HQ</label
-                >
-                <p class="text-xs text-stilsein-muted mb-2">
-                  This ensures we route leads in your exact radius to you.
-                </p>
-                <!-- Hidden inputs to store the coordinates -->
-                <input
-                  type="hidden"
-                  id="partner-lat"
-                  name="partner-lat"
-                  aria-label="Latitude"
-                  required
-                />
-                <input
-                  type="hidden"
-                  id="partner-lon"
-                  name="partner-lon"
-                  aria-label="Longitude"
-                  required
-                />
-                <div
-                  class="text-xs text-jakkals-orange font-bold mt-2"
-                  id="coord-display"
-                  aria-live="polite"
-                >
-                  Waiting for pin...
-                </div>
+            <!-- REGIONAL BRANCHES ENGINE -->
+            <div class="border-t border-jakkals-orange/30 pt-6 mt-6">
+              <h3 class="text-lg font-bold text-white font-garet mb-2">
+                OPERATING REGIONS
+              </h3>
+              <p class="text-stilsein-muted text-xs mb-6">
+                Add the branches or regions where you can physically deploy
+                hardware. We use this to route local farmers directly to you.
+              </p>
+
+              <div id="branches-container" class="space-y-6">
+                <!-- Branches will be injected here by Javascript -->
               </div>
 
-              <!-- The Leaflet Map Container -->
-              <div
-                class="w-full h-48 md:h-full min-h-[200px] bg-stilsein-dark/80 border border-white/10 rounded-lg overflow-hidden relative z-0"
-                id="installer-map"
-                aria-label="Interactive Map for HQ Location"
-                role="region"
-              ></div>
+              <button
+                type="button"
+                onclick="addBranch()"
+                class="w-full py-3 mt-4 border-2 border-dashed border-stilsein-blue/40 text-stilsein-blue font-bold rounded-lg hover:bg-stilsein-blue/10 transition-all tracking-widest text-xs"
+              >
+                + ADD ANOTHER REGION / BRANCH
+              </button>
             </div>
 
             <button
               id="partner-submit-btn"
               type="submit"
-              class="w-full py-4 mt-4 bg-jakkals-orange text-stilsein-dark font-bold rounded-lg hover:bg-white transition-all shadow-[0_0_20px_rgba(255,158,74,0.3)] tracking-widest uppercase"
+              class="w-full py-4 mt-8 bg-jakkals-orange text-stilsein-dark font-bold rounded-lg hover:bg-white transition-all shadow-[0_0_20px_rgba(255,158,74,0.3)] tracking-widest uppercase"
               data-i18n="p_form_submit"
             >
               SUBMIT APPLICATION
@@ -1108,45 +1050,158 @@
           reader.readAsDataURL(file);
         });
 
-      // --- 🛠️ PHASE 14.1: LEAFLET MAP INITIALIZATION ---
-      // Default to Bloemfontein (Center of SA)
-      const map = L.map("installer-map").setView([-29.1141, 26.223], 5);
-      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-        attribution: "&copy; OpenStreetMap contributors",
-      }).addTo(map);
+      // --- 🛠️ MULTI-REGION BRANCH ENGINE ---
+      let branchCount = 0;
+      const maps = {};
+      const markers = {};
 
-      let installerMarker;
-      map.on("click", function (e) {
-        const lat = e.latlng.lat;
-        const lng = e.latlng.lng;
+      const regionOptions = `
+        <option value="" disabled selected>Select Region...</option>
+        <optgroup label="South Africa">
+          <option value="Gauteng">Gauteng</option>
+          <option value="Western Cape">Western Cape</option>
+          <option value="Eastern Cape">Eastern Cape</option>
+          <option value="Northern Cape">Northern Cape</option>
+          <option value="Free State">Free State</option>
+          <option value="KwaZulu-Natal">KwaZulu-Natal</option>
+          <option value="North West">North West</option>
+          <option value="Mpumalanga">Mpumalanga</option>
+          <option value="Limpopo">Limpopo</option>
+          <option value="National (South Africa)">National (South Africa)</option>
+        </optgroup>
+        <optgroup label="Neighboring Countries">
+          <option value="Namibia">Namibia</option>
+          <option value="Botswana">Botswana</option>
+          <option value="Zimbabwe">Zimbabwe</option>
+          <option value="Mozambique">Mozambique</option>
+          <option value="Eswatini">Eswatini (Swaziland)</option>
+          <option value="Lesotho">Lesotho</option>
+        </optgroup>
+      `;
 
-        if (installerMarker) {
-          map.removeLayer(installerMarker);
-        }
-        installerMarker = L.marker([lat, lng]).addTo(map);
+      function addBranch() {
+        const branchId = branchCount++;
+        const container = document.getElementById("branches-container");
 
-        document.getElementById("partner-lat").value = lat;
-        document.getElementById("partner-lon").value = lng;
-        document.getElementById("coord-display").innerText =
-          `HQ Locked: ${lat.toFixed(4)}, ${lng.toFixed(4)}`;
-        document
-          .getElementById("coord-display")
-          .classList.add("text-green-400");
-      });
+        const html = `
+          <div id="branch-card-${branchId}" class="branch-item p-6 bg-black/30 border border-white/10 rounded-xl relative overflow-hidden transition-all duration-300">
+            ${branchId > 0 ? `<button type="button" onclick="removeBranch(${branchId})" class="absolute top-4 right-4 text-red-400 hover:text-red-300 text-xs font-bold tracking-widest"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>` : ""}
+            
+            <h4 class="text-stilsein-blue text-xs font-bold tracking-widest mb-4">BRANCH ${branchId + 1}</h4>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+              <div>
+                <label class="block text-xs font-bold text-stilsein-blue tracking-widest uppercase mb-2">Operating Region</label>
+                <select id="region-${branchId}" required class="w-full bg-stilsein-dark/80 border border-white/10 rounded-lg p-3 text-white focus:outline-none focus:border-jakkals-orange transition-all appearance-none">
+                  ${regionOptions}
+                </select>
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-stilsein-blue tracking-widest uppercase mb-2">Coverage Radius</label>
+                <select id="radius-${branchId}" required class="w-full bg-stilsein-dark/80 border border-white/10 rounded-lg p-3 text-white focus:outline-none focus:border-jakkals-orange transition-all appearance-none">
+                  <option value="50">50 km Radius</option>
+                  <option value="150" selected>150 km Radius</option>
+                  <option value="300">300 km Radius</option>
+                  <option value="500">500 km Radius</option>
+                  <option value="1000">1000 km Radius</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="flex flex-col justify-center">
+                <label class="block text-xs font-bold text-stilsein-blue tracking-widest uppercase mb-2">Drop a Pin on this HQ</label>
+                <p class="text-xs text-stilsein-muted mb-4">Click the map to set the exact coordinates for this branch.</p>
+                <input type="hidden" id="lat-${branchId}" required />
+                <input type="hidden" id="lon-${branchId}" required />
+                <div class="text-xs text-jakkals-orange font-bold px-4 py-3 bg-jakkals-orange/10 border border-jakkals-orange/20 rounded-lg" id="coord-display-${branchId}">
+                  Waiting for pin...
+                </div>
+              </div>
+              <div id="map-${branchId}" class="w-full h-48 bg-stilsein-dark/80 border border-white/10 rounded-lg overflow-hidden z-0"></div>
+            </div>
+          </div>
+        `;
+
+        container.insertAdjacentHTML("beforeend", html);
+
+        // Initialize Leaflet Map for this specific branch
+        setTimeout(() => {
+          const mapInstance = L.map(`map-${branchId}`).setView(
+            [-29.1141, 26.223],
+            5,
+          );
+          L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+            attribution: "&copy; OpenStreetMap",
+          }).addTo(mapInstance);
+
+          maps[branchId] = mapInstance;
+
+          mapInstance.on("click", function (e) {
+            const lat = e.latlng.lat;
+            const lng = e.latlng.lng;
+
+            if (markers[branchId]) {
+              mapInstance.removeLayer(markers[branchId]);
+            }
+            markers[branchId] = L.marker([lat, lng]).addTo(mapInstance);
+
+            document.getElementById(`lat-${branchId}`).value = lat;
+            document.getElementById(`lon-${branchId}`).value = lng;
+            const display = document.getElementById(
+              `coord-display-${branchId}`,
+            );
+            display.innerText = `HQ Locked: ${lat.toFixed(4)}, ${lng.toFixed(4)}`;
+            display.classList.add(
+              "text-green-400",
+              "!border-green-500/30",
+              "!bg-green-500/10",
+            );
+            display.classList.remove(
+              "text-jakkals-orange",
+              "border-jakkals-orange/20",
+              "bg-jakkals-orange/10",
+            );
+          });
+        }, 100);
+      }
+
+      function removeBranch(id) {
+        document.getElementById(`branch-card-${id}`).remove();
+        delete maps[id];
+        delete markers[id];
+      }
+
+      // Initialize the first required branch on load
+      addBranch();
 
       // --- FORM SUBMIT ---
       function submitPartnerForm(e) {
         e.preventDefault();
 
-        const lat = document.getElementById("partner-lat").value;
-        const lon = document.getElementById("partner-lon").value;
+        const branches = [];
+        let missingPins = false;
 
-        if (!lat || !lon) {
-          alert("Please drop a pin on the map to set your HQ location.");
+        document.querySelectorAll(".branch-item").forEach((card) => {
+          const id = card.id.replace("branch-card-", "");
+          const lat = document.getElementById(`lat-${id}`).value;
+          const lon = document.getElementById(`lon-${id}`).value;
+
+          if (!lat || !lon) missingPins = true;
+
+          branches.push({
+            region: document.getElementById(`region-${id}`).value,
+            radius: document.getElementById(`radius-${id}`).value,
+            lat: lat,
+            lon: lon,
+          });
+        });
+
+        if (missingPins) {
+          alert("Please drop a pin on the map for all your Branches.");
           return;
         }
 
-        // 🛠️ FORGIVING URL FIX
         let rawWeb = document.getElementById("partner-website").value.trim();
         if (
           rawWeb !== "" &&
@@ -1161,42 +1216,37 @@
           firstName: document.getElementById("partner-fname").value,
           lastName: document.getElementById("partner-lname").value,
           company: document.getElementById("partner-company").value,
-          region: document.getElementById("partner-region").value,
           experience: document.getElementById("partner-exp").value,
           phone: document.getElementById("partner-phone").value,
           email: document.getElementById("partner-email").value,
           website: rawWeb,
           logoBase64: compressedLogoBase64,
-          lat: lat,
-          lon: lon,
-          radius: document.getElementById("partner-radius").value, // 🛠️ NEW: Operating Radius!
+          branches: branches, // Array of branch objects!
         };
 
         const btn = document.getElementById("partner-submit-btn");
         const originalText = btn.innerText;
 
-        // UI Loading State
         btn.innerText = "SENDING...";
         btn.disabled = true;
 
-        // 🛠️ The Edge Partner API
-        const endpoint = "https://api.stilsein.co.za/api/partner_application";
-
-        fetch(endpoint, {
+        fetch("https://api.stilsein.co.za/api/partner_application", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload),
         })
           .then((response) => {
-            // UI Success State
             btn.innerText = "APPLICATION RECEIVED!";
             btn.classList.add("!bg-green-500", "!text-white");
-
             setTimeout(() => {
               btn.innerText = originalText;
               btn.disabled = false;
               btn.classList.remove("!bg-green-500", "!text-white");
-              e.target.reset(); // Clears the form
+              e.target.reset();
+              // Reset branches back to 1
+              document.getElementById("branches-container").innerHTML = "";
+              branchCount = 0;
+              addBranch();
             }, 3000);
           })
           .catch((err) => {

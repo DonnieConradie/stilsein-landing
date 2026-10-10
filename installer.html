@@ -243,6 +243,25 @@
           const safeType = n.nodeType || n.type || "Rain";
           const safeName = n.nodeName || n.name || "Unknown";
 
+          // 🛠️ BADGE FIX: Safely parse isDelegated (Handles missing keys, bools, and strings)
+          const isExplicit =
+            n.isDelegated === false || n.isDelegated === "false";
+          const explicitClass = isExplicit
+            ? "border-stilsein-blue/60 bg-stilsein-blue/5 shadow-[0_0_10px_rgba(145,172,200,0.2)]"
+            : "border-white/10 bg-black/40";
+          const explicitBadge = isExplicit
+            ? `<span class="text-stilsein-blue text-[8px] font-bold tracking-widest uppercase ml-2 bg-stilsein-blue/10 px-2 py-0.5 rounded border border-stilsein-blue/30">[EXPECTED]</span>`
+            : "";
+
+          const euiIsExplicit =
+            isExplicit && n.devEUI && n.devEUI !== "PENDING_INSTALLER";
+          const euiExplicitClass = euiIsExplicit
+            ? "border-stilsein-blue/60 bg-stilsein-blue/5 shadow-[0_0_10px_rgba(145,172,200,0.2)]"
+            : "border-white/10 bg-black/40";
+          const euiExplicitBadge = euiIsExplicit
+            ? `<span class="text-stilsein-blue text-[8px] font-bold tracking-widest uppercase ml-2 bg-stilsein-blue/10 px-2 py-0.5 rounded border border-stilsein-blue/30">[EXPECTED]</span>`
+            : "";
+
           // Node Marker
           const bgCol =
             safeType === "Pipe"
@@ -269,23 +288,6 @@
           const isRain = safeType === "Rain";
           const isPipe = safeType === "Pipe";
           const isDam = safeType === "Dam";
-
-          const isExplicit = n.isDelegated === false;
-          const explicitClass = isExplicit
-            ? "border-stilsein-blue/60 bg-stilsein-blue/5 shadow-[0_0_10px_rgba(145,172,200,0.2)]"
-            : "border-white/10 bg-black/40";
-          const explicitBadge = isExplicit
-            ? `<span class="text-stilsein-blue text-[8px] font-bold tracking-widest uppercase ml-2 bg-stilsein-blue/10 px-2 py-0.5 rounded border border-stilsein-blue/30">[EXPECTED]</span>`
-            : "";
-
-          const euiIsExplicit =
-            isExplicit && n.devEUI && n.devEUI !== "PENDING_INSTALLER";
-          const euiExplicitClass = euiIsExplicit
-            ? "border-stilsein-blue/60 bg-stilsein-blue/5 shadow-[0_0_10px_rgba(145,172,200,0.2)]"
-            : "border-white/10 bg-black/40";
-          const euiExplicitBadge = euiIsExplicit
-            ? `<span class="text-stilsein-blue text-[8px] font-bold tracking-widest uppercase ml-2 bg-stilsein-blue/10 px-2 py-0.5 rounded border border-stilsein-blue/30">[EXPECTED]</span>`
-            : "";
 
           let html = `
           <div class="p-4 bg-black/20 rounded-xl border border-white/5">
