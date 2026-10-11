@@ -325,11 +325,20 @@
                   <option value="Custom / Private LNS">Custom LNS</option>
                 </select>
               </div>
-              <div id="ttn_guide_${i}" class="hidden mt-3 p-3 bg-jakkals-orange/10 border border-jakkals-orange/30 rounded-lg text-left">
-                <p class="text-[10px] text-gray-300 mb-2">You selected <strong class="text-jakkals-orange">Custom LNS</strong>. You MUST register this DevEUI on your own TTN console and point the Webhook to StilSein.</p>
-                <label class="flex items-center gap-2 cursor-pointer mt-1">
-                  <input type="checkbox" id="ttn_confirm_${i}" onchange="validateForm()" class="w-4 h-4 rounded bg-black/40 border-white/10 text-jakkals-orange focus:ring-jakkals-orange">
-                  <span class="text-[10px] text-white">I confirm the webhook is configured for this node.</span>
+              <div id="ttn_guide_${i}" class="hidden mt-3 p-4 bg-jakkals-orange/10 border border-jakkals-orange/30 rounded-lg text-left">
+                <p class="text-[11px] text-white mb-2 leading-relaxed">
+                  You selected <strong class="text-jakkals-orange">Custom / Private LNS</strong>. Because this node will not be provisioned on StilSein's central TTN server, you MUST manually register this DevEUI on your own LNS console.
+                </p>
+                <div class="bg-black/40 border border-white/10 rounded p-3 mb-3">
+                  <p class="text-[10px] text-gray-300 mb-2">To ensure the StilSein app receives telemetry, you must configure a Webhook integration pointing to our Edge Router. Please follow the official guide:</p>
+                  <a href="https://stilsein.co.za/ttn_gids.html" target="_blank" class="inline-flex items-center gap-1 text-[10px] font-bold text-stilsein-blue hover:text-white transition-colors underline underline-offset-2">
+                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                    OPEN TTN INTEGRATION GUIDE
+                  </a>
+                </div>
+                <label class="flex items-start gap-2 cursor-pointer mt-1">
+                  <input type="checkbox" id="ttn_confirm_${i}" onchange="validateForm()" class="w-4 h-4 mt-0.5 rounded bg-black/40 border-white/10 text-jakkals-orange focus:ring-jakkals-orange">
+                  <span class="text-[10px] text-white leading-tight">I confirm that this node is registered on our LNS and the webhook is actively pointing to the StilSein Edge Router.</span>
                 </label>
               </div>
             </div>
