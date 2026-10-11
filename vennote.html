@@ -1087,7 +1087,10 @@
           <div id="branch-card-${branchId}" class="branch-item p-6 bg-black/30 border border-white/10 rounded-xl relative overflow-hidden transition-all duration-300">
             ${branchId > 0 ? `<button type="button" onclick="removeBranch(${branchId})" class="absolute top-4 right-4 text-red-400 hover:text-red-300 text-xs font-bold tracking-widest"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>` : ""}
             
-            <h4 class="text-stilsein-blue text-xs font-bold tracking-widest mb-4">BRANCH ${branchId + 1}</h4>
+            <div class="mb-6">
+              <label class="block text-xs font-bold text-stilsein-blue tracking-widest uppercase mb-2">Branch / Region Name</label>
+              <input type="text" id="branch-name-${branchId}" placeholder="e.g. Cape Town HQ" required class="w-full bg-stilsein-dark/80 border border-white/10 rounded-lg p-3 text-white placeholder-gray-500 focus:outline-none focus:border-jakkals-orange transition-all" />
+            </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
               <div>
@@ -1182,15 +1185,6 @@
         document.getElementById(`branch-card-${id}`).remove();
         delete maps[id];
         delete markers[id];
-        updateBranchNumbers(); // 🛠️ FIX 1: Recalculate numbers!
-      }
-
-      function updateBranchNumbers() {
-        const branches = document.querySelectorAll(".branch-item");
-        branches.forEach((branch, index) => {
-          const title = branch.querySelector("h4");
-          if (title) title.innerText = `BRANCH ${index + 1}`;
-        });
       }
 
       // Initialize the first required branch on load
@@ -1219,6 +1213,9 @@
             .join(", ");
 
           branches.push({
+            branchName: document
+              .getElementById(`branch-name-${id}`)
+              .value.trim(),
             region: document.getElementById(`region-${id}`).value,
             radius: document.getElementById(`radius-${id}`).value,
             services: selectedServices || "General",
