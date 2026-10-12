@@ -191,7 +191,22 @@
           .then((data) => {
             if (data.status === "success") {
               quoteData = data.data;
-              if (quoteData.status !== "INSTALLER_PENDING") {
+
+              if (quoteData.status === "CANCELLED") {
+                // 🛠️ CANCELLATION FIX: Clear message for the installer
+                document.getElementById("farm-subtitle").innerText =
+                  quoteData.farm_name.toUpperCase();
+                document.getElementById("loader").classList.add("hidden");
+                document.getElementById("content-area").innerHTML = `
+                  <div class="glass-card p-10 rounded-2xl text-center border-red-500/50">
+                    <div class="text-red-500 text-6xl mb-4">⚠️</div>
+                    <h2 class="text-2xl font-bold text-white mb-2">REQUEST CANCELLED</h2>
+                    <p class="text-stilsein-muted">The farmer has cancelled this hardware request. No further action is required.</p>
+                  </div>`;
+                document
+                  .getElementById("content-area")
+                  .classList.remove("hidden");
+              } else if (quoteData.status !== "INSTALLER_PENDING") {
                 // IT HAS ALREADY BEEN SUBMITTED!
                 document.getElementById("farm-subtitle").innerText =
                   quoteData.farm_name.toUpperCase();
