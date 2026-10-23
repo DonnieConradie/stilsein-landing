@@ -3623,14 +3623,12 @@
         btn.disabled = true;
 
         // The Cloudflare Worker Endpoint
-        const endpoint =
-          "https://stilsein-api.fragrant-mud-451a.workers.dev/api/quote";
+        const endpoint = "https://api.stilsein.co.za/api/contact";
 
         fetch(endpoint, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            type: "contact_inquiry",
             name: name,
             phone: phone,
             email: email,
