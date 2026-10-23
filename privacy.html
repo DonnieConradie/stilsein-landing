@@ -155,7 +155,7 @@
                 1. Introduction
               </h2>
               <p>
-                StilSein Industrial (Pty) Ltd ("we," "our," or "us") operates a
+                StilSein Industries (Pty) Ltd ("we," "our," or "us") operates a
                 B2B Industrial IoT (Internet of Things) platform specifically
                 designed for the African agricultural sector. This Privacy
                 Policy explains how we collect, use, and safeguard your data
@@ -171,8 +171,11 @@
               <p>
                 StilSein's primary function is the collection of non-personal
                 environmental telemetry (e.g., rainfall, pipe pressure, dam
-                levels, soil moisture). This hardware data is routed securely
-                into isolated, farm-specific cloud vaults.
+                levels, soil moisture). This hardware data is ingested via
+                encrypted LoRaWAN gateways, routed through Cloudflare Edge
+                security proxies, and stored within a dedicated PostgreSQL
+                database cluster protected by strict Row-Level Security (RLS)
+                policies to prevent unauthorized cross-tenant access.
               </p>
               <p
                 class="mt-2 text-white font-bold bg-white/5 p-3 rounded border-l-2 border-jakkals-orange"
@@ -208,24 +211,27 @@
                 4. Location Data (GPS)
               </h2>
               <p>
-                The StilSein app utilizes your device's location services
+                The StilSein app utilizes your mobile device's location services
                 <strong
-                  >only when the app is actively in use (Foreground)</strong
-                >. This is used exclusively to:
+                  >strictly when the application is open and actively in use
+                  (Foreground Only)</strong
+                >. This permission is never accessed in the background and is
+                utilized exclusively to:
               </p>
               <ul class="list-disc pl-5 mt-2 space-y-1">
                 <li>
-                  Display your physical distance from your farm's Gateway and
-                  sensors on the Interactive Radar Map.
+                  Calculate your real-time physical distance from the central
+                  LoRaWAN Gateway and field sensors on the Interactive Farm
+                  Radar.
                 </li>
                 <li>
-                  Drop an accurate GPS pin during the "Farm Builder" setup
-                  wizard.
+                  Enable precision GPS pin placement when designing new
+                  infrastructure within the interactive Farm Builder wizard.
                 </li>
               </ul>
               <p class="mt-2">
-                We do not track your location in the background, nor do we store
-                your mobile device's live location history.
+                StilSein does not monitor, record, share, or store historical
+                user movement or background location logs.
               </p>
             </div>
 
@@ -244,27 +250,79 @@
 
             <div>
               <h2 class="text-xl font-bold text-stilsein-blue mb-3 font-garet">
-                6. Data Security
+                6. Data Security & Storage Architecture
               </h2>
               <p>
-                We implement bank-grade encryption for data in transit (via The
-                Things Network and Cloudflare Edge Proxies). Each client's data
-                is siloed in a dedicated, private database vault to prevent
-                cross-tenant data leakage.
+                We implement bank-grade encryption standards for all telemetry
+                in transit and at rest. Sensor payloads are encrypted over the
+                air using LoRaWAN AES-128 cryptographic keys, ingested via TLS
+                1.3 encrypted endpoints on Cloudflare Workers, and persisted in
+                an enterprise-grade PostgreSQL database cluster hosted on
+                Supabase.
+              </p>
+              <p class="mt-2">
+                Tenant isolation is enforced cryptographically and relationally
+                at the database engine level via PostgreSQL Row-Level Security
+                (RLS). Public client queries are strictly blocked, ensuring that
+                each farming enterprise's telemetry remains completely
+                unreachable by other accounts.
+              </p>
+            </div>
+
+            <div>
+              <h2 class="text-xl font-bold text-stilsein-blue mb-3 font-garet">
+                7. Data Retention & Account Deletion
+              </h2>
+              <p>
+                We retain your farm's telemetry and account records for the
+                duration of your active SaaS service agreement to maintain
+                continuous 5-year micro-climate historical models and regulatory
+                compliance.
+              </p>
+              <p class="mt-2">
+                In compliance with Apple App Store and Google Play policies,
+                users maintain the absolute right to delete their account and
+                all associated telemetry. You may request immediate, permanent
+                eradication of your account, nodes, and historical data at any
+                time by:
+              </p>
+              <ul class="list-disc pl-5 mt-2 space-y-1">
+                <li>
+                  Using the in-app account deletion function under
+                  <strong>Wolf Cave &gt; Settings</strong>.
+                </li>
+                <li>
+                  Emailing our data compliance team at
+                  <strong class="text-white">dev@stilsein.co.za</strong> with
+                  your Farm Key.
+                </li>
+              </ul>
+              <p class="mt-2">
+                Upon verification, all personal identifiers, farm topology, and
+                telemetry logs will be permanently expunged from our database
+                clusters within 30 days.
               </p>
             </div>
 
             <div>
               <h2 class="text-xl font-bold text-jakkals-orange mb-3 font-garet">
-                7. Contact Us
+                8. Regulatory Compliance & Inquiries
               </h2>
               <p>
-                If you have questions about this Privacy Policy, your data
-                rights, or wish to request the deletion of your account and
-                telemetry history, please contact our engineering team at:
+                StilSein Industries (Pty) Ltd operates in full alignment with
+                the South African Protection of Personal Information Act (POPIA)
+                and international data protection standards (GDPR).
+              </p>
+              <p class="mt-2">
+                If you have any questions regarding this Privacy Policy, your
+                statutory data rights, or our security architecture, please
+                contact our Information Officer at:
               </p>
               <p class="mt-2 font-bold text-white">
-                Email: admin@stilsein.co.za
+                Email: admin@stilsein.co.za / dev@stilsein.co.za
+              </p>
+              <p class="text-xs text-gray-400 mt-1">
+                StilSein Industries (Pty) Ltd. | Eastern Cape, South Africa
               </p>
             </div>
           </div>
@@ -276,7 +334,7 @@
       class="py-8 px-6 text-center border-t border-white/10 z-10 relative mt-10"
     >
       <p class="text-sm text-jakkals-orange">
-        &copy; 2026 StilSein Industrial (Pty) Ltd. | Designed in South Africa.
+        &copy; 2026 StilSein Industries (Pty) Ltd. | Designed in South Africa.
       </p>
     </footer>
   </body>
