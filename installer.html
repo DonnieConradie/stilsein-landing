@@ -410,6 +410,18 @@
             html += `<div><label class="block text-[10px] text-gray-400 mb-1">Min Bar (Leak) ${pminUI.bdg}</label><input type="number" step="0.1" id="pmin_${i}" value="${n.minBar || "1.5"}" oninput="validateForm()" class="w-full ${pminUI.cls} rounded p-2 text-white text-xs" required></div>`;
             html += `<div><label class="block text-[10px] text-gray-400 mb-1">Max Bar (Block) ${pmaxUI.bdg}</label><input type="number" step="0.1" id="pmax_${i}" value="${n.maxBar || "5.0"}" oninput="validateForm()" class="w-full ${pmaxUI.cls} rounded p-2 text-white text-xs" required></div>`;
           } else if (isDam) {
+            const isTankVal = n.is_tank === true || n.isTank === true;
+            html += `
+              <div class="col-span-2 md:col-span-4 mb-2 p-2 bg-black/40 rounded border border-white/5 flex items-center justify-between">
+                <div>
+                  <span class="text-[10px] font-bold text-[#7D6B5D] uppercase tracking-wider block">Reservoir Type</span>
+                  <p class="text-[10px] text-gray-400">Jakkals uses this to distinguish enclosed tanks from evaporating open dams.</p>
+                </div>
+                <select id="dtank_${i}" class="bg-black/60 border border-white/10 rounded p-1 text-white text-xs cursor-pointer">
+                  <option value="false" ${!isTankVal ? "selected" : ""}>Open Earthen Dam</option>
+                  <option value="true" ${isTankVal ? "selected" : ""}>Closed Tank (JoJo / Concrete)</option>
+                </select>
+              </div>`;
             html += `<div><label class="block text-[10px] text-gray-400 mb-1">Capacity (Liters) ${capUI.bdg}</label><input type="number" id="dcap_${i}" value="${n.capacity || "100000"}" class="w-full ${capUI.cls} rounded p-2 text-white text-xs"></div>`;
             html += `<div><label class="block text-[10px] text-gray-400 mb-1">Depth 0% (m) ${emptyUI.bdg}</label><input type="number" step="0.1" id="dempty_${i}" value="${n.depthEmpty || "5.0"}" class="w-full ${emptyUI.cls} rounded p-2 text-white text-xs"></div>`;
             html += `<div><label class="block text-[10px] text-gray-400 mb-1">Depth 100% (m) ${fullUI.bdg}</label><input type="number" step="0.1" id="dfull_${i}" value="${n.depthFull || "0.5"}" class="w-full ${fullUI.cls} rounded p-2 text-white text-xs"></div>`;
@@ -552,7 +564,10 @@
               n.capacity = document.getElementById(`dcap_${i}`).value;
               n.depthEmpty = document.getElementById(`dempty_${i}`).value;
               n.depthFull = document.getElementById(`dfull_${i}`).value;
-              n.thresholds = `Cap: ${n.capacity}L | Empty: ${n.depthEmpty}m | Full: ${n.depthFull}m`;
+              n.is_tank =
+                document.getElementById(`dtank_${i}`).value === "true";
+              n.isTank = n.is_tank;
+              n.thresholds = `Cap: ${n.capacity}L | Empty: ${n.depthEmpty}m | Full: ${n.depthFull}m | Type: ${n.is_tank ? "Tank" : "Dam"}`;
             }
           });
 
