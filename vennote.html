@@ -3,22 +3,25 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>StilSein Vennote | Partner Program</title>
+    <title>StilSein Vennote | Certified Partner &amp; VAR Program</title>
     <link rel="icon" type="image/png" href="assets/images/wolf_icon.png" />
 
     <!-- SEO & OPEN GRAPH TAGS -->
     <meta
       name="description"
-      content="Join the StilSein Partner Network. Become a certified IoT installer, deploy LoRaWAN hardware, and earn lifetime SaaS recurring revenue from the African agricultural sector."
+      content="Join the StilSein Partner Network. Deploy LoRaWAN farm water sensors, share your Promo Code, and earn lifetime recurring SaaS commissions on every farm."
     />
     <meta
       name="keywords"
-      content="StilSein Partners, IoT Installer, LoRaWAN Reseller, SaaS Commission, Smart Agriculture Partnership, Suid-Afrika"
+      content="StilSein Partners, StilSein Vennote, IoT Installer, LoRaWAN Reseller, SaaS Commission, Smart Agriculture Partnership, South Africa"
     />
-    <meta property="og:title" content="StilSein Vennote | Partner Program" />
+    <meta
+      property="og:title"
+      content="StilSein Vennote | Certified Partner & VAR Program"
+    />
     <meta
       property="og:description"
-      content="Transition from once-off installation fees to building a passive annuity book. Partner with StilSein as a certified IoT installer."
+      content="Transition from once-off installation fees to building a passive annuity book. Partner with StilSein Industries as a certified IoT installer."
     />
     <meta
       property="og:image"
@@ -42,13 +45,14 @@
       })();
     </script>
 
-    <!-- LEAFLET.JS FOR MAPS -->
+    <!-- LEAFLET.JS FOR REGIONAL MAPS -->
     <link
       rel="stylesheet"
       href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
     />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
+    <!-- TAILWIND CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -77,6 +81,7 @@
         src: url("assets/fonts/Garet-Bold.otf") format("opentype");
         font-weight: bold;
       }
+
       body {
         font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       }
@@ -93,7 +98,6 @@
       .bg-texture-orange {
         background-image: url("assets/images/bg_texture_orange.png?v=1");
         background-repeat: repeat;
-        background-blend-mode: overlay;
       }
       .topbar-texture {
         background-image: url("assets/images/topbar_texture.png?v=2");
@@ -106,16 +110,49 @@
         background-blend-mode: overlay;
       }
 
+      /* Bespoke Industrial Container (Matches index.html & Flutter IndustrialContainer) */
       .glass-card {
-        background-color: rgba(35, 43, 56, 0.85);
+        background-color: rgba(35, 43, 56, 0.84);
         -webkit-backdrop-filter: blur(12px);
         backdrop-filter: blur(12px);
+        box-shadow:
+          0 12px 32px rgba(0, 0, 0, 0.55),
+          inset 0 1px 0 rgba(145, 172, 200, 0.14);
       }
       .glass-nav {
-        background-color: rgba(26, 31, 38, 0.4) !important;
+        background-color: rgba(26, 31, 38, 0.65) !important;
         -webkit-backdrop-filter: blur(20px);
         backdrop-filter: blur(20px);
       }
+      .glow-blue {
+        box-shadow:
+          0 12px 32px rgba(0, 0, 0, 0.55),
+          0 0 24px rgba(145, 172, 200, 0.14),
+          inset 0 1px 0 rgba(145, 172, 200, 0.18);
+      }
+      .glow-orange {
+        box-shadow:
+          0 12px 32px rgba(0, 0, 0, 0.55),
+          0 0 24px rgba(255, 158, 74, 0.16),
+          inset 0 1px 0 rgba(255, 158, 74, 0.22);
+      }
+      .fade-transition {
+        transition: opacity 0.35s ease-in-out;
+      }
+
+      /* Section 1 Eyebrow Rail Continuity */
+      .eyebrow-rail {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        padding-bottom: 0.45rem;
+        font-family: "TTOctasquares", sans-serif;
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.24em;
+        text-transform: uppercase;
+      }
+
       .font-brand-title {
         font-family: "TTOctasquares", sans-serif;
         font-size: 20.2px;
@@ -134,24 +171,66 @@
       .font-octasquares {
         font-family: "TTOctasquares", sans-serif;
       }
+
+      .stilsein-scroll::-webkit-scrollbar {
+        height: 5px;
+        width: 5px;
+      }
+      .stilsein-scroll::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.04);
+        border-radius: 6px;
+      }
+      .stilsein-scroll::-webkit-scrollbar-thumb {
+        background: rgba(145, 172, 200, 0.35);
+        border-radius: 6px;
+      }
+
+      /* Bespoke Industrial Select Styling (Matches App Dropdowns) */
+      .stilsein-select {
+        color-scheme: dark;
+        background-color: rgba(35, 43, 56, 0.92);
+        background-image: url("assets/images/panel_texture.png?v=2");
+        background-repeat: repeat;
+        background-blend-mode: overlay;
+      }
+      .stilsein-select option,
+      .stilsein-select optgroup {
+        background-color: #232b38;
+        color: #e4e8ec;
+      }
+
+      #top {
+        scroll-margin-top: 0px;
+      }
+      section[id]:not(#top) {
+        scroll-margin-top: 24px;
+      }
     </style>
   </head>
   <body
     class="bg-stilsein-dark text-stilsein-text bg-texture-main relative overflow-x-hidden w-full transition-opacity duration-300"
   >
+    <!-- SUBTLE VIGNETTE & AMBIENT GLOWS -->
     <div
-      class="fixed inset-0 pointer-events-none shadow-[inset_0_0_150px_rgba(0,0,0,0.9)] z-0"
+      class="fixed inset-0 pointer-events-none shadow-[inset_0_0_160px_rgba(0,0,0,0.86)] z-[2]"
     ></div>
     <div
-      class="absolute top-0 left-1/4 w-96 h-96 bg-stilsein-blue/10 rounded-full blur-3xl -z-10"
+      class="fixed top-0 left-1/4 w-96 h-96 bg-stilsein-blue/10 rounded-full blur-3xl z-[1] pointer-events-none"
     ></div>
     <div
-      class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-jakkals-orange/10 rounded-full blur-3xl -z-10"
+      class="fixed bottom-1/4 right-1/4 w-96 h-96 bg-jakkals-orange/10 rounded-full blur-3xl z-[1] pointer-events-none"
     ></div>
+
+    <!-- INTERACTIVE STILSEIN WATER PARTICLE CANVAS -->
+    <canvas
+      id="stilsein-particle-canvas"
+      class="fixed inset-0 w-full h-full pointer-events-none z-[5]"
+      aria-hidden="true"
+    ></canvas>
 
     <!-- 1. MAIN NAVIGATION BAR -->
     <nav
-      class="fixed top-0 w-full z-50 glass-nav topbar-texture border-b border-stilsein-blue/20 h-[80px] flex items-center"
+      class="fixed top-0 w-full z-50 glass-nav topbar-texture border-b border-stilsein-blue/25 h-[80px] flex items-center"
     >
       <div
         class="max-w-7xl mx-auto w-full px-6 flex justify-between items-center"
@@ -183,10 +262,10 @@
         >
           <a
             href="index.html"
-            class="hover:text-jakkals-orange transition-colors flex items-center gap-1"
+            class="hover:text-jakkals-orange transition-colors flex items-center gap-1.5"
           >
             <svg
-              class="w-3 h-3"
+              class="w-3.5 h-3.5"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -198,30 +277,36 @@
                 d="M10 19l-7-7m0 0l7-7m-7 7h18"
               ></path>
             </svg>
-            <span data-i18n="nav_back">Back to Main Site</span>
+            <span data-i18n="nav_back">Main Site</span>
           </a>
-          <div class="w-px h-4 bg-white/20 mx-2"></div>
+          <div class="w-px h-4 bg-white/15 mx-1"></div>
           <a
             href="#model"
             class="hover:text-jakkals-orange transition-colors"
             data-i18n="nav_model"
-            >The Model</a
+            >Commission Model</a
+          >
+          <a
+            href="#promo-app"
+            class="hover:text-jakkals-orange transition-colors text-white"
+            data-i18n="nav_promo"
+            >Promo &amp; App Preview</a
           >
           <a
             href="#tegnologie"
             class="hover:text-jakkals-orange transition-colors"
             data-i18n="nav_tech"
-            >Technology</a
+            >Tech &amp; LNS</a
           >
           <a
             href="#proses"
             class="hover:text-jakkals-orange transition-colors"
             data-i18n="nav_process"
-            >The Process</a
+            >Workflow</a
           >
           <a
             href="#aansoek"
-            class="text-jakkals-orange hover:text-white transition-colors drop-shadow-[0_0_8px_rgba(255,158,74,0.5)]"
+            class="px-4 py-1.5 rounded-lg border border-jakkals-orange/55 text-jakkals-orange hover:bg-jakkals-orange hover:text-stilsein-dark transition-all shadow-[0_0_12px_rgba(255,158,74,0.2)] ml-1"
             data-i18n="nav_apply"
             >Apply Now</a
           >
@@ -229,20 +314,26 @@
           <button
             type="button"
             onclick="toggleLanguage(event)"
-            class="flex items-center justify-center w-8 h-8 ml-6 rounded border border-stilsein-blue/30 bg-stilsein-dark/80 text-[10px] font-bold tracking-widest text-stilsein-blue hover:bg-stilsein-blue hover:text-stilsein-dark transition-all"
+            aria-label="Toggle Language"
+            class="flex items-center justify-center w-9 h-8 ml-2 rounded-lg border border-stilsein-blue/35 bg-stilsein-dark/80 text-[10px] font-bold tracking-widest text-stilsein-blue hover:bg-stilsein-blue hover:text-stilsein-dark transition-all"
           >
             <span class="lang-toggle-text">AF</span>
           </button>
         </div>
 
         <!-- Mobile Controls -->
-        <div class="flex items-center space-x-4 lg:hidden">
+        <div class="flex items-center space-x-3 lg:hidden">
+          <button
+            type="button"
+            onclick="toggleLanguage(event)"
+            class="flex items-center justify-center w-8 h-8 rounded-lg border border-stilsein-blue/35 bg-stilsein-dark/80 text-[10px] font-bold tracking-widest text-stilsein-blue"
+          >
+            <span class="lang-toggle-text">AF</span>
+          </button>
           <button
             id="mobile-menu-btn"
             type="button"
             class="text-stilsein-blue focus:outline-none"
-            data-i18n-aria-label="aria_menu_open"
-            data-i18n-title="title_menu"
             aria-label="Open menu"
             title="Menu"
           >
@@ -267,358 +358,910 @@
     <!-- Mobile Dropdown Menu -->
     <div
       id="mobile-menu"
-      class="fixed top-[80px] w-full z-40 glass-card panel-texture border-b border-stilsein-blue/20 flex flex-col items-center space-y-6 py-6 transform -translate-y-full opacity-0 pointer-events-none transition-all duration-300 ease-in-out lg:hidden"
+      class="fixed top-[80px] w-full z-40 glass-card panel-texture border-b border-stilsein-blue/20 flex flex-col items-center space-y-5 py-6 transform -translate-y-full opacity-0 pointer-events-none transition-all duration-300 ease-in-out lg:hidden"
     >
       <a
         href="index.html"
-        class="mobile-link text-xs font-bold tracking-[0.2em] text-stilsein-muted uppercase hover:text-jakkals-orange flex items-center gap-2"
+        class="mobile-link text-xs font-bold tracking-[0.2em] text-stilsein-muted uppercase hover:text-jakkals-orange"
+        data-i18n="nav_back"
+        >Main Site</a
       >
-        <svg
-          class="w-4 h-4"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M10 19l-7-7m0 0l7-7m-7 7h18"
-          ></path>
-        </svg>
-        <span data-i18n="nav_back">Back to Main Site</span>
-      </a>
-      <div class="w-24 h-px bg-white/10 my-2"></div>
       <a
         href="#model"
         class="mobile-link text-xs font-bold tracking-[0.2em] text-stilsein-muted uppercase hover:text-jakkals-orange"
         data-i18n="nav_model"
-        >The Model</a
+        >Commission Model</a
+      >
+      <a
+        href="#promo-app"
+        class="mobile-link text-xs font-bold tracking-[0.2em] text-white uppercase hover:text-jakkals-orange"
+        data-i18n="nav_promo"
+        >Promo &amp; App Preview</a
       >
       <a
         href="#tegnologie"
         class="mobile-link text-xs font-bold tracking-[0.2em] text-stilsein-muted uppercase hover:text-jakkals-orange"
         data-i18n="nav_tech"
-        >Technology</a
+        >Tech &amp; LNS</a
       >
       <a
         href="#proses"
         class="mobile-link text-xs font-bold tracking-[0.2em] text-stilsein-muted uppercase hover:text-jakkals-orange"
         data-i18n="nav_process"
-        >The Process</a
+        >Workflow</a
       >
-      <a
-        href="#aansoek"
-        class="mobile-link text-xs font-bold tracking-[0.2em] text-jakkals-orange uppercase hover:text-white drop-shadow-[0_0_8px_rgba(255,158,74,0.5)]"
-        data-i18n="nav_apply"
-        >Apply Now</a
-      >
-
-      <!-- MOBILE LANGUAGE SELECTOR -->
-      <div
-        class="w-full px-6 pt-6 mt-2 border-t border-stilsein-blue/10 flex flex-col items-center"
-      >
-        <button
-          type="button"
-          onclick="toggleMobileLang()"
-          class="flex items-center justify-center gap-2 text-[11px] font-bold tracking-[0.2em] text-stilsein-blue uppercase hover:text-white transition-colors w-full focus:outline-none"
+      <div class="w-full px-6 pt-2">
+        <a
+          href="#aansoek"
+          class="mobile-link flex items-center justify-center w-full py-3.5 bg-jakkals-orange/15 border border-jakkals-orange/45 text-jakkals-orange text-[11px] font-bold tracking-[0.2em] uppercase rounded-xl hover:bg-jakkals-orange hover:text-stilsein-dark transition-all"
+          data-i18n="nav_apply"
+          >Apply Now</a
         >
-          <svg
-            class="w-4 h-4 opacity-70"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"
-            ></path>
-          </svg>
-          <span data-i18n="nav_language">Language</span>
-          <svg
-            id="mobile-lang-chevron"
-            class="w-4 h-4 opacity-70 transition-transform duration-300"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M19 9l-7 7-7-7"
-            ></path>
-          </svg>
-        </button>
-        <div
-          id="mobile-lang-dropdown"
-          class="grid grid-rows-[0fr] transition-all duration-300 ease-in-out w-full text-center"
-        >
-          <div
-            class="overflow-hidden flex flex-col items-center space-y-5 pt-6"
-          >
-            <button
-              type="button"
-              onclick="changeLanguage('af')"
-              class="mobile-link text-[10px] font-bold tracking-[0.2em] text-stilsein-muted hover:text-jakkals-orange uppercase"
-              data-i18n="lang_af"
-            >
-              Afrikaans
-            </button>
-            <button
-              type="button"
-              onclick="changeLanguage('en')"
-              class="mobile-link text-[10px] font-bold tracking-[0.2em] text-stilsein-muted hover:text-jakkals-orange uppercase"
-              data-i18n="lang_en"
-            >
-              English
-            </button>
-          </div>
-        </div>
       </div>
     </div>
 
-    <!-- 2. HERO SECTION -->
-    <section
-      class="pt-40 pb-20 px-6 min-h-[65vh] flex flex-col justify-center items-center text-center relative z-10 w-full overflow-hidden border-b border-white/5"
+    <!-- 2. LIVING SUB-PANEL TICKER -->
+    <div
+      id="sub-panel"
+      class="fixed top-[80px] w-full z-40 glass-card panel-texture border-b border-stilsein-blue/15 transition-all duration-500 ease-in-out flex items-center justify-center min-h-[40px] py-2"
     >
       <div
-        class="inline-flex items-center gap-2 px-4 py-1 rounded-full border border-stilsein-blue/40 bg-stilsein-blue/10 text-stilsein-blue text-xs font-bold tracking-[0.2em] mb-6 shadow-[0_0_15px_rgba(145,172,200,0.2)]"
-        data-i18n="p_hero_badge"
+        id="ticker-text"
+        class="fade-transition text-[10px] md:text-xs tracking-[0.18em] text-stilsein-muted uppercase font-bold text-center px-6 font-garet max-w-4xl leading-relaxed"
       >
-        STILSEIN PARTNER NETWORK
+        Certified Partner Network • 25% Lifetime VAR Commission with Your Promo
+        Code
       </div>
+    </div>
 
-      <h1
-        class="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-8 font-garet leading-tight"
-        data-i18n="p_hero_title"
-      >
-        BUILD THE AFRICAN FARM. <br /><span class="text-jakkals-orange"
-          >EARN RECURRING REVENUE.</span
+    <!-- ========================================================== -->
+    <!-- 3. HERO SECTION: MATCHING INDEX.HTML INDUSTRIAL DESIGN     -->
+    <!-- ========================================================== -->
+    <section
+      id="top"
+      class="pt-36 lg:pt-40 pb-20 px-6 relative z-10 w-full overflow-hidden border-b border-white/5"
+    >
+      <div class="max-w-6xl mx-auto text-center relative z-10">
+        <div
+          class="eyebrow-rail border-b-2 border-jakkals-orange/65 text-jakkals-orange mb-5"
+          data-i18n="p_hero_badge"
         >
-      </h1>
+          STILSEIN PARTNER NETWORK (VAR)
+        </div>
 
-      <p
-        class="text-lg md:text-xl text-stilsein-muted max-w-3xl mx-auto mb-10 leading-relaxed"
-        data-i18n="p_hero_desc"
-      >
-        Transition from once-off installation fees to building a passive annuity
-        book. Partner with StilSein as a certified IoT installer and let our
-        intelligence layer drive your monthly recurring revenue (MRR).
-      </p>
+        <h1
+          class="text-4xl sm:text-5xl xl:text-[3.5rem] font-black text-white tracking-tight mb-5 font-garet leading-[1.08]"
+          data-i18n="p_hero_title"
+        >
+          BUILD THE AFRICAN FARM. <br /><span class="text-jakkals-orange"
+            >EARN LIFETIME SAAS REVENUE.</span
+          >
+        </h1>
 
-      <a
-        href="#aansoek"
-        class="px-8 py-4 bg-jakkals-orange text-stilsein-dark font-bold rounded-lg hover:bg-white transition-all shadow-[0_0_15px_rgba(255,158,74,0.4)] tracking-wide"
-      >
-        <span data-i18n="p_hero_btn">APPLY TO PARTNER</span>
-      </a>
+        <p
+          class="text-base sm:text-lg text-stilsein-muted max-w-3xl mx-auto mb-9 leading-relaxed"
+          data-i18n="p_hero_desc"
+        >
+          Stop stopping at once-off hardware &amp; labour invoices. Become a
+          certified <strong>StilSein Value-Added Reseller (VAR)</strong>, share
+          your personal Partner Promo Code with farmers, and turn every sensor
+          you install into an ongoing monthly recurring annuity.
+        </p>
+
+        <!-- 3 MACHINED CLARITY PLATES -->
+        <div
+          class="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-4xl mx-auto mb-10 text-left"
+        >
+          <div
+            class="glass-card panel-texture border border-stilsein-blue/25 border-t-2 border-t-stilsein-blue rounded-xl p-5"
+          >
+            <div
+              class="text-[10px] font-octasquares tracking-[0.18em] text-stilsein-blue uppercase mb-1.5"
+              data-i18n="p_hero_c1_tag"
+            >
+              HARDWARE &amp; LABOUR
+            </div>
+            <div
+              class="text-xs font-semibold text-white leading-snug"
+              data-i18n="p_hero_c1_txt"
+            >
+              Keep 100% of your installation fees and hardware retail markup.
+            </div>
+          </div>
+          <div
+            class="glass-card panel-texture border border-jakkals-orange/30 border-t-2 border-t-jakkals-orange rounded-xl p-5"
+          >
+            <div
+              class="text-[10px] font-octasquares tracking-[0.18em] text-jakkals-orange uppercase mb-1.5"
+              data-i18n="p_hero_c2_tag"
+            >
+              RECURRING COMMISSION
+            </div>
+            <div
+              id="hero-comm-summary"
+              class="text-xs font-semibold text-white leading-snug"
+            >
+              Earn <span class="text-jakkals-orange">25%</span> with your Promo
+              Code or <span class="text-stilsein-blue">10%</span> on StilSein
+              leads.
+            </div>
+          </div>
+          <div
+            class="glass-card panel-texture border border-emerald-400/25 border-t-2 border-t-emerald-400 rounded-xl p-5"
+          >
+            <div
+              class="text-[10px] font-octasquares tracking-[0.18em] text-emerald-400 uppercase mb-1.5"
+              data-i18n="p_hero_c3_tag"
+            >
+              ZERO STOCK LOCK-IN
+            </div>
+            <div
+              class="text-xs font-semibold text-white leading-snug"
+              data-i18n="p_hero_c3_txt"
+            >
+              Deploy any of 6 LoRaWAN brands on Managed TTN or your own LNS.
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="flex flex-col sm:flex-row justify-center items-center gap-4"
+        >
+          <a
+            href="#aansoek"
+            class="w-full sm:w-auto px-8 py-4 bg-jakkals-orange text-stilsein-dark font-black rounded-xl hover:bg-white transition-all shadow-[0_0_20px_rgba(255,158,74,0.35)] tracking-wider text-xs uppercase"
+            data-i18n="p_hero_btn"
+          >
+            APPLY TO BECOME A PARTNER
+          </a>
+          <a
+            href="#promo-app"
+            class="w-full sm:w-auto px-8 py-4 bg-stilsein-blue/15 border border-stilsein-blue/45 text-white font-bold rounded-xl hover:bg-stilsein-blue hover:text-stilsein-dark transition-all tracking-wider text-xs uppercase"
+            data-i18n="p_hero_btn2"
+          >
+            SEE HOW YOU APPEAR IN THE APP
+          </a>
+        </div>
+      </div>
     </section>
 
-    <!-- 3. THE FINANCIAL MODEL -->
-    <section id="model" class="py-24 px-6 relative z-10 w-full overflow-hidden">
+    <!-- ========================================================== -->
+    <!-- 4. FINANCIAL MODEL + LIVE BACKEND COMMISSION CALCULATOR    -->
+    <!-- ========================================================== -->
+    <section
+      id="model"
+      class="py-24 px-6 bg-[#11161C]/55 relative z-10 w-full overflow-hidden border-b border-white/5"
+    >
       <div class="max-w-6xl mx-auto">
-        <div class="text-center mb-16">
+        <div class="text-center max-w-3xl mx-auto mb-14">
+          <div
+            class="eyebrow-rail border-b-2 border-stilsein-blue/65 text-stilsein-blue mb-5"
+            data-i18n="p_fin_badge"
+          >
+            3 STREAMS OF PARTNER REVENUE
+          </div>
           <h2
-            class="text-3xl md:text-4xl font-bold text-white mb-4 font-garet"
+            class="text-3xl md:text-5xl font-bold text-white mb-4 font-garet"
             data-i18n="p_fin_title"
           >
             THE FINANCIAL <span class="text-stilsein-blue">MODEL</span>
           </h2>
           <p
-            class="text-stilsein-muted max-w-2xl mx-auto text-lg leading-relaxed"
+            class="text-stilsein-muted text-base md:text-lg leading-relaxed"
             data-i18n="p_fin_desc"
           >
-            Frictionless and highly lucrative. We act as the invisible
-            intelligence layer, while you own the physical execution and the
-            client relationship.
+            We act as the invisible cloud, AI, and billing engine, while you own
+            the physical installation and earn a lifetime share of every
+            connected farm's monthly subscription.
           </p>
         </div>
 
-        <div class="grid md:grid-cols-3 gap-8">
+        <!-- 3 REVENUE PILLARS -->
+        <div class="grid md:grid-cols-3 gap-6 mb-12">
           <!-- Pillar 1 -->
           <div
-            class="glass-card p-8 rounded-3xl border border-white/5 hover:border-stilsein-blue/30 transition-colors relative overflow-hidden group"
+            class="glass-card panel-texture p-7 rounded-2xl border border-stilsein-blue/25 border-t-2 border-t-stilsein-blue relative overflow-hidden"
           >
-            <div
-              class="text-6xl absolute -bottom-4 -right-4 opacity-5 pointer-events-none group-hover:scale-110 transition-transform duration-500"
-            >
-              🛠️
-            </div>
-            <div
-              class="w-12 h-12 bg-stilsein-blue/10 rounded-xl flex items-center justify-center border border-stilsein-blue/30 mb-6"
-            >
-              <span class="text-xl">🛠️</span>
+            <div class="flex items-center justify-between mb-5">
+              <div
+                class="w-11 h-11 bg-stilsein-blue/15 rounded-xl flex items-center justify-center border border-stilsein-blue/35 text-xl"
+              >
+                🛠️
+              </div>
+              <span class="text-[9px] font-mono text-stilsein-blue/80 uppercase"
+                >REV-01 // LABOUR</span
+              >
             </div>
             <h3
-              class="text-lg font-bold text-white mb-3"
+              class="text-base font-bold text-white font-garet mb-2.5 uppercase tracking-wide"
               data-i18n="p_fin_1_title"
             >
-              100% LABOUR & INSTALLATION
+              100% LABOUR &amp; CALL-OUT
             </h3>
             <p
-              class="text-stilsein-muted text-sm leading-relaxed"
+              class="text-stilsein-muted text-xs md:text-sm leading-relaxed"
               data-i18n="p_fin_1_desc"
             >
-              You quote the farmer for your time, travel, and physical labour.
-              You keep 100% of your installation fees.
+              Quote the farmer directly for travel, mounting, solar brackets,
+              plumbing fittings, and commissioning. You keep 100% of your
+              installation fees.
             </p>
           </div>
+
           <!-- Pillar 2 -->
           <div
-            class="glass-card p-8 rounded-3xl border border-white/5 hover:border-jakkals-orange/30 transition-colors relative overflow-hidden group"
+            class="glass-card panel-texture p-7 rounded-2xl border border-cyan-400/25 border-t-2 border-t-cyan-400 relative overflow-hidden"
           >
-            <div
-              class="text-6xl absolute -bottom-4 -right-4 opacity-5 pointer-events-none group-hover:scale-110 transition-transform duration-500"
-            >
-              📈
-            </div>
-            <div
-              class="w-12 h-12 bg-jakkals-orange/10 rounded-xl flex items-center justify-center border border-jakkals-orange/30 mb-6"
-            >
-              <span class="text-xl">📈</span>
+            <div class="flex items-center justify-between mb-5">
+              <div
+                class="w-11 h-11 bg-cyan-400/15 rounded-xl flex items-center justify-center border border-cyan-400/35 text-xl"
+              >
+                📦
+              </div>
+              <span class="text-[9px] font-mono text-cyan-300 uppercase"
+                >REV-02 // HARDWARE</span
+              >
             </div>
             <h3
-              class="text-lg font-bold text-white mb-3"
+              class="text-base font-bold text-white font-garet mb-2.5 uppercase tracking-wide"
               data-i18n="p_fin_2_title"
             >
               HARDWARE RETAIL MARKUP
             </h3>
             <p
-              class="text-stilsein-muted text-sm leading-relaxed"
+              class="text-stilsein-muted text-xs md:text-sm leading-relaxed"
               data-i18n="p_fin_2_desc"
             >
-              Purchase LoRaWAN gateways and nodes at wholesale prices. Sell them
-              at retail. You keep 100% of the hardware profit margin.
+              Source LoRaWAN gateways and sensors from your preferred
+              distributor at trade/wholesale rates and supply at retail. Keep
+              100% of the margin.
             </p>
           </div>
-          <!-- Pillar 3 -->
+
+          <!-- Pillar 3 (LIVE BACKEND RATES) -->
           <div
-            class="glass-card p-8 rounded-3xl border-2 border-stilsein-blue/20 bg-stilsein-blue/5 hover:border-stilsein-blue/50 transition-colors relative overflow-hidden group shadow-[0_0_30px_rgba(145,172,200,0.1)]"
+            class="glass-card panel-texture p-7 rounded-2xl border border-jakkals-orange/45 border-t-2 border-t-jakkals-orange glow-orange relative overflow-hidden"
           >
-            <div
-              class="text-6xl absolute -bottom-4 -right-4 opacity-5 pointer-events-none group-hover:scale-110 transition-transform duration-500"
-            >
-              💎
-            </div>
-            <div
-              class="w-12 h-12 bg-stilsein-blue/20 rounded-xl flex items-center justify-center border border-stilsein-blue/40 mb-6"
-            >
-              <span class="text-xl">💎</span>
+            <div class="flex items-center justify-between mb-5">
+              <div
+                class="w-11 h-11 bg-jakkals-orange/15 rounded-xl flex items-center justify-center border border-jakkals-orange/40 text-xl"
+              >
+                💎
+              </div>
+              <span class="text-[9px] font-mono text-jakkals-orange uppercase"
+                >REV-03 // ANNUITY</span
+              >
             </div>
             <h3
-              class="text-lg font-bold text-stilsein-blue mb-3 drop-shadow-[0_0_8px_rgba(145,172,200,0.5)]"
-              data-i18n="p_fin_3_title"
+              id="fin-card3-title"
+              class="text-base font-bold text-jakkals-orange font-garet mb-2.5 uppercase tracking-wide"
             >
-              20-30% LIFETIME SAAS COMMISSION
+              25% / 10% LIFETIME SAAS COMMISSION
             </h3>
             <p
-              class="text-gray-300 text-sm leading-relaxed"
-              data-i18n="p_fin_3_desc"
+              id="fin-card3-desc"
+              class="text-gray-200 text-xs md:text-sm leading-relaxed"
             >
-              The holy grail of business. Earn a continuous 20% to 30%
-              commission on the monthly software subscription for the lifetime
-              of the farm. (5-10% for leads we supply to you).
+              Earn <strong class="text-jakkals-orange">25%</strong> monthly
+              recurring commission on every farm unlocked with your Partner
+              Promo Code, and <strong class="text-stilsein-blue">10%</strong> on
+              qualified Matchmaker leads we send straight to you.
+            </p>
+          </div>
+        </div>
+
+        <!-- INTERACTIVE PARTNER ANNUITY CALCULATOR (HYDRATED FROM SUPABASE) -->
+        <div
+          class="glass-card panel-texture p-6 md:p-8 rounded-2xl border border-stilsein-blue/30"
+        >
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div class="lg:col-span-7">
+              <div
+                class="flex flex-wrap items-center justify-between gap-3 mb-4"
+              >
+                <div>
+                  <div
+                    class="text-[10px] font-octasquares tracking-[0.2em] text-jakkals-orange uppercase mb-1"
+                    data-i18n="pcalc_tag"
+                  >
+                    INTERACTIVE ANNUITY SIMULATOR
+                  </div>
+                  <h3
+                    class="text-xl md:text-2xl font-bold text-white font-garet"
+                    data-i18n="pcalc_title"
+                  >
+                    Estimate Your Monthly Recurring Commission
+                  </h3>
+                </div>
+
+                <!-- RATE SOURCE SWITCHER (25% VAR vs 10% LEAD) -->
+                <div
+                  class="flex items-center gap-1.5 bg-stilsein-dark/90 p-1 rounded-xl border border-white/10"
+                >
+                  <button
+                    type="button"
+                    id="tier-btn-var"
+                    onclick="setPartnerCalcTier('var')"
+                    class="px-3 py-2 rounded-lg text-[10px] font-bold tracking-wider uppercase transition-all bg-jakkals-orange text-stilsein-dark"
+                  >
+                    Promo Code (25%)
+                  </button>
+                  <button
+                    type="button"
+                    id="tier-btn-lead"
+                    onclick="setPartnerCalcTier('lead')"
+                    class="px-3 py-2 rounded-lg text-[10px] font-bold tracking-wider uppercase transition-all text-stilsein-muted hover:text-white"
+                  >
+                    App Lead (10%)
+                  </button>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-5">
+                <div
+                  class="bg-stilsein-dark/80 border border-jakkals-orange/25 rounded-xl p-4"
+                >
+                  <div
+                    class="text-[10px] font-octasquares tracking-widest text-jakkals-orange uppercase mb-2.5"
+                    data-i18n="pcalc_farms"
+                  >
+                    Active Farms
+                  </div>
+                  <div class="flex items-center justify-between">
+                    <button
+                      type="button"
+                      onclick="adjustPartnerCalc('farms', -1)"
+                      class="w-8 h-8 rounded-lg bg-white/5 border border-white/10 hover:bg-jakkals-orange hover:text-stilsein-dark font-bold text-white transition-colors"
+                    >
+                      -
+                    </button>
+                    <span
+                      id="pcalc-farms-val"
+                      class="text-xl font-black text-white font-mono"
+                      >10</span
+                    >
+                    <button
+                      type="button"
+                      onclick="adjustPartnerCalc('farms', 1)"
+                      class="w-8 h-8 rounded-lg bg-white/5 border border-white/10 hover:bg-jakkals-orange hover:text-stilsein-dark font-bold text-white transition-colors"
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+
+                <div
+                  class="bg-stilsein-dark/80 border border-stilsein-blue/25 rounded-xl p-4"
+                >
+                  <div
+                    class="text-[10px] font-octasquares tracking-widest text-stilsein-blue uppercase mb-2.5"
+                    data-i18n="pcalc_rain"
+                  >
+                    Avg Rain / Farm
+                  </div>
+                  <div class="flex items-center justify-between">
+                    <button
+                      type="button"
+                      onclick="adjustPartnerCalc('rain', -1)"
+                      class="w-8 h-8 rounded-lg bg-white/5 border border-white/10 hover:bg-stilsein-blue hover:text-stilsein-dark font-bold text-white transition-colors"
+                    >
+                      -
+                    </button>
+                    <span
+                      id="pcalc-rain-val"
+                      class="text-xl font-black text-white font-mono"
+                      >3</span
+                    >
+                    <button
+                      type="button"
+                      onclick="adjustPartnerCalc('rain', 1)"
+                      class="w-8 h-8 rounded-lg bg-white/5 border border-white/10 hover:bg-stilsein-blue hover:text-stilsein-dark font-bold text-white transition-colors"
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+
+                <div
+                  class="bg-stilsein-dark/80 border border-cyan-400/25 rounded-xl p-4"
+                >
+                  <div
+                    class="text-[10px] font-octasquares tracking-widest text-cyan-400 uppercase mb-2.5"
+                    data-i18n="pcalc_pd"
+                  >
+                    Avg Pipes+Dams
+                  </div>
+                  <div class="flex items-center justify-between">
+                    <button
+                      type="button"
+                      onclick="adjustPartnerCalc('pd', -1)"
+                      class="w-8 h-8 rounded-lg bg-white/5 border border-white/10 hover:bg-cyan-400 hover:text-stilsein-dark font-bold text-white transition-colors"
+                    >
+                      -
+                    </button>
+                    <span
+                      id="pcalc-pd-val"
+                      class="text-xl font-black text-white font-mono"
+                      >3</span
+                    >
+                    <button
+                      type="button"
+                      onclick="adjustPartnerCalc('pd', 1)"
+                      class="w-8 h-8 rounded-lg bg-white/5 border border-white/10 hover:bg-cyan-400 hover:text-stilsein-dark font-bold text-white transition-colors"
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="lg:col-span-5 bg-stilsein-dark/90 border border-jakkals-orange/35 border-l-2 border-l-jakkals-orange rounded-xl p-6 text-center lg:text-right"
+            >
+              <div
+                class="text-[10px] font-octasquares tracking-[0.2em] text-stilsein-muted uppercase mb-1"
+                data-i18n="pcalc_out_lbl"
+              >
+                YOUR PASSIVE MONTHLY COMMISSION
+              </div>
+              <div
+                class="flex items-baseline justify-center lg:justify-end gap-2 my-2"
+              >
+                <span
+                  id="pcalc-monthly-zar"
+                  class="text-4xl md:text-5xl font-black text-white font-garet"
+                  >R2,033</span
+                >
+                <span
+                  id="pcalc-monthly-usd"
+                  class="text-lg font-bold text-jakkals-orange"
+                  >($112)</span
+                >
+                <span class="text-xs text-gray-400" data-i18n="pcalc_mo"
+                  >/ mo</span
+                >
+              </div>
+              <div
+                id="pcalc-annual-line"
+                class="text-xs font-bold text-emerald-400 mb-2"
+              >
+                R24,390 / year recurring annuity
+              </div>
+              <p
+                id="pcalc-breakdown"
+                class="text-[11px] font-mono text-stilsein-blue mb-4"
+              >
+                Avg Farm MRR: R813 × 10 Farms × 25% VAR Rate
+              </p>
+              <a
+                href="#aansoek"
+                class="inline-block w-full py-3 px-5 bg-jakkals-orange text-stilsein-dark font-black text-xs tracking-widest uppercase rounded-xl hover:bg-white transition-colors text-center"
+                data-i18n="pcalc_cta"
+              >
+                CLAIM YOUR PARTNER PROMO CODE &rarr;
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================== -->
+    <!-- 5. PROMO CODE ENGINE + LIVE DUMMY PHONE IN-APP PREVIEW     -->
+    <!-- ========================================================== -->
+    <section
+      id="promo-app"
+      class="py-24 px-6 bg-black/20 relative z-10 w-full overflow-hidden border-b border-white/5"
+    >
+      <div class="max-w-6xl mx-auto">
+        <div
+          class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center"
+        >
+          <!-- LEFT COLUMN (62% Golden Ratio): PROMO CODE WORKFLOW -->
+          <div class="lg:col-span-7">
+            <div
+              class="eyebrow-rail border-b-2 border-jakkals-orange/65 text-jakkals-orange mb-5"
+              data-i18n="promo_badge"
+            >
+              HOW YOUR PROMO CODE BOOSTS REVENUE
+            </div>
+            <h2
+              class="text-3xl md:text-5xl font-bold text-white mb-5 font-garet leading-tight"
+              data-i18n="promo_title"
+            >
+              ONE CODE. <span class="text-jakkals-orange">25% LIFETIME</span>
+              ON EVERY FARM YOU BRING.
+            </h2>
+            <p
+              class="text-stilsein-muted text-base md:text-lg leading-relaxed mb-7"
+              data-i18n="promo_desc"
+            >
+              When HQ approves your partner application, our system
+              automatically mints your unique
+              <strong>Partner Promo Code</strong> (e.g.
+              <code class="text-jakkals-orange font-mono">YOURCOMPANY-VAR</code
+              >). Put it on your quotes, bakkie decals, and invoices. Anyone can
+              enter it straight inside the StilSein App.
+            </p>
+
+            <!-- 2-TIER RATE COMPARISON -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-7">
+              <div
+                class="glass-card panel-texture p-5 rounded-xl border border-jakkals-orange/45 border-l-4 border-l-jakkals-orange"
+              >
+                <div class="flex items-center justify-between mb-1.5">
+                  <span
+                    class="text-[10px] font-octasquares tracking-widest text-jakkals-orange uppercase"
+                    data-i18n="promo_t1_tag"
+                    >PARTNER-ORIGINATED</span
+                  >
+                  <span
+                    id="promo-var-badge"
+                    class="text-lg font-black font-garet text-jakkals-orange"
+                    >25%</span
+                  >
+                </div>
+                <p
+                  class="text-xs text-gray-200 leading-relaxed"
+                  data-i18n="promo_t1_desc"
+                >
+                  Farmer enters your Promo Code in
+                  <strong>Farm Builder</strong> or
+                  <strong>Add Node Upsell</strong> and taps
+                  <span class="font-mono text-jakkals-orange">UNLOCK</span>.
+                  Links the farm permanently to your account at the full VAR
+                  rate.
+                </p>
+              </div>
+
+              <div
+                class="glass-card panel-texture p-5 rounded-xl border border-stilsein-blue/30 border-l-4 border-l-stilsein-blue"
+              >
+                <div class="flex items-center justify-between mb-1.5">
+                  <span
+                    class="text-[10px] font-octasquares tracking-widest text-stilsein-blue uppercase"
+                    data-i18n="promo_t2_tag"
+                    >STILSEIN MATCHMAKER LEAD</span
+                  >
+                  <span
+                    id="promo-lead-badge"
+                    class="text-lg font-black font-garet text-stilsein-blue"
+                    >10%</span
+                  >
+                </div>
+                <p
+                  class="text-xs text-stilsein-muted leading-relaxed"
+                  data-i18n="promo_t2_desc"
+                >
+                  Farmer discovers you automatically via GPS radius inside the
+                  app without a promo code. You get the installation job plus a
+                  steady lifetime referral annuity.
+                </p>
+              </div>
+            </div>
+
+            <!-- 3 PROMO CODE STEPS -->
+            <div class="space-y-3 text-xs text-gray-300">
+              <div class="flex items-start gap-3">
+                <span
+                  class="w-6 h-6 shrink-0 rounded-lg bg-jakkals-orange/15 border border-jakkals-orange/40 text-jakkals-orange font-mono font-bold flex items-center justify-center"
+                  >1</span
+                >
+                <p class="pt-0.5" data-i18n="promo_s1">
+                  <strong>Share Anywhere:</strong> Hand out your Promo Code at
+                  co-ops, farmer days, or on hardware quotes. No special partner
+                  login needed by the farmer.
+                </p>
+              </div>
+              <div class="flex items-start gap-3">
+                <span
+                  class="w-6 h-6 shrink-0 rounded-lg bg-jakkals-orange/15 border border-jakkals-orange/40 text-jakkals-orange font-mono font-bold flex items-center justify-center"
+                  >2</span
+                >
+                <p class="pt-0.5" data-i18n="promo_s2">
+                  <strong>Instant In-App Verification:</strong> Typing your code
+                  calls
+                  <span class="font-mono text-stilsein-blue"
+                    >/api/promo/verify</span
+                  >, links your company profile, and automatically locks
+                  technical specs for you to configure.
+                </p>
+              </div>
+              <div class="flex items-start gap-3">
+                <span
+                  class="w-6 h-6 shrink-0 rounded-lg bg-jakkals-orange/15 border border-jakkals-orange/40 text-jakkals-orange font-mono font-bold flex items-center justify-center"
+                  >3</span
+                >
+                <p class="pt-0.5" data-i18n="promo_s3">
+                  <strong>Stacks on Expansions Too:</strong> Even when an
+                  existing farm adds new Rain, Pipe, or Dam sensors later via
+                  Upsell, entering your code locks the expansion to you!
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT COLUMN (38%): DUMMY PHONE SHOWCASE OF INSTALLER VIEW IN APP -->
+          <div class="lg:col-span-5 flex flex-col items-center">
+            <!-- Toggle between Interactive Live Card Preview & Real App Screenshot -->
+            <div
+              class="inline-flex items-center gap-1.5 bg-stilsein-dark/90 p-1 rounded-xl border border-stilsein-blue/30 mb-4"
+            >
+              <button
+                type="button"
+                id="phone-mode-live"
+                onclick="setInstallerPhoneMode('live')"
+                class="px-3.5 py-1.5 rounded-lg text-[10px] font-bold tracking-wider uppercase transition-all bg-stilsein-blue text-stilsein-dark"
+                data-i18n="phone_tab_live"
+              >
+                Live Card Preview
+              </button>
+              <button
+                type="button"
+                id="phone-mode-shot"
+                onclick="setInstallerPhoneMode('shot')"
+                class="px-3.5 py-1.5 rounded-lg text-[10px] font-bold tracking-wider uppercase transition-all text-stilsein-muted hover:text-white"
+                data-i18n="phone_tab_shot"
+              >
+                App Screenshot
+              </button>
+            </div>
+
+            <!-- MODE A: BESPOKE DUMMY PHONE RENDERING EXACT FLUTTER "INSTALLER SELECTED" UI -->
+            <div
+              id="installer-phone-live"
+              class="w-full max-w-[295px] rounded-[34px] border-[3px] border-stilsein-blue/35 bg-[#12161C] p-2.5 shadow-[0_26px_55px_rgba(0,0,0,0.92)]"
+            >
+              <!-- Phone Screen -->
+              <div
+                class="rounded-[26px] bg-[#1A1F26] panel-texture border border-white/10 overflow-hidden flex flex-col"
+              >
+                <!-- Notch / App Header -->
+                <div
+                  class="bg-[#232B38] px-4 pt-3 pb-2.5 border-b border-stilsein-blue/25 flex items-center justify-between"
+                >
+                  <div class="flex items-center gap-2">
+                    <img
+                      src="assets/images/wolf_white.png"
+                      alt=""
+                      class="h-4 w-auto"
+                      onerror="this.classList.add('hidden')"
+                    />
+                    <span
+                      class="text-[10px] font-garet tracking-widest text-jakkals-orange uppercase"
+                      data-i18n="phone_hdr"
+                      >FARM BUILDER • PARTNER</span
+                    >
+                  </div>
+                  <span class="text-[9px] font-mono text-stilsein-blue"
+                    >GPS 150km</span
+                  >
+                </div>
+
+                <!-- Screen Body -->
+                <div class="p-3.5 space-y-3 text-left">
+                  <!-- Promo Code Box (Exact replica of panel_farm_builder.dart / panel_upsell.dart) -->
+                  <div
+                    class="p-2.5 rounded-xl bg-black/35 border border-jakkals-orange/35"
+                  >
+                    <div
+                      class="text-[8.5px] font-bold text-jakkals-orange tracking-wider uppercase mb-1.5"
+                      data-i18n="phone_promo_lbl"
+                    >
+                      HAVE A PARTNER PROMO CODE?
+                    </div>
+                    <div class="flex items-center gap-1.5">
+                      <div
+                        id="preview-promo-code"
+                        class="flex-1 bg-black/50 rounded-md px-2 py-1.5 text-[10px] font-mono font-bold text-white truncate border border-white/10"
+                      >
+                        AGRITECH-VAR
+                      </div>
+                      <span
+                        class="px-2.5 py-1.5 rounded-md bg-emerald-400 text-[#1A1F26] text-[9px] font-black uppercase tracking-wider"
+                      >
+                        LINKED!
+                      </span>
+                    </div>
+                  </div>
+
+                  <!-- Certified Partner Expanded Card (Exact replica of ExpansionTile in app) -->
+                  <div
+                    class="rounded-xl bg-jakkals-orange/[0.08] border border-jakkals-orange p-3 space-y-2.5"
+                  >
+                    <div class="flex items-center gap-2.5">
+                      <div
+                        id="preview-logo-box"
+                        class="w-9 h-9 rounded-lg bg-[#232B38] border border-white/15 flex items-center justify-center overflow-hidden shrink-0"
+                      >
+                        <span class="text-sm">🛠️</span>
+                      </div>
+                      <div class="min-w-0 flex-1">
+                        <div
+                          id="preview-company"
+                          class="text-[11px] font-black text-jakkals-orange uppercase tracking-wide truncate"
+                        >
+                          AGRITECH INSTALLS
+                        </div>
+                        <div
+                          id="preview-distance"
+                          class="text-[9px] text-gray-400 font-mono"
+                        >
+                          14.2km away •
+                          <span id="preview-region">Eastern Cape</span>
+                        </div>
+                      </div>
+                      <span class="text-jakkals-orange text-xs">▲</span>
+                    </div>
+
+                    <div
+                      class="border-t border-white/10 pt-2 space-y-1 text-[9.5px]"
+                    >
+                      <div class="flex justify-between gap-2">
+                        <span class="text-gray-400">Contact:</span>
+                        <span
+                          id="preview-contact"
+                          class="text-white font-bold truncate"
+                          >John Doe</span
+                        >
+                      </div>
+                      <div class="flex justify-between gap-2">
+                        <span class="text-gray-400">Phone:</span>
+                        <span
+                          id="preview-phone"
+                          class="text-white font-bold truncate"
+                          >082 123 4567</span
+                        >
+                      </div>
+                      <div class="flex justify-between gap-2">
+                        <span class="text-gray-400">Email:</span>
+                        <span
+                          id="preview-email"
+                          class="text-white font-bold truncate"
+                          >info@agritech.co.za</span
+                        >
+                      </div>
+                      <div class="flex justify-between gap-2">
+                        <span class="text-gray-400">Services:</span>
+                        <span
+                          id="preview-services"
+                          class="text-stilsein-blue font-bold truncate"
+                          >Rain, Pipe, Dam</span
+                        >
+                      </div>
+                    </div>
+
+                    <div
+                      id="preview-exp"
+                      class="text-[9px] italic text-gray-300 bg-black/25 rounded p-2 line-clamp-2"
+                    >
+                      "12 years installing solar boreholes, LoRaWAN gauges, and
+                      automated irrigation."
+                    </div>
+
+                    <!-- INSTALLER SELECTED Button (Exact match to Flutter ElevatedButton) -->
+                    <div
+                      class="w-full py-2 rounded-lg bg-jakkals-orange text-[#1A1F26] text-[10px] font-black tracking-wider uppercase flex items-center justify-center gap-1.5 shadow-[0_0_12px_rgba(255,158,74,0.35)]"
+                    >
+                      <span>✓</span>
+                      <span data-i18n="phone_selected_btn"
+                        >INSTALLER SELECTED</span
+                      >
+                    </div>
+                  </div>
+
+                  <div
+                    class="w-full py-2 rounded-lg bg-[#1A1F26] border border-stilsein-blue text-stilsein-blue text-[9px] font-bold tracking-widest uppercase text-center"
+                    data-i18n="phone_proceed_btn"
+                  >
+                    PROCEED TO SENSOR CONFIG &rarr;
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- MODE B: ACTUAL APP SCREENSHOT (mockup_upsell_02.png) -->
+            <div
+              id="installer-phone-shot"
+              class="hidden w-full max-w-[275px] aspect-[1/2] flex items-center justify-center cursor-pointer"
+              onclick="
+                openLightbox(
+                  'assets/images/mockup_upsell_02.png',
+                  'In-App Local Installer Matchmaker',
+                )
+              "
+            >
+              <img
+                src="assets/images/mockup_upsell_02.png"
+                alt="StilSein App Installer Selected Screen"
+                class="w-full h-full object-contain drop-shadow-[0_24px_45px_rgba(0,0,0,0.92)]"
+              />
+            </div>
+
+            <p
+              class="text-[10px] font-mono text-gray-400 text-center mt-3 max-w-xs"
+              data-i18n="phone_live_caption"
+            >
+              Live preview updates as you type in the application form below.
             </p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 4. THE TECH ADVANTAGE -->
+    <!-- ========================================================== -->
+    <!-- 6. TECHNOLOGY: HARDWARE AGNOSTIC, DUAL LNS & DELEGATION    -->
+    <!-- ========================================================== -->
     <section
       id="tegnologie"
-      class="py-24 px-6 bg-[#1A1F26] bg-texture-orange relative z-10 w-full overflow-hidden border-y border-jakkals-orange/20"
+      class="py-24 px-6 bg-[#1F1A17]/55 relative z-10 w-full overflow-hidden border-b border-jakkals-orange/25"
     >
       <div
-        class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-jakkals-orange/5 rounded-full blur-[100px] pointer-events-none"
+        class="absolute inset-0 bg-texture-orange opacity-20 pointer-events-none z-0"
+        aria-hidden="true"
       ></div>
 
       <div
-        class="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-16 relative z-10"
+        class="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-14 relative z-10"
       >
-        <!-- Visual: The Telemetry Engine -->
-        <div class="w-full lg:w-1/2 order-2 lg:order-1">
+        <!-- Visual: Telemetry Console -->
+        <div class="w-full lg:w-5/12 order-2 lg:order-1">
           <div
-            class="glass-card p-8 rounded-3xl border border-jakkals-orange/30 shadow-[0_0_30px_rgba(255,158,74,0.15)] bg-[#0A0D14] relative overflow-hidden flex flex-col items-center justify-center min-h-[320px]"
+            class="glass-card p-1 rounded-2xl border border-jakkals-orange/45 shadow-[0_0_30px_rgba(255,158,74,0.16)] bg-[#0A0D14]/90"
           >
-            <!-- Animated Background Radar -->
             <div
-              class="absolute inset-0 flex items-center justify-center opacity-30 pointer-events-none"
+              class="bg-[#131821] px-4 py-3 rounded-t-xl border-b border-white/5 flex items-center justify-between"
             >
-              <div
-                class="w-72 h-72 border border-jakkals-orange rounded-full animate-ping[animation-duration:3s]"
-              ></div>
-              <div
-                class="absolute w-56 h-56 border border-stilsein-blue/40 rounded-full animate-[spin_12s_linear_infinite] border-dashed"
-              ></div>
-              <div
-                class="absolute w-36 h-36 border border-jakkals-orange/50 rounded-full"
-              ></div>
-            </div>
-
-            <!-- Central Node Hub -->
-            <div
-              class="relative z-10 w-20 h-20 bg-stilsein-dark border-2 border-jakkals-orange rounded-2xl flex items-center justify-center shadow-[0_0_25px_rgba(255,158,74,0.4)] mb-8"
-            >
-              <svg
-                class="w-10 h-10 text-jakkals-orange"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
+              <div class="flex items-center gap-2">
+                <div class="w-3 h-3 rounded-full bg-red-500/60"></div>
+                <div class="w-3 h-3 rounded-full bg-yellow-500/60"></div>
+                <div class="w-3 h-3 rounded-full bg-green-500/60"></div>
+              </div>
+              <span
+                class="text-[10px] tracking-widest text-jakkals-orange/85 font-mono"
               >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0"
-                ></path>
-              </svg>
+                EDGE_DECODER // TTN + LNS
+              </span>
             </div>
-
-            <!-- Floating Code Snippet / Webhook Status -->
-            <div
-              class="relative z-10 bg-black/60 border border-white/10 rounded-xl p-4 w-full max-w-[280px] backdrop-blur-md shadow-lg"
-            >
-              <div
-                class="flex items-center justify-between mb-3 border-b border-white/10 pb-2"
-              >
-                <span
-                  class="text-[10px] font-mono text-gray-400 tracking-widest"
-                  >LoRaWAN_PAYLOAD_DET</span
+            <div class="p-6 font-mono text-[11px] leading-relaxed">
+              <div class="text-gray-400 mb-3">
+                SUPPORTED BRANDS:<br />
+                <span class="text-white"
+                  >Dragino • Milesight • SenseCAP • Netvox • NCD • Browan</span
                 >
-                <span class="flex h-2 w-2 relative">
-                  <span
-                    class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"
-                  ></span>
-                  <span
-                    class="relative inline-flex rounded-full h-2 w-2 bg-green-500"
-                  ></span>
-                </span>
               </div>
-              <div class="text-xs font-mono text-stilsein-blue leading-loose">
-                > Translating Hex... <span class="text-green-400 ml-2">OK</span
-                ><br />
-                > Syncing to StilSein Vault...
+              <div class="text-cyan-300 mb-3">
+                ROUTING OPTIONS:<br />
+                <span class="text-white"
+                  >[1] StilSein Managed TTN Cluster<br />[2] Custom / Private
+                  LNS (TTS / ChirpStack)</span
+                >
+              </div>
+              <div class="text-stilsein-blue mb-4">
+                PADLOCK DELEGATION:<br />
+                <span class="text-gray-300"
+                  >Farmer drops GPS pins &rarr; Technical DevEUIs stay
+                  [DELEGATED] for you in
+                  <span class="text-jakkals-orange">installer.html</span></span
+                >
               </div>
               <div
-                class="text-xs font-mono text-jakkals-orange mt-2 font-bold tracking-wider uppercase"
+                class="bg-emerald-400/10 border border-emerald-400/35 rounded-lg px-3 py-2 text-emerald-300 font-bold tracking-wider uppercase text-[10px]"
               >
-                [ APP PROVISIONED ]
+                ● HEX PAYLOAD TRANSLATED → APP PROVISIONED
               </div>
             </div>
           </div>
         </div>
 
         <!-- Content -->
-        <div class="w-full lg:w-1/2 order-1 lg:order-2">
+        <div class="w-full lg:w-7/12 order-1 lg:order-2">
           <div
-            class="inline-flex items-center gap-2 px-4 py-1 rounded-full border border-jakkals-orange/40 bg-jakkals-orange/20 text-jakkals-orange text-xs font-bold tracking-[0.2em] mb-6 shadow-[0_0_15px_rgba(255,158,74,0.2)]"
+            class="eyebrow-rail border-b-2 border-jakkals-orange/65 text-jakkals-orange mb-5"
             data-i18n="p_tech_badge"
           >
-            ZERO INVENTORY RISK
+            ZERO INVENTORY LOCK-IN
           </div>
           <h2
             class="text-4xl md:text-5xl font-bold text-white mb-6 font-garet leading-tight"
@@ -626,143 +1269,227 @@
           >
             HARDWARE <span class="text-jakkals-orange">AGNOSTIC.</span>
           </h2>
-          <div class="space-y-6 text-stilsein-muted text-lg leading-relaxed">
+          <div
+            class="space-y-4 text-stilsein-muted text-base md:text-lg leading-relaxed"
+          >
             <p data-i18n="p_tech_p1">
-              You don't need to buy proprietary StilSein hardware or hold
-              expensive stock. We are an Independent Software Vendor (ISV).
+              You never have to hold proprietary StilSein stock. Our Cloudflare
+              Edge decoders translate raw payloads from
+              <strong
+                >Dragino, Milesight, SenseCAP, Netvox, NCD, and Browan</strong
+              >
+              (plus custom nodes) out of the box.
             </p>
             <p data-i18n="p_tech_p2">
-              Prefer Dragino? Milesight? Sensedge? If it speaks the LoRaWAN
-              standard, our platform translates it. Just point your gateway to
-              The Things Network (TTN), set up our Cloudflare KV Webhook, and
-              pass us the Device EUI.
+              Deploy on <strong>StilSein's Managed TTN cluster</strong>, or
+              route telemetry via your <strong>own Private LNS</strong> (The
+              Things Stack / ChirpStack) using our Webhook guide (<a
+                href="https://stilsein.co.za/ttn_gids.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-stilsein-blue underline hover:text-white"
+                >ttn_gids.html</a
+              >).
             </p>
             <p data-i18n="p_tech_p3">
-              Our automated systems instantly spawn a dedicated StilSein Vault
-              database and activate the farmer's app. You handle the hardware;
-              we handle the complex cloud routing.
+              Technical specs (DevEUIs, interval, calibration) are padlocked for
+              you by default in the app. You simply open your
+              <strong>Installer Web Portal</strong> link, drag pins if needed,
+              enter the DevEUIs, and submit to HQ.
             </p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 5. THE PROCESS -->
+    <!-- ========================================================== -->
+    <!-- 7. THE 4-STEP PARTNER WORKFLOW + PARTNER FAQ               -->
+    <!-- ========================================================== -->
     <section
       id="proses"
-      class="py-24 px-6 bg-black/20 border-y border-white/5 relative z-10 w-full overflow-hidden"
+      class="py-24 px-6 bg-[#11161C]/45 border-b border-white/5 relative z-10 w-full overflow-hidden"
     >
-      <div class="max-w-6xl mx-auto text-center">
-        <h2
-          class="text-3xl md:text-4xl font-bold text-white mb-16 font-garet"
-          data-i18n="p_flow_title"
-        >
-          THE PARTNER <span class="text-stilsein-blue">JOURNEY</span>
-        </h2>
-
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 relative text-left">
-          <!-- Connective Line -->
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-14">
           <div
-            class="hidden md:block absolute top-10 left-[10%] right-[10%] h-0.5 bg-stilsein-blue/20 -z-10"
-          ></div>
+            class="eyebrow-rail border-b-2 border-stilsein-blue/65 text-stilsein-blue mb-5"
+            data-i18n="p_flow_badge"
+          >
+            HOW IT WORKS END-TO-END
+          </div>
+          <h2
+            class="text-3xl md:text-5xl font-bold text-white font-garet"
+            data-i18n="p_flow_title"
+          >
+            THE PARTNER <span class="text-stilsein-blue">WORKFLOW</span>
+          </h2>
+        </div>
 
-          <div class="pt-6 relative">
-            <div
-              class="w-8 h-8 rounded-full bg-stilsein-dark border-2 border-stilsein-blue absolute top-0 left-4 -mt-4 flex items-center justify-center text-xs font-bold text-stilsein-blue"
-            >
-              1
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-14">
+          <div
+            class="glass-card panel-texture border border-white/10 border-t-2 border-t-stilsein-blue rounded-2xl p-6"
+          >
+            <div class="text-[10px] font-mono text-stilsein-blue mb-2">
+              STEP 01
             </div>
             <h3
-              class="text-sm font-bold text-white mb-3 tracking-widest"
+              class="text-sm font-bold text-white mb-2.5 tracking-wider uppercase font-octasquares"
               data-i18n="p_flow_1_title"
             >
-              1. SECURE THE CLIENT
+              APPLY &amp; GET PROMO CODE
             </h3>
             <p
               class="text-xs text-stilsein-muted leading-relaxed"
               data-i18n="p_flow_1_desc"
             >
-              Source a farmer in your region, or claim a localized lead
-              generated by StilSein's quoting engine.
+              Submit your branches &amp; coverage radius below. Once approved,
+              you appear in the app Matchmaker and receive your unique VAR Promo
+              Code.
             </p>
           </div>
-          <div class="pt-6 relative">
-            <div
-              class="w-8 h-8 rounded-full bg-stilsein-dark border-2 border-stilsein-blue absolute top-0 left-4 -mt-4 flex items-center justify-center text-xs font-bold text-stilsein-blue"
-            >
-              2
-            </div>
+
+          <div
+            class="glass-card panel-texture border border-white/10 border-t-2 border-t-cyan-400 rounded-2xl p-6"
+          >
+            <div class="text-[10px] font-mono text-cyan-400 mb-2">STEP 02</div>
             <h3
-              class="text-sm font-bold text-white mb-3 tracking-widest"
+              class="text-sm font-bold text-white mb-2.5 tracking-wider uppercase font-octasquares"
               data-i18n="p_flow_2_title"
             >
-              2. DEPLOY HARDWARE
+              RECEIVE FARM BLUEPRINT
             </h3>
             <p
               class="text-xs text-stilsein-muted leading-relaxed"
               data-i18n="p_flow_2_desc"
             >
-              Mount the LoRaWAN gateway at the farmhouse and drop the
-              battery-powered sensors in the field.
+              When a farmer selects you (or unlocks with your Promo Code), you
+              get an email with their satellite blueprint, notes, and a direct
+              Installer Portal link.
             </p>
           </div>
-          <div class="pt-6 relative">
-            <div
-              class="w-8 h-8 rounded-full bg-stilsein-dark border-2 border-stilsein-blue absolute top-0 left-4 -mt-4 flex items-center justify-center text-xs font-bold text-stilsein-blue"
-            >
-              3
+
+          <div
+            class="glass-card panel-texture border border-white/10 border-t-2 border-t-stilsein-blue rounded-2xl p-6"
+          >
+            <div class="text-[10px] font-mono text-stilsein-blue mb-2">
+              STEP 03
             </div>
             <h3
-              class="text-sm font-bold text-white mb-3 tracking-widest"
+              class="text-sm font-bold text-white mb-2.5 tracking-wider uppercase font-octasquares"
               data-i18n="p_flow_3_title"
             >
-              3. CLOUD ACTIVATION
+              MOUNT &amp; SUBMIT DEVEUIS
             </h3>
             <p
               class="text-xs text-stilsein-muted leading-relaxed"
               data-i18n="p_flow_3_desc"
             >
-              StilSein handles the complex routing, mobile app provisioning,
-              Jakkals AI insights, and all monthly billing.
+              Install the gateway and field nodes, drag pins in your portal to
+              confirm exact GPS, enter the DevEUIs &amp; LNS choice, and hit
+              Submit to HQ.
             </p>
           </div>
-          <div class="pt-6 relative">
-            <div
-              class="w-8 h-8 rounded-full bg-jakkals-orange/20 border-2 border-jakkals-orange absolute top-0 left-4 -mt-4 flex items-center justify-center text-xs font-bold text-jakkals-orange shadow-[0_0_10px_rgba(255,158,74,0.4)]"
-            >
-              4
+
+          <div
+            class="glass-card panel-texture border border-jakkals-orange/40 border-t-2 border-t-jakkals-orange rounded-2xl p-6 glow-orange"
+          >
+            <div class="text-[10px] font-mono text-jakkals-orange mb-2">
+              STEP 04
             </div>
             <h3
-              class="text-sm font-bold text-jakkals-orange mb-3 tracking-widest drop-shadow-md"
+              class="text-sm font-bold text-jakkals-orange mb-2.5 tracking-wider uppercase font-octasquares"
               data-i18n="p_flow_4_title"
             >
-              4. EARN MONTHLY
+              EARN EVERY MONTH
             </h3>
             <p
-              class="text-xs text-white leading-relaxed"
+              class="text-xs text-gray-200 leading-relaxed"
               data-i18n="p_flow_4_desc"
             >
-              Receive your automated commission payout every single month for as
-              long as the farmer uses the app.
+              StilSein handles app provisioning, Jakkals AI topography, and
+              monthly SaaS billing and pays your recurring commission every
+              month.
+            </p>
+          </div>
+        </div>
+
+        <!-- 3 QUICK CLARITY FAQ BOXES -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div
+            class="bg-stilsein-dark/70 border border-white/10 rounded-xl p-5"
+          >
+            <h4
+              class="text-xs font-bold text-white uppercase tracking-wider mb-2"
+              data-i18n="faq1_q"
+            >
+              Who handles software support &amp; billing?
+            </h4>
+            <p
+              class="text-xs text-stilsein-muted leading-relaxed"
+              data-i18n="faq1_a"
+            >
+              StilSein HQ handles app support, cloud uptime, and monthly SaaS
+              invoicing. You only handle physical hardware calls if a sensor is
+              damaged in the field.
+            </p>
+          </div>
+          <div
+            class="bg-stilsein-dark/70 border border-white/10 rounded-xl p-5"
+          >
+            <h4
+              class="text-xs font-bold text-white uppercase tracking-wider mb-2"
+              data-i18n="faq2_q"
+            >
+              Can I serve multiple towns or provinces?
+            </h4>
+            <p
+              class="text-xs text-stilsein-muted leading-relaxed"
+              data-i18n="faq2_a"
+            >
+              Yes! Add as many branches as you like in the application form
+              below, each with its own HQ pin, 50–1000km radius, and supported
+              sensor services.
+            </p>
+          </div>
+          <div
+            class="bg-stilsein-dark/70 border border-white/10 rounded-xl p-5"
+          >
+            <h4
+              class="text-xs font-bold text-white uppercase tracking-wider mb-2"
+              data-i18n="faq3_q"
+            >
+              What if a farmer only wants Soil or Security?
+            </h4>
+            <p
+              class="text-xs text-stilsein-muted leading-relaxed"
+              data-i18n="faq3_a"
+            >
+              Rain, Pipe, and Dam modules are live today. You can pre-register
+              for GrondWolf (Soil) and WagWolf (Security) so you're
+              automatically matched as they launch.
             </p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 6. APPLICATION FORM -->
+    <!-- ========================================================== -->
+    <!-- 8. PARTNER APPLICATION FORM (WITH LIVE PHONE PREVIEW SYNC) -->
+    <!-- ========================================================== -->
     <section
       id="aansoek"
-      class="py-24 px-6 relative z-10 w-full overflow-hidden"
+      class="py-24 px-6 bg-black/20 relative z-10 w-full overflow-hidden"
     >
       <div class="max-w-3xl mx-auto">
         <div
-          class="glass-card panel-texture p-8 md:p-12 rounded-3xl border border-stilsein-blue/30 shadow-[0_0_40px_rgba(145,172,200,0.1)] relative"
+          class="glass-card panel-texture p-7 md:p-11 rounded-2xl border border-stilsein-blue/30 border-t-2 border-t-jakkals-orange shadow-[0_0_40px_rgba(145,172,200,0.12)] relative"
         >
           <div
-            class="absolute -top-12 -right-12 w-40 h-40 bg-jakkals-orange/10 rounded-full blur-2xl pointer-events-none"
-          ></div>
-
+            class="eyebrow-rail border-b-2 border-jakkals-orange/65 text-jakkals-orange mb-4"
+            data-i18n="p_form_badge"
+          >
+            PARTNER REGISTRATION
+          </div>
           <h2
             class="text-3xl font-bold text-white font-garet mb-2"
             data-i18n="p_form_title"
@@ -770,12 +1497,12 @@
             APPLY TO BECOME A PARTNER
           </h2>
           <p
-            class="text-stilsein-muted text-sm mb-8 max-w-xl"
+            class="text-stilsein-muted text-sm mb-8 max-w-xl leading-relaxed"
             data-i18n="p_form_desc"
           >
             Join the network of installers bringing agricultural intelligence to
-            signal-dead zones. Fill out the form below and our team will contact
-            you.
+            signal-dead zones. Notice how typing your details updates the live
+            in-app preview above.
           </p>
 
           <form
@@ -783,7 +1510,7 @@
             class="space-y-6 relative z-10"
           >
             <!-- COMPANY & CONTACT DETAILS -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
               <div>
                 <label
                   for="partner-company"
@@ -796,14 +1523,16 @@
                   id="partner-company"
                   name="partner-company"
                   placeholder="e.g. AgriTech Installs"
+                  oninput="syncLivePhonePreview()"
                   required
-                  class="w-full bg-stilsein-dark/80 border border-white/10 rounded-lg p-3 text-white placeholder-gray-500 focus:outline-none focus:border-jakkals-orange focus:ring-1 focus:ring-jakkals-orange transition-all"
+                  class="w-full bg-stilsein-dark/80 border border-white/10 rounded-xl p-3 text-white placeholder-gray-500 focus:outline-none focus:border-jakkals-orange focus:ring-1 focus:ring-jakkals-orange transition-all"
                 />
               </div>
               <div>
                 <label
                   for="partner-website"
                   class="block text-xs font-bold text-stilsein-blue tracking-widest uppercase mb-2"
+                  data-i18n="p_form_website"
                   >Company Website (Optional)</label
                 >
                 <input
@@ -811,12 +1540,12 @@
                   id="partner-website"
                   name="partner-website"
                   placeholder="www.yourcompany.co.za"
-                  class="w-full bg-stilsein-dark/80 border border-white/10 rounded-lg p-3 text-white placeholder-gray-500 focus:outline-none focus:border-jakkals-orange focus:ring-1 focus:ring-jakkals-orange transition-all"
+                  class="w-full bg-stilsein-dark/80 border border-white/10 rounded-xl p-3 text-white placeholder-gray-500 focus:outline-none focus:border-jakkals-orange focus:ring-1 focus:ring-jakkals-orange transition-all"
                 />
               </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
               <div>
                 <label
                   for="partner-fname"
@@ -829,8 +1558,9 @@
                   id="partner-fname"
                   name="partner-fname"
                   placeholder="John"
+                  oninput="syncLivePhonePreview()"
                   required
-                  class="w-full bg-stilsein-dark/80 border border-white/10 rounded-lg p-3 text-white placeholder-gray-500 focus:outline-none focus:border-jakkals-orange focus:ring-1 focus:ring-jakkals-orange transition-all"
+                  class="w-full bg-stilsein-dark/80 border border-white/10 rounded-xl p-3 text-white placeholder-gray-500 focus:outline-none focus:border-jakkals-orange focus:ring-1 focus:ring-jakkals-orange transition-all"
                 />
               </div>
               <div>
@@ -845,13 +1575,14 @@
                   id="partner-lname"
                   name="partner-lname"
                   placeholder="Doe"
+                  oninput="syncLivePhonePreview()"
                   required
-                  class="w-full bg-stilsein-dark/80 border border-white/10 rounded-lg p-3 text-white placeholder-gray-500 focus:outline-none focus:border-jakkals-orange focus:ring-1 focus:ring-jakkals-orange transition-all"
+                  class="w-full bg-stilsein-dark/80 border border-white/10 rounded-xl p-3 text-white placeholder-gray-500 focus:outline-none focus:border-jakkals-orange focus:ring-1 focus:ring-jakkals-orange transition-all"
                 />
               </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
               <div>
                 <label
                   for="partner-phone"
@@ -864,8 +1595,9 @@
                   id="partner-phone"
                   name="partner-phone"
                   placeholder="082 123 4567"
+                  oninput="syncLivePhonePreview()"
                   required
-                  class="w-full bg-stilsein-dark/80 border border-white/10 rounded-lg p-3 text-white placeholder-gray-500 focus:outline-none focus:border-jakkals-orange focus:ring-1 focus:ring-jakkals-orange transition-all"
+                  class="w-full bg-stilsein-dark/80 border border-white/10 rounded-xl p-3 text-white placeholder-gray-500 focus:outline-none focus:border-jakkals-orange focus:ring-1 focus:ring-jakkals-orange transition-all"
                 />
               </div>
               <div>
@@ -880,8 +1612,9 @@
                   id="partner-email"
                   name="partner-email"
                   placeholder="info@example.com"
+                  oninput="syncLivePhonePreview()"
                   required
-                  class="w-full bg-stilsein-dark/80 border border-white/10 rounded-lg p-3 text-white placeholder-gray-500 focus:outline-none focus:border-jakkals-orange focus:ring-1 focus:ring-jakkals-orange transition-all"
+                  class="w-full bg-stilsein-dark/80 border border-white/10 rounded-xl p-3 text-white placeholder-gray-500 focus:outline-none focus:border-jakkals-orange focus:ring-1 focus:ring-jakkals-orange transition-all"
                 />
               </div>
             </div>
@@ -891,23 +1624,26 @@
                 for="partner-exp"
                 class="block text-xs font-bold text-stilsein-blue tracking-widest uppercase mb-2"
                 data-i18n="p_form_exp"
-                >Brief description of your IoT / Electrical experience</label
+                >Brief description of your IoT / Solar / Irrigation
+                experience</label
               >
               <textarea
                 id="partner-exp"
                 name="partner-exp"
                 rows="2"
                 placeholder="..."
+                oninput="syncLivePhonePreview()"
                 required
-                class="w-full bg-stilsein-dark/80 border border-white/10 rounded-lg p-3 text-white placeholder-gray-500 focus:outline-none focus:border-jakkals-orange focus:ring-1 focus:ring-jakkals-orange transition-all"
+                class="w-full bg-stilsein-dark/80 border border-white/10 rounded-xl p-3 text-white placeholder-gray-500 focus:outline-none focus:border-jakkals-orange focus:ring-1 focus:ring-jakkals-orange transition-all"
               ></textarea>
             </div>
 
-            <div class="border-t border-white/10 pt-4">
+            <div class="border-t border-white/10 pt-5">
               <label
                 for="partner-logo"
                 class="block text-xs font-bold text-stilsein-blue tracking-widest uppercase mb-2"
-                >Company Logo (Optional)</label
+                data-i18n="p_form_logo"
+                >Company Logo (Optional: shown in App Matchmaker)</label
               >
               <div class="flex items-center gap-4">
                 <input
@@ -915,11 +1651,11 @@
                   id="partner-logo"
                   name="partner-logo"
                   accept="image/*"
-                  class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-stilsein-blue/10 file:text-stilsein-blue hover:file:bg-stilsein-blue/20 transition-all"
+                  class="block w-full text-sm text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border file:border-stilsein-blue/30 file:text-xs file:font-bold file:bg-stilsein-blue/10 file:text-stilsein-blue hover:file:bg-stilsein-blue/20 transition-all"
                 />
                 <img
                   id="logo-preview"
-                  class="hidden w-10 h-10 object-contain rounded border border-white/10"
+                  class="hidden w-11 h-11 object-contain rounded-lg border border-white/15 bg-stilsein-dark"
                   alt="Logo Preview"
                 />
               </div>
@@ -927,22 +1663,29 @@
 
             <!-- REGIONAL BRANCHES ENGINE -->
             <div class="border-t border-jakkals-orange/30 pt-6 mt-6">
-              <h3 class="text-lg font-bold text-white font-garet mb-2">
+              <h3
+                class="text-lg font-bold text-white font-garet mb-1.5"
+                data-i18n="p_branch_title"
+              >
                 OPERATING REGIONS
               </h3>
-              <p class="text-stilsein-muted text-xs mb-6">
+              <p
+                class="text-stilsein-muted text-xs mb-6"
+                data-i18n="p_branch_desc"
+              >
                 Add the branches or regions where you can physically deploy
-                hardware. We use this to route local farmers directly to you.
+                hardware. We use this to match local farmers directly to you.
               </p>
 
               <div id="branches-container" class="space-y-6">
-                <!-- Branches will be injected here by Javascript -->
+                <!-- Branches injected by JavaScript -->
               </div>
 
               <button
                 type="button"
                 onclick="addBranch()"
-                class="w-full py-3 mt-4 border-2 border-dashed border-stilsein-blue/40 text-stilsein-blue font-bold rounded-lg hover:bg-stilsein-blue/10 transition-all tracking-widest text-xs"
+                class="w-full py-3.5 mt-5 border-2 border-dashed border-stilsein-blue/40 text-stilsein-blue font-bold rounded-xl hover:bg-stilsein-blue/10 transition-all tracking-widest text-xs uppercase"
+                data-i18n="p_branch_add"
               >
                 + ADD ANOTHER REGION / BRANCH
               </button>
@@ -951,10 +1694,10 @@
             <button
               id="partner-submit-btn"
               type="submit"
-              class="w-full py-4 mt-8 bg-jakkals-orange text-stilsein-dark font-bold rounded-lg hover:bg-white transition-all shadow-[0_0_20px_rgba(255,158,74,0.3)] tracking-widest uppercase"
+              class="w-full py-4 mt-8 bg-jakkals-orange text-stilsein-dark font-black rounded-xl hover:bg-white transition-all shadow-[0_0_20px_rgba(255,158,74,0.3)] tracking-widest uppercase text-xs"
               data-i18n="p_form_submit"
             >
-              SUBMIT APPLICATION
+              SUBMIT PARTNER APPLICATION
             </button>
           </form>
         </div>
@@ -965,29 +1708,81 @@
     <footer
       class="py-12 px-6 text-center border-t border-white/10 z-10 relative glass-card panel-texture w-full overflow-hidden"
     >
-      <p class="text-sm text-jakkals-orange" data-i18n="footer_copy">
-        &copy; 2026 StilSein Industrial (Pty) Ltd. | Designed in South Africa.
+      <div
+        class="flex flex-wrap justify-center items-center gap-6 text-xs text-stilsein-muted tracking-widest uppercase mb-6"
+      >
+        <a
+          href="index.html"
+          class="hover:text-white transition-colors"
+          data-i18n="nav_back"
+          >Main Site</a
+        >
+        <a
+          href="handleiding.html"
+          class="hover:text-white transition-colors"
+          data-i18n="footer_manual"
+          >User Manual</a
+        >
+        <a href="privacy.html" class="hover:text-white transition-colors"
+          >Privacy Policy / Privaatheidsbeleid</a
+        >
+      </div>
+      <p class="text-xs text-jakkals-orange m-0" data-i18n="footer_copy">
+        &copy; 2026 StilSein Industries (Pty) Ltd. | Designed in South Africa.
       </p>
     </footer>
 
-    <!-- 🛠️ SUCCESS MODAL POPUP -->
+    <!-- LIGHTBOX MODAL FOR FULLSCREEN APP SCREENSHOT INSPECTION -->
+    <div
+      id="gallery-lightbox"
+      class="fixed inset-0 z-[110] flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300"
+    >
+      <div
+        class="absolute inset-0 bg-black/85 backdrop-blur-md"
+        onclick="closeLightbox()"
+      ></div>
+      <div
+        class="relative z-10 w-[94%] max-w-4xl max-h-[90vh] flex flex-col items-center"
+      >
+        <div class="w-full flex items-center justify-between mb-3 px-2">
+          <span
+            id="lightbox-caption"
+            class="text-xs md:text-sm font-bold tracking-widest uppercase text-stilsein-blue font-garet"
+          ></span>
+          <button
+            type="button"
+            onclick="closeLightbox()"
+            class="px-3 py-1.5 rounded-lg bg-stilsein-card border border-white/15 text-white hover:text-jakkals-orange text-xs font-bold uppercase tracking-wider"
+          >
+            ESC / Close ✕
+          </button>
+        </div>
+        <div class="relative w-full flex items-center justify-center p-2">
+          <img
+            id="lightbox-img"
+            src=""
+            alt="Fullscreen App Preview"
+            class="max-h-[82vh] w-auto object-contain drop-shadow-[0_32px_65px_rgba(0,0,0,0.95)]"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- SUCCESS MODAL POPUP -->
     <div
       id="success-modal"
-      class="fixed inset-0 z-[100] flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-500"
+      class="fixed inset-0 z-[105] flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-500"
     >
-      <!-- Blurred Backdrop -->
-      <div class="absolute inset-0 bg-black/60 backdrop-blur-md"></div>
-
-      <!-- Modal Content -->
+      <div class="absolute inset-0 bg-black/75 backdrop-blur-md"></div>
       <div
-        class="relative glass-card panel-texture p-8 md:p-12 rounded-3xl border border-stilsein-blue/40 shadow-[0_0_50px_rgba(145,172,200,0.2)] max-w-lg w-full mx-4 text-center transform scale-95 transition-transform duration-500"
+        class="relative glass-card panel-texture p-8 md:p-10 rounded-2xl border border-stilsein-blue/40 border-t-2 border-t-emerald-400 shadow-[0_0_50px_rgba(145,172,200,0.2)] max-w-lg w-full mx-4 text-center transform scale-95 transition-transform duration-500"
         id="success-modal-content"
       >
         <div
-          class="w-20 h-20 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-6 border border-green-500/50 shadow-[0_0_20px_rgba(34,197,94,0.4)]"
+          class="w-16 h-16 bg-emerald-500/15 rounded-2xl flex items-center justify-center mx-auto mb-5 border border-emerald-400/45 shadow-[0_0_20px_rgba(34,197,94,0.3)]"
         >
           <svg
-            class="w-10 h-10 text-green-400"
+            class="w-9 h-9 text-emerald-400"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -1002,32 +1797,511 @@
         </div>
 
         <h2
-          class="text-2xl font-bold text-white font-garet mb-4 tracking-wide uppercase"
+          class="text-2xl font-bold text-white font-garet mb-3 tracking-wide uppercase"
+          data-i18n="succ_title"
         >
           APPLICATION RECEIVED
         </h2>
 
-        <p class="text-stilsein-muted text-sm leading-relaxed mb-8">
-          Thank you for applying to the StilSein Partner Network. Your
-          application has been securely transmitted to our engineering team at
-          HQ.<br /><br />
-          We are currently reviewing your region and coverage radius. You will
-          receive an email shortly with further instructions.
+        <p
+          class="text-stilsein-muted text-sm leading-relaxed mb-7"
+          data-i18n="succ_desc"
+        >
+          Thank you for applying to the StilSein Partner Network. Your branch
+          locations and details have been sent to HQ. Once approved, we will
+          email your official Partner Promo Code and activate your listing in
+          the app.
         </p>
 
         <button
+          type="button"
           onclick="closeSuccessModal()"
-          class="w-full py-4 bg-stilsein-blue text-stilsein-dark font-bold rounded-lg hover:bg-white transition-all shadow-[0_0_15px_rgba(145,172,200,0.4)] tracking-widest uppercase"
+          class="w-full py-3.5 bg-stilsein-blue text-stilsein-dark font-black text-xs rounded-xl hover:bg-white transition-all shadow-[0_0_15px_rgba(145,172,200,0.35)] tracking-widest uppercase"
+          data-i18n="succ_btn"
         >
           GOT IT
         </button>
       </div>
     </div>
 
-    <!-- I18N EN INTERACTIVITY SCRIPTS -->
-    <script src="i18n.js"></script>
+    <!-- ========================================================== -->
+    <!-- SCRIPTS: LIVE PRICING, TRANSLATIONS, MAP, PREVIEW, CANVAS  -->
+    <!-- ========================================================== -->
     <script>
-      // --- MOBILE MENU LOGIC ---
+      // ----------------------------------------------------------
+      // 1. LIVE PRICING & COMMISSION RATES + SELF-CONTAINED BILINGUAL
+      // ----------------------------------------------------------
+      window.currentLang = localStorage.getItem("stilsein_lang") || "en";
+      const USD_EXCHANGE_FALLBACK = 18.2;
+
+      let pricingRates = {
+        base: 399,
+        rain: 49,
+        pipe: 89,
+        dam: 89,
+        varRate: 0.25,
+        leadRate: 0.1,
+      };
+      let partnerCalc = { tier: "var", farms: 10, rain: 3, pd: 3 };
+
+      function toUsdApprox(zarAmount) {
+        return Math.max(1, Math.round(zarAmount / USD_EXCHANGE_FALLBACK));
+      }
+
+      function getTickerPhrases(lang) {
+        const varPct = Math.round(pricingRates.varRate * 100);
+        const leadPct = Math.round(pricingRates.leadRate * 100);
+        return lang === "af"
+          ? [
+              `Gesertifiseerde Vennoot Netwerk • ${varPct}% Lewenslange VAR Kommissie met Jou Promokode`,
+              `StilSein App Pasmaat Lei-Verwysings: ${leadPct}% Maandelikse Annïteit`,
+              "100% Arbeid & Hardeware Wins + Nul Voorraad Risiko",
+              "Dragino • Milesight • SenseCAP • Netvox • NCD • Browan op TTN of Eie LNS",
+            ]
+          : [
+              `Certified Partner Network • ${varPct}% Lifetime VAR Commission with Your Promo Code`,
+              `StilSein App Matchmaker Leads: ${leadPct}% Monthly Recurring Annuity`,
+              "100% Labour & Hardware Margin + Zero Inventory Lock-In",
+              "Dragino • Milesight • SenseCAP • Netvox • NCD • Browan on TTN or Private LNS",
+            ];
+      }
+
+      const partnerTranslations = {
+        en: {
+          nav_back: "Main Site",
+          nav_model: "Commission Model",
+          nav_promo: "Promo & App Preview",
+          nav_tech: "Tech & LNS",
+          nav_process: "Workflow",
+          nav_apply: "Apply Now",
+
+          p_hero_badge: "STILSEIN PARTNER NETWORK (VAR)",
+          p_hero_title:
+            "BUILD THE AFRICAN FARM. <br /><span class='text-jakkals-orange'>EARN LIFETIME SAAS REVENUE.</span>",
+          p_hero_desc:
+            "Stop stopping at once-off hardware &amp; labour invoices. Become a certified <strong>StilSein Value-Added Reseller (VAR)</strong>, share your personal Partner Promo Code with farmers, and turn every sensor you install into an ongoing monthly recurring annuity.",
+          p_hero_c1_tag: "HARDWARE & LABOUR",
+          p_hero_c1_txt:
+            "Keep 100% of your installation fees and hardware retail markup.",
+          p_hero_c2_tag: "RECURRING COMMISSION",
+          p_hero_c3_tag: "ZERO STOCK LOCK-IN",
+          p_hero_c3_txt:
+            "Deploy any of 6 LoRaWAN brands on Managed TTN or your own LNS.",
+          p_hero_btn: "APPLY TO BECOME A PARTNER",
+          p_hero_btn2: "SEE HOW YOU APPEAR IN THE APP",
+
+          p_fin_badge: "3 STREAMS OF PARTNER REVENUE",
+          p_fin_title:
+            "THE FINANCIAL <span class='text-stilsein-blue'>MODEL</span>",
+          p_fin_desc:
+            "We act as the invisible cloud, AI, and billing engine, while you own the physical installation and earn a lifetime share of every connected farm's monthly subscription.",
+          p_fin_1_title: "100% LABOUR & CALL-OUT",
+          p_fin_1_desc:
+            "Quote the farmer directly for travel, mounting, solar brackets, plumbing fittings, and commissioning. You keep 100% of your installation fees.",
+          p_fin_2_title: "HARDWARE RETAIL MARKUP",
+          p_fin_2_desc:
+            "Source LoRaWAN gateways and sensors from your preferred distributor at trade/wholesale rates and supply at retail. Keep 100% of the margin.",
+
+          pcalc_tag: "INTERACTIVE ANNUITY SIMULATOR",
+          pcalc_title: "Estimate Your Monthly Recurring Commission",
+          pcalc_farms: "Active Farms",
+          pcalc_rain: "Avg Rain / Farm",
+          pcalc_pd: "Avg Pipes+Dams",
+          pcalc_out_lbl: "YOUR PASSIVE MONTHLY COMMISSION",
+          pcalc_mo: "/ mo",
+          pcalc_cta: "CLAIM YOUR PARTNER PROMO CODE →",
+
+          promo_badge: "HOW YOUR PROMO CODE BOOSTS REVENUE",
+          promo_title:
+            "ONE CODE. <span class='text-jakkals-orange'>LIFETIME BOOST</span> ON EVERY FARM YOU BRING.",
+          promo_desc:
+            "When HQ approves your partner application, our system automatically mints your unique <strong>Partner Promo Code</strong> (e.g. <code class='text-jakkals-orange font-mono'>YOURCOMPANY-VAR</code>). Put it on your quotes, bakkie decals, and invoices. Anyone can enter it straight inside the StilSein App.",
+          promo_t1_tag: "PARTNER-ORIGINATED",
+          promo_t1_desc:
+            "Farmer enters your Promo Code in <strong>Farm Builder</strong> or <strong>Add Node Upsell</strong> and taps <span class='font-mono text-jakkals-orange'>UNLOCK</span>. Links the farm permanently to your account at the full VAR rate.",
+          promo_t2_tag: "STILSEIN MATCHMAKER LEAD",
+          promo_t2_desc:
+            "Farmer discovers you automatically via GPS radius inside the app without a promo code. You get the installation job plus a steady lifetime referral annuity.",
+          promo_s1:
+            "<strong>Share Anywhere:</strong> Hand out your Promo Code at co-ops, farmer days, or on hardware quotes. No special partner login needed by the farmer.",
+          promo_s2:
+            "<strong>Instant In-App Verification:</strong> Typing your code calls <span class='font-mono text-stilsein-blue'>/api/promo/verify</span>, links your company profile, and automatically locks technical specs for you to configure.",
+          promo_s3:
+            "<strong>Stacks on Expansions Too:</strong> Even when an existing farm adds new Rain, Pipe, or Dam sensors later via Upsell, entering your code locks the expansion to you!",
+
+          phone_tab_live: "Live Card Preview",
+          phone_tab_shot: "App Screenshot",
+          phone_hdr: "FARM BUILDER • PARTNER",
+          phone_promo_lbl: "HAVE A PARTNER PROMO CODE?",
+          phone_selected_btn: "INSTALLER SELECTED",
+          phone_proceed_btn: "PROCEED TO SENSOR CONFIG →",
+          phone_live_caption:
+            "Live preview updates as you type in the application form below.",
+
+          p_tech_badge: "ZERO INVENTORY LOCK-IN",
+          p_tech_title:
+            "HARDWARE <span class='text-jakkals-orange'>AGNOSTIC.</span>",
+          p_tech_p1:
+            "You never have to hold proprietary StilSein stock. Our Cloudflare Edge decoders translate raw payloads from <strong>Dragino, Milesight, SenseCAP, Netvox, NCD, and Browan</strong> (plus custom nodes) out of the box.",
+          p_tech_p2:
+            "Deploy on <strong>StilSein's Managed TTN cluster</strong>, or route telemetry via your <strong>own Private LNS</strong> (The Things Stack / ChirpStack) using our Webhook guide (<a href='https://stilsein.co.za/ttn_gids.html' target='_blank' rel='noopener noreferrer' class='text-stilsein-blue underline hover:text-white'>ttn_gids.html</a>).",
+          p_tech_p3:
+            "Technical specs (DevEUIs, interval, calibration) are padlocked for you by default in the app. You simply open your <strong>Installer Web Portal</strong> link, drag pins if needed, enter the DevEUIs, and submit to HQ.",
+
+          p_flow_badge: "HOW IT WORKS END-TO-END",
+          p_flow_title:
+            "THE PARTNER <span class='text-stilsein-blue'>WORKFLOW</span>",
+          p_flow_1_title: "APPLY & GET PROMO CODE",
+          p_flow_1_desc:
+            "Submit your branches & coverage radius below. Once approved, you appear in the app Matchmaker and receive your unique VAR Promo Code.",
+          p_flow_2_title: "RECEIVE FARM BLUEPRINT",
+          p_flow_2_desc:
+            "When a farmer selects you (or unlocks with your Promo Code), you get an email with their satellite blueprint, notes, and a direct Installer Portal link.",
+          p_flow_3_title: "MOUNT & SUBMIT DEVEUIS",
+          p_flow_3_desc:
+            "Install the gateway and field nodes, drag pins in your portal to confirm exact GPS, enter the DevEUIs & LNS choice, and hit Submit to HQ.",
+          p_flow_4_title: "EARN EVERY MONTH",
+          p_flow_4_desc:
+            "StilSein handles app provisioning, Jakkals AI topography, and monthly SaaS billing and pays your recurring commission every month.",
+
+          faq1_q: "Who handles software support & billing?",
+          faq1_a:
+            "StilSein HQ handles app support, cloud uptime, and monthly SaaS invoicing. You only handle physical hardware calls if a sensor is damaged in the field.",
+          faq2_q: "Can I serve multiple towns or provinces?",
+          faq2_a:
+            "Yes! Add as many branches as you like in the application form below, each with its own HQ pin, 50–1000km radius, and supported sensor services.",
+          faq3_q: "What if a farmer only wants Soil or Security?",
+          faq3_a:
+            "Rain, Pipe, and Dam modules are live today. You can pre-register for GrondWolf (Soil) and WagWolf (Security) so you're automatically matched as they launch.",
+
+          p_form_badge: "PARTNER REGISTRATION",
+          p_form_title: "APPLY TO BECOME A PARTNER",
+          p_form_desc:
+            "Join the network of installers bringing agricultural intelligence to signal-dead zones. Notice how typing your details updates the live in-app preview above.",
+          p_form_company: "Company Name",
+          p_form_website: "Company Website (Optional)",
+          p_form_fname: "First Name",
+          p_form_lname: "Last Name",
+          p_form_phone: "Phone Number",
+          p_form_email: "Email Address",
+          p_form_exp:
+            "Brief description of your IoT / Solar / Irrigation experience",
+          p_form_logo: "Company Logo (Optional: shown in App Matchmaker)",
+          p_branch_title: "OPERATING REGIONS",
+          p_branch_desc:
+            "Add the branches or regions where you can physically deploy hardware. We use this to match local farmers directly to you.",
+          p_branch_add: "+ ADD ANOTHER REGION / BRANCH",
+          p_form_submit: "SUBMIT PARTNER APPLICATION",
+          footer_manual: "User Manual",
+          footer_copy:
+            "© 2026 StilSein Industries (Pty) Ltd. | Designed in South Africa.",
+
+          succ_title: "APPLICATION RECEIVED",
+          succ_desc:
+            "Thank you for applying to the StilSein Partner Network. Your branch locations and details have been sent to HQ. Once approved, we will email your official Partner Promo Code and activate your listing in the app.",
+          succ_btn: "GOT IT",
+        },
+        af: {
+          nav_back: "Hoofblad",
+          nav_model: "Kommissie Model",
+          nav_promo: "Promo & App Voorskou",
+          nav_tech: "Tegniek & LNS",
+          nav_process: "Werkvloei",
+          nav_apply: "Doen Aansoek",
+
+          p_hero_badge: "STILSEIN VENNOOT NETWERK (VAR)",
+          p_hero_title:
+            "BOU DIE SUID-AFRIKAANSE PLAAS. <br /><span class='text-jakkals-orange'>VERDIEN LEWENSLANGE SAAS INKOMSTE.</span>",
+          p_hero_desc:
+            "Moenie ophou by eenmalige installasie-fakture nie. Word 'n gesertifiseerde <strong>StilSein Waarde-Toegevoegde Vennoot (VAR)</strong>, deel jou persoonlike Vennoot Promokode met boere, en verander elke sensor wat jy opsit in 'n maandelikse passiewe annïteit.",
+          p_hero_c1_tag: "HARDEWARE & ARBEID",
+          p_hero_c1_txt:
+            "Behou 100% van jou installasie-tariewe en hardeware-winsgrens.",
+          p_hero_c2_tag: "HERHALENDE KOMMISSIE",
+          p_hero_c3_tag: "NUL VOORRAAD RISIKO",
+          p_hero_c3_txt:
+            "Installeer enige van 6 LoRaWAN-handelsmerke op TTN of jou eie LNS.",
+          p_hero_btn: "DOEN AANSOEK AS VENNOOT",
+          p_hero_btn2: "SIEN HOE JY IN DIE APP LYK",
+
+          p_fin_badge: "3 STROME VAN VENNOOT INKOMSTE",
+          p_fin_title:
+            "DIE FINANSIËLE <span class='text-stilsein-blue'>MODEL</span>",
+          p_fin_desc:
+            "Ons dien as die onsigbare wolk-, KI- en fakturering-enjin, terwyl jy die fisiese installasie besit en 'n lewenslange aandeel van elke gekoppelde plaas se maandelikse intekening verdien.",
+          p_fin_1_title: "100% ARBEID & UITROEP",
+          p_fin_1_desc:
+            "Kwoteer die boer direk vir reiskoste, montering, sonpaneel-hakies, pyptoebehore en ingebruikneming. Jy behou 100% van jou arbeid.",
+          p_fin_2_title: "HARDEWARE KLEINHANDELWINS",
+          p_fin_2_desc:
+            "Koop LoRaWAN gateways en sensors teen groothandelpryse by jou verskaffer en verkoop teen kleinhandel. Behou 100% van die wins.",
+
+          pcalc_tag: "INTERAKTIEWE ANNÏTEIT SAKREKENAAR",
+          pcalc_title: "Beraam Jou Maandelikse Herhalende Kommissie",
+          pcalc_farms: "Aktiewe Plase",
+          pcalc_rain: "Gemid Reën / Plaas",
+          pcalc_pd: "Gemid Pype+Damme",
+          pcalc_out_lbl: "JOU PASSIEWE MAANDELIKSE KOMMISSIE",
+          pcalc_mo: "/ md",
+          pcalc_cta: "EIS JOU VENNOOT PROMOKODE →",
+
+          promo_badge: "HOE JOU PROMOKODE INKOMSTE VERHOOG",
+          promo_title:
+            "EEN KODE. <span class='text-jakkals-orange'>LEWENSLANGE HUPSTOOT</span> OP ELKE PLAAS WAT JY BRING.",
+          promo_desc:
+            "Sodra HQ jou aansoek goedkeur, skep ons stelsel outomaties jou unieke <strong>Vennoot Promokode</strong> (bv. <code class='text-jakkals-orange font-mono'>JOUMAATSKAPPY-VAR</code>). Plaas dit op jou kwotasies, bakkie en fakture. Enige boer kan dit direk in die StilSein App intik.",
+          promo_t1_tag: "VENNOOT-GEBRINGDE KLIËNT",
+          promo_t1_desc:
+            "Boer tik jou Promokode in <strong>Plaas-Bouer</strong> of <strong>Voeg Sensor By</strong> en druk <span class='font-mono text-jakkals-orange'>KOPPEL</span>. Skakel die plaas permanent aan jou teen die volle VAR koers.",
+          promo_t2_tag: "STILSEIN PASMAAT LEI-VERWYSING",
+          promo_t2_desc:
+            "Boer kies jou outomaties via GPS-radius binne die app sonder 'n promokode. Jy kry die installasiewerk plus 'n bestendige lewenslange verwysings-annïteit.",
+          promo_s1:
+            "<strong>Deel Enige Plek:</strong> Gee jou Promokode by koöperasies, boeredae of op kwotasies, die boer het geen spesiale skakel nodig nie.",
+          promo_s2:
+            "<strong>Blitsvinnige In-App Verifikasie:</strong> Die kode roep <span class='font-mono text-stilsein-blue'>/api/promo/verify</span>, koppel jou profiel en sluit tegniese velde outomaties toe sodat jy dit kan invul.",
+          promo_s3:
+            "<strong>Tel Op Uitbreidings Ook:</strong> Selfs wanneer 'n bestaande plaas later nuwe Reën-, Pyp- of Damsensors byvoeg, sluit jou kode die nuwe sensors ook aan jou!",
+
+          phone_tab_live: "Lewendige Kaart Voorskou",
+          phone_tab_shot: "App Skermkiekie",
+          phone_hdr: "PLAAS-BOUER • VENNOOT",
+          phone_promo_lbl: "HET JY 'N VENNOOT KODE?",
+          phone_selected_btn: "INSTALLEERDER GEKIES",
+          phone_proceed_btn: "GAAN VOORT NA SENSOR OPSTELLING →",
+          phone_live_caption:
+            "Lewendige voorskou werk outomaties op soos jy hieronder tik.",
+
+          p_tech_badge: "NUL VOORRAAD VERPLIGTING",
+          p_tech_title:
+            "HARDEWARE <span class='text-jakkals-orange'>AGNOSTIES.</span>",
+          p_tech_p1:
+            "Jy hoef nooit eie StilSein-voorraad aan te hou nie. Ons Cloudflare Edge dekodeerders vertaal rou pakkies van <strong>Dragino, Milesight, SenseCAP, Netvox, NCD en Browan</strong> (plus ander) outomaties.",
+          p_tech_p2:
+            "Ontplooi op <strong>StilSein se Bestuurde TTN-netwerk</strong>, of roeteer data deur jou <strong>eie Privaat LNS</strong> (The Things Stack / ChirpStack) met ons Webhook-gids (<a href='https://stilsein.co.za/ttn_gids.html' target='_blank' rel='noopener noreferrer' class='text-stilsein-blue underline hover:text-white'>ttn_gids.html</a>).",
+          p_tech_p3:
+            "Tegniese spesifikasies (DevEUIs, interval, kalibrasie) is by verstek vir jou in die app toegesluit. Jy maak net jou <strong>Installeerder Web Portaal</strong> skakel oop, skuif penne indien nodig, tik die DevEUIs in en stuur na HQ.",
+
+          p_flow_badge: "VAN AANSOEK TOT MAANDELIKSE UITBETALING",
+          p_flow_title:
+            "DIE VENNOOT <span class='text-stilsein-blue'>WERKVLOEI</span>",
+          p_flow_1_title: "DOEN AANSOEK & KRY KODE",
+          p_flow_1_desc:
+            "Dien jou takke en reikwydte hieronder in. Met goedkeuring verskyn jy in die app Pasmaat en kry jy jou unieke VAR Promokode.",
+          p_flow_2_title: "ONTVANG PLAAS BLOUDRUK",
+          p_flow_2_desc:
+            "Wanneer 'n boer jou kies (of jou Promokode gebruik), kry jy 'n e-pos met sy satelliet-uitleg, notas en 'n direkte Portaal-skakel.",
+          p_flow_3_title: "MONTEER & LAAI DEVEUIS",
+          p_flow_3_desc:
+            "Installeer die gateway en veldsensors, sleep penne in jou portaal vir presiese GPS, tik DevEUIs & LNS-keuse in en stuur na HQ.",
+          p_flow_4_title: "VERDIEN ELKE MAAND",
+          p_flow_4_desc:
+            "StilSein hanteer die app-opstelling, Jakkals KI-topografie en maandelikse fakturering, en betaal jou kommissie elke maand.",
+
+          faq1_q: "Wie hanteer sagteware-ondersteuning & fakturering?",
+          faq1_a:
+            "StilSein HQ hanteer app-ondersteuning, wolk-bedryfstyd en maandelikse SaaS-fakture. Jy hanteer slegs fisiese uitroepe as hardeware in die veld beskadig word.",
+          faq2_q: "Kan ek verskeie dorpe of provinsies bedien?",
+          faq2_a:
+            "Ja! Voeg soveel takke by as wat jy wil in die vorm hieronder, elkeen met sy eie HQ-pen, 50–1000km radius en ondersteunde sensors.",
+          faq3_q: "Wat van Grondvog en Sekuriteit?",
+          faq3_a:
+            "Reën, Pyp en Dam is vandag aktief. Jy kan vooraf registreer vir GrondWolf (Grondvog) en WagWolf (Sekuriteit) sodat jy outomaties pas sodra dit vrygestel word.",
+
+          p_form_badge: "VENNOOT REGISTRASIE",
+          p_form_title: "DOEN AANSOEK AS VENNOOT",
+          p_form_desc:
+            "Sluit aan by die netwerk van installeerders wat plaas-intelligensie na seinlose kampe bring. Kyk hoe jou inligting die lewendige app-voorskou hierbo opdateer.",
+          p_form_company: "Maatskappy Naam",
+          p_form_website: "Webwerf (Opsioneel)",
+          p_form_fname: "Voornaam",
+          p_form_lname: "Van",
+          p_form_phone: "Telefoonnommer",
+          p_form_email: "E-posadres",
+          p_form_exp:
+            "Kort beskrywing van jou IoT / Sonkrag / Besproeiing ondervinding",
+          p_form_logo: "Maatskappy Logo (Opsioneel: wys in die App Pasmaat)",
+          p_branch_title: "BEDRYFSSTREKE",
+          p_branch_desc:
+            "Voeg die takke of streke by waar jy fisies hardeware kan installeer. Ons gebruik dit om plaaslike boere direk na jou te stuur.",
+          p_branch_add: "+ VOEG NOG 'N STREEK / TAK BY",
+          p_form_submit: "DIEN VENNOOT AANSOEK IN",
+          footer_manual: "Gebruikersgids",
+          footer_copy:
+            "© 2026 StilSein Industries (Pty) Ltd. | Ontwerp in Suid-Afrika.",
+
+          succ_title: "AANSOEK ONTVANG",
+          succ_desc:
+            "Dankie dat jy by die StilSein Vennoot Netwerk aansoek gedoen het. Jou takke en besonderhede is na HQ gestuur. Met goedkeuring e-pos ons jou amptelike Promokode en aktiveer jou profiel in die app.",
+          succ_btn: "VERSTAAN",
+        },
+      };
+
+      function setPartnerCalcTier(tier) {
+        partnerCalc.tier = tier;
+        renderPartnerPricingUI();
+      }
+
+      function adjustPartnerCalc(field, delta) {
+        if (field === "farms") {
+          partnerCalc.farms = Math.max(
+            1,
+            Math.min(250, partnerCalc.farms + delta),
+          );
+        } else if (field === "rain") {
+          partnerCalc.rain = Math.max(
+            0,
+            Math.min(30, partnerCalc.rain + delta),
+          );
+        } else if (field === "pd") {
+          partnerCalc.pd = Math.max(0, Math.min(30, partnerCalc.pd + delta));
+        }
+        renderPartnerPricingUI();
+      }
+
+      function renderPartnerPricingUI() {
+        const isAf = window.currentLang === "af";
+        const varPct = Math.round(pricingRates.varRate * 100);
+        const leadPct = Math.round(pricingRates.leadRate * 100);
+
+        const heroComm = document.getElementById("hero-comm-summary");
+        if (heroComm) {
+          heroComm.innerHTML = isAf
+            ? `Verdien <span class="text-jakkals-orange">${varPct}%</span> met jou Promokode of <span class="text-stilsein-blue">${leadPct}%</span> op StilSein-leidrade.`
+            : `Earn <span class="text-jakkals-orange">${varPct}%</span> with your Promo Code or <span class="text-stilsein-blue">${leadPct}%</span> on StilSein leads.`;
+        }
+
+        const c3Title = document.getElementById("fin-card3-title");
+        const c3Desc = document.getElementById("fin-card3-desc");
+        if (c3Title) {
+          c3Title.innerText = isAf
+            ? `${varPct}% / ${leadPct}% LEWENSLANGE SAAS KOMMISSIE`
+            : `${varPct}% / ${leadPct}% LIFETIME SAAS COMMISSION`;
+        }
+        if (c3Desc) {
+          c3Desc.innerHTML = isAf
+            ? `Verdien <strong class="text-jakkals-orange">${varPct}%</strong> maandelikse herhalende kommissie op elke plaas met jou Promokode, en <strong class="text-stilsein-blue">${leadPct}%</strong> op Pasmaat-leidrade wat ons direk vir jou stuur.`
+            : `Earn <strong class="text-jakkals-orange">${varPct}%</strong> monthly recurring commission on every farm unlocked with your Partner Promo Code, and <strong class="text-stilsein-blue">${leadPct}%</strong> on qualified Matchmaker leads we send straight to you.`;
+        }
+
+        const promoVar = document.getElementById("promo-var-badge");
+        const promoLead = document.getElementById("promo-lead-badge");
+        if (promoVar) promoVar.innerText = `${varPct}%`;
+        if (promoLead) promoLead.innerText = `${leadPct}%`;
+
+        const btnVar = document.getElementById("tier-btn-var");
+        const btnLead = document.getElementById("tier-btn-lead");
+        if (btnVar && btnLead) {
+          btnVar.innerText = isAf
+            ? `Promokode (${varPct}%)`
+            : `Promo Code (${varPct}%)`;
+          btnLead.innerText = isAf
+            ? `App Leidraad (${leadPct}%)`
+            : `App Lead (${leadPct}%)`;
+          if (partnerCalc.tier === "var") {
+            btnVar.className =
+              "px-3 py-2 rounded-lg text-[10px] font-bold tracking-wider uppercase transition-all bg-jakkals-orange text-stilsein-dark";
+            btnLead.className =
+              "px-3 py-2 rounded-lg text-[10px] font-bold tracking-wider uppercase transition-all text-stilsein-muted hover:text-white";
+          } else {
+            btnLead.className =
+              "px-3 py-2 rounded-lg text-[10px] font-bold tracking-wider uppercase transition-all bg-stilsein-blue text-stilsein-dark";
+            btnVar.className =
+              "px-3 py-2 rounded-lg text-[10px] font-bold tracking-wider uppercase transition-all text-stilsein-muted hover:text-white";
+          }
+        }
+
+        document.getElementById("pcalc-farms-val").innerText =
+          partnerCalc.farms;
+        document.getElementById("pcalc-rain-val").innerText = partnerCalc.rain;
+        document.getElementById("pcalc-pd-val").innerText = partnerCalc.pd;
+
+        const avgFarmMrr =
+          pricingRates.base +
+          partnerCalc.rain * pricingRates.rain +
+          partnerCalc.pd * pricingRates.pipe;
+        const activeRate =
+          partnerCalc.tier === "var"
+            ? pricingRates.varRate
+            : pricingRates.leadRate;
+        const activePct = partnerCalc.tier === "var" ? varPct : leadPct;
+
+        const monthlyComm = Math.round(
+          avgFarmMrr * partnerCalc.farms * activeRate,
+        );
+        const annualComm = monthlyComm * 12;
+
+        document.getElementById("pcalc-monthly-zar").innerText =
+          `R${monthlyComm.toLocaleString("en-ZA")}`;
+        document.getElementById("pcalc-monthly-usd").innerText =
+          `($${toUsdApprox(monthlyComm).toLocaleString("en-ZA")})`;
+        document.getElementById("pcalc-annual-line").innerText = isAf
+          ? `R${annualComm.toLocaleString("en-ZA")} / jaar herhalende inkomste`
+          : `R${annualComm.toLocaleString("en-ZA")} / year recurring annuity`;
+        document.getElementById("pcalc-breakdown").innerText = isAf
+          ? `Gemid Plaas MRR: R${Math.round(avgFarmMrr)} × ${partnerCalc.farms} Plase × ${activePct}%`
+          : `Avg Farm MRR: R${Math.round(avgFarmMrr)} × ${partnerCalc.farms} Farms × ${activePct}% Rate`;
+      }
+
+      async function hydrateLivePricing() {
+        try {
+          const res = await fetch(
+            "https://api.stilsein.co.za/api/pricing?tier=standard",
+          );
+          if (res.ok) {
+            const d = await res.json();
+            if (d && d.base_mrr) {
+              pricingRates.base = Number(d.base_mrr) || 399;
+              pricingRates.rain = Number(d.rain_mrr) || 49;
+              pricingRates.pipe = Number(d.pipe_mrr) || 89;
+              pricingRates.dam = Number(d.dam_mrr) || 89;
+              if (d.var_commission_rate !== undefined) {
+                pricingRates.varRate = Number(d.var_commission_rate) || 0.25;
+              }
+              if (d.lead_commission_rate !== undefined) {
+                pricingRates.leadRate = Number(d.lead_commission_rate) || 0.1;
+              }
+              window.i18nPhrases = getTickerPhrases(window.currentLang || "en");
+              if (currentPhraseIndex === 0 && tickerText) {
+                tickerText.innerText = window.i18nPhrases[0];
+              }
+              renderPartnerPricingUI();
+            }
+          }
+        } catch (_) {}
+      }
+
+      function applyPartnerTranslations() {
+        const lang = window.currentLang || "en";
+        const dict = partnerTranslations[lang] || partnerTranslations.en;
+
+        document.documentElement.lang = lang;
+        document.querySelectorAll("[data-i18n]").forEach((el) => {
+          const k = el.getAttribute("data-i18n");
+          if (dict[k] !== undefined) el.innerHTML = dict[k];
+        });
+        document.querySelectorAll(".lang-toggle-text").forEach((el) => {
+          el.innerText = lang === "en" ? "AF" : "EN";
+        });
+
+        window.i18nPhrases = getTickerPhrases(lang);
+        const tEl = document.getElementById("ticker-text");
+        if (tEl) tEl.innerText = window.i18nPhrases[0];
+
+        renderPartnerPricingUI();
+        document.documentElement.classList.remove("lang-switching");
+      }
+
+      function toggleLanguage(e) {
+        if (e) e.preventDefault();
+        window.currentLang = window.currentLang === "en" ? "af" : "en";
+        localStorage.setItem("stilsein_lang", window.currentLang);
+        applyPartnerTranslations();
+      }
+
+      // ----------------------------------------------------------
+      // 2. NAVBAR, TICKER & INSTALLER PHONE SHOWCASE TOGGLE
+      // ----------------------------------------------------------
       const btn = document.getElementById("mobile-menu-btn");
       const menu = document.getElementById("mobile-menu");
       const mobileLinks = document.querySelectorAll(".mobile-link");
@@ -1056,23 +2330,118 @@
         });
       });
 
-      // --- MOBILE LANGUAGE ACCORDION ---
-      function toggleMobileLang() {
-        const dropdown = document.getElementById("mobile-lang-dropdown");
-        const chevron = document.getElementById("mobile-lang-chevron");
-        if (dropdown.classList.contains("grid-rows-[0fr]")) {
-          dropdown.classList.remove("grid-rows-[0fr]");
-          dropdown.classList.add("grid-rows-[1fr]");
-          chevron.classList.add("rotate-180");
+      const subPanel = document.getElementById("sub-panel");
+      const tickerText = document.getElementById("ticker-text");
+      let currentPhraseIndex = 0;
+
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 50) {
+          subPanel.classList.add(
+            "h-[4px]",
+            "min-h-[4px]",
+            "py-0",
+            "bg-stilsein-blue",
+          );
+          subPanel.classList.remove("min-h-[40px]", "py-2", "panel-texture");
+          tickerText.style.opacity = "0";
         } else {
-          dropdown.classList.add("grid-rows-[0fr]");
-          dropdown.classList.remove("grid-rows-[1fr]");
-          chevron.classList.remove("rotate-180");
+          subPanel.classList.remove(
+            "h-[4px]",
+            "min-h-[4px]",
+            "py-0",
+            "bg-stilsein-blue",
+          );
+          subPanel.classList.add("min-h-[40px]", "py-2", "panel-texture");
+          tickerText.style.opacity = "1";
+        }
+      });
+
+      setInterval(() => {
+        if (window.scrollY <= 50 && window.i18nPhrases?.length) {
+          tickerText.style.opacity = 0;
+          setTimeout(() => {
+            currentPhraseIndex =
+              (currentPhraseIndex + 1) % window.i18nPhrases.length;
+            tickerText.innerText = window.i18nPhrases[currentPhraseIndex];
+            tickerText.style.opacity = 1;
+          }, 350);
+        }
+      }, 5000);
+
+      function setInstallerPhoneMode(mode) {
+        const liveEl = document.getElementById("installer-phone-live");
+        const shotEl = document.getElementById("installer-phone-shot");
+        const btnLive = document.getElementById("phone-mode-live");
+        const btnShot = document.getElementById("phone-mode-shot");
+
+        if (mode === "live") {
+          liveEl.classList.remove("hidden");
+          shotEl.classList.add("hidden");
+          btnLive.className =
+            "px-3.5 py-1.5 rounded-lg text-[10px] font-bold tracking-wider uppercase transition-all bg-stilsein-blue text-stilsein-dark";
+          btnShot.className =
+            "px-3.5 py-1.5 rounded-lg text-[10px] font-bold tracking-wider uppercase transition-all text-stilsein-muted hover:text-white";
+        } else {
+          shotEl.classList.remove("hidden");
+          liveEl.classList.add("hidden");
+          btnShot.className =
+            "px-3.5 py-1.5 rounded-lg text-[10px] font-bold tracking-wider uppercase transition-all bg-stilsein-blue text-stilsein-dark";
+          btnLive.className =
+            "px-3.5 py-1.5 rounded-lg text-[10px] font-bold tracking-wider uppercase transition-all text-stilsein-muted hover:text-white";
         }
       }
 
-      // --- 🛠️ LOGO COMPRESSOR ENGINE ---
+      // ----------------------------------------------------------
+      // 3. LIVE DUMMY PHONE PREVIEW SYNC WITH APPLICATION FORM
+      // ----------------------------------------------------------
       let compressedLogoBase64 = "";
+
+      function syncLivePhonePreview() {
+        const rawCo = document.getElementById("partner-company")?.value.trim();
+        const fName = document.getElementById("partner-fname")?.value.trim();
+        const lName = document.getElementById("partner-lname")?.value.trim();
+        const phone = document.getElementById("partner-phone")?.value.trim();
+        const email = document.getElementById("partner-email")?.value.trim();
+        const exp = document.getElementById("partner-exp")?.value.trim();
+
+        const companyName = rawCo || "AgriTech Installs";
+        const cleanPromoBase = companyName
+          .replace(/[^a-zA-Z0-9]/g, "")
+          .toUpperCase();
+        document.getElementById("preview-promo-code").innerText =
+          `${cleanPromoBase || "YOURCO"}-VAR`;
+        document.getElementById("preview-company").innerText =
+          companyName.toUpperCase();
+
+        const fullName = [fName, lName].filter(Boolean).join(" ") || "John Doe";
+        document.getElementById("preview-contact").innerText = fullName;
+        document.getElementById("preview-phone").innerText =
+          phone || "082 123 4567";
+        document.getElementById("preview-email").innerText =
+          email || "info@agritech.co.za";
+
+        if (exp) {
+          document.getElementById("preview-exp").innerText = `"${exp}"`;
+        }
+
+        const firstRegion =
+          document.getElementById("region-0")?.value || "Eastern Cape";
+        document.getElementById("preview-region").innerText = firstRegion;
+
+        const firstBranchCbs = document.querySelectorAll(
+          ".service-cb-0:checked",
+        );
+        if (firstBranchCbs.length > 0) {
+          document.getElementById("preview-services").innerText = Array.from(
+            firstBranchCbs,
+          )
+            .map((cb) => cb.value)
+            .join(", ");
+        } else {
+          document.getElementById("preview-services").innerText = "General";
+        }
+      }
+
       document
         .getElementById("partner-logo")
         .addEventListener("change", function (e) {
@@ -1084,7 +2453,7 @@
             const img = new Image();
             img.onload = function () {
               const canvas = document.createElement("canvas");
-              const MAX_WIDTH = 200; // Shrink it to fit Google Sheets comfortably
+              const MAX_WIDTH = 200;
               const scaleSize = MAX_WIDTH / img.width;
               canvas.width = MAX_WIDTH;
               canvas.height = img.height * scaleSize;
@@ -1092,19 +2461,25 @@
               const ctx = canvas.getContext("2d");
               ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
 
-              // Compress to WebP at 80% quality
               compressedLogoBase64 = canvas.toDataURL("image/webp", 0.8);
 
               const preview = document.getElementById("logo-preview");
               preview.src = compressedLogoBase64;
               preview.classList.remove("hidden");
+
+              const phoneLogoBox = document.getElementById("preview-logo-box");
+              if (phoneLogoBox) {
+                phoneLogoBox.innerHTML = `<img src="${compressedLogoBase64}" alt="Partner Logo" class="w-full h-full object-cover" />`;
+              }
             };
             img.src = event.target.result;
           };
           reader.readAsDataURL(file);
         });
 
-      // --- 🛠️ MULTI-REGION BRANCH ENGINE ---
+      // ----------------------------------------------------------
+      // 4. MULTI-REGION BRANCH ENGINE (WITH ESRI SATELLITE MAP)
+      // ----------------------------------------------------------
       let branchCount = 0;
       const maps = {};
       const markers = {};
@@ -1136,103 +2511,187 @@
       function addBranch() {
         const branchId = branchCount++;
         const container = document.getElementById("branches-container");
+        const isAf = window.currentLang === "af";
 
         const html = `
-          <div id="branch-card-${branchId}" class="branch-item p-6 bg-black/30 border border-white/10 rounded-xl relative overflow-hidden transition-all duration-300">
-            ${branchId > 0 ? `<button type="button" onclick="removeBranch(${branchId})" class="absolute top-4 right-4 text-red-400 hover:text-red-300 text-xs font-bold tracking-widest"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>` : ""}
+          <div id="branch-card-${branchId}" class="branch-item p-5 md:p-6 bg-stilsein-dark/70 border border-white/10 rounded-xl relative overflow-hidden transition-all duration-300">
+            ${
+              branchId > 0
+                ? `<button type="button" onclick="removeBranch(${branchId})" class="absolute top-4 right-4 text-red-400 hover:text-red-300 text-xs font-bold" aria-label="Remove Branch">✕</button>`
+                : ""
+            }
             
-            <div class="mb-6">
-              <label class="block text-xs font-bold text-stilsein-blue tracking-widest uppercase mb-2">Branch / Region Name</label>
-              <input type="text" id="branch-name-${branchId}" placeholder="e.g. Cape Town HQ" required class="w-full bg-stilsein-dark/80 border border-white/10 rounded-lg p-3 text-white placeholder-gray-500 focus:outline-none focus:border-jakkals-orange transition-all" />
+            <div class="mb-5">
+              <label class="block text-xs font-bold text-stilsein-blue tracking-widest uppercase mb-2">${isAf ? "Tak / Streek Naam" : "Branch / Region Name"}</label>
+              <input type="text" id="branch-name-${branchId}" placeholder="e.g. Cradock HQ" required class="w-full bg-black/35 border border-white/10 rounded-xl p-3 text-white placeholder-gray-500 focus:outline-none focus:border-jakkals-orange transition-all" />
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-5">
               <div>
-                <label class="block text-xs font-bold text-stilsein-blue tracking-widest uppercase mb-2">Operating Region</label>
-                <select id="region-${branchId}" required class="w-full bg-stilsein-dark/80 border border-white/10 rounded-lg p-3 text-white focus:outline-none focus:border-jakkals-orange transition-all appearance-none">
-                  ${regionOptions}
-                </select>
-              </div>
-              <div>
-                <label class="block text-xs font-bold text-stilsein-blue tracking-widest uppercase mb-2">Coverage Radius</label>
-                <select id="radius-${branchId}" required class="w-full bg-stilsein-dark/80 border border-white/10 rounded-lg p-3 text-white focus:outline-none focus:border-jakkals-orange transition-all appearance-none">
-                  <option value="50">50 km Radius</option>
-                  <option value="150" selected>150 km Radius</option>
-                  <option value="300">300 km Radius</option>
-                  <option value="500">500 km Radius</option>
-                  <option value="1000">1000 km Radius</option>
-                </select>
-              </div>
-            </div>
-
-            <!-- 🛠️ NEW: REGION-SPECIFIC SERVICES -->
-            <div class="mb-6 p-4 bg-black/20 rounded-lg border border-white/5">
-              <label class="block text-[10px] font-bold text-stilsein-blue tracking-widest uppercase mb-3">Supported Services in this Region</label>
-              <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
-                <label class="flex items-center space-x-2 text-white text-xs cursor-pointer"><input type="checkbox" value="Rain" class="service-cb-${branchId} form-checkbox text-jakkals-orange bg-black/40 border-white/10 rounded" checked><span>Rain / Weerwolf</span></label>
-                <label class="flex items-center space-x-2 text-white text-xs cursor-pointer"><input type="checkbox" value="Pipe" class="service-cb-${branchId} form-checkbox text-jakkals-orange bg-black/40 border-white/10 rounded" checked><span>Pipes / Drukwolf</span></label>
-                <label class="flex items-center space-x-2 text-white text-xs cursor-pointer"><input type="checkbox" value="Dam" class="service-cb-${branchId} form-checkbox text-jakkals-orange bg-black/40 border-white/10 rounded" checked><span>Dams / Waterwolf</span></label>
-                <label class="flex items-center space-x-2 text-white text-xs cursor-pointer"><input type="checkbox" value="Soil" class="service-cb-${branchId} form-checkbox text-jakkals-orange bg-black/40 border-white/10 rounded"><span>Soil / Grondwolf</span></label>
-                <label class="flex items-center space-x-2 text-white text-xs cursor-pointer"><input type="checkbox" value="Security" class="service-cb-${branchId} form-checkbox text-jakkals-orange bg-black/40 border-white/10 rounded"><span>Security / Wagwolf</span></label>
-              </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div class="flex flex-col justify-center">
-                <label class="block text-xs font-bold text-stilsein-blue tracking-widest uppercase mb-2">Drop a Pin on this HQ</label>
-                <p class="text-xs text-stilsein-muted mb-4">Click the map to set the exact coordinates for this branch.</p>
-                <input type="hidden" id="lat-${branchId}" required />
-                <input type="hidden" id="lon-${branchId}" required />
-                <div class="text-xs text-jakkals-orange font-bold px-4 py-3 bg-jakkals-orange/10 border border-jakkals-orange/20 rounded-lg" id="coord-display-${branchId}">
-                  Waiting for pin...
+                <label class="block text-xs font-bold text-stilsein-blue tracking-widest uppercase mb-2">${isAf ? "Bedryfsstreek" : "Operating Region"}</label>
+                <div class="relative">
+                  <select id="region-${branchId}" onchange="syncLivePhonePreview()" required class="stilsein-select appearance-none w-full border border-stilsein-blue/35 hover:border-jakkals-orange/60 rounded-xl py-3 pl-3.5 pr-10 text-white text-sm font-semibold focus:outline-none focus:border-jakkals-orange transition-all cursor-pointer shadow-inner">
+                    ${regionOptions}
+                  </select>
+                  <svg class="w-4 h-4 text-jakkals-orange pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                  </svg>
                 </div>
               </div>
-              <div id="map-${branchId}" class="w-full h-48 bg-stilsein-dark/80 border border-white/10 rounded-lg overflow-hidden z-0"></div>
+              <div>
+                <label class="block text-xs font-bold text-stilsein-blue tracking-widest uppercase mb-2">${isAf ? "Diens Radius" : "Coverage Radius"}</label>
+                <div class="relative">
+                  <select id="radius-${branchId}" required class="stilsein-select appearance-none w-full border border-stilsein-blue/35 hover:border-jakkals-orange/60 rounded-xl py-3 pl-3.5 pr-10 text-white text-sm font-semibold focus:outline-none focus:border-jakkals-orange transition-all cursor-pointer shadow-inner">
+                    <option value="50">50 km Radius</option>
+                    <option value="150" selected>150 km Radius</option>
+                    <option value="300">300 km Radius</option>
+                    <option value="500">500 km Radius</option>
+                    <option value="1000">1000 km Radius</option>
+                  </select>
+                  <svg class="w-4 h-4 text-stilsein-blue pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            <div class="mb-5 p-4 bg-black/25 rounded-xl border border-white/5">
+              <label class="block text-[10px] font-octasquares text-stilsein-blue tracking-widest uppercase mb-3">${isAf ? "Ondersteunde Sensors in Hierdie Streek" : "Supported Services in this Region"}</label>
+              <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+                <label class="flex items-center space-x-2 text-white text-xs cursor-pointer"><input type="checkbox" value="Rain" onchange="syncLivePhonePreview()" class="service-cb-${branchId} form-checkbox text-jakkals-orange bg-black/40 border-white/10 rounded" checked><span>Rain / Weerwolf</span></label>
+                <label class="flex items-center space-x-2 text-white text-xs cursor-pointer"><input type="checkbox" value="Pipe" onchange="syncLivePhonePreview()" class="service-cb-${branchId} form-checkbox text-jakkals-orange bg-black/40 border-white/10 rounded" checked><span>Pipes / Drukwolf</span></label>
+                <label class="flex items-center space-x-2 text-white text-xs cursor-pointer"><input type="checkbox" value="Dam" onchange="syncLivePhonePreview()" class="service-cb-${branchId} form-checkbox text-jakkals-orange bg-black/40 border-white/10 rounded" checked><span>Dams / Waterwolf</span></label>
+                <label class="flex items-center space-x-2 text-gray-300 text-xs cursor-pointer"><input type="checkbox" value="Soil" onchange="syncLivePhonePreview()" class="service-cb-${branchId} form-checkbox text-jakkals-orange bg-black/40 border-white/10 rounded"><span>Soil / Grondwolf (Soon)</span></label>
+                <label class="flex items-center space-x-2 text-gray-300 text-xs cursor-pointer"><input type="checkbox" value="Security" onchange="syncLivePhonePreview()" class="service-cb-${branchId} form-checkbox text-jakkals-orange bg-black/40 border-white/10 rounded"><span>Security / Wagwolf (Soon)</span></label>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 items-center">
+              <div>
+                <label class="block text-xs font-bold text-stilsein-blue tracking-widest uppercase mb-1.5">${isAf ? "Plaas 'n Pen op Hierdie Tak" : "Drop a Pin on this Branch HQ"}</label>
+                <p class="text-xs text-stilsein-muted mb-3">${isAf ? "Klik op die kaart om jou tak-ligging vas te lê, of tik GPS koördinate per hand in." : "Click the map to drop a pin, or enter GPS coordinates manually below."}</p>
+                <input type="hidden" id="lat-${branchId}" required />
+                <input type="hidden" id="lon-${branchId}" required />
+
+                <div class="grid grid-cols-2 gap-2.5 mb-3">
+                  <div>
+                    <label for="lat-input-${branchId}" class="block text-[10px] font-mono text-gray-400 uppercase mb-1">Latitude</label>
+                    <input
+                      type="number"
+                      step="any"
+                      id="lat-input-${branchId}"
+                      placeholder="-32.1650"
+                      oninput="syncBranchPinFromInputs(${branchId})"
+                      class="w-full bg-black/35 border border-white/15 rounded-xl px-3 py-2 text-xs text-white font-mono placeholder-gray-600 focus:outline-none focus:border-stilsein-blue transition-all"
+                    />
+                  </div>
+                  <div>
+                    <label for="lon-input-${branchId}" class="block text-[10px] font-mono text-gray-400 uppercase mb-1">Longitude</label>
+                    <input
+                      type="number"
+                      step="any"
+                      id="lon-input-${branchId}"
+                      placeholder="25.6190"
+                      oninput="syncBranchPinFromInputs(${branchId})"
+                      class="w-full bg-black/35 border border-white/15 rounded-xl px-3 py-2 text-xs text-white font-mono placeholder-gray-600 focus:outline-none focus:border-stilsein-blue transition-all"
+                    />
+                  </div>
+                </div>
+
+                <div class="text-xs text-jakkals-orange font-mono font-bold px-4 py-2.5 bg-jakkals-orange/10 border border-jakkals-orange/25 rounded-xl" id="coord-display-${branchId}">
+                  ${isAf ? "Wag vir pen of koördinate..." : "Waiting for pin or coordinates..."}
+                </div>
+              </div>
+              <div id="map-${branchId}" class="w-full h-56 bg-stilsein-dark/80 border border-white/15 rounded-xl overflow-hidden z-0"></div>
             </div>
           </div>
         `;
 
         container.insertAdjacentHTML("beforeend", html);
 
-        // Initialize Leaflet Map for this specific branch
         setTimeout(() => {
           const mapInstance = L.map(`map-${branchId}`).setView(
             [-29.1141, 26.223],
             5,
           );
-          L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-            attribution: "&copy; OpenStreetMap",
-          }).addTo(mapInstance);
+          L.tileLayer(
+            "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}",
+            { attribution: "&copy; Esri" },
+          ).addTo(mapInstance);
 
           maps[branchId] = mapInstance;
 
           mapInstance.on("click", function (e) {
-            const lat = e.latlng.lat;
-            const lng = e.latlng.lng;
-
-            if (markers[branchId]) {
-              mapInstance.removeLayer(markers[branchId]);
-            }
-            markers[branchId] = L.marker([lat, lng]).addTo(mapInstance);
-
-            document.getElementById(`lat-${branchId}`).value = lat;
-            document.getElementById(`lon-${branchId}`).value = lng;
-            const display = document.getElementById(
-              `coord-display-${branchId}`,
-            );
-            display.innerText = `HQ Locked: ${lat.toFixed(4)}, ${lng.toFixed(4)}`;
-            display.classList.add(
-              "text-green-400",
-              "!border-green-500/30",
-              "!bg-green-500/10",
-            );
-            display.classList.remove(
-              "text-jakkals-orange",
-              "border-jakkals-orange/20",
-              "bg-jakkals-orange/10",
-            );
+            placeBranchMarker(branchId, e.latlng.lat, e.latlng.lng, false);
           });
-        }, 100);
+        }, 120);
+      }
+
+      function placeBranchMarker(branchId, lat, lng, panMap = false) {
+        const mapInstance = maps[branchId];
+        if (!mapInstance) return;
+
+        if (markers[branchId]) {
+          markers[branchId].setLatLng([lat, lng]);
+        } else {
+          markers[branchId] = L.marker([lat, lng], { draggable: true }).addTo(
+            mapInstance,
+          );
+          markers[branchId].on("dragend", function (ev) {
+            const pos = ev.target.getLatLng();
+            placeBranchMarker(branchId, pos.lat, pos.lng, false);
+          });
+        }
+
+        if (panMap) {
+          mapInstance.setView([lat, lng], Math.max(mapInstance.getZoom(), 11));
+        }
+
+        document.getElementById(`lat-${branchId}`).value = lat;
+        document.getElementById(`lon-${branchId}`).value = lng;
+
+        const latIn = document.getElementById(`lat-input-${branchId}`);
+        const lonIn = document.getElementById(`lon-input-${branchId}`);
+        if (latIn && document.activeElement !== latIn) {
+          latIn.value = lat.toFixed(5);
+        }
+        if (lonIn && document.activeElement !== lonIn) {
+          lonIn.value = lng.toFixed(5);
+        }
+
+        const display = document.getElementById(`coord-display-${branchId}`);
+        if (display) {
+          display.innerText = `HQ Locked: ${lat.toFixed(4)}, ${lng.toFixed(4)}`;
+          display.classList.add(
+            "text-emerald-400",
+            "!border-emerald-500/35",
+            "!bg-emerald-500/10",
+          );
+          display.classList.remove(
+            "text-jakkals-orange",
+            "border-jakkals-orange/25",
+            "bg-jakkals-orange/10",
+          );
+        }
+      }
+
+      function syncBranchPinFromInputs(branchId) {
+        const lat = parseFloat(
+          document.getElementById(`lat-input-${branchId}`)?.value,
+        );
+        const lng = parseFloat(
+          document.getElementById(`lon-input-${branchId}`)?.value,
+        );
+        if (
+          Number.isFinite(lat) &&
+          Number.isFinite(lng) &&
+          lat >= -90 &&
+          lat <= 90 &&
+          lng >= -180 &&
+          lng <= 180
+        ) {
+          placeBranchMarker(branchId, lat, lng, true);
+        }
       }
 
       function removeBranch(id) {
@@ -1241,12 +2700,14 @@
         delete markers[id];
       }
 
-      // Initialize the first required branch on load
       addBranch();
 
-      // --- FORM SUBMIT ---
+      // ----------------------------------------------------------
+      // 5. FORM SUBMISSION TO CLOUDFLARE EDGE API
+      // ----------------------------------------------------------
       function submitPartnerForm(e) {
         e.preventDefault();
+        const isAf = window.currentLang === "af";
 
         const branches = [];
         let missingPins = false;
@@ -1258,7 +2719,6 @@
 
           if (!lat || !lon) missingPins = true;
 
-          // 🛠️ FIX 3: Extract Region-Specific Services
           const serviceCbs = document.querySelectorAll(
             `.service-cb-${id}:checked`,
           );
@@ -1279,7 +2739,11 @@
         });
 
         if (missingPins) {
-          alert("Please drop a pin on the map for all your Branches.");
+          alert(
+            isAf
+              ? "Plaas asseblief 'n pen op die kaart vir al jou takke."
+              : "Please drop a pin on the map for all your branches.",
+          );
           return;
         }
 
@@ -1294,30 +2758,30 @@
 
         const payload = {
           type: "partner_application",
-          firstName: document.getElementById("partner-fname").value,
-          lastName: document.getElementById("partner-lname").value,
-          company: document.getElementById("partner-company").value,
-          experience: document.getElementById("partner-exp").value,
-          phone: document.getElementById("partner-phone").value,
-          email: document.getElementById("partner-email").value,
+          firstName: document.getElementById("partner-fname").value.trim(),
+          lastName: document.getElementById("partner-lname").value.trim(),
+          company: document.getElementById("partner-company").value.trim(),
+          experience: document.getElementById("partner-exp").value.trim(),
+          phone: document.getElementById("partner-phone").value.trim(),
+          email: document.getElementById("partner-email").value.trim(),
           website: rawWeb,
           logoBase64: compressedLogoBase64,
-          branches: branches, // Array of branch objects!
+          branches: branches,
         };
 
-        const btn = document.getElementById("partner-submit-btn");
-        const originalText = btn.innerText;
+        const submitBtn = document.getElementById("partner-submit-btn");
+        const originalText = submitBtn.innerText;
 
-        btn.innerText = "SENDING...";
-        btn.disabled = true;
+        submitBtn.innerText = isAf ? "STUUR..." : "SENDING...";
+        submitBtn.disabled = true;
 
         fetch("https://api.stilsein.co.za/api/partner_application", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload),
         })
-          .then((response) => {
-            // 🛠️ SUCCESS POPUP FIX
+          .then((res) => {
+            if (!res.ok) throw new Error("Failed");
             const modal = document.getElementById("success-modal");
             const modalContent = document.getElementById(
               "success-modal-content",
@@ -1327,30 +2791,360 @@
             modalContent.classList.remove("scale-95");
             modalContent.classList.add("scale-100");
 
-            // Save the reset function to a global variable so the "GOT IT" button can call it
             window.closeSuccessModal = function () {
               modal.classList.add("opacity-0", "pointer-events-none");
               modalContent.classList.remove("scale-100");
               modalContent.classList.add("scale-95");
 
               setTimeout(() => {
-                btn.innerText = originalText;
-                btn.disabled = false;
+                submitBtn.innerText = originalText;
+                submitBtn.disabled = false;
                 e.target.reset();
+                compressedLogoBase64 = "";
+                document.getElementById("logo-preview").classList.add("hidden");
+                document.getElementById("preview-logo-box").innerHTML =
+                  '<span class="text-sm">🛠️</span>';
                 document.getElementById("branches-container").innerHTML = "";
                 branchCount = 0;
                 addBranch();
-              }, 500); // Wait for modal fade out
+                syncLivePhonePreview();
+              }, 450);
             };
           })
-          .catch((err) => {
-            btn.innerText = "ERROR - TRY AGAIN";
+          .catch(() => {
+            submitBtn.innerText = isAf
+              ? "FOUT - PROBEER WEER"
+              : "ERROR - TRY AGAIN";
             setTimeout(() => {
-              btn.innerText = originalText;
-              btn.disabled = false;
+              submitBtn.innerText = originalText;
+              submitBtn.disabled = false;
             }, 3000);
           });
       }
+
+      // ----------------------------------------------------------
+      // 6. LIGHTBOX HELPERS
+      // ----------------------------------------------------------
+      function openLightbox(src, caption) {
+        const modal = document.getElementById("gallery-lightbox");
+        document.getElementById("lightbox-img").src = src;
+        document.getElementById("lightbox-caption").innerText =
+          caption || "StilSein App Preview";
+        modal.classList.remove("opacity-0", "pointer-events-none");
+      }
+
+      function closeLightbox() {
+        document
+          .getElementById("gallery-lightbox")
+          .classList.add("opacity-0", "pointer-events-none");
+      }
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeLightbox();
+      });
+
+      // ----------------------------------------------------------
+      // 7. STILSEIN WATER-GUIDED CANVAS (SHARED WITH INDEX.HTML)
+      // ----------------------------------------------------------
+      (function initStilSeinWaterCanvas() {
+        const canvas = document.getElementById("stilsein-particle-canvas");
+        if (!canvas) return;
+        const prefersReduced = window.matchMedia(
+          "(prefers-reduced-motion: reduce)",
+        ).matches;
+        if (prefersReduced) return;
+
+        const ctx = canvas.getContext("2d");
+        let width = 0;
+        let height = 0;
+        let dpr = 1;
+        let animId = null;
+        let lastScrollY = window.scrollY;
+        let waveScrollOffset = 0;
+
+        let rainDrops = [];
+        let waterMist = [];
+        const ripples = [];
+        const splashes = [];
+        let lastWakeMs = 0;
+
+        function wrapY(y, pad = 40) {
+          const span = height + pad * 2;
+          let wrapped = (y + pad) % span;
+          if (wrapped < 0) wrapped += span;
+          return wrapped - pad;
+        }
+
+        function resize() {
+          dpr = Math.min(window.devicePixelRatio || 1, 2);
+          width = window.innerWidth;
+          height = window.innerHeight;
+          canvas.width = Math.floor(width * dpr);
+          canvas.height = Math.floor(height * dpr);
+          ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+          const rainCount = width < 640 ? 22 : 38;
+          if (rainDrops.length !== rainCount) {
+            rainDrops = Array.from({ length: rainCount }, () => ({
+              x: Math.random() * width,
+              y: Math.random() * height,
+              len: 9 + Math.random() * 14,
+              speed: 0.45 + Math.random() * 0.55,
+              alpha: 0.1 + Math.random() * 0.15,
+            }));
+          }
+
+          const mistCount = width < 640 ? 16 : 26;
+          if (waterMist.length !== mistCount) {
+            waterMist = Array.from({ length: mistCount }, () => ({
+              x: Math.random() * width,
+              y: Math.random() * height,
+              r: 1.3 + Math.random() * 2.0,
+              vx: (Math.random() - 0.5) * 0.18,
+              vy: -(0.08 + Math.random() * 0.16),
+              phase: Math.random() * Math.PI * 2,
+              isOrange: Math.random() < 0.22,
+            }));
+          }
+        }
+
+        window.addEventListener(
+          "scroll",
+          () => {
+            const currY = window.scrollY;
+            const deltaY = currY - lastScrollY;
+            lastScrollY = currY;
+            if (!deltaY) return;
+
+            const shift = -deltaY * 0.5;
+            waveScrollOffset += shift;
+
+            for (let i = 0; i < rainDrops.length; i++) {
+              rainDrops[i].y = wrapY(rainDrops[i].y + shift);
+            }
+            for (let i = 0; i < waterMist.length; i++) {
+              waterMist[i].y = wrapY(waterMist[i].y + shift);
+            }
+            for (let i = 0; i < ripples.length; i++) {
+              ripples[i].y += shift;
+            }
+            for (let i = 0; i < splashes.length; i++) {
+              splashes[i].y += shift;
+            }
+          },
+          { passive: true },
+        );
+
+        function spawnWaterSonar(x, y, isWake = false) {
+          if (ripples.length > (isWake ? 5 : 10)) return;
+          ripples.push({
+            x,
+            y,
+            r: isWake ? 2 : 3,
+            maxR: isWake ? 36 : 140,
+            speed: isWake ? 0.68 : 1.5,
+            alpha: isWake ? 0.22 : 0.48,
+            isWake,
+          });
+          if (!isWake) {
+            ripples.push({
+              x,
+              y,
+              r: 1,
+              maxR: 96,
+              speed: 1.08,
+              alpha: 0.32,
+              isEcho: true,
+            });
+            for (let k = 0; k < 6; k++) {
+              const ang = (Math.PI * 2 * k) / 6 + Math.random() * 0.4;
+              const spd = 0.9 + Math.random() * 1.1;
+              splashes.push({
+                x,
+                y,
+                vx: Math.cos(ang) * spd,
+                vy: Math.sin(ang) * spd - 0.35,
+                r: 1.2 + Math.random() * 1.0,
+                alpha: 0.55,
+              });
+            }
+          }
+        }
+
+        window.addEventListener("resize", resize);
+        window.addEventListener(
+          "mousemove",
+          (e) => {
+            const now = performance.now();
+            if (now - lastWakeMs > 110) {
+              lastWakeMs = now;
+              spawnWaterSonar(e.clientX, e.clientY, true);
+            }
+          },
+          { passive: true },
+        );
+        window.addEventListener(
+          "click",
+          (e) => {
+            spawnWaterSonar(e.clientX, e.clientY, false);
+          },
+          { passive: true },
+        );
+
+        let lastAmbientDrop = 0;
+
+        function drawHorizonWave(baseY, amp, freq, phase, color) {
+          ctx.beginPath();
+          for (let x = 0; x <= width; x += 24) {
+            const y = baseY + Math.sin(x * freq + phase) * amp;
+            if (x === 0) ctx.moveTo(x, y);
+            else ctx.lineTo(x, y);
+          }
+          ctx.strokeStyle = color;
+          ctx.lineWidth = 1.1;
+          ctx.stroke();
+        }
+
+        function tick(now) {
+          ctx.clearRect(0, 0, width, height);
+          const t = now * 0.001;
+
+          const w1Y = wrapY(height * 0.34 + waveScrollOffset, 60);
+          const w2Y = wrapY(height * 0.68 + waveScrollOffset, 60);
+          drawHorizonWave(
+            w1Y,
+            10,
+            0.0055,
+            t * 0.45,
+            "rgba(145, 172, 200, 0.06)",
+          );
+          drawHorizonWave(
+            w2Y,
+            13,
+            0.0042,
+            -t * 0.35,
+            "rgba(255, 158, 74, 0.045)",
+          );
+
+          ctx.lineCap = "round";
+          for (let i = 0; i < rainDrops.length; i++) {
+            const d = rainDrops[i];
+            d.x += 0.12;
+            d.y += d.speed;
+            if (d.x > width + 15) d.x = -15;
+            if (d.y > height + 35) {
+              d.y = -35;
+              d.x = Math.random() * width;
+            }
+            ctx.beginPath();
+            ctx.moveTo(d.x, d.y);
+            ctx.lineTo(d.x + 1.8, d.y + d.len);
+            ctx.strokeStyle = `rgba(145, 172, 200, ${d.alpha.toFixed(3)})`;
+            ctx.lineWidth = 0.95;
+            ctx.stroke();
+          }
+
+          for (let i = 0; i < waterMist.length; i++) {
+            const m = waterMist[i];
+            m.phase += 0.025;
+            m.x += m.vx + Math.sin(m.phase) * 0.12;
+            m.y += m.vy;
+            if (m.x < -10) m.x = width + 10;
+            if (m.x > width + 10) m.x = -10;
+            if (m.y < -20) {
+              m.y = height + 20;
+              m.x = Math.random() * width;
+            }
+            const a = 0.17 + Math.sin(m.phase) * 0.07;
+            ctx.beginPath();
+            ctx.arc(m.x, m.y, m.r, 0, Math.PI * 2);
+            ctx.fillStyle = m.isOrange
+              ? `rgba(255, 158, 74, ${a.toFixed(3)})`
+              : `rgba(145, 172, 200, ${a.toFixed(3)})`;
+            ctx.fill();
+          }
+
+          if (now - lastAmbientDrop > 3600 && ripples.length < 4) {
+            lastAmbientDrop = now;
+            ripples.push({
+              x: Math.random() * width,
+              y: Math.random() * height,
+              r: 2,
+              maxR: 75,
+              speed: 0.78,
+              alpha: 0.24,
+              isWake: true,
+            });
+          }
+
+          for (let i = ripples.length - 1; i >= 0; i--) {
+            const rp = ripples[i];
+            rp.r += rp.speed;
+            rp.alpha *= rp.isWake ? 0.968 : 0.972;
+
+            ctx.beginPath();
+            ctx.arc(rp.x, rp.y, rp.r, 0, Math.PI * 2);
+            if (rp.isEcho) {
+              ctx.setLineDash([4, 6]);
+              ctx.strokeStyle = `rgba(34, 211, 238, ${rp.alpha.toFixed(3)})`;
+              ctx.lineWidth = 1.0;
+            } else if (rp.isWake) {
+              ctx.setLineDash([]);
+              ctx.strokeStyle = `rgba(145, 172, 200, ${rp.alpha.toFixed(3)})`;
+              ctx.lineWidth = 0.95;
+            } else {
+              ctx.setLineDash([]);
+              ctx.strokeStyle = `rgba(145, 172, 200, ${rp.alpha.toFixed(3)})`;
+              ctx.lineWidth = 1.4;
+            }
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            if (!rp.isWake && !rp.isEcho && rp.r < 36) {
+              ctx.beginPath();
+              ctx.arc(rp.x, rp.y, rp.r * 0.45, 0, Math.PI * 2);
+              ctx.strokeStyle = `rgba(255, 158, 74, ${(rp.alpha * 0.65).toFixed(3)})`;
+              ctx.lineWidth = 0.9;
+              ctx.stroke();
+            }
+
+            if (rp.r >= rp.maxR || rp.alpha <= 0.015) ripples.splice(i, 1);
+          }
+
+          for (let i = splashes.length - 1; i >= 0; i--) {
+            const sp = splashes[i];
+            sp.x += sp.vx;
+            sp.y += sp.vy;
+            sp.vy += 0.035;
+            sp.alpha *= 0.94;
+            ctx.beginPath();
+            ctx.arc(sp.x, sp.y, sp.r, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(145, 172, 200, ${sp.alpha.toFixed(3)})`;
+            ctx.fill();
+            if (sp.alpha <= 0.02) splashes.splice(i, 1);
+          }
+
+          animId = requestAnimationFrame(tick);
+        }
+
+        document.addEventListener("visibilitychange", () => {
+          if (document.hidden && animId) {
+            cancelAnimationFrame(animId);
+            animId = null;
+          } else if (!document.hidden && !animId) {
+            lastScrollY = window.scrollY;
+            animId = requestAnimationFrame(tick);
+          }
+        });
+
+        resize();
+        animId = requestAnimationFrame(tick);
+      })();
+
+      // Initialize UI on Load
+      applyPartnerTranslations();
+      hydrateLivePricing();
+      syncLivePhonePreview();
     </script>
   </body>
 </html>

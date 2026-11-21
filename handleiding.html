@@ -1,11 +1,33 @@
 <!doctype html>
-<html lang="en" class="scroll-smooth scroll-pt-20">
+<html lang="en" class="scroll-smooth scroll-pt-24">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>StilSein | App Handleiding</title>
+    <title>StilSein | Official App User Manual &amp; Handleiding</title>
     <link rel="icon" type="image/png" href="assets/images/wolf_icon.png" />
 
+    <meta
+      name="description"
+      content="Complete bilingual user manual for the StilSein & WeerWolf App: Farm Builder, 3x3 Omni-Dashboard, WeerWolf Rain, DrukWolf Pipes, WaterWolf Dams, Satellite Radar, 15x HD Charts, Jakkals AI, Archive, and PDF Exports."
+    />
+    <link rel="canonical" href="https://www.stilsein.co.za/handleiding.html" />
+
+    <style>
+      html.lang-switching body {
+        opacity: 0;
+      }
+    </style>
+    <script>
+      (function () {
+        const savedLang = localStorage.getItem("stilsein_lang");
+        if (savedLang && savedLang !== "en") {
+          document.documentElement.classList.add("lang-switching");
+          document.documentElement.lang = savedLang;
+        }
+      })();
+    </script>
+
+    <!-- TAILWIND CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -34,6 +56,7 @@
         src: url("assets/fonts/Garet-Bold.otf") format("opentype");
         font-weight: bold;
       }
+
       body {
         font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       }
@@ -42,20 +65,52 @@
         max-width: 100vw;
         overflow-x: hidden;
       }
+
       .bg-texture-main {
         background-image: url("assets/images/bg_texture_dark.png?v=2");
         background-repeat: repeat;
       }
+      .topbar-texture {
+        background-image: url("assets/images/topbar_texture.png?v=2");
+        background-repeat: repeat;
+        background-blend-mode: overlay;
+      }
+      .panel-texture {
+        background-image: url("assets/images/panel_texture.png?v=2");
+        background-repeat: repeat;
+        background-blend-mode: overlay;
+      }
+
+      /* Bespoke Industrial Container (Matches index.html, vennote.html & Flutter App) */
       .glass-card {
-        background-color: rgba(35, 43, 56, 0.85);
+        background-color: rgba(35, 43, 56, 0.84);
         -webkit-backdrop-filter: blur(12px);
         backdrop-filter: blur(12px);
+        box-shadow:
+          0 12px 32px rgba(0, 0, 0, 0.55),
+          inset 0 1px 0 rgba(145, 172, 200, 0.14);
       }
       .glass-nav {
-        background-color: rgba(26, 31, 38, 0.4) !important;
+        background-color: rgba(26, 31, 38, 0.65) !important;
         -webkit-backdrop-filter: blur(20px);
         backdrop-filter: blur(20px);
       }
+      .fade-transition {
+        transition: opacity 0.35s ease-in-out;
+      }
+
+      .eyebrow-rail {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        padding-bottom: 0.45rem;
+        font-family: "TTOctasquares", sans-serif;
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.24em;
+        text-transform: uppercase;
+      }
+
       .font-brand-title {
         font-family: "TTOctasquares", sans-serif;
         font-size: 20.2px;
@@ -71,46 +126,68 @@
       .font-garet {
         font-family: "Garet", sans-serif;
       }
+      .font-octasquares {
+        font-family: "TTOctasquares", sans-serif;
+      }
 
-      /* Accordion Smooth Expand */
+      /* Smooth Accordion Engine */
       .accordion-content {
         display: grid;
         grid-template-rows: 0fr;
-        transition: grid-template-rows 0.4s ease-in-out;
+        transition: grid-template-rows 0.38s ease-in-out;
       }
       .accordion-content.expanded {
         grid-template-rows: 1fr;
       }
-      /* 🛠️ POLISH FIX: Kill the padding completely when collapsed to stop peeking! */
       .accordion-inner {
         overflow: hidden;
         padding-top: 0;
         padding-bottom: 0;
-        transition: padding 0.4s ease-in-out;
+        transition: padding 0.38s ease-in-out;
       }
       .accordion-content.expanded .accordion-inner {
-        padding-top: 8px; /* Tailwind pt-2 */
-        padding-bottom: 32px; /* Tailwind pb-8 */
+        padding-top: 16px;
+        padding-bottom: 28px;
+      }
+
+      .stilsein-scroll::-webkit-scrollbar {
+        height: 5px;
+        width: 5px;
+      }
+      .stilsein-scroll::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.04);
+        border-radius: 6px;
+      }
+      .stilsein-scroll::-webkit-scrollbar-thumb {
+        background: rgba(145, 172, 200, 0.35);
+        border-radius: 6px;
       }
     </style>
   </head>
   <body
-    class="bg-stilsein-dark text-stilsein-text bg-texture-main relative overflow-x-hidden w-full"
+    class="bg-stilsein-dark text-stilsein-text bg-texture-main relative overflow-x-hidden w-full transition-opacity duration-300"
   >
-    <!-- Background Glows -->
+    <!-- SUBTLE VIGNETTE & AMBIENT GLOWS -->
     <div
-      class="fixed inset-0 pointer-events-none shadow-[inset_0_0_150px_rgba(0,0,0,0.9)] z-0"
+      class="fixed inset-0 pointer-events-none shadow-[inset_0_0_160px_rgba(0,0,0,0.86)] z-[2]"
     ></div>
     <div
-      class="fixed top-0 left-1/4 w-96 h-96 bg-stilsein-blue/10 rounded-full blur-3xl -z-10"
+      class="fixed top-0 left-1/4 w-96 h-96 bg-stilsein-blue/10 rounded-full blur-3xl z-[1] pointer-events-none"
     ></div>
     <div
-      class="fixed bottom-1/4 right-1/4 w-96 h-96 bg-jakkals-orange/10 rounded-full blur-3xl -z-10"
+      class="fixed bottom-1/4 right-1/4 w-96 h-96 bg-jakkals-orange/10 rounded-full blur-3xl z-[1] pointer-events-none"
     ></div>
 
-    <!-- NAVIGATION BAR -->
+    <!-- INTERACTIVE STILSEIN WATER PARTICLE CANVAS -->
+    <canvas
+      id="stilsein-particle-canvas"
+      class="fixed inset-0 w-full h-full pointer-events-none z-[5]"
+      aria-hidden="true"
+    ></canvas>
+
+    <!-- 1. MAIN NAVIGATION BAR -->
     <nav
-      class="fixed top-0 w-full z-50 glass-nav border-b border-stilsein-blue/20 h-[80px] flex items-center"
+      class="fixed top-0 w-full z-50 glass-nav topbar-texture border-b border-stilsein-blue/25 h-[80px] flex items-center"
     >
       <div
         class="max-w-7xl mx-auto w-full px-6 flex justify-between items-center"
@@ -136,13 +213,16 @@
           </div>
         </a>
 
-        <div class="flex items-center gap-4">
+        <!-- Desktop Links -->
+        <div
+          class="hidden lg:flex items-center space-x-5 text-[10px] xl:text-[11px] font-bold tracking-[0.15em] text-stilsein-muted uppercase whitespace-nowrap"
+        >
           <a
             href="index.html"
-            class="hidden sm:flex items-center gap-2 text-[10px] font-bold tracking-[0.15em] text-stilsein-muted hover:text-jakkals-orange uppercase transition-colors"
+            class="hover:text-jakkals-orange transition-colors flex items-center gap-1.5"
           >
             <svg
-              class="w-4 h-4"
+              class="w-3.5 h-3.5"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -154,1219 +234,1775 @@
                 d="M10 19l-7-7m0 0l7-7m-7 7h18"
               ></path>
             </svg>
-            <span data-dict="nav_back">Back to Main Site</span>
+            <span data-i18n="nav_back">Main Site</span>
           </a>
-          <!-- Sleek Toggle Switch -->
+          <div class="w-px h-4 bg-white/15"></div>
+          <a
+            href="vennote.html"
+            class="hover:text-jakkals-orange transition-colors"
+            data-i18n="nav_partners"
+            >Partners</a
+          >
+          <a
+            href="privacy.html"
+            class="hover:text-white transition-colors"
+            data-i18n="nav_privacy"
+            >Privacy</a
+          >
+          <a
+            href="https://wa.me/27718162636"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="px-4 py-1.5 rounded-lg border border-[#25D366]/50 text-[#25D366] hover:bg-[#25D366] hover:text-stilsein-dark transition-all"
+            data-i18n="nav_support"
+            >WhatsApp Support</a
+          >
           <button
             type="button"
             onclick="toggleManualLang()"
-            class="flex items-center justify-center w-8 h-8 rounded border border-stilsein-blue/30 bg-stilsein-dark/80 text-[10px] font-bold tracking-widest text-stilsein-blue hover:bg-stilsein-blue hover:text-stilsein-dark transition-all shadow-[0_0_10px_rgba(145,172,200,0.2)]"
+            aria-label="Toggle Language"
+            class="flex items-center justify-center w-9 h-8 rounded-lg border border-stilsein-blue/35 bg-stilsein-dark/80 text-[10px] font-bold tracking-widest text-stilsein-blue hover:bg-stilsein-blue hover:text-stilsein-dark transition-all"
           >
-            <span id="lang-toggle-text">AF</span>
+            <span class="lang-toggle-text">AF</span>
+          </button>
+        </div>
+
+        <!-- Mobile Controls -->
+        <div class="flex items-center space-x-3 lg:hidden">
+          <button
+            type="button"
+            onclick="toggleManualLang()"
+            class="flex items-center justify-center w-8 h-8 rounded-lg border border-stilsein-blue/35 bg-stilsein-dark/80 text-[10px] font-bold tracking-widest text-stilsein-blue"
+          >
+            <span class="lang-toggle-text">AF</span>
+          </button>
+          <button
+            id="mobile-menu-btn"
+            type="button"
+            class="text-stilsein-blue focus:outline-none"
+            aria-label="Open menu"
+            title="Menu"
+          >
+            <svg
+              class="w-8 h-8"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"
+              ></path>
+            </svg>
           </button>
         </div>
       </div>
     </nav>
 
-    <!-- HERO SECTION -->
-    <section class="pt-32 pb-12 px-6 relative z-10 w-full">
-      <div class="max-w-4xl mx-auto text-center">
+    <!-- Mobile Dropdown Menu -->
+    <div
+      id="mobile-menu"
+      class="fixed top-[80px] w-full z-40 glass-card panel-texture border-b border-stilsein-blue/20 flex flex-col items-center space-y-5 py-6 transform -translate-y-full opacity-0 pointer-events-none transition-all duration-300 ease-in-out lg:hidden"
+    >
+      <a
+        href="index.html"
+        class="mobile-link text-xs font-bold tracking-[0.2em] text-stilsein-muted uppercase hover:text-jakkals-orange"
+        data-i18n="nav_back"
+        >Main Site</a
+      >
+      <a
+        href="vennote.html"
+        class="mobile-link text-xs font-bold tracking-[0.2em] text-stilsein-muted uppercase hover:text-jakkals-orange"
+        data-i18n="nav_partners"
+        >Partners</a
+      >
+      <a
+        href="privacy.html"
+        class="mobile-link text-xs font-bold tracking-[0.2em] text-stilsein-muted uppercase hover:text-white"
+        data-i18n="nav_privacy"
+        >Privacy</a
+      >
+      <a
+        href="https://wa.me/27718162636"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="mobile-link text-xs font-bold tracking-[0.2em] text-[#25D366] uppercase"
+        data-i18n="nav_support"
+        >WhatsApp Support</a
+      >
+    </div>
+
+    <!-- 2. LIVING SUB-PANEL TICKER -->
+    <div
+      id="sub-panel"
+      class="fixed top-[80px] w-full z-40 glass-card panel-texture border-b border-stilsein-blue/15 transition-all duration-500 ease-in-out flex items-center justify-center min-h-[40px] py-2"
+    >
+      <div
+        id="ticker-text"
+        class="fade-transition text-[10px] md:text-xs tracking-[0.18em] text-stilsein-muted uppercase font-bold text-center px-6 font-garet max-w-4xl leading-relaxed"
+      >
+        WeerWolf App Manual • Complete Field &amp; Office Reference
+      </div>
+    </div>
+
+    <!-- 3. HERO & SEARCH / QUICK JUMP BAR -->
+    <section
+      class="pt-36 lg:pt-40 pb-10 px-6 relative z-10 w-full border-b border-white/5"
+    >
+      <div class="max-w-5xl mx-auto text-center">
         <div
-          class="inline-flex items-center gap-2 px-4 py-1 rounded-full border border-stilsein-blue/40 bg-stilsein-blue/10 text-stilsein-blue text-xs font-bold tracking-[0.2em] mb-6 shadow-[0_0_15px_rgba(145,172,200,0.15)]"
-          data-dict="hero_badge"
+          class="eyebrow-rail border-b-2 border-stilsein-blue/65 text-stilsein-blue mb-5"
+          data-i18n="hero_badge"
         >
-          OFFICIAL DOCUMENTATION
+          OFFICIAL PLATFORM DOCUMENTATION
         </div>
         <h1
-          class="text-4xl md:text-5xl font-bold text-white mb-6 font-garet uppercase leading-tight"
-          data-dict="hero_title"
+          class="text-4xl sm:text-5xl md:text-6xl font-black text-white mb-5 font-garet uppercase leading-tight"
+          data-i18n="hero_title"
         >
           STILSEIN <span class="text-stilsein-blue">USER MANUAL</span>
         </h1>
         <p
-          class="text-stilsein-muted text-lg max-w-2xl mx-auto leading-relaxed"
-          data-dict="hero_desc"
+          class="text-stilsein-muted text-base md:text-lg max-w-3xl mx-auto leading-relaxed mb-8"
+          data-i18n="hero_desc"
         >
-          Welcome to the control center. Learn how to navigate your digital
-          farm, interpret advanced telemetry, and configure your Jakkals AI
-          alerts.
+          Everything you need to run your farm from the WeerWolf Mobile App and
+          3-Pane Web Portal. From onboarding with your Farm Key and reading
+          physics gauges to 15x HD chart drill-downs, Jakkals AI, and PDF
+          audits.
         </p>
+
+        <!-- SEARCH + EXPAND/COLLAPSE BAR -->
+        <div
+          class="glass-card panel-texture p-4 rounded-2xl border border-stilsein-blue/30 max-w-3xl mx-auto flex flex-col sm:flex-row items-stretch sm:items-center gap-3 mb-6"
+        >
+          <div class="relative flex-1">
+            <svg
+              class="w-4 h-4 text-stilsein-blue absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+              ></path>
+            </svg>
+            <input
+              type="text"
+              id="manual-search"
+              oninput="filterManualChapters()"
+              placeholder="Search manual (e.g. snooze, JoJo, 15x zoom, Farm Key, PDF)..."
+              data-i18n-placeholder="search_ph"
+              class="w-full bg-stilsein-dark/80 border border-white/10 rounded-xl pl-10 pr-4 py-2.5 text-xs sm:text-sm text-white placeholder-gray-500 focus:outline-none focus:border-jakkals-orange transition-colors"
+            />
+          </div>
+          <div class="flex items-center gap-2">
+            <button
+              type="button"
+              onclick="setAllChapters(true)"
+              class="flex-1 sm:flex-none px-4 py-2.5 rounded-xl bg-stilsein-blue/15 border border-stilsein-blue/40 text-stilsein-blue hover:bg-stilsein-blue hover:text-stilsein-dark text-[11px] font-bold uppercase tracking-wider transition-colors"
+              data-i18n="btn_expand_all"
+            >
+              Expand All
+            </button>
+            <button
+              type="button"
+              onclick="setAllChapters(false)"
+              class="flex-1 sm:flex-none px-4 py-2.5 rounded-xl bg-stilsein-dark/80 border border-white/15 text-stilsein-muted hover:text-white text-[11px] font-bold uppercase tracking-wider transition-colors"
+              data-i18n="btn_collapse_all"
+            >
+              Collapse All
+            </button>
+          </div>
+        </div>
+
+        <!-- QUICK CHAPTER JUMP RAIL -->
+        <div
+          id="chapter-jump-pills"
+          class="flex items-center justify-start sm:justify-center gap-2 overflow-x-auto pb-2 stilsein-scroll max-w-5xl mx-auto"
+        ></div>
       </div>
     </section>
 
-    <!-- THE ACCORDION ARMORY -->
-    <section class="pb-24 px-6 relative z-10 w-full">
-      <div class="max-w-4xl mx-auto space-y-6" id="manual-accordions">
-        <!-- SECTION 1: OMNI-DASHBOARD -->
-        <div
-          class="glass-card rounded-2xl border border-stilsein-blue/20 overflow-hidden shadow-lg group"
-        >
-          <button
-            onclick="toggleSection('sec-1')"
-            class="w-full px-6 py-5 flex items-center justify-between hover:bg-white/5 transition-colors"
-          >
-            <div class="flex items-center gap-4">
-              <div
-                class="w-10 h-10 rounded-xl bg-stilsein-blue/10 flex items-center justify-center border border-stilsein-blue/30 text-xl"
-              >
-                <svg
-                  class="w-5 h-5 text-stilsein-blue"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"
-                  ></path>
-                </svg>
-              </div>
-              <h2
-                class="text-white font-garet font-bold tracking-widest text-sm md:text-base"
-                data-dict="s1_title"
-              >
-                1. THE OMNI-DASHBOARD
-              </h2>
-            </div>
-            <svg
-              id="icon-sec-1"
-              class="w-5 h-5 text-stilsein-blue transition-transform duration-300"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M19 9l-7 7-7-7"
-              ></path>
-            </svg>
-          </button>
-          <div id="sec-1" class="accordion-content bg-[#1A1F26]/50">
-            <div class="accordion-inner px-6">
-              <p
-                class="text-stilsein-muted text-sm leading-relaxed mb-6"
-                data-dict="s1_desc"
-              >
-                The Command Central of your farm. A unified 3x3 grid that gives
-                you an instant overview of your entire operation.
-              </p>
+    <!-- 4. THE 10-CHAPTER MANUAL ACCORDION ARMORY -->
+    <section class="py-14 pb-24 px-6 relative z-10 w-full">
+      <div
+        id="manual-chapters-container"
+        class="max-w-5xl mx-auto space-y-5"
+      ></div>
+    </section>
 
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Text Content -->
-                <div class="space-y-6">
-                  <div>
-                    <h4
-                      class="text-stilsein-blue font-bold text-xs tracking-widest uppercase mb-2"
-                      data-dict="s1_h1"
-                    >
-                      The Global Top-Dock
-                    </h4>
-                    <ul class="list-disc pl-5 text-sm text-gray-300 space-y-2">
-                      <li>
-                        <strong class="text-white">The Pulse Dot:</strong>
-                        Indicates connection health.
-                        <span class="text-stilsein-blue font-bold">Blue</span> =
-                        Fresh (< 15 mins).
-                        <span class="text-yellow-500 font-bold">Yellow</span> =
-                        Delayed.
-                        <span class="text-jakkals-orange font-bold"
-                          >Orange</span
-                        >
-                        = Stale.
-                        <span class="text-red-500 font-bold">Red</span> =
-                        Offline.
-                      </li>
-                      <li>
-                        <strong class="text-white">Module Dropdown:</strong>
-                        Filter the grid to show only Rain, Pipes, Dams, or
-                        Forecasts.
-                      </li>
-                      <li>
-                        <strong class="text-white">Timechip Dropdown:</strong>
-                        Shift the entire dashboard back in time (Live, 24H, 7D,
-                        30D, 1Y).
-                      </li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h4
-                      class="text-stilsein-blue font-bold text-xs tracking-widest uppercase mb-2"
-                      data-dict="s1_h2"
-                    >
-                      Hardware & Software Cards
-                    </h4>
-                    <ul class="list-disc pl-5 text-sm text-gray-300 space-y-2">
-                      <li>
-                        <strong class="text-white">Physical Nodes:</strong>
-                        Tiles displaying live animations (Rain cylinders, Pipe
-                        flows, Dam waves).
-                      </li>
-                      <li>
-                        <strong class="text-white"
-                          >Virtual Nodes (Average/Overview):</strong
-                        >
-                        Tiles showing the mathematical average of an entire
-                        network.
-                      </li>
-                      <li>
-                        <strong class="text-white">Add Node:</strong> Tapping an
-                        empty transparent tile allows you to instantly request a
-                        quote to expand your hardware network.
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                <!-- Floating Device Mockup -->
-                <div class="flex items-center justify-center w-full h-[400px]">
-                  <img
-                    src="assets/images/mockup_gateway_01.png"
-                    alt="Omni Dashboard"
-                    class="h-full w-auto object-contain drop-shadow-[0_0_30px_rgba(0,0,0,0.4)] transition-transform hover:-translate-y-2 duration-500 cursor-pointer"
-                  />
-                </div>
-              </div>
-            </div>
+    <!-- LIGHTBOX MODAL FOR FULLSCREEN SCREENSHOTS (WITH SWIPE & ARROWS) -->
+    <div
+      id="gallery-lightbox"
+      class="fixed inset-0 z-[110] flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300"
+    >
+      <div
+        class="absolute inset-0 bg-black/85 backdrop-blur-md"
+        onclick="closeLightbox()"
+      ></div>
+      <div
+        class="relative z-10 w-[94%] max-w-4xl max-h-[90vh] flex flex-col items-center"
+      >
+        <div class="w-full flex items-center justify-between gap-3 mb-3 px-2">
+          <div class="flex items-center gap-3 min-w-0">
+            <span
+              id="lightbox-counter"
+              class="hidden shrink-0 text-[10px] font-mono px-2 py-0.5 rounded bg-stilsein-card border border-stilsein-blue/30 text-jakkals-orange font-bold"
+            ></span>
+            <span
+              id="lightbox-caption"
+              class="text-xs md:text-sm font-bold tracking-widest uppercase text-stilsein-blue font-garet truncate"
+            ></span>
           </div>
+          <button
+            type="button"
+            onclick="closeLightbox()"
+            class="shrink-0 px-3 py-1.5 rounded-lg bg-stilsein-card border border-white/15 text-white hover:text-jakkals-orange text-xs font-bold uppercase tracking-wider"
+          >
+            ESC / Close ✕
+          </button>
         </div>
 
-        <!-- SECTION 2: RADAR MAP -->
         <div
-          class="glass-card rounded-2xl border border-green-500/20 overflow-hidden shadow-lg group"
+          id="lightbox-swipe-zone"
+          class="relative w-full flex items-center justify-center p-2 touch-pan-y select-none"
         >
           <button
-            onclick="toggleSection('sec-2')"
-            class="w-full px-6 py-5 flex items-center justify-between hover:bg-white/5 transition-colors"
+            id="lightbox-prev"
+            type="button"
+            onclick="stepLightbox(-1)"
+            aria-label="Previous image"
+            class="hidden absolute left-1 sm:left-4 z-20 w-10 h-10 rounded-xl bg-stilsein-card/90 border border-stilsein-blue/40 text-white hover:bg-stilsein-blue hover:text-stilsein-dark flex items-center justify-center transition-colors shadow-xl text-base font-bold"
           >
-            <div class="flex items-center gap-4">
-              <div
-                class="w-10 h-10 rounded-xl bg-green-500/10 flex items-center justify-center border border-green-500/30 text-xl"
-              >
-                <svg
-                  class="w-5 h-5 text-green-500"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"
-                  ></path>
-                </svg>
-              </div>
-              <h2
-                class="text-white font-garet font-bold tracking-widest text-sm md:text-base"
-                data-dict="s2_title"
-              >
-                2. THE RADAR MAP
-              </h2>
-            </div>
-            <svg
-              id="icon-sec-2"
-              class="w-5 h-5 text-green-500 transition-transform duration-300"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M19 9l-7 7-7-7"
-              ></path>
-            </svg>
+            &larr;
           </button>
-          <div id="sec-2" class="accordion-content bg-[#1A1F26]/50">
-            <div class="accordion-inner px-6">
-              <p
-                class="text-stilsein-muted text-sm leading-relaxed mb-6"
-                data-dict="s2_desc"
-              >
-                Your farm rendered in geospatial reality. Tap the Gateway node
-                in the center of the Omni-Dashboard, or the Map icon in the
-                bottom taskbar to enter.
-              </p>
 
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Text Content -->
-                <div class="space-y-6">
-                  <div>
-                    <h4
-                      class="text-green-400 font-bold text-xs tracking-widest uppercase mb-2"
-                      data-dict="s2_h1"
-                    >
-                      Navigation & Tools
-                    </h4>
-                    <ul class="list-disc pl-5 text-sm text-gray-300 space-y-2">
-                      <li>
-                        <strong class="text-white">Filtering:</strong> Expand
-                        the bottom dock menu to toggle specific hardware types
-                        (Rain, Pipe, Dam) on and off.
-                      </li>
-                      <li>
-                        <strong class="text-white"
-                          >Live Location (Blue Dot):</strong
-                        >
-                        Toggle 'Position' to see your physical GPS location on
-                        the farm, including your exact distance (km) to the
-                        Gateway.
-                      </li>
-                      <li>
-                        <strong class="text-white">Center Focus:</strong> Tap
-                        the crosshair icon to instantly zoom out and fit the
-                        entire farm boundary back on the screen.
-                      </li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h4
-                      class="text-green-400 font-bold text-xs tracking-widest uppercase mb-2"
-                      data-dict="s2_h2"
-                    >
-                      Interacting with Nodes
-                    </h4>
-                    <ul class="list-disc pl-5 text-sm text-gray-300 space-y-2">
-                      <li>
-                        <strong class="text-white">Signal Paths:</strong> Dashed
-                        lines indicate active radio paths. If a node is raining,
-                        the path thickens and pulses rapidly.
-                      </li>
-                      <li>
-                        <strong class="text-white">The Floating Stage:</strong>
-                        Tapping any node marker on the map blurs the background
-                        and opens that specific sensor's Live Stage directly
-                        over the map for quick analysis.
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                <!-- Floating Device Mockup -->
-                <div class="flex items-center justify-center w-full h-[400px]">
-                  <img
-                    src="assets/images/mockup_map_01.png"
-                    alt="Omni Dashboard"
-                    class="h-full w-auto object-contain drop-shadow-[0_0_30px_rgba(0,0,0,0.4)] transition-transform hover:-translate-y-2 duration-500 cursor-pointer"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+          <img
+            id="lightbox-img"
+            src=""
+            alt="App Screenshot Preview"
+            class="max-h-[78vh] w-auto object-contain drop-shadow-[0_32px_65px_rgba(0,0,0,0.95)]"
+          />
 
-        <!-- SECTION 3: LIVE SENSOR STAGES -->
-        <div
-          class="glass-card rounded-2xl border border-cyan-400/20 overflow-hidden shadow-lg group"
-        >
           <button
-            onclick="toggleSection('sec-3')"
-            class="w-full px-6 py-5 flex items-center justify-between hover:bg-white/5 transition-colors"
+            id="lightbox-next"
+            type="button"
+            onclick="stepLightbox(1)"
+            aria-label="Next image"
+            class="hidden absolute right-1 sm:right-4 z-20 w-10 h-10 rounded-xl bg-stilsein-card/90 border border-stilsein-blue/40 text-white hover:bg-stilsein-blue hover:text-stilsein-dark flex items-center justify-center transition-colors shadow-xl text-base font-bold"
           >
-            <div class="flex items-center gap-4">
-              <div
-                class="w-10 h-10 rounded-xl bg-cyan-400/10 flex items-center justify-center border border-cyan-400/30 text-xl"
-              >
-                <svg
-                  class="w-5 h-5 text-cyan-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M13 10V3L4 14h7v7l9-11h-7z"
-                  ></path>
-                </svg>
-              </div>
-              <h2
-                class="text-white font-garet font-bold tracking-widest text-sm md:text-base"
-                data-dict="s3_title"
-              >
-                3. LIVE SENSOR STAGES
-              </h2>
-            </div>
-            <svg
-              id="icon-sec-3"
-              class="w-5 h-5 text-cyan-400 transition-transform duration-300"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M19 9l-7 7-7-7"
-              ></path>
-            </svg>
+            &rarr;
           </button>
-          <div id="sec-3" class="accordion-content bg-[#1A1F26]/50">
-            <div class="accordion-inner px-6">
-              <p
-                class="text-stilsein-muted text-sm leading-relaxed mb-6"
-                data-dict="s3_desc"
-              >
-                The deep-dive view. Accessed by selecting a specific module from
-                the top dropdown, or tapping a specific node on the Map or
-                Omni-Dashboard.
-              </p>
-
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Text Content -->
-                <div class="space-y-6">
-                  <div>
-                    <h4
-                      class="text-cyan-400 font-bold text-xs tracking-widest uppercase mb-2"
-                      data-dict="s3_h1"
-                    >
-                      The Data Cockpit
-                    </h4>
-                    <ul class="list-disc pl-5 text-sm text-gray-300 space-y-2">
-                      <li>
-                        <strong class="text-white">Status Banner:</strong> A
-                        dynamic pulse indicator below the main value. Green =
-                        STABLE/HEALTHY. Red = LEAK/OVERPRESSURE/OFFLINE. Orange
-                        = LOW BATT.
-                      </li>
-                      <li>
-                        <strong class="text-white">Timers (Top Right):</strong>
-                        Shows exactly when the next data pulse is arriving. It
-                        shifts to "LISTENING..." and "LATE" if interference
-                        occurs.
-                      </li>
-                      <li>
-                        <strong class="text-white">Health Stats:</strong> Signal
-                        strength (dBm) and Battery % are always visible flanking
-                        the status banner.
-                      </li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h4
-                      class="text-cyan-400 font-bold text-xs tracking-widest uppercase mb-2"
-                      data-dict="s3_h2"
-                    >
-                      Interactive Elements
-                    </h4>
-                    <ul class="list-disc pl-5 text-sm text-gray-300 space-y-2">
-                      <li>
-                        <strong class="text-white">Mini-Charts:</strong> Tap the
-                        small chart at the bottom of the card to open the
-                        Fullscreen Analytical God-Mode.
-                      </li>
-                      <li>
-                        <strong class="text-white">Expand/Collapse:</strong> Use
-                        the arrows on the right to reveal the comparative grid
-                        of all other nodes in that category.
-                      </li>
-                      <li>
-                        <strong class="text-white">Swipe Navigation:</strong>
-                        Swipe the main cylinder left or right to seamlessly
-                        switch between nodes in the field.
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                <!-- Floating Device Mockup -->
-                <div class="flex items-center justify-center w-full h-[400px]">
-                  <img
-                    src="assets/images/mockup_pipe_ind_01.png"
-                    alt="Omni Dashboard"
-                    class="h-full w-auto object-contain drop-shadow-[0_0_30px_rgba(0,0,0,0.4)] transition-transform hover:-translate-y-2 duration-500 cursor-pointer"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- SECTION 4: FULLSCREEN CHARTS -->
-        <div
-          class="glass-card rounded-2xl border border-jakkals-orange/20 overflow-hidden shadow-lg group"
-        >
-          <button
-            onclick="toggleSection('sec-4')"
-            class="w-full px-6 py-5 flex items-center justify-between hover:bg-white/5 transition-colors"
-          >
-            <div class="flex items-center gap-4">
-              <div
-                class="w-10 h-10 rounded-xl bg-jakkals-orange/10 flex items-center justify-center border border-jakkals-orange/30 text-xl"
-              >
-                <svg
-                  class="w-5 h-5 text-jakkals-orange"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"
-                  ></path>
-                </svg>
-              </div>
-              <h2
-                class="text-white font-garet font-bold tracking-widest text-sm md:text-base"
-                data-dict="s4_title"
-              >
-                4. FULLSCREEN CHARTS
-              </h2>
-            </div>
-            <svg
-              id="icon-sec-4"
-              class="w-5 h-5 text-jakkals-orange transition-transform duration-300"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M19 9l-7 7-7-7"
-              ></path>
-            </svg>
-          </button>
-          <div id="sec-4" class="accordion-content bg-[#1A1F26]/50">
-            <div class="accordion-inner px-6">
-              <p
-                class="text-stilsein-muted text-sm leading-relaxed mb-6"
-                data-dict="s4_desc"
-              >
-                The analytical God-Mode. Designed for deep dives into historical
-                telemetry, leak investigations, and PDF report generation.
-              </p>
-
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Text Content -->
-                <div class="space-y-6">
-                  <div>
-                    <h4
-                      class="text-jakkals-orange font-bold text-xs tracking-widest uppercase mb-2"
-                      data-dict="s4_h1"
-                    >
-                      Navigation & Analysis
-                    </h4>
-                    <ul class="list-disc pl-5 text-sm text-gray-300 space-y-2">
-                      <li>
-                        <strong class="text-white">Sticky Y-Axis:</strong> When
-                        zooming or panning horizontally through time, the
-                        measurement scale (left) stays securely pinned to the
-                        screen.
-                      </li>
-                      <li>
-                        <strong class="text-white"
-                          >Double-Tap to Isolate:</strong
-                        >
-                        For dual-charts (e.g., Pipe Line Chart + Gantt Status
-                        Track), double-tapping either chart expands it to
-                        full-screen mode for easier viewing.
-                      </li>
-                      <li>
-                        <strong class="text-white">Interactive HUD:</strong> Tap
-                        any point on a line or bar to reveal the exact Date,
-                        Time, Value, and specific hazard warnings (e.g., 🔴
-                        OVERPRESSURE).
-                      </li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h4
-                      class="text-jakkals-orange font-bold text-xs tracking-widest uppercase mb-2"
-                      data-dict="s4_h2"
-                    >
-                      Action Bar
-                    </h4>
-                    <ul class="list-disc pl-5 text-sm text-gray-300 space-y-2">
-                      <li>
-                        <strong class="text-white">Jakkals AI Paw:</strong> Tap
-                        the orange paw icon to instantly send the currently
-                        viewed chart data to Jakkals for an expert Agricultural
-                        analysis.
-                      </li>
-                      <li>
-                        <strong class="text-white">Unit Toggle:</strong> Tap the
-                        '%' or 'kL' icon to switch the mathematical rendering of
-                        Dam levels on the fly.
-                      </li>
-                      <li>
-                        <strong class="text-white">PDF/CSV Export:</strong> Tap
-                        the download arrow to instantly generate a branded PDF
-                        or raw Excel spreadsheet of the chart.
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                <!-- Floating Device Mockup -->
-                <div class="flex items-center justify-center w-full h-[400px]">
-                  <img
-                    src="assets/images/mockup_dam_ind_02.png"
-                    alt="Omni Dashboard"
-                    class="h-full w-auto object-contain drop-shadow-[0_0_30px_rgba(0,0,0,0.4)] transition-transform hover:-translate-y-2 duration-500 cursor-pointer"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- SECTION 5: SATELLITE FORECASTS -->
-        <div
-          class="glass-card rounded-2xl border border-yellow-500/20 overflow-hidden shadow-lg group"
-        >
-          <button
-            onclick="toggleSection('sec-5')"
-            class="w-full px-6 py-5 flex items-center justify-between hover:bg-white/5 transition-colors"
-          >
-            <div class="flex items-center gap-4">
-              <div
-                class="w-10 h-10 rounded-xl bg-yellow-500/10 flex items-center justify-center border border-yellow-500/30 text-xl"
-              >
-                <svg
-                  class="w-5 h-5 text-yellow-500"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"
-                  ></path>
-                </svg>
-              </div>
-              <h2
-                class="text-white font-garet font-bold tracking-widest text-sm md:text-base"
-                data-dict="s5_title"
-              >
-                5. SATELLITE FORECASTS
-              </h2>
-            </div>
-            <svg
-              id="icon-sec-5"
-              class="w-5 h-5 text-yellow-500 transition-transform duration-300"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M19 9l-7 7-7-7"
-              ></path>
-            </svg>
-          </button>
-          <div id="sec-5" class="accordion-content bg-[#1A1F26]/50">
-            <div class="accordion-inner px-6">
-              <p
-                class="text-stilsein-muted text-sm leading-relaxed mb-6"
-                data-dict="s5_desc"
-              >
-                Hyper-local meteorological predictions based on your farm's
-                exact GPS coordinates. Accessed from the top-left dropdown menu.
-              </p>
-
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Text Content -->
-                <div class="space-y-6">
-                  <div>
-                    <h4
-                      class="text-yellow-500 font-bold text-xs tracking-widest uppercase mb-2"
-                      data-dict="s5_h1"
-                    >
-                      The 7-Day Overview
-                    </h4>
-                    <ul class="list-disc pl-5 text-sm text-gray-300 space-y-2">
-                      <li>
-                        <strong class="text-white">The Grid:</strong> A
-                        high-level view of the upcoming week. Days with expected
-                        rainfall are highlighted with a glowing blue border.
-                      </li>
-                      <li>
-                        <strong class="text-white">Quick Navigation:</strong>
-                        Tap on any specific day in the grid to instantly jump to
-                        its detailed triple-chart view.
-                      </li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h4
-                      class="text-yellow-500 font-bold text-xs tracking-widest uppercase mb-2"
-                      data-dict="s5_h2"
-                    >
-                      The Triple-Chart View
-                    </h4>
-                    <ul class="list-disc pl-5 text-sm text-gray-300 space-y-2">
-                      <li>
-                        <strong class="text-white">Temperature (Top):</strong>
-                        The color gradient shifts from Cold (Blue) to Perfect
-                        (Green) to Heatwave Threshold (Red).
-                      </li>
-                      <li>
-                        <strong class="text-white"
-                          >Precipitation (Middle):</strong
-                        >
-                        Hour-by-hour bar charts showing exact expected
-                        accumulation.
-                      </li>
-                      <li>
-                        <strong class="text-white"
-                          >Wind Profile (Bottom):</strong
-                        >
-                        Blue-to-Lavender gradients indicate wind speeds, peaking
-                        on gale-force days.
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                <!-- Floating Device Mockup -->
-                <div class="flex items-center justify-center w-full h-[400px]">
-                  <img
-                    src="assets/images/mockup_forecast_02.png"
-                    alt="Omni Dashboard"
-                    class="h-full w-auto object-contain drop-shadow-[0_0_30px_rgba(0,0,0,0.4)] transition-transform hover:-translate-y-2 duration-500 cursor-pointer"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- SECTION 6: THE ARCHIVIST -->
-        <div
-          class="glass-card rounded-2xl border border-[#A396D1]/20 overflow-hidden shadow-lg group"
-        >
-          <button
-            onclick="toggleSection('sec-6')"
-            class="w-full px-6 py-5 flex items-center justify-between hover:bg-white/5 transition-colors"
-          >
-            <div class="flex items-center gap-4">
-              <div
-                class="w-10 h-10 rounded-xl bg-[#A396D1]/10 flex items-center justify-center border border-[#A396D1]/30 text-xl"
-              >
-                <svg
-                  class="w-5 h-5 text-[#A396D1]"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"
-                  ></path>
-                </svg>
-              </div>
-              <h2
-                class="text-white font-garet font-bold tracking-widest text-sm md:text-base"
-                data-dict="s6_title"
-              >
-                6. THE ARCHIVIST
-              </h2>
-            </div>
-            <svg
-              id="icon-sec-6"
-              class="w-5 h-5 text-[#A396D1] transition-transform duration-300"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M19 9l-7 7-7-7"
-              ></path>
-            </svg>
-          </button>
-          <div id="sec-6" class="accordion-content bg-[#1A1F26]/50">
-            <div class="accordion-inner px-6">
-              <p
-                class="text-stilsein-muted text-sm leading-relaxed mb-6"
-                data-dict="s6_desc"
-              >
-                Your farm's permanent historical ledger. Every critical event is
-                safely locked away here for future reference.
-              </p>
-
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Text Content -->
-                <div class="space-y-6">
-                  <div>
-                    <h4
-                      class="text-[#A396D1] font-bold text-xs tracking-widest uppercase mb-2"
-                      data-dict="s6_h1"
-                    >
-                      The Ticker-Tape Inbox
-                    </h4>
-                    <ul class="list-disc pl-5 text-sm text-gray-300 space-y-2">
-                      <li>
-                        <strong class="text-white">Unread Events:</strong>
-                        Events you haven't viewed yet will pulse with an orange
-                        border and a "NEW" tag.
-                      </li>
-                      <li>
-                        <strong class="text-white">Event Types:</strong>
-                        Displays Rain Spells (Total mm), Pipe Incidents (Min/Max
-                        Bar), Dam Incidents (Rapid Drains), and System Logs
-                        (Green microchip icon).
-                      </li>
-                      <li>
-                        <strong class="text-white">Interacting:</strong> Tap any
-                        event in the list to instantly open its high-resolution,
-                        isolated fullscreen chart.
-                      </li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h4
-                      class="text-[#A396D1] font-bold text-xs tracking-widest uppercase mb-2"
-                      data-dict="s6_h2"
-                    >
-                      Data Management
-                    </h4>
-                    <ul class="list-disc pl-5 text-sm text-gray-300 space-y-2">
-                      <li>
-                        <strong class="text-white">PDF / CSV Export:</strong>
-                        Tap the download arrow icon on any event to export a
-                        professional, branded PDF or an Excel-ready CSV file.
-                      </li>
-                      <li>
-                        <strong class="text-white">Loading History:</strong>
-                        Scroll to the bottom of the list and tap "LOAD PREVIOUS
-                        WEEK" to pull older archives from Deep Freeze storage.
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                <!-- Floating Device Mockup -->
-                <div class="flex items-center justify-center w-full h-[400px]">
-                  <img
-                    src="assets/images/mockup_archive_01.png"
-                    alt="Omni Dashboard"
-                    class="h-full w-auto object-contain drop-shadow-[0_0_30px_rgba(0,0,0,0.4)] transition-transform hover:-translate-y-2 duration-500 cursor-pointer"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- SECTION 7: WOLF CAVE -->
-        <div
-          class="glass-card rounded-2xl border border-gray-400/20 overflow-hidden shadow-lg group"
-        >
-          <button
-            onclick="toggleSection('sec-7')"
-            class="w-full px-6 py-5 flex items-center justify-between hover:bg-white/5 transition-colors"
-          >
-            <div class="flex items-center gap-4">
-              <div
-                class="w-10 h-10 rounded-xl bg-gray-400/10 flex items-center justify-center border border-gray-400/30 text-xl"
-              >
-                <svg
-                  class="w-5 h-5 text-gray-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
-                  ></path>
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                  ></path>
-                </svg>
-              </div>
-              <h2
-                class="text-white font-garet font-bold tracking-widest text-sm md:text-base"
-                data-dict="s7_title"
-              >
-                7. THE WOLF CAVE
-              </h2>
-            </div>
-            <svg
-              id="icon-sec-7"
-              class="w-5 h-5 text-gray-400 transition-transform duration-300"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M19 9l-7 7-7-7"
-              ></path>
-            </svg>
-          </button>
-          <div id="sec-7" class="accordion-content bg-[#1A1F26]/50">
-            <div class="accordion-inner px-6">
-              <p
-                class="text-stilsein-muted text-sm leading-relaxed mb-6"
-                data-dict="s7_desc"
-              >
-                The IT Dashboard. Manage your app settings, push notifications,
-                and monitor global hardware health.
-              </p>
-
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Text Content -->
-                <div class="space-y-6">
-                  <div>
-                    <h4
-                      class="text-gray-400 font-bold text-xs tracking-widest uppercase mb-2"
-                      data-dict="s7_h1"
-                    >
-                      Settings & Notifications
-                    </h4>
-                    <ul class="list-disc pl-5 text-sm text-gray-300 space-y-2">
-                      <li>
-                        <strong class="text-white">Alarms:</strong> Turn
-                        specific module notifications on/off. Use the "Snooze"
-                        button to silence all alarms for 8 hours.
-                      </li>
-                      <li>
-                        <strong class="text-white">Preferences:</strong> Toggle
-                        Haptic Feedback (vibrations), switch between Dark and
-                        Light mode, and change the app language.
-                      </li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h4
-                      class="text-gray-400 font-bold text-xs tracking-widest uppercase mb-2"
-                      data-dict="s7_h2"
-                    >
-                      Hardware Diagnostics
-                    </h4>
-                    <ul class="list-disc pl-5 text-sm text-gray-300 space-y-2">
-                      <li>
-                        <strong class="text-white">Status Dots:</strong> Check
-                        the Active Sensors list. Green = Healthy, Orange = Low
-                        Battery, Red = Offline.
-                      </li>
-                      <li>
-                        <strong class="text-white">Health Charts:</strong>
-                        Double-tap the Battery or Signal (RSSI) line charts to
-                        open fullscreen, 24-hour diagnostic views.
-                      </li>
-                      <li>
-                        <strong class="text-white">Clear Cache:</strong> If you
-                        suspect your app data is stuck, tap "Clear Cache & Sync"
-                        to force a fresh download from the Vault.
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                <!-- Floating Device Mockup -->
-                <div class="flex items-center justify-center w-full h-[400px]">
-                  <img
-                    src="assets/images/mockup_gateway_02.png"
-                    alt="Omni Dashboard"
-                    class="h-full w-auto object-contain drop-shadow-[0_0_30px_rgba(0,0,0,0.4)] transition-transform hover:-translate-y-2 duration-500 cursor-pointer"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- SECTION 8: AUTOMATED REPORTS -->
-        <div
-          class="glass-card rounded-2xl border border-green-400/20 overflow-hidden shadow-lg group"
-        >
-          <button
-            onclick="toggleSection('sec-8')"
-            class="w-full px-6 py-5 flex items-center justify-between hover:bg-white/5 transition-colors"
-          >
-            <div class="flex items-center gap-4">
-              <div
-                class="w-10 h-10 rounded-xl bg-green-400/10 flex items-center justify-center border border-green-400/30 text-xl"
-              >
-                <svg
-                  class="w-5 h-5 text-green-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                  ></path>
-                </svg>
-              </div>
-              <h2
-                class="text-white font-garet font-bold tracking-widest text-sm md:text-base"
-                data-dict="s8_title"
-              >
-                8. WEEKLY REPORTS
-              </h2>
-            </div>
-            <svg
-              id="icon-sec-8"
-              class="w-5 h-5 text-green-400 transition-transform duration-300"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M19 9l-7 7-7-7"
-              ></path>
-            </svg>
-          </button>
-          <div id="sec-8" class="accordion-content bg-[#1A1F26]/50">
-            <div class="accordion-inner px-6">
-              <p
-                class="text-stilsein-muted text-sm leading-relaxed mb-6"
-                data-dict="s8_desc"
-              >
-                Every Sunday night at midnight, Jakkals complies your entire
-                week's telemetry into a beautiful PDF and CSV ledger.
-              </p>
-
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Text Content -->
-                <div class="space-y-6">
-                  <div>
-                    <h4
-                      class="text-green-400 font-bold text-xs tracking-widest uppercase mb-2"
-                      data-dict="s8_h1"
-                    >
-                      The Sunday Night Protocol
-                    </h4>
-                    <ul class="list-disc pl-5 text-sm text-gray-300 space-y-2">
-                      <li>
-                        <strong class="text-white">Automated Delivery:</strong>
-                        You don't need to do anything. The report is
-                        automatically emailed to you, ensuring your farm's data
-                        is safely backed up and ready for Monday morning.
-                      </li>
-                      <li>
-                        <strong class="text-white">AI Summaries:</strong> The
-                        report includes a witty, professional "Looking Back"
-                        summary of the past week, and a "Looking Forward"
-                        summary of the upcoming week's weather.
-                      </li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h4
-                      class="text-green-400 font-bold text-xs tracking-widest uppercase mb-2"
-                      data-dict="s8_h2"
-                    >
-                      Manual Exports
-                    </h4>
-                    <ul class="list-disc pl-5 text-sm text-gray-300 space-y-2">
-                      <li>
-                        <strong class="text-white">Export Tool:</strong> You can
-                        manually generate PDF or CSV exports at any time by
-                        tapping the Export icon in the bottom taskbar, allowing
-                        you to select specific nodes and timeframes.
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                <!-- Floating Device Mockup -->
-                <div class="flex items-center justify-center w-full h-[400px]">
-                  <img
-                    src="assets/images/export_pdf_mockup.png"
-                    alt="Omni Dashboard"
-                    class="h-full w-auto object-contain drop-shadow-[0_0_30px_rgba(0,0,0,0.4)] transition-transform hover:-translate-y-2 duration-500 cursor-pointer"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
-    </section>
+    </div>
 
     <!-- FOOTER -->
     <footer
-      class="py-12 px-6 text-center border-t border-white/10 z-10 relative glass-card panel-texture w-full mt-10"
+      class="py-12 px-6 text-center border-t border-white/10 z-10 relative glass-card panel-texture w-full overflow-hidden"
     >
-      <p class="text-sm text-jakkals-orange">
-        &copy; 2026 StilSein Industrial (Pty) Ltd. | Designed in South Africa.
+      <div
+        class="flex flex-wrap justify-center items-center gap-6 text-xs text-stilsein-muted tracking-widest uppercase mb-6"
+      >
+        <a
+          href="index.html"
+          class="hover:text-white transition-colors"
+          data-i18n="nav_back"
+          >Main Site</a
+        >
+        <a
+          href="vennote.html"
+          class="hover:text-jakkals-orange transition-colors"
+          data-i18n="nav_partners"
+          >Partners</a
+        >
+        <a
+          href="privacy.html"
+          class="hover:text-white transition-colors"
+          data-i18n="nav_privacy"
+          >Privacy</a
+        >
+      </div>
+      <p class="text-xs text-jakkals-orange m-0" data-i18n="footer_copy">
+        &copy; 2026 StilSein Industries (Pty) Ltd. | Designed in South Africa.
       </p>
     </footer>
 
-    <!-- TRANSLATION LOGIC SCRIPT -->
+    <!-- ========================================================== -->
+    <!-- SCRIPTS: 10-CHAPTER MANUAL DATA, LIGHTBOX, CANVAS          -->
+    <!-- ========================================================== -->
     <script>
-      // Self-contained dictionary for the Manual to keep i18n.js clean
-      const manualDict = {
+      window.currentLang = localStorage.getItem("stilsein_lang") || "en";
+
+      const uiLabels = {
         en: {
-          nav_back: "Back to Main Site",
-          hero_badge: "OFFICIAL DOCUMENTATION",
+          nav_back: "Main Site",
+          nav_partners: "Partners",
+          nav_privacy: "Privacy",
+          nav_support: "WhatsApp Support",
+          hero_badge: "OFFICIAL PLATFORM DOCUMENTATION",
           hero_title:
             "STILSEIN <span class='text-stilsein-blue'>USER MANUAL</span>",
           hero_desc:
-            "Welcome to the control center. Learn how to navigate your digital farm, interpret advanced telemetry, and configure your Jakkals AI alerts.",
-
-          s1_title: "1. THE OMNI-DASHBOARD",
-          s1_desc:
-            "The Command Central of your farm. A unified 3x3 grid that gives you an instant overview of your entire operation.",
-          s1_h1: "The Global Top-Dock",
-          s1_h2: "Hardware & Software Cards",
-
-          s2_title: "2. THE RADAR MAP",
-          s2_desc:
-            "Your farm rendered in geospatial reality. Tap the Gateway node in the center of the Omni-Dashboard, or the Map icon in the top taskbar to enter.",
-          s2_h1: "Navigation & Tools",
-          s2_h2: "Interacting with Nodes",
-
-          s3_title: "3. LIVE SENSOR STAGES",
-          s3_desc:
-            "The deep-dive view. Accessed by selecting a specific module from the top dropdown, or tapping a specific node on the Map or Omni-Dashboard.",
-          s3_h1: "The Data Cockpit",
-          s3_h2: "Interactive Elements",
-
-          s4_title: "4. FULLSCREEN CHARTS",
-          s4_desc:
-            "The analytical God-Mode. Designed for deep dives into historical telemetry, leak investigations, and PDF report generation.",
-          s4_h1: "Navigation & Analysis",
-          s4_h2: "Action Bar",
-
-          s5_title: "5. SATELLITE FORECASTS",
-          s5_desc:
-            "Hyper-local meteorological predictions based on your farm's exact GPS coordinates. Accessed from the top-left dropdown menu.",
-          s5_h1: "The 7-Day Overview",
-          s5_h2: "The Triple-Chart View",
-
-          s6_title: "6. THE ARCHIVIST",
-          s6_desc:
-            "Your farm's permanent historical ledger. Every critical event is safely locked away here for future reference.",
-          s6_h1: "The Ticker-Tape Inbox",
-          s6_h2: "Data Management",
-
-          s7_title: "7. THE WOLF CAVE",
-          s7_desc:
-            "The IT Dashboard. Manage your app settings, push notifications, and monitor global hardware health.",
-          s7_h1: "Settings & Notifications",
-          s7_h2: "Hardware Diagnostics",
-
-          s8_title: "8. WEEKLY REPORTS",
-          s8_desc:
-            "Every Sunday night at midnight, Jakkals complies your entire week's telemetry into a beautiful PDF and CSV ledger.",
-          s8_h1: "The Sunday Night Protocol",
-          s8_h2: "Manual Exports",
+            "Everything you need to run your farm from the WeerWolf Mobile App and 3-Pane Web Portal. From onboarding with your Farm Key and reading physics gauges to 15x HD chart drill-downs, Jakkals AI, and PDF audits.",
+          search_ph:
+            "Search manual (e.g. snooze, JoJo, 15x zoom, Farm Key, PDF)...",
+          btn_expand_all: "Expand All",
+          btn_collapse_all: "Collapse All",
+          footer_copy:
+            "© 2026 StilSein Industries (Pty) Ltd. | Designed in South Africa.",
+          tap_zoom: "Tap screen to zoom • Swipe if multiple",
         },
         af: {
-          nav_back: "Terug na Hoofblad",
-          hero_badge: "AMPTELIKE DOKUMENTASIE",
+          nav_back: "Hoofblad",
+          nav_partners: "Vennote",
+          nav_privacy: "Privaatheid",
+          nav_support: "WhatsApp Hulp",
+          hero_badge: "AMPTELIKE PLATFORM DOKUMENTASIE",
           hero_title:
             "STILSEIN <span class='text-stilsein-blue'>GEBRUIKERSGIDS</span>",
           hero_desc:
-            "Welkom by die beheersentrum. Leer hoe om jou digitale plaas te navigeer, gevorderde telemetrie te ontsyfer, en Jakkals AI waarskuwings op te stel.",
-
-          s1_title: "1. DIE OMNI-DASHBOARD",
-          s1_desc:
-            "Die sentrale beheerkamer van jou plaas. 'n 3x3 rooster wat jou 'n onmiddellike oorsig van jou hele boerdery gee.",
-          s1_h1: "Die Boonste Beheerpaneel",
-          s1_h2: "Hardeware & Sagteware Kaarte",
-
-          s2_title: "2. DIE RADAR KAART",
-          s2_desc:
-            "Jou plaas in geospatiale realiteit. Tik op die Basisstasie in die middel van die Omni-Dashboard, of die Kaart-ikoon onder in die taakbalk om in te gaan.",
-          s2_h1: "Navigasie & Gereedskap",
-          s2_h2: "Interaksie met Knope (Nodes)",
-
-          s3_title: "3. LEWENDIGE SENSOR SKERME",
-          s3_desc:
-            "Die diep-duik aansig. Maak oop deur 'n spesifieke module bo in die kieslys te kies, of deur op 'n spesifieke node op die Kaart te tik.",
-          s3_h1: "Die Data Kajuit",
-          s3_h2: "Interaktiewe Elemente",
-
-          s4_title: "4. VOLSKERM GRAFIEKE",
-          s4_desc:
-            "Die analitiese God-Mode. Ontwerp vir diep duike in historiese telemetrie, lek-ondersoeke, en PDF verslag generering.",
-          s4_h1: "Navigasie & Analise",
-          s4_h2: "Aksie-Balk",
-
-          s5_title: "5. SATELLIET VOORSPELLINGS",
-          s5_desc:
-            "Hiper-lokale meteorologiese voorspellings gebaseer op jou plaas se presiese GPS-koördinate. Beskikbaar in die boonste kieslys.",
-          s5_h1: "Die 7-Dae Oorsig",
-          s5_h2: "Die Drie-Grafiek Aansig",
-
-          s6_title: "6. DIE ARGIEF",
-          s6_desc:
-            "Jou plaas se permanente historiese grootboek. Elke kritiese gebeurtenis word hier veilig toegesluit vir toekomstige verwysing.",
-          s6_h1: "Die Nuuslyn Inboks",
-          s6_h2: "Data Bestuur",
-
-          s7_title: "7. DIE WOLF-GROT",
-          s7_desc:
-            "Die IT Skerm. Bestuur jou app instellings, waarskuwings, en monitor jou wêreldwye hardeware gesondheid.",
-          s7_h1: "Instellings & Waarskuwings",
-          s7_h2: "Hardeware Diagnostiek",
-
-          s8_title: "8. WEEKLIKSE VERSLAE",
-          s8_desc:
-            "Elke Sondagaand om middernag sit Jakkals jou hele week se telemetrie saam in 'n pragtige PDF en CSV grootboek.",
-          s8_h1: "Die Sondagaand Protokol",
-          s8_h2: "Handmatige Uitvoere",
+            "Alles wat jy nodig het om jou plaas vanaf die WeerWolf App en 3-Paneel Web Portaal te bestuur. Van intekening met jou Plaas Sleutel en lewendige meters tot 15x HD grafiek-boor, Jakkals KI en PDF-verslae.",
+          search_ph:
+            "Soek in gids (bv. sluimer, JoJo, 15x zoem, Plaas Sleutel, PDF)...",
+          btn_expand_all: "Maak Alles Oop",
+          btn_collapse_all: "Vou Alles Toe",
+          footer_copy:
+            "© 2026 StilSein Industries (Pty) Ltd. | Ontwerp in Suid-Afrika.",
+          tap_zoom: "Tik skerm om te vergroot",
         },
       };
 
-      let currentLang = localStorage.getItem("stilsein_lang") || "en";
-      document.getElementById("lang-toggle-text").innerText =
-        currentLang === "en" ? "AF" : "EN";
+      const tickerPhrases = {
+        en: [
+          "WeerWolf App Manual • Complete Field & Office Reference",
+          "Tip: Use the search bar to jump straight to Snooze, JoJo Tanks, 15x Zoom, or PDFs",
+          "Need hands-on help? Message StilSein HQ on WhatsApp: 071 816 2636",
+        ],
+        af: [
+          "WeerWolf App Handleiding • Volledige Veld & Kantoor Gids",
+          "Wenk: Gebruik die soekbalk om dadelik na Sluimer, JoJo Tenks, 15x Zoem of PDFs te spring",
+          "Benodig jy hulp? WhatsApp StilSein HQ direk by 071 816 2636",
+        ],
+      };
 
-      function applyTranslations() {
-        const dict = manualDict[currentLang];
-        document.querySelectorAll("[data-dict]").forEach((el) => {
-          const key = el.getAttribute("data-dict");
-          if (dict[key]) el.innerHTML = dict[key];
+      // 10 COMPLETE CHAPTERS MATCHING THE REAL FLUTTER + EDGE CODEBASE
+      const MANUAL_CHAPTERS = [
+        {
+          id: "ch1",
+          code: "CH-01",
+          accent: "orange",
+          short_en: "1. Login & Builder",
+          short_af: "1. Inteken & Bouer",
+          title_en: "1. LOGIN, FARM KEY & 6-STEP FARM BUILDER",
+          title_af: "1. INTEKEN, PLAAS SLEUTEL & 6-STAP PLAAS-BOUER",
+          intro_en:
+            "Start here whether you already have an active Farm Key or want to design a brand-new farm layout inside the app.",
+          intro_af:
+            "Begin hier of jy reeds 'n aktiewe Plaas Sleutel het en of jy 'n nuwe plaas-uitleg direk in die app wil ontwerp.",
+          blocks_en: [
+            {
+              h: "Connecting with Your Farm Key",
+              items: [
+                "<strong>Unique Farm Key:</strong> Enter the key from your activation email (e.g. <code>RIVERDALE-4910</code>) and tap <strong>CONNECT</strong>. Want to test first? Enter <code>DEMO-1234</code> for a live demonstration farm.",
+                "<strong>One-Time Initial Sync:</strong> On your first login, the app downloads your lifetime telemetry, 7-day forecast, and archive into local Hive storage so future openings are instant, even offline in the bakkie.",
+                "<strong>Pending Farm Tracker:</strong> If you submitted a new blueprint, tap the pulsing <strong>FARM UNDER REVIEW</strong> button to watch your 4-stage progress bar (<code>SUBMITTED → PAID → PROVISIONED → RELEASED</code>), edit your draft, or unlock your Farm Key when activated.",
+              ],
+            },
+            {
+              h: "Building a New Farm (6 Steps)",
+              items: [
+                "<strong>Steps 1 &amp; 2 (Meta &amp; Gateway Pin):</strong> Choose EN/AF, select your Farm Types (Sheep, Cattle, Citrus, Grain, etc.) and required sensors, then drop the Wolf Gateway pin on your farmhouse (satellite/street map or manual Lat/Lon).",
+                "<strong>Step 3 (3 Hardware Paths &amp; Promo Code):</strong> Choose <em>Already Own Hardware</em> (Software only), <em>Ship Parts (DIY)</em>, or <em>Book a Certified Local Installer</em> within 150km, or enter an installer's <strong>Promo Code</strong> (e.g. <code>ALLENSOLAR-VAR</code>) and tap <strong>UNLOCK</strong>.",
+                "<strong>Steps 4 &amp; 5 (Sandbox &amp; Hydraulic Links):</strong> Tap the satellite map to drop Rain, Pipe, or Dam/Tank pins. When using an installer, technical fields (DevEUI, LNS routing, interval) are padlocked as <code>[DELEGATED]</code> so you never have to worry about radio codes (tap any padlock icon to override). Finally, link which Pipe feeds which Dam.",
+              ],
+            },
+          ],
+          blocks_af: [
+            {
+              h: "Koppel met Jou Plaas Sleutel",
+              items: [
+                "<strong>Unieke Plaas Sleutel:</strong> Tik die sleutel vanaf jou aktiverings-epos in (bv. <code>RIVERDALE-4910</code>) en druk <strong>KOPPEL</strong>. Wil jy eers toets? Gebruik <code>DEMO-1234</code> vir 'n lewendige demonstrasieplaas.",
+                "<strong>Eenmalige Opstelling:</strong> Met jou eerste intekening laai die app jou geskiedenis, 7-dae voorspelling en argief na plaaslike geheue af sodat toekomstige oopmaak blitsvinnig is, selfs sonder sein in die veld.",
+                "<strong>Hangende Plaas Opsporing:</strong> Na indiening kan jy op <strong>PLAAS ONDER OORSIG</strong> tik om jou 4-stadium vorderingsbalk (<code>INGEDIEN → BETAAL → OPGESTEL → VRYGESTEL</code>) dop te hou of jou uitleg te wysig.",
+              ],
+            },
+            {
+              h: "Bou 'n Nuwe Plaas (6 Stappe)",
+              items: [
+                "<strong>Stap 1 &amp; 2 (Plaas &amp; Basisstasie):</strong> Kies EN/AF, boerderytipes en benodigde sensors, en plaas die Wolf Basisstasie-pen op jou opstal (satellietkaart of handmatige GPS).",
+                "<strong>Stap 3 (3 Hardeware Opsies &amp; Promokode):</strong> Kies tussen <em>Besit Reeds Hardeware</em>, <em>Stuur Parte (DIY)</em>, of <em>Bespreek 'n Plaaslike Installeerder</em> binne 150km, of tik 'n vennoot se <strong>Promokode</strong> in en druk <strong>KOPPEL</strong>.",
+                "<strong>Stap 4 &amp; 5 (Kaart &amp; Hidrouliese Skakels):</strong> Tik die satellietkaart om Reën, Pyp en Dam/Tenk pennetjies te plaas. Met 'n installeerder is tegniese velde toegesluit as <code>[DELEGATED]</code> (tik enige slot om te wysig). Koppel laastens watter pyp watter dam voer.",
+              ],
+            },
+          ],
+          screens: [
+            {
+              img: "assets/images/mockup_builder_01.png",
+              cap_en: "Satellite Blueprint Sandbox",
+              cap_af: "Satelliet Bloudruk Kaart",
+            },
+            {
+              img: "assets/images/mockup_builder_02.png",
+              cap_en: "Sensor Config & Padlocks",
+              cap_af: "Sensor Opstelling & Slotte",
+            },
+            {
+              img: "assets/images/mockup_upsell_02.png",
+              cap_en: "Local Installer Matchmaker",
+              cap_af: "Plaaslike Installeerders",
+            },
+          ],
+        },
+
+        {
+          id: "ch2",
+          code: "CH-02",
+          accent: "blue",
+          short_en: "2. Omni-Hub & Docks",
+          short_af: "2. Omni-Hub & Panele",
+          title_en: "2. 3x3 OMNI-DASHBOARD, DOCKS & BRIEFING CARDS",
+          title_af: "2. 3x3 OMNI-DASHBOARD, BANE & DAAGLIKSE NOTAS",
+          intro_en:
+            "Your 3x3 Command Hub connects every sensor network around your central Gateway, framed by the Top Command Dock and Bottom Quick-Jump Dock.",
+          intro_af:
+            "Jou 3x3 Kern-Beheer verbind elke sensornetwerk rondom jou sentrale Basisstasie, met die Boonste Beheerpaneel en Onderste Taakbalk.",
+          blocks_en: [
+            {
+              h: "Top Command Dock & Staleness Dot",
+              items: [
+                "<strong>Signal Freshness Dot:</strong> Next to the STILSEIN logo, a live dot + age tag (e.g. <code>2m</code>) shows how recently your phone synced: <span class='text-stilsein-blue font-bold'>Blue</span> (&lt;15 min), <span class='text-yellow-400 font-bold'>Yellow</span> (≥15 min), <span class='text-jakkals-orange font-bold'>Orange</span> (&gt;1 hr), <span class='text-red-400 font-bold'>Red</span> (&gt;24 hrs offline). Tap the dot to view the color key.",
+                "<strong>Module &amp; Timechip Dropdowns:</strong> Switch between <code>CORE HUB</code>, <code>RAINFALL</code>, <code>PIPES</code>, <code>DAMS</code>, <code>FARM RADAR</code>, <code>FORECAST</code>, and <code>FARM ARCHIVE</code>. Switch time windows across <code>LIVE</code>, <code>6H</code>, <code>24H</code>, <code>7D</code>, <code>30D</code>, <code>1Y</code>, <code>TOTAL</code>, or <code>CUSTOM...</code> (calendar bounded to your oldest hardware install date).",
+                "<strong>Snooze &amp; Sync Drawers:</strong> When an 8h Veld Snooze is active, a persistent orange banner appears beneath the dock. Tap it anytime to manage or cancel snooze.",
+              ],
+            },
+            {
+              h: "The 3x3 Omni-Hub & Navigation Gestures",
+              items: [
+                "<strong>9 Live Modules:</strong> Rain Cylinder (top-left), Today's Forecast &amp; Wind (top-center), Soil/GrondWolf upsell (top-right), Pipe Flow (mid-left), Central Gateway Radar (center), Dam Waves (mid-right), Ticker-Tape Archive with orange unread pulse (bottom-left), Jakkals AI (bottom-center), and Wolf Cave Settings (bottom-right).",
+                "<strong>Swipe-to-Hub &amp; Bottom Action Dock:</strong> Inside any module stage, tap the green <strong>Home</strong> button or overscroll-swipe right past the first card to snap back to the Omni-Hub. Pull down anywhere on mobile to force a live refresh.",
+                "<strong>Jakkals Daily Briefing Card:</strong> Directly below the Hub and every sensor card sits Jakkals' midnight briefing summarizing yesterday's activity (or flagging a red/orange <code>&gt;24H SIGNAL LOST / OFFLINE</code> notice if stale). Tap <strong>ELABORATE</strong> to ask Jakkals for deep details.",
+              ],
+            },
+          ],
+          blocks_af: [
+            {
+              h: "Boonste Beheerpaneel & Varsheids-Kol",
+              items: [
+                "<strong>Sein Varsheids-Kol:</strong> Langs die STILSEIN-logo wys 'n kolletjie + ouderdom (bv. <code>2m</code>) hoe vars jou data is: <span class='text-stilsein-blue font-bold'>Blou</span> (&lt;15 min), <span class='text-yellow-400 font-bold'>Geel</span> (≥15 min), <span class='text-jakkals-orange font-bold'>Oranje</span> (&gt;1 uur), <span class='text-red-400 font-bold'>Rooi</span> (&gt;24 uur aflyn). Tik daarop vir die sleutel.",
+                "<strong>Module &amp; Tydperk Kieslyste:</strong> Wissel tussen <code>KERN BEHEER</code>, <code>REËNVAL</code>, <code>PYPE</code>, <code>DAMME</code>, <code>PLAAS RADAR</code>, <code>VOORSPELLING</code> en <code>PLAAS ARGIEF</code>. Kies tydperke van <code>AKTIEF</code>, <code>6U</code>, <code>24U</code>, <code>7D</code>, <code>30D</code>, <code>1J</code>, <code>TOTAAL</code> of <code>AANPAS...</code> (kalender begrens tot jou hardeware se installasiedatum).",
+                "<strong>Sluimer &amp; Sinkronisasie Balke:</strong> Wanneer 'n 8-uur Sluimer aktief is, verskyn 'n oranje banier bo-aan. Tik daarop om alarms weer te bewapen.",
+              ],
+            },
+            {
+              h: "Die 3x3 Omni-Hub & Navigasie",
+              items: [
+                "<strong>9 Lewendige Modules:</strong> Reënsilinder, Voorspelling &amp; Wind, Grondvog-voorskou, Pypvloei, Sentrale Basisstasie-Radar, Damgolwe, Argief met oranje pols vir nuwe gebeure, Jakkals KI en Wolf-Grot Instellings.",
+                "<strong>Vee-Terug na Hub &amp; Onderste Taakbalk:</strong> Binne enige skerm, tik die groen <strong>Tuis</strong>-ikoon of gly regs verby die eerste kaart om terug te keer na die Hub. Trek die skerm af om vars data te trek.",
+                "<strong>Jakkals Daaglikse Kortverslag:</strong> Onder elke skerm verskyn Jakkals se middernag-opsomming van gister se aktiwiteit (of 'n <code>&gt;24U SEIN VERLOOR / AFLYN</code> waarskuwing). Tik <strong>BREI UIT</strong> om dieper detail te vra.",
+              ],
+            },
+          ],
+          screens: [
+            {
+              img: "assets/images/mockup_gateway_01.png",
+              cap_en: "3x3 Omni-Dashboard Hub",
+              cap_af: "3x3 Omni-Dashboard Kern",
+            },
+            {
+              img: "assets/images/mockup_gateway_02.png",
+              cap_en: "Module Expansion & Briefings",
+              cap_af: "Module Uitbreiding & Notas",
+            },
+          ],
+        },
+
+        {
+          id: "ch3",
+          code: "CH-03",
+          accent: "blue",
+          short_en: "3. WeerWolf Rain",
+          short_af: "3. WeerWolf Reën",
+          title_en: "3. WEERWOLF RAINFALL & LIVE STORM ENGINE",
+          title_af: "3. WEERWOLF REËNVAL & LEWENDIGE STORM ENJIN",
+          intro_en:
+            "Track every millimeter per camp with animated glass rain cylinders, dynamic flood thresholds, and automatic storm isolation.",
+          intro_af:
+            "Volg elke millimeter per kamp met geanimeerde reënsilinders, dinamiese vloedlyne en outomatiese storm-isolasie.",
+          blocks_en: [
+            {
+              h: "Overview, Average & Camp Cylinders",
+              items: [
+                "<strong>3-Tier Navigation:</strong> Swipe left/right between <strong>Overview</strong> (3-column comparative mini-cards + bar chart + <code>+ ADD NODE</code>), <strong>Average (Gemiddeld)</strong> across all gauges, and each physical camp rain gauge.",
+                "<strong>Dry-Spell Mode vs. Live Storm Mode:</strong> In <code>LIVE</code> when no rain is falling, each cylinder automatically shows <strong>Time Since Last Rain</strong> (e.g. <code>4 DAYS</code> or <code>NO RECENT RAIN</code>) plus an <strong>OPEN ARCHIVE</strong> button. The moment a bucket tips, the cylinder activates falling raindrops, sloshing waves, intensity tags (<code>DRIZZLE</code>, <code>SHOWERS</code>, <code>STORM</code>, <code>FLOOD</code>), and a short-term orange prediction bar.",
+                "<strong>60-Minute Storm Guillotine:</strong> Once 60 minutes pass after the final raindrop, the active storm automatically closes, saves cleanly into the <strong>Rain Archive</strong>, and resets the live cylinder for the next storm.",
+              ],
+            },
+            {
+              h: "Thresholds, Timers & Sparklines",
+              items: [
+                "<strong>Dynamic Flood Line:</strong> The red line near 85% cylinder height scales mathematically with your chosen time window (e.g. 6H vs 30D vs 1Y) relative to your farm's regional Flood Anchor.",
+                "<strong>Next Signal Countdown (Top-Right):</strong> Counts down to the node's next expected LoRaWAN packet, shifting to pulsing <code>LISTENING...</code> and amber <code>LATE</code> if RF interference occurs.",
+                "<strong>Tap Bottom Sparkline:</strong> Opens fullscreen cumulative line + interval bar charts.",
+              ],
+            },
+          ],
+          blocks_af: [
+            {
+              h: "Oorsig, Gemiddeld & Kamp-Silinders",
+              items: [
+                "<strong>3-Vlak Navigasie:</strong> Vee links/regs tussen <strong>Oorsig</strong> (3-kolom mini-kaarte + staafgrafiek + <code>+ VOEG BY</code>), <strong>Gemiddeld</strong> oor alle meters, en elke fisiese kamp-reënmeter.",
+                "<strong>Droogte-Modus vs. Lewendige Storm:</strong> In <code>AKTIEF</code> tydens droë weer wys die silinder presies hoe lank dit laas gereën het (bv. <code>4 DAE</code>) met 'n <strong>OOP ARGIEF</strong> knoppie. Sodra die eerste druppels val, begin die silinder reën met golf-fisika, storm-erns (<code>MOTREËN</code>, <code>BUIE</code>, <code>STORM</code>, <code>VLOED</code>) en 'n oranje voorspellingsstaaf.",
+                "<strong>60-Minute Storm Afsluiting:</strong> Sodra dit vir 60 minute ophou reën, sluit die storm outomaties, word permanent in die <strong>Reën Argief</strong> gestoor en stel die meter terug.",
+              ],
+            },
+            {
+              h: "Drempels, Aftellers & Grafieke",
+              items: [
+                "<strong>Dinamiese Vloedlyn:</strong> Die rooi lyn by 85% hoogte skaal outomaties volgens die gekose tydvenster (6U teenoor 30D of 1J) en jou streek se vloed-anker.",
+                "<strong>Volgende Sein Afteller (Regs Bo):</strong> Tel af na die sensor se volgende radiopakkie en verander na polsende <code>LUISTER...</code> en amber <code>LAAT</code> tydens steuring.",
+                "<strong>Tik Onderste Grafiek:</strong> Maak die volskerm kumulatiewe lyn + interval staafgrafiek oop.",
+              ],
+            },
+          ],
+          screens: [
+            {
+              img: "assets/images/mockup_rain_gauge_01.png",
+              cap_en: "Live Storm Cylinder",
+              cap_af: "Lewendige Storm Silinder",
+            },
+            {
+              img: "assets/images/mockup_rain_net_01.png",
+              cap_en: "Rain Network Overview",
+              cap_af: "Reën Netwerk Oorsig",
+            },
+            {
+              img: "assets/images/mockup_rain_net_02.png",
+              cap_en: "Multi-Camp Rain Chart",
+              cap_af: "Multi-Kamp Reën Grafiek",
+            },
+            {
+              img: "assets/images/mockup_rain_gauge_02.png",
+              cap_en: "HD Cumulative + Bar Chart",
+              cap_af: "HD Reën Geskiedenis",
+            },
+          ],
+        },
+
+        {
+          id: "ch4",
+          code: "CH-04",
+          accent: "cyan",
+          short_en: "4. DrukWolf Pipes",
+          short_af: "4. DrukWolf Pype",
+          title_en: "4. DRUKWOLF PIPE PRESSURE & PUMP MONITORING",
+          title_af: "4. DRUKWOLF PYPDRUK & POMP MONITERING",
+          intro_en:
+            "Monitor live Bar pressure, catch burst pipes or blocked valves instantly, and track exact pump ON/OFF duty cycles.",
+          intro_af:
+            "Monitor lewendige Bar-druk, vang pypbreuke of verstopte kleppe onmiddellik vas en volg presiese pomp AAN/AF looptye.",
+          blocks_en: [
+            {
+              h: "Reading the Pipe Cockpit",
+              items: [
+                "<strong>Overview &amp; System Load (%):</strong> Overview shows active pumps (e.g. <code>2/3 PUMPS ON</code>) and comparative Bar levels. Swiping right opens <strong>Average (System Load %)</strong> across active lines, followed by each individual pipeline sensor.",
+                "<strong>Flanged Pipe Physics &amp; Red Notches:</strong> Flowing liquid particles speed up with higher Bar pressure. Two bold <strong>Red Warning Notches</strong> mark your calibrated <code>Min Bar (Leak)</code> and <code>Max Bar (Overpressure)</code> boundaries.",
+                "<strong>Active-Only Historical Averaging:</strong> On historical windows (24H, 7D, 30D), pumps naturally switch off, so StilSein averages pressure strictly during periods when the pump was running (<code>≥ 0.2 Bar</code>) rather than watering down your reading with zeros.",
+              ],
+            },
+            {
+              h: "Hazard Detection & Gantt Strip",
+              items: [
+                "<strong>4 Clear Pipe States:</strong> <code>SYSTEM OFF</code> (&lt;0.2 Bar), <code>● STABLE</code> (Cyan inside Min–Max), <code>⚠️ PRESSURE LOSS</code> (drops below Min Bar while pump runs), and <code>🔴 OVERPRESSURE</code> (spikes above Max Bar).",
+                "<strong>3-Pulse Recovery &amp; Red Sparkline Segments:</strong> Brief pressure dips or high spikes automatically highlight in bold red on the chart. Once pressure returns to normal for 3 consecutive pulses (or pump turns off), the incident is logged cleanly to the Archive.",
+              ],
+            },
+          ],
+          blocks_af: [
+            {
+              h: "Lees die Pypdruk Kajuit",
+              items: [
+                "<strong>Oorsig &amp; Stelsellading (%):</strong> Oorsig wys aktiewe pompe (bv. <code>2/3 POMPE AAN</code>) en vergelykende Bar-vlakke. Die tweede kaart wys <strong>Gemiddeld (Stelsellading %)</strong>, gevolg deur elke individuele pypsensor.",
+                "<strong>Geflensde Pyp-Fisika &amp; Rooi Grense:</strong> Vloeiende deeltjies versnel namate Bar-druk styg. Twee rooi lyne dui jou <code>Min Bar (Lek)</code> en <code>Maks Bar (Oordruk)</code> grense aan.",
+                "<strong>Slegs-Aktiewe Gemiddeld:</strong> Op historiese tydperke (24U, 7D, 30D) bereken StilSein die gemiddelde druk slegs wanneer die pomp geloop het (<code>≥ 0.2 Bar</code>) sodat af-tye nie jou druklesing verdun nie.",
+              ],
+            },
+            {
+              h: "Gevaar Opsporing & Gantt Balk",
+              items: [
+                "<strong>4 Pyp Statusse:</strong> <code>STELSEL AF</code> (&lt;0.2 Bar), <code>● STABIEL</code> (Siaan binne perke), <code>⚠️ PYP LEK</code> (val onder Min Bar terwyl pomp loop), en <code>🔴 OORDRUK GEVAAR</code> (spiek bo Maks Bar).",
+                "<strong>Rooi Insident Segmente:</strong> Drukvalle en spieke word in rooi op die grafiek uitgelig. Na 3 stabiele seine (of sodra die pomp afskakel) word die insident outomaties na die Argief gestoor.",
+              ],
+            },
+          ],
+          screens: [
+            {
+              img: "assets/images/mockup_pipe_ind_01.png",
+              cap_en: "Pipe Pressure Cockpit",
+              cap_af: "Pypdruk Kajuit",
+            },
+            {
+              img: "assets/images/mockup_pipe_net_01.png",
+              cap_en: "Pipe Network Overview",
+              cap_af: "Pyp Netwerk Oorsig",
+            },
+            {
+              img: "assets/images/mockup_pipe_ind_02.png",
+              cap_en: "SCADA Envelope + Gantt",
+              cap_af: "SCADA + Gantt Looptyd",
+            },
+            {
+              img: "assets/images/mockup_pipe_net_02.png",
+              cap_en: "Multi-Pipe SCADA Overlay",
+              cap_af: "Multi-Pyp Vergelyking",
+            },
+          ],
+        },
+
+        {
+          id: "ch5",
+          code: "CH-05",
+          accent: "brown",
+          short_en: "5. WaterWolf Dams",
+          short_af: "5. WaterWolf Damme",
+          title_en: "5. WATERWOLF RESERVOIRS, JOJO TANKS & RUNWAY",
+          title_af: "5. WATERWOLF DAMME, JOJO TENKS & WATER-AANLOOPBAAN",
+          intro_en:
+            "Convert ultrasonic depth readings into exact percentages, Kiloliters (kL), net changes, and remaining days of water.",
+          intro_af:
+            "Omskep ultrasoniese dieptelesings in presiese persentasies, Kiloliters (kL), netto veranderinge en oorblywende dae water.",
+          blocks_en: [
+            {
+              h: "Reservoir Visualization & Deltas",
+              items: [
+                "<strong>Color-Shifting Water &amp; Overflow Cascade:</strong> Water smoothly shifts from Deep Blue (&gt;60%) → Cyan (30–60%) → Orange (10–30%) → Silt Brown (≤10%). At 100%, animated spillway droplets spill over the dam walls.",
+                "<strong>Live Volume vs. Historical Delta:</strong> On <code>LIVE</code> and <code>TOTAL</code>, the big readout shows current <code>%</code> and exact volume in <code>kL</code>. On <code>6H / 24H / 7D / 30D / 1Y</code>, it switches to the net gain/loss over that period (e.g. <span class='text-emerald-400 font-bold'>9.2% ▲</span> or <span class='text-red-400 font-bold'>4.5% ▼</span>).",
+                "<strong>Local Storm Awareness:</strong> When a linked rain gauge (or gauge within 10km) is actively raining, raindrops fall into that dam's graphic.",
+              ],
+            },
+            {
+              h: "Open Dams vs. Closed Tanks & Runway",
+              items: [
+                "<strong>Water Runway (Below Squircle):</strong> Calculates how many days of water remain at the current depletion rate (<code>RUNWAY: X DAYS</code>, <code>&gt;3 MONTHS</code>, <code>&gt;6 MONTHS</code>, or <code>STABLE/FILLING</code>).",
+                "<strong>Wind-Damped Open Dams vs. Sealed JoJo Tanks:</strong> For <strong>Open Earthen Dams</strong>, StilSein smooths head/tail wave chop caused by afternoon winds so your runway stays realistic. For <strong>Closed Tanks (JoJo/Steel/Concrete)</strong>, zero damping is applied and Jakkals never attributes drops to evaporation.",
+                "<strong>Rapid Drain &amp; Critical Alerts:</strong> Losing ≥10%/hour across consecutive readings triggers a <code>RAPID DRAIN!</code> push notification and logs a <code>dam_incident</code>.",
+              ],
+            },
+          ],
+          blocks_af: [
+            {
+              h: "Reservoir Visualisering & Deltas",
+              items: [
+                "<strong>Kleur-Verskuiwende Water &amp; Oorloop:</strong> Water skuif van Diepblou (&gt;60%) → Siaan (30–60%) → Oranje (10–30%) → Slikbruin (≤10%). Teen 100% loop waterdruppels oor die wal.",
+                "<strong>Lewendige Volume vs. Historiese Delta:</strong> Op <code>AKTIEF</code> en <code>TOTAAL</code> wys die groot syfer huidige <code>%</code> en presiese <code>kL</code>. Op <code>6U / 24U / 7D / 30D / 1J</code> wys dit die netto verandering (bv. <span class='text-emerald-400 font-bold'>9.2% ▲</span> of <span class='text-red-400 font-bold'>4.5% ▼</span>).",
+                "<strong>Plaaslike Reën-Bewustheid:</strong> Wanneer 'n gekoppelde reënmeter (of een binne 10km) reën, val reëndruppels ook op daardie dam se skerm.",
+              ],
+            },
+            {
+              h: "Oop Damme vs. Toe Tenks & Aanloopbaan",
+              items: [
+                "<strong>Water-Aanloopbaan (Onder die Kaart):</strong> Bereken hoeveel dae water oor is teen jou huidige verbruikstempo (<code>WATER OOR: X DAE</code>, <code>&gt;3/6 MAANDE</code> of <code>STABIEEL</code>).",
+                "<strong>Wind-Gedempte Oop Damme vs. Toe JoJo Tenks:</strong> Vir <strong>Oop Gronddamme</strong> filtreer StilSein wind-golfies uit die aanloopbaan-berekening. Vir <strong>Toe Tenks (JoJo/Sement)</strong> is daar geen demping nie en Jakkals sal nooit verdamping noem nie.",
+                "<strong>Vinnige Leegloop Alarms:</strong> 'n Daling van ≥10%/uur oor opeenvolgende lesings stuur 'n <code>LEKKASIE!</code> alarm en skep 'n argief-insedent.",
+              ],
+            },
+          ],
+          screens: [
+            {
+              img: "assets/images/mockup_dam_ind_01.png",
+              cap_en: "Dam Water & Runway Cockpit",
+              cap_af: "Damwater & Aanloopbaan",
+            },
+            {
+              img: "assets/images/mockup_dam_net_01.png",
+              cap_en: "Reservoir Network Overview",
+              cap_af: "Dam Netwerk Oorsig",
+            },
+            {
+              img: "assets/images/mockup_dam_ind_02.png",
+              cap_en: "Dam Capacity Curve & Gantt",
+              cap_af: "Dam Kapasiteit & Gantt",
+            },
+            {
+              img: "assets/images/mockup_dam_net_02.png",
+              cap_en: "Multi-Dam Delta Comparison",
+              cap_af: "Multi-Dam Delta Vergelyking",
+            },
+          ],
+        },
+
+        {
+          id: "ch6",
+          code: "CH-06",
+          accent: "emerald",
+          short_en: "6. Radar Map",
+          short_af: "6. Radar Kaart",
+          title_en: "6. SATELLITE FARM RADAR & LIVE GPS POSITION",
+          title_af: "6. SATELLIET PLAAS RADAR & LEWENDIGE GPS POSISIE",
+          intro_en:
+            "Inspect your entire farm on high-resolution Esri satellite imagery. Tap any sensor badge for a floating gauge overlay or track your own bakkie distance from the Gateway.",
+          intro_af:
+            "Bekyk jou hele plaas op hoë-resolusie Esri satellietbeelde. Tik enige sensor vir 'n swewende meter of meet jou eie afstand vanaf die Basisstasie.",
+          blocks_en: [
+            {
+              h: "Map Layers & Live Badges",
+              items: [
+                "<strong>Gateway &amp; Range Rings:</strong> Your farmhouse Wolf Gateway anchors concentric 5km, 10km, and 15km LoRaWAN range rings, connected to every camp sensor by dashed RF lines with exact distance tags (<code>km</code>).",
+                "<strong>Rain Bubbles &amp; Floating Overlay:</strong> Active rain gauges expand translucent storm rings and animate falling drops over the badge. Tapping any node blurs the map and drops that sensor's interactive Squircle right on top (swipe down to dismiss).",
+              ],
+            },
+            {
+              h: "Bottom Map Settings & Privacy-Safe GPS",
+              items: [
+                "<strong>Filter Controls:</strong> Open <strong>MAP SETTINGS</strong> in the bottom dock to toggle <code>RAIN</code>, <code>PIPE</code>, or <code>DAM</code> markers, hide/show the top-right <code>LEGEND</code>, or tap the crosshair icon to re-center the entire farm.",
+                "<strong>Foreground-Only GPS Position:</strong> Toggle <code>POSITION</code> to show your blue GPS dot and exact <code>km</code> distance from the Gateway. StilSein only checks your GPS while the app is open on screen (never in the background).",
+              ],
+            },
+          ],
+          blocks_af: [
+            {
+              h: "Kaart Lae & Lewendige Kentekens",
+              items: [
+                "<strong>Basisstasie &amp; Reikwydte-Ringe:</strong> Jou Wolf Basisstasie wys 5km, 10km en 15km LoRaWAN-ringe, gekoppel aan elke kamp-sensor met gestippelde RF-lyne en afstand-etikette (<code>km</code>).",
+                "<strong>Reën-Borrels &amp; Swewende Kajuit:</strong> Aktiewe reënmeters wys storm-borrels en vallende druppels. Tik enige sensor om die kaart te vervaag en daardie sensor se lewendige meter bo-op oop te maak (vee af om toe te maak).",
+              ],
+            },
+            {
+              h: "Kaart Instellings & Privaatheids-Veilige GPS",
+              items: [
+                "<strong>Filter Beheer:</strong> Maak <strong>KAART INSTELLINGS</strong> in die onderste balk oop om <code>RAIN</code>, <code>PIPE</code> of <code>DAM</code> merkers aan/af te skakel, die <code>LEGENDE</code> te versteek, of die fokuspunt te sentreer.",
+                "<strong>Slegs-Voorgrond GPS Posisie:</strong> Skakel <code>POSISIE</code> aan om jou blou GPS-kol en presiese afstand (<code>km</code>) vanaf die Basisstasie te sien. StilSein lees GPS slegs terwyl die app oop is.",
+              ],
+            },
+          ],
+          screens: [
+            {
+              img: "assets/images/mockup_map_01.png",
+              cap_en: "Live Satellite Radar",
+              cap_af: "Lewendige Plaas Radar",
+            },
+            {
+              img: "assets/images/mockup_map_02.png",
+              cap_en: "Floating Node Stage Overlay",
+              cap_af: "Swewende Sensor Kajuit",
+            },
+            {
+              img: "assets/images/mockup_map_03.png",
+              cap_en: "Filter Layers & GPS Dot",
+              cap_af: "Filter Lae & GPS Posisie",
+            },
+            {
+              img: "assets/images/mockup_map_04.png",
+              cap_en: "Direct Chart Launch",
+              cap_af: "Direkte Grafiek Opening",
+            },
+          ],
+        },
+
+        {
+          id: "ch7",
+          code: "CH-07",
+          accent: "orange",
+          short_en: "7. Forecast",
+          short_af: "7. Voorspelling",
+          title_en: "7. 7-DAY SATELLITE FORECAST & WIND COMPASS",
+          title_af: "7. 7-DAE SATELLIET VOORSPELLING & WINDKOMPAS",
+          intro_en:
+            "Hyper-local Open-Meteo satellite forecasts pinned to your farm's exact coordinates, with thermal gradients, hourly rain bars, and compass wind bearings.",
+          intro_af:
+            "Hiper-plaaslike Open-Meteo satellietvoorspellings presies op jou plaas se koördinate, met hitte-gradiënte, uurlikse reënstawe en windrigting-kompasse.",
+          blocks_en: [
+            {
+              h: "7-Day Overview & Daily Detail Cards",
+              items: [
+                "<strong>Overview Squircle:</strong> Highlights every day with expected precipitation in glowing StilSein Blue borders. Tap any day tile (or use the bottom quick-chips) to jump directly to that day.",
+                "<strong>Daily Detail Card &amp; Jakkals Briefing:</strong> Shows Dominant Wind Speed + Compass Bearing (e.g. <code>24km/h ↘️ SE</code>) alongside mini sparklines for Temperature, Rain, and Wind, paired with a dedicated Jakkals daily briefing below the card.",
+              ],
+            },
+            {
+              h: "Fullscreen Triple-Chart Suite",
+              items: [
+                "<strong>1. Thermal Curve (Top):</strong> Color-coded continuously from Cold (Blue &lt;15°C) → Pleasant (Green) → Warm (Orange) → Farm Heatwave Anchor (Red).",
+                "<strong>2. Hourly Rain (Middle) &amp; Wind (Bottom):</strong> Pinch-zoom up to <strong>15x</strong>, double-tap any of the 3 charts to expand it full-height (tap <code>EXIT FULL</code> to return), and scrub any hour to read exact <code>°C</code>, <code>mm</code>, <code>km/h</code>, and compass degrees (e.g. <code>135° SE</code>).",
+              ],
+            },
+          ],
+          blocks_af: [
+            {
+              h: "7-Dae Oorsig & Daaglikse Kaarte",
+              items: [
+                "<strong>Oorsig Kaart:</strong> Lig elke dag met verwagte reënval uit met 'n gloeiende StilSein Blou rand. Tik op enige dag (of gebruik die onderste knoppies) om na daardie dag te spring.",
+                "<strong>Dag Detail &amp; Jakkals Kortverslag:</strong> Wys Dominante Windspoed + Kompasrigting (bv. <code>24km/h ↘️ SO</code>) saam met mini-grafieke vir Temperatuur, Reën en Wind, plus 'n unieke Jakkals-opsomming onder die kaart.",
+              ],
+            },
+            {
+              h: "Volskerm Drie-Grafiek Aansig",
+              items: [
+                "<strong>1. Termiese Kromme (Bo):</strong> Kleurgegradeer vanaf Koud (Blou &lt;15°C) → Ideaal (Groen) → Warm (Oranje) → Hittegolf Drempel (Rooi).",
+                "<strong>2. Uurlikse Reën (Middel) &amp; Wind (Onder):</strong> Knyp-zoem tot <strong>15x</strong>, dubbel-tik enige van die 3 grafieke om dit volhoogte te vergroot (tik <code>SLUIT</code> om terug te keer), en vryf oor enige uur vir presiese <code>°C</code>, <code>mm</code>, <code>km/h</code> en kompasgrade.",
+              ],
+            },
+          ],
+          screens: [
+            {
+              img: "assets/images/mockup_forecast_01.png",
+              cap_en: "7-Day Outlook Grid",
+              cap_af: "7-Dae Oorsig Rooster",
+            },
+            {
+              img: "assets/images/mockup_forecast_02.png",
+              cap_en: "Daily Rain, Temp & Wind",
+              cap_af: "Daaglikse Reën, Temp & Wind",
+            },
+            {
+              img: "assets/images/mockup_forecast_03.png",
+              cap_en: "Triple-Chart Thermal View",
+              cap_af: "Drie-Grafiek Termiese Aansig",
+            },
+            {
+              img: "assets/images/mockup_forecast_04.png",
+              cap_en: "Hourly Compass Wind Scrub",
+              cap_af: "Uurlikse Windkompas Lesing",
+            },
+          ],
+        },
+
+        {
+          id: "ch8",
+          code: "CH-08",
+          accent: "blue",
+          short_en: "8. HD Charts & Zoom",
+          short_af: "8. HD Grafieke & Zoem",
+          title_en: "8. HD CHARTS, 15X PINCH-ZOOM, MINIMAP & GANTT",
+          title_af: "8. HD GRAFIEKE, 15X INZOEM, MINIKAART & GANTT",
+          intro_en:
+            "Every sensor's analytical workstation. Master touch scrubbing, 5-minute HD drill-down, minimap navigation, and the TopBar ActionDrawer.",
+          intro_af:
+            "Elke sensor se analitiese werkstasie. Bemeester aanraak-lesings, 5-minute HD-inboor, minikaart-navigasie en die Aksie-Laai.",
+          blocks_en: [
+            {
+              h: "Touch Gestures & Dynamic HD Drill-Down",
+              items: [
+                "<strong>1-Finger Scrub:</strong> Slide across any line, bar, or Gantt strip to inspect exact SAST date/time, values, <strong>Min–Max Envelope Spread</strong>, pump duty <code>% ON</code>, and incident warnings.",
+                "<strong>2-Finger Pinch &amp; Pan (1.0x–15.0x):</strong> Pinch anywhere to zoom freely while the sticky left Y-axis stays locked in place.",
+                "<strong>Double-Tap Isolation &amp; HD Resolution:</strong> On dual charts, Double-Tap #1 expands that chart full-height. Double-Tap #2 and #3 drill into <strong>Dynamic High-Definition</strong> (down to <strong>5-minute resolution</strong>) centered on the exact timestamp you tapped! Use the TopDock orange <strong>HD Minimap</strong> (tap or drag to jump), <code>&lt; / &gt;</code> edge arrows to step adjacent slices, <code>[←]</code> to step up one level, or <code>RESET</code>.",
+              ],
+            },
+            {
+              h: "Flush TopBar ActionDrawer (▼) & Visual Color Key",
+              items: [
+                "<strong>TopBar Controls (▼):</strong> Tap the <code>▼</code> chevron in the top-right to reveal instant Timechip switching, <code>[-] / [+]</code> precision zoom buttons, <code>BAR/%</code> (Pipes) or <code>kL/%</code> (Dams) unit toggle, Jakkals AI shortcut, and Smart PDF/CSV Export (if HD-zoomed, Export auto-selects your exact zoomed timestamps!). Tap <code>?</code> anytime inside the chart for the built-in guide.",
+                "<strong>Visual Color Key:</strong> Solid line + White Beacon Dot = verified telemetry; Shaded Cyan/Blue Band = Min–Max bucket spread; Bold Red Segments = Leaks, Overpressure, Rapid Drain, Overflow, or Signal Loss; Dashed Orange <code>PROJ</code> = short-term trend projection giving the latest reading clear tapping room.",
+              ],
+            },
+          ],
+          blocks_af: [
+            {
+              h: "Aanraak-Gebare & Dinamiese HD Resolusie",
+              items: [
+                "<strong>1-Vinger Vryf:</strong> Gly oor enige lyn, staaf of Gantt-balk om presiese SAST datum/tyd, lesings, <strong>Min–Maks Variasie Band</strong>, pomp <code>% AAN</code> en gevare te inspekteer.",
+                "<strong>2-Vinger Knyp &amp; Skuif (1.0x–15.0x):</strong> Knyp om vrylik in te zoem terwyl die linker Y-as vasgespyker bly.",
+                "<strong>Dubbel-Tik Vergroot &amp; HD Boor:</strong> Op dubbel-grafieke maak Dubbel-Tik #1 daardie grafiek volhoogte. Dubbel-Tik #2 en #3 boor in na <strong>Hoë-Resolusie</strong> (tot op <strong>5-minute detail</strong>) presies waar jy getik het! Gebruik die oranje <strong>HD Minikaart</strong> (tik of sleep), <code>&lt; / &gt;</code> pyle vir aangrensende blokke, <code>[←]</code> om een vlak op te gaan, of <code>HERSTEL</code>.",
+              ],
+            },
+            {
+              h: "Boonste Aksie-Laai (▼) & Visuele Sleutel",
+              items: [
+                "<strong>Aksie-Laai (▼):</strong> Tik <code>▼</code> regs bo om tydperke te wissel, <code>[-] / [+]</code> stapsgewys te zoem, <code>BAR/%</code> (Pype) of <code>kL/%</code> (Damme) te skakel, Jakkals AI te vra, of PDF/CSV uit te voer (as jy HD-ingezoom is, kies Uitvoer outomaties jou presiese snit!). Tik <code>?</code> enige tyd vir hulp.",
+                "<strong>Kleur-Sleutel:</strong> Soliede Lyn + Wit Kol = geverifieerde lesing; Skadu-Band = Min–Maks variasie; Rooi Segmente = Lek, Oordruk, Vinnige Leegloop, Oorloop of Seinverlies; Gestippelde Oranje <code>PROJ</code> = korttermyn projeksie.",
+              ],
+            },
+          ],
+          screens: [
+            {
+              img: "assets/images/mockup_archive_03.png",
+              cap_en: "15x Zoom & HD Minimap",
+              cap_af: "15x Inzoem & HD Minikaart",
+            },
+            {
+              img: "assets/images/mockup_pipe_ind_02.png",
+              cap_en: "Pipe Envelope + Gantt",
+              cap_af: "Pyp-Band + Gantt",
+            },
+            {
+              img: "assets/images/mockup_dam_ind_02.png",
+              cap_en: "Dam kL / % + Gantt",
+              cap_af: "Dam kL / % + Gantt",
+            },
+            {
+              img: "assets/images/mockup_rain_gauge_02.png",
+              cap_en: "Rain Projection & Bars",
+              cap_af: "Reën Projeksie & Stawe",
+            },
+          ],
+        },
+
+        {
+          id: "ch9",
+          code: "CH-09",
+          accent: "orange",
+          short_en: "9. Jakkals & Archive",
+          short_af: "9. Jakkals & Argief",
+          title_en: "9. JAKKALS AI ADVISOR & 5-YEAR EVENT ARCHIVE",
+          title_af: "9. JAKKALS KI ADVISEUR & 5-JAAR GEBEURE ARGIEF",
+          intro_en:
+            "Turn field telemetry into clear decisions with dual-mode Jakkals AI, and explore every historical storm, leak, heatwave, and system log in the Archive.",
+          intro_af:
+            "Verander telemetrie in duidelike besluite met tweemodus Jakkals KI, en verken elke storm, lek, hittegolf en stelsellog in die Argief.",
+          blocks_en: [
+            {
+              h: "Jakkals AI: Ontleed (Analyze) & Gesels (Chat)",
+              items: [
+                "<strong>Strategic vs. Plaas-Slim Personality:</strong> Toggle at the top of the Jakkals panel between <strong>Strategic</strong> (crisp, executive agronomic advisor) and <strong>Plaas-Slim</strong> (warm Karoo farm companion). Your choice is saved automatically.",
+                "<strong>Daily Signal Quota (Resets 00:00 SAST):</strong> The energy bar tracks your interactive AI prompts (default 15/day + 4s cooldown). Automated Midnight Briefings and Sunday Reports do <em>not</em> use your daily quota.",
+                "<strong>Analyze Shortcuts &amp; Persistent Chat:</strong> In <strong>ANALYZE</strong>, select any sensor, network, forecast day, or Yesterday's Summary. Jakkals even renders a 1-tap <code>GO TO [NODE]</code> shortcut button straight to flagged sensors! In <strong>CHAT</strong>, ask follow-up questions with edit/retry controls and full episodic memory of past incidents.",
+              ],
+            },
+            {
+              h: "The 5-Year Digital Archive (Argief)",
+              items: [
+                "<strong>8 Event Categories:</strong> Swipe across <code>ALL</code>, <code>RAIN 💧</code>, <code>HEAT 🔥</code>, <code>WIND 🌪️</code>, <code>PIPES 🚰</code>, <code>DAMS 🌊</code>, <code>SYSTEM ⚙️</code> (Genesis, Hardware Activations, Weekly Reports), and <code>DIAGNOSTICS 📶</code> (RSSI &gt;4h dropouts &amp; Battery &lt;20% cliffs).",
+                "<strong>Unread Badges &amp; Voice Bubbles:</strong> Unviewed events glow in pulsing Jakkals Orange with a <code>NEW</code> tag. Tap any card to view its isolated timeline chart, tap the download icon for a single-event PDF/CSV, or scroll to the bottom and tap <code>LOAD MORE</code> for older weeks.",
+              ],
+            },
+          ],
+          blocks_af: [
+            {
+              h: "Jakkals KI: Ontleed & Gesels",
+              items: [
+                "<strong>Strategies vs. Plaas-Slim Modus:</strong> Wissel bo in die Jakkals-paneel tussen <strong>Strategies</strong> (bondige, professionele landbou-adviseur) en <strong>Plaas-Slim</strong> (warm Karoo plaas-metgesel). Jou keuse word gestoor.",
+                "<strong>Daaglikse Sein Kwota (Herstel 00:00 SAST):</strong> Die energie-balk wys jou interaktiewe navrae (standaard 15/dag + 4s afkoel). Outomatiese Middernag- en Sondag-verslae gebruik <em>nie</em> jou kwota nie.",
+                "<strong>Direkte Skakels &amp; Kletsgeheue:</strong> In <strong>ONTLEED</strong> kan Jakkals 'n direkte <code>GAAN NA [SENSOR]</code> knoppie wys na probleme. In <strong>GESELS</strong> kan jy vrae vra met wysig/probeer-weer knoppies en geheue van vorige insidente.",
+              ],
+            },
+            {
+              h: "Die 5-Jaar Digitale Argief",
+              items: [
+                "<strong>8 Gebeure Kategorieë:</strong> Vee tussen <code>ALLES</code>, <code>REËN 💧</code>, <code>HITTE 🔥</code>, <code>WIND 🌪️</code>, <code>PYPE 🚰</code>, <code>DAMME 🌊</code>, <code>STELSEL ⚙️</code> (Inisialisering, Aktiverings, Weeklikse Verslae) en <code>DIAGNOSTIEK 📶</code> (Seinverlies &gt;4u &amp; Battery &lt;20%).",
+                "<strong>Ongeleesde Kentekens &amp; Aflaai:</strong> Nuwe gebeure pols oranje met 'n <code>NUUT</code> kenteken. Tik enige kaart vir sy geïsoleerde grafiek, tik die aflaai-ikoon vir 'n enkel-insedent PDF/CSV, of tik <code>LAAI MEER</code> onderaan vir ouer weke.",
+              ],
+            },
+          ],
+          screens: [
+            {
+              img: "assets/images/mockup_jakkals_01.png",
+              cap_en: "Jakkals Analyze Selector",
+              cap_af: "Jakkals Ontleed Kieser",
+            },
+            {
+              img: "assets/images/mockup_jakkals_02.png",
+              cap_en: "Color-Coded Insights & Shortcuts",
+              cap_af: "Insigte & Direkte Skakels",
+            },
+            {
+              img: "assets/images/mockup_jakkals_03.png",
+              cap_en: "Conversational Farm Chat",
+              cap_af: "Plaas Klets-Assistent",
+            },
+            {
+              img: "assets/images/mockup_archive_01.png",
+              cap_en: "Archive Unread Inbox",
+              cap_af: "Argief Nuuslyn Inboks",
+            },
+            {
+              img: "assets/images/mockup_archive_02.png",
+              cap_en: "Isolated Incident Chart",
+              cap_af: "Insedent Diep-Duik",
+            },
+            {
+              img: "assets/images/mockup_archive_04.png",
+              cap_en: "Weekly Report Receipts",
+              cap_af: "Weeklikse Verslag Rekords",
+            },
+          ],
+        },
+
+        {
+          id: "ch10",
+          code: "CH-10",
+          accent: "cyan",
+          short_en: "10. Cave, PDF & Web",
+          short_af: "10. Grot, PDF & Web",
+          title_en: "10. WOLF CAVE, VECTOR PDF EXPORTS & 3-PANE WEB",
+          title_af: "10. WOLF-GROT, VEKTOR PDF UITVOERE & 3-PANEEL WEB",
+          intro_en:
+            "Fine-tune notifications & 8-hour snooze, inspect battery/RSSI diagnostics, compile executive PDFs, expand your network, or run StilSein on your office monitor.",
+          intro_af:
+            "Stel kennisgewings & 8-uur sluimer, inspekteer battery/RSSI diagnostiek, genereer PDF-verslae, brei jou netwerk uit of werk vanaf jou rekenaar.",
+          blocks_en: [
+            {
+              h: "Wolf Cave Settings & Network Expansion",
+              items: [
+                "<strong>Granular Alerts &amp; 8-Hour Veld Snooze:</strong> Mute or enable push channels individually (Rain, Dams, Pipes, Health), or tap <strong>SNOOZE ALARMS (8 HOURS)</strong> during pipe repairs.",
+                "<strong>Diagnostics, Cache Sync &amp; Preferences:</strong> View each sensor's installation age, green/orange/red health dot, and double-tap Battery/RSSI graphs for fullscreen history. Switch Light/Dark themes, EN/AF language, or tap <strong>CLEAR CACHE &amp; SYNC</strong> to force a fresh vault download.",
+                "<strong>Subscription &amp; Upsell Cart:</strong> View your live MRR and tap <strong>EXPAND NETWORK (+ ADD NODE)</strong> to request new sensors via map pin-dropper, hydraulic link selectors, and local installers.",
+              ],
+            },
+            {
+              h: "Executive PDFs, Custom Exports & 3-Pane Web",
+              items: [
+                "<strong>2-Mode Export Panel:</strong> Switch between <strong>EXECUTIVE AUDIT</strong> (compiles a complete 7-day dossier: System Health, Rain Totals, Pipe Runtime ON/OFF %, Dam kL Deltas, 14-day Weather, mirroring the automatic Sunday Night Protocol) and <strong>CUSTOM EXPORT</strong> (any timechip or custom range, multi-node filter, <code>Include Jakkals AI</code> quota switch, vector PDF charts, or raw CSV).",
+                "<strong>Ultrawide 3-Pane Web Portal:</strong> Open StilSein on a desktop browser (&gt;850px dual-pane / ≥1400px triple-pane) with draggable vertical splitters: Left locked 3x3 Omni-Hub, Middle Radar Map / Gauges, and Right Embedded HD Chart.",
+              ],
+            },
+          ],
+          blocks_af: [
+            {
+              h: "Wolf-Grot Instellings & Netwerk Uitbreiding",
+              items: [
+                "<strong>Kennisgewings &amp; 8-Uur Sluimer:</strong> Skakel alarms per module aan/af (Reën, Damme, Pype, Gesondheid), of druk <strong>SLUIMER ALARMS (8 UUR)</strong> tydens pypherstelwerk.",
+                "<strong>Diagnostiek, Kasgeheue &amp; Voorkeure:</strong> Sien elke sensor se ouderdom, groen/oranje/rooi status-kol, en dubbel-tik Battery/RSSI grafieke vir volskerm-geskiedenis. Wissel Donker/Lig tema, EN/AF taal, of tik <strong>MAAK KASGEHEUE SKOON</strong> vir 'n vars sinkronisasie.",
+                "<strong>Intekening &amp; Uitbreiding:</strong> Sien jou maandelikse MRR en tik <strong>BREI NETWERK UIT (+ VOEG BY)</strong> om nuwe sensors via kaart-pennetjies en plaaslike installeerders by te voeg.",
+              ],
+            },
+            {
+              h: "Uitvoerende PDFs, Pasgemaakte Uitvoer & 3-Paneel Web",
+              items: [
+                "<strong>2-Modus Uitvoer Paneel:</strong> Kies tussen <strong>UITVOERENDE OUDIT</strong> (7-dae verslag met Gesondheid, Reëntotale, Pomp AAN/AF %, Dam kL balanse en 14-dae Weer, dieselfde as Sondagaand se outomatiese verslag) en <strong>AANPASBAAR</strong> (enige tydperk, sensor-filter, opsionele Jakkals KI-skakelaar, vektor PDF grafieke of rou CSV).",
+                "<strong>Wyeskerm 3-Paneel Web Portaal:</strong> Gebruik StilSein op jou kantoorrekenaar met verskuifbare verdelers: Linker Omni-Hub, Middel Satelliet Radar / Meters, en Regter Ingeboude HD-Grafiek.",
+              ],
+            },
+          ],
+          screens: [
+            {
+              img: "assets/images/mockup_wolfcave_01.png",
+              cap_en: "Wolf Cave & 8h Snooze",
+              cap_af: "Wolf-Grot & 8u Sluimer",
+            },
+            {
+              img: "assets/images/mockup_wolfcave_02.png",
+              cap_en: "Battery & RSSI Diagnostics",
+              cap_af: "Battery & RSSI Diagnostiek",
+            },
+            {
+              img: "assets/images/mockup_upsell_01.png",
+              cap_en: "Network Expansion & MRR",
+              cap_af: "Netwerk Uitbreiding & MRR",
+            },
+            {
+              img: "assets/images/export_pdf_mockup.png",
+              cap_en: "Executive Audit PDF",
+              cap_af: "Uitvoerende Oudit PDF",
+            },
+            {
+              img: "assets/images/mockup_desktop_01.png",
+              cap_en: "3-Pane Desktop Web Portal",
+              cap_af: "3-Paneel Rekenaar Portaal",
+            },
+          ],
+        },
+      ];
+
+      const ACCENT_MAP = {
+        orange: {
+          border: "border-jakkals-orange/30",
+          top: "border-t-jakkals-orange",
+          text: "text-jakkals-orange",
+          bg: "bg-jakkals-orange/15",
+          pillBorder: "border-jakkals-orange/45",
+        },
+        blue: {
+          border: "border-stilsein-blue/30",
+          top: "border-t-stilsein-blue",
+          text: "text-stilsein-blue",
+          bg: "bg-stilsein-blue/15",
+          pillBorder: "border-stilsein-blue/45",
+        },
+        cyan: {
+          border: "border-cyan-400/30",
+          top: "border-t-cyan-400",
+          text: "text-cyan-400",
+          bg: "bg-cyan-400/15",
+          pillBorder: "border-cyan-400/45",
+        },
+        brown: {
+          border: "border-[#9E8774]/35",
+          top: "border-t-[#C2A995]",
+          text: "text-[#C2A995]",
+          bg: "bg-[#9E8774]/15",
+          pillBorder: "border-[#C2A995]/45",
+        },
+        emerald: {
+          border: "border-emerald-400/30",
+          top: "border-t-emerald-400",
+          text: "text-emerald-400",
+          bg: "bg-emerald-400/15",
+          pillBorder: "border-emerald-400/45",
+        },
+      };
+
+      const openChapterIds = new Set(["ch1"]);
+
+      function renderManual() {
+        const lang = window.currentLang || "en";
+        const labels = uiLabels[lang] || uiLabels.en;
+
+        document.documentElement.lang = lang;
+        document.querySelectorAll("[data-i18n]").forEach((el) => {
+          const k = el.getAttribute("data-i18n");
+          if (labels[k] !== undefined) el.innerHTML = labels[k];
+        });
+        document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
+          const k = el.getAttribute("data-i18n-placeholder");
+          if (labels[k] !== undefined) el.placeholder = labels[k];
+        });
+        document.querySelectorAll(".lang-toggle-text").forEach((el) => {
+          el.innerText = lang === "en" ? "AF" : "EN";
+        });
+
+        window.i18nPhrases = tickerPhrases[lang] || tickerPhrases.en;
+        const tickerEl = document.getElementById("ticker-text");
+        if (tickerEl) tickerEl.innerText = window.i18nPhrases[0];
+
+        // Render Quick-Jump Pills
+        document.getElementById("chapter-jump-pills").innerHTML =
+          MANUAL_CHAPTERS.map((ch) => {
+            const st = ACCENT_MAP[ch.accent] || ACCENT_MAP.blue;
+            const lbl = lang === "af" ? ch.short_af : ch.short_en;
+            return `
+              <button
+                type="button"
+                onclick="jumpToChapter('${ch.id}')"
+                class="shrink-0 px-3 py-1.5 rounded-lg bg-stilsein-card/75 border border-white/10 hover:${st.pillBorder} ${st.text} text-[10px] font-bold tracking-wider uppercase transition-colors"
+              >${lbl}</button>
+            `;
+          }).join("");
+
+        // Render All 10 Chapters
+        const container = document.getElementById("manual-chapters-container");
+        container.innerHTML = MANUAL_CHAPTERS.map((ch, chIdx) => {
+          const st = ACCENT_MAP[ch.accent] || ACCENT_MAP.blue;
+          const title = lang === "af" ? ch.title_af : ch.title_en;
+          const intro = lang === "af" ? ch.intro_af : ch.intro_en;
+          const blocks = lang === "af" ? ch.blocks_af : ch.blocks_en;
+          const isOpen = openChapterIds.has(ch.id);
+
+          const blocksHtml = blocks
+            .map(
+              (blk) => `
+              <div class="bg-stilsein-dark/65 border border-white/10 rounded-xl p-4 sm:p-5">
+                <h4 class="${st.text} font-octasquares font-bold text-[11px] tracking-[0.18em] uppercase mb-3">${blk.h}</h4>
+                <ul class="space-y-2.5 text-xs sm:text-sm text-gray-300 leading-relaxed list-disc pl-4">
+                  ${blk.items.map((it) => `<li>${it}</li>`).join("")}
+                </ul>
+              </div>
+            `,
+            )
+            .join("");
+
+          const screensHtml = ch.screens
+            .map((sc, scIdx) => {
+              const scCap = lang === "af" ? sc.cap_af : sc.cap_en;
+              const isLandscapeMock =
+                sc.img.includes("desktop") || sc.img.includes("export_pdf");
+              const frameCls = isLandscapeMock
+                ? "h-44 sm:h-48 w-auto max-w-[260px]"
+                : "h-56 sm:h-64 w-auto aspect-[1/2]";
+              return `
+                <button
+                  type="button"
+                  onclick="openChapterLightbox(${chIdx}, ${scIdx})"
+                  class="shrink-0 flex flex-col items-center group cursor-pointer bg-stilsein-dark/45 border border-white/10 hover:${st.pillBorder} rounded-xl p-3 transition-all"
+                >
+                  <div class="${frameCls} flex items-center justify-center mb-2">
+                    <img
+                      src="${sc.img}"
+                      alt="${scCap}"
+                      loading="lazy"
+                      onerror="this.style.opacity=0.25"
+                      class="w-full h-full object-contain drop-shadow-[0_14px_24px_rgba(0,0,0,0.85)] group-hover:scale-[1.03] transition-transform"
+                    />
+                  </div>
+                  <span class="text-[10px] font-bold ${st.text} uppercase tracking-wider max-w-[160px] truncate">${scCap}</span>
+                </button>
+              `;
+            })
+            .join("");
+
+          return `
+            <article
+              id="card-${ch.id}"
+              data-search="${(title + " " + intro + " " + JSON.stringify(blocks)).replace(/<[^>]+>/g, "").toLowerCase()}"
+              class="manual-chapter-card glass-card panel-texture rounded-2xl border ${st.border} border-t-2 ${st.top} overflow-hidden transition-all"
+            >
+              <button
+                type="button"
+                onclick="toggleChapter('${ch.id}')"
+                class="w-full px-5 sm:px-7 py-5 flex items-center justify-between gap-4 hover:bg-white/[0.03] transition-colors text-left"
+              >
+                <div class="flex items-center gap-4 min-w-0">
+                  <span class="shrink-0 text-[10px] font-mono font-bold px-2.5 py-1 rounded-md ${st.bg} ${st.text} border ${st.border}">${ch.code}</span>
+                  <h2 class="text-white font-garet font-bold tracking-wider text-sm sm:text-base md:text-lg truncate">${title}</h2>
+                </div>
+                <svg
+                  id="icon-${ch.id}"
+                  class="shrink-0 w-5 h-5 ${st.text} transition-transform duration-300 ${isOpen ? "rotate-180" : ""}"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </button>
+
+              <div id="content-${ch.id}" class="accordion-content bg-[#141920]/50 ${isOpen ? "expanded" : ""}">
+                <div class="accordion-inner px-5 sm:px-7">
+                  <p class="text-xs sm:text-sm text-stilsein-muted leading-relaxed mb-5">${intro}</p>
+
+                  <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+                    <div class="lg:col-span-7 space-y-4">
+                      ${blocksHtml}
+                    </div>
+                    <div class="lg:col-span-5">
+                      <div class="flex items-center justify-between mb-2">
+                        <span class="text-[10px] font-mono ${st.text} uppercase tracking-widest">IN-APP SCREENS (${ch.screens.length})</span>
+                        <span class="text-[9px] font-mono text-gray-500">${labels.tap_zoom}</span>
+                      </div>
+                      <div class="flex items-stretch gap-3 overflow-x-auto pb-2 stilsein-scroll">
+                        ${screensHtml}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+          `;
+        }).join("");
+
+        document.documentElement.classList.remove("lang-switching");
+      }
+
+      function toggleChapter(id) {
+        const content = document.getElementById(`content-${id}`);
+        const icon = document.getElementById(`icon-${id}`);
+        if (!content) return;
+        if (openChapterIds.has(id)) {
+          openChapterIds.delete(id);
+          content.classList.remove("expanded");
+          icon?.classList.remove("rotate-180");
+        } else {
+          openChapterIds.add(id);
+          content.classList.add("expanded");
+          icon?.classList.add("rotate-180");
+        }
+      }
+
+      function jumpToChapter(id) {
+        if (!openChapterIds.has(id)) toggleChapter(id);
+        const card = document.getElementById(`card-${id}`);
+        if (card) {
+          card.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }
+
+      function setAllChapters(expand) {
+        MANUAL_CHAPTERS.forEach((ch) => {
+          const content = document.getElementById(`content-${ch.id}`);
+          const icon = document.getElementById(`icon-${ch.id}`);
+          if (expand) {
+            openChapterIds.add(ch.id);
+            content?.classList.add("expanded");
+            icon?.classList.add("rotate-180");
+          } else {
+            openChapterIds.delete(ch.id);
+            content?.classList.remove("expanded");
+            icon?.classList.remove("rotate-180");
+          }
+        });
+      }
+
+      function filterManualChapters() {
+        const q = (document.getElementById("manual-search")?.value || "")
+          .trim()
+          .toLowerCase();
+        document.querySelectorAll(".manual-chapter-card").forEach((card) => {
+          if (!q) {
+            card.classList.remove("hidden");
+            return;
+          }
+          const haystack = card.getAttribute("data-search") || "";
+          if (haystack.includes(q)) {
+            card.classList.remove("hidden");
+            const id = card.id.replace("card-", "");
+            if (!openChapterIds.has(id)) toggleChapter(id);
+          } else {
+            card.classList.add("hidden");
+          }
         });
       }
 
       function toggleManualLang() {
-        currentLang = currentLang === "en" ? "af" : "en";
-        localStorage.setItem("stilsein_lang", currentLang);
-        document.getElementById("lang-toggle-text").innerText =
-          currentLang === "en" ? "AF" : "EN";
-        applyTranslations();
+        window.currentLang = window.currentLang === "en" ? "af" : "en";
+        localStorage.setItem("stilsein_lang", window.currentLang);
+        renderManual();
+        filterManualChapters();
       }
 
-      // Accordion Engine
-      function toggleSection(id) {
-        const content = document.getElementById(id);
-        const icon = document.getElementById("icon-" + id);
+      // ----------------------------------------------------------
+      // LIGHTBOX WITH TOUCH SWIPE & < > ARROWS
+      // ----------------------------------------------------------
+      let lightboxList = [];
+      let lightboxIdx = 0;
 
-        if (content.classList.contains("expanded")) {
-          content.classList.remove("expanded");
-          icon.classList.remove("rotate-180");
+      function openChapterLightbox(chIdx, scIdx) {
+        const lang = window.currentLang || "en";
+        const ch = MANUAL_CHAPTERS[chIdx];
+        if (!ch) return;
+        lightboxList = ch.screens.map((s) => ({
+          src: s.img,
+          caption: lang === "af" ? s.cap_af : s.cap_en,
+        }));
+        lightboxIdx = scIdx;
+        renderLightbox();
+        document
+          .getElementById("gallery-lightbox")
+          .classList.remove("opacity-0", "pointer-events-none");
+      }
+
+      function renderLightbox() {
+        if (!lightboxList.length) return;
+        const curr = lightboxList[lightboxIdx];
+        document.getElementById("lightbox-img").src = curr.src;
+        document.getElementById("lightbox-caption").innerText = curr.caption;
+        const cnt = document.getElementById("lightbox-counter");
+        const prev = document.getElementById("lightbox-prev");
+        const next = document.getElementById("lightbox-next");
+        if (lightboxList.length > 1) {
+          cnt.innerText = `${lightboxIdx + 1} / ${lightboxList.length}`;
+          cnt.classList.remove("hidden");
+          prev.classList.remove("hidden");
+          next.classList.remove("hidden");
         } else {
-          // 🛠️ MULTI-OPEN FIX: Do NOT close other drawers. Just open the target!
-          content.classList.add("expanded");
-          icon.classList.add("rotate-180");
+          cnt.classList.add("hidden");
+          prev.classList.add("hidden");
+          next.classList.add("hidden");
         }
       }
 
-      // Init on load
-      applyTranslations();
+      function stepLightbox(delta) {
+        if (lightboxList.length <= 1) return;
+        lightboxIdx =
+          (lightboxIdx + delta + lightboxList.length) % lightboxList.length;
+        renderLightbox();
+      }
+
+      function closeLightbox() {
+        document
+          .getElementById("gallery-lightbox")
+          .classList.add("opacity-0", "pointer-events-none");
+      }
+
+      (function attachLightboxSwipe() {
+        const el = document.getElementById("lightbox-swipe-zone");
+        if (!el) return;
+        let sx = 0;
+        let sy = 0;
+        el.addEventListener(
+          "touchstart",
+          (e) => {
+            if (e.touches.length === 1) {
+              sx = e.touches[0].clientX;
+              sy = e.touches[0].clientY;
+            }
+          },
+          { passive: true },
+        );
+        el.addEventListener(
+          "touchend",
+          (e) => {
+            if (!e.changedTouches.length) return;
+            const dx = e.changedTouches[0].clientX - sx;
+            const dy = e.changedTouches[0].clientY - sy;
+            if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.2) {
+              if (dx < 0) stepLightbox(1);
+              else stepLightbox(-1);
+            }
+          },
+          { passive: true },
+        );
+      })();
+
+      document.addEventListener("keydown", (e) => {
+        const closed = document
+          .getElementById("gallery-lightbox")
+          .classList.contains("opacity-0");
+        if (e.key === "Escape") closeLightbox();
+        else if (!closed && e.key === "ArrowRight") stepLightbox(1);
+        else if (!closed && e.key === "ArrowLeft") stepLightbox(-1);
+      });
+
+      // ----------------------------------------------------------
+      // NAVBAR & LIVING TICKER
+      // ----------------------------------------------------------
+      const menuBtn = document.getElementById("mobile-menu-btn");
+      const mobileMenu = document.getElementById("mobile-menu");
+      menuBtn.addEventListener("click", () => {
+        mobileMenu.classList.toggle("translate-y-0");
+        mobileMenu.classList.toggle("-translate-y-full");
+        mobileMenu.classList.toggle("opacity-100");
+        mobileMenu.classList.toggle("opacity-0");
+        mobileMenu.classList.toggle("pointer-events-none");
+        mobileMenu.classList.toggle("pointer-events-auto");
+      });
+      document.querySelectorAll(".mobile-link").forEach((l) => {
+        l.addEventListener("click", () => {
+          mobileMenu.classList.add(
+            "-translate-y-full",
+            "opacity-0",
+            "pointer-events-none",
+          );
+          mobileMenu.classList.remove(
+            "translate-y-0",
+            "opacity-100",
+            "pointer-events-auto",
+          );
+        });
+      });
+
+      const subPanel = document.getElementById("sub-panel");
+      const tickerText = document.getElementById("ticker-text");
+      let currentPhraseIndex = 0;
+
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 50) {
+          subPanel.classList.add(
+            "h-[4px]",
+            "min-h-[4px]",
+            "py-0",
+            "bg-stilsein-blue",
+          );
+          subPanel.classList.remove("min-h-[40px]", "py-2", "panel-texture");
+          tickerText.style.opacity = "0";
+        } else {
+          subPanel.classList.remove(
+            "h-[4px]",
+            "min-h-[4px]",
+            "py-0",
+            "bg-stilsein-blue",
+          );
+          subPanel.classList.add("min-h-[40px]", "py-2", "panel-texture");
+          tickerText.style.opacity = "1";
+        }
+      });
+
+      setInterval(() => {
+        if (window.scrollY <= 50 && window.i18nPhrases?.length) {
+          tickerText.style.opacity = 0;
+          setTimeout(() => {
+            currentPhraseIndex =
+              (currentPhraseIndex + 1) % window.i18nPhrases.length;
+            tickerText.innerText = window.i18nPhrases[currentPhraseIndex];
+            tickerText.style.opacity = 1;
+          }, 350);
+        }
+      }, 5000);
+
+      // ----------------------------------------------------------
+      // STILSEIN WATER-GUIDED CANVAS (SHARED WITH INDEX & VENNOTE)
+      // ----------------------------------------------------------
+      (function initStilSeinWaterCanvas() {
+        const canvas = document.getElementById("stilsein-particle-canvas");
+        if (!canvas) return;
+        const prefersReduced = window.matchMedia(
+          "(prefers-reduced-motion: reduce)",
+        ).matches;
+        if (prefersReduced) return;
+
+        const ctx = canvas.getContext("2d");
+        let width = 0;
+        let height = 0;
+        let dpr = 1;
+        let animId = null;
+        let lastScrollY = window.scrollY;
+        let waveScrollOffset = 0;
+
+        let rainDrops = [];
+        let waterMist = [];
+        const ripples = [];
+        const splashes = [];
+        let lastWakeMs = 0;
+
+        function wrapY(y, pad = 40) {
+          const span = height + pad * 2;
+          let wrapped = (y + pad) % span;
+          if (wrapped < 0) wrapped += span;
+          return wrapped - pad;
+        }
+
+        function resize() {
+          dpr = Math.min(window.devicePixelRatio || 1, 2);
+          width = window.innerWidth;
+          height = window.innerHeight;
+          canvas.width = Math.floor(width * dpr);
+          canvas.height = Math.floor(height * dpr);
+          ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+          const rainCount = width < 640 ? 22 : 38;
+          if (rainDrops.length !== rainCount) {
+            rainDrops = Array.from({ length: rainCount }, () => ({
+              x: Math.random() * width,
+              y: Math.random() * height,
+              len: 9 + Math.random() * 14,
+              speed: 0.45 + Math.random() * 0.55,
+              alpha: 0.1 + Math.random() * 0.15,
+            }));
+          }
+
+          const mistCount = width < 640 ? 16 : 26;
+          if (waterMist.length !== mistCount) {
+            waterMist = Array.from({ length: mistCount }, () => ({
+              x: Math.random() * width,
+              y: Math.random() * height,
+              r: 1.3 + Math.random() * 2.0,
+              vx: (Math.random() - 0.5) * 0.18,
+              vy: -(0.08 + Math.random() * 0.16),
+              phase: Math.random() * Math.PI * 2,
+              isOrange: Math.random() < 0.2,
+            }));
+          }
+        }
+
+        window.addEventListener(
+          "scroll",
+          () => {
+            const currY = window.scrollY;
+            const deltaY = currY - lastScrollY;
+            lastScrollY = currY;
+            if (!deltaY) return;
+
+            const shift = -deltaY * 0.5;
+            waveScrollOffset += shift;
+
+            for (let i = 0; i < rainDrops.length; i++) {
+              rainDrops[i].y = wrapY(rainDrops[i].y + shift);
+            }
+            for (let i = 0; i < waterMist.length; i++) {
+              waterMist[i].y = wrapY(waterMist[i].y + shift);
+            }
+            for (let i = 0; i < ripples.length; i++) {
+              ripples[i].y += shift;
+            }
+            for (let i = 0; i < splashes.length; i++) {
+              splashes[i].y += shift;
+            }
+          },
+          { passive: true },
+        );
+
+        function spawnWaterSonar(x, y, isWake = false) {
+          if (ripples.length > (isWake ? 5 : 10)) return;
+          ripples.push({
+            x,
+            y,
+            r: isWake ? 2 : 3,
+            maxR: isWake ? 36 : 140,
+            speed: isWake ? 0.68 : 1.5,
+            alpha: isWake ? 0.22 : 0.48,
+            isWake,
+          });
+          if (!isWake) {
+            ripples.push({
+              x,
+              y,
+              r: 1,
+              maxR: 96,
+              speed: 1.08,
+              alpha: 0.32,
+              isEcho: true,
+            });
+            for (let k = 0; k < 6; k++) {
+              const ang = (Math.PI * 2 * k) / 6 + Math.random() * 0.4;
+              const spd = 0.9 + Math.random() * 1.1;
+              splashes.push({
+                x,
+                y,
+                vx: Math.cos(ang) * spd,
+                vy: Math.sin(ang) * spd - 0.35,
+                r: 1.2 + Math.random() * 1.0,
+                alpha: 0.55,
+              });
+            }
+          }
+        }
+
+        window.addEventListener("resize", resize);
+        window.addEventListener(
+          "mousemove",
+          (e) => {
+            const now = performance.now();
+            if (now - lastWakeMs > 110) {
+              lastWakeMs = now;
+              spawnWaterSonar(e.clientX, e.clientY, true);
+            }
+          },
+          { passive: true },
+        );
+        window.addEventListener(
+          "click",
+          (e) => {
+            spawnWaterSonar(e.clientX, e.clientY, false);
+          },
+          { passive: true },
+        );
+
+        let lastAmbientDrop = 0;
+
+        function drawHorizonWave(baseY, amp, freq, phase, color) {
+          ctx.beginPath();
+          for (let x = 0; x <= width; x += 24) {
+            const y = baseY + Math.sin(x * freq + phase) * amp;
+            if (x === 0) ctx.moveTo(x, y);
+            else ctx.lineTo(x, y);
+          }
+          ctx.strokeStyle = color;
+          ctx.lineWidth = 1.1;
+          ctx.stroke();
+        }
+
+        function tick(now) {
+          ctx.clearRect(0, 0, width, height);
+          const t = now * 0.001;
+
+          const w1Y = wrapY(height * 0.34 + waveScrollOffset, 60);
+          const w2Y = wrapY(height * 0.68 + waveScrollOffset, 60);
+          drawHorizonWave(
+            w1Y,
+            10,
+            0.0055,
+            t * 0.45,
+            "rgba(145, 172, 200, 0.06)",
+          );
+          drawHorizonWave(
+            w2Y,
+            13,
+            0.0042,
+            -t * 0.35,
+            "rgba(34, 211, 238, 0.045)",
+          );
+
+          ctx.lineCap = "round";
+          for (let i = 0; i < rainDrops.length; i++) {
+            const d = rainDrops[i];
+            d.x += 0.12;
+            d.y += d.speed;
+            if (d.x > width + 15) d.x = -15;
+            if (d.y > height + 35) {
+              d.y = -35;
+              d.x = Math.random() * width;
+            }
+            ctx.beginPath();
+            ctx.moveTo(d.x, d.y);
+            ctx.lineTo(d.x + 1.8, d.y + d.len);
+            ctx.strokeStyle = `rgba(145, 172, 200, ${d.alpha.toFixed(3)})`;
+            ctx.lineWidth = 0.95;
+            ctx.stroke();
+          }
+
+          for (let i = 0; i < waterMist.length; i++) {
+            const m = waterMist[i];
+            m.phase += 0.025;
+            m.x += m.vx + Math.sin(m.phase) * 0.12;
+            m.y += m.vy;
+            if (m.x < -10) m.x = width + 10;
+            if (m.x > width + 10) m.x = -10;
+            if (m.y < -20) {
+              m.y = height + 20;
+              m.x = Math.random() * width;
+            }
+            const a = 0.17 + Math.sin(m.phase) * 0.07;
+            ctx.beginPath();
+            ctx.arc(m.x, m.y, m.r, 0, Math.PI * 2);
+            ctx.fillStyle = m.isOrange
+              ? `rgba(255, 158, 74, ${a.toFixed(3)})`
+              : `rgba(145, 172, 200, ${a.toFixed(3)})`;
+            ctx.fill();
+          }
+
+          if (now - lastAmbientDrop > 3600 && ripples.length < 4) {
+            lastAmbientDrop = now;
+            ripples.push({
+              x: Math.random() * width,
+              y: Math.random() * height,
+              r: 2,
+              maxR: 75,
+              speed: 0.78,
+              alpha: 0.24,
+              isWake: true,
+            });
+          }
+
+          for (let i = ripples.length - 1; i >= 0; i--) {
+            const rp = ripples[i];
+            rp.r += rp.speed;
+            rp.alpha *= rp.isWake ? 0.968 : 0.972;
+
+            ctx.beginPath();
+            ctx.arc(rp.x, rp.y, rp.r, 0, Math.PI * 2);
+            if (rp.isEcho) {
+              ctx.setLineDash([4, 6]);
+              ctx.strokeStyle = `rgba(34, 211, 238, ${rp.alpha.toFixed(3)})`;
+              ctx.lineWidth = 1.0;
+            } else if (rp.isWake) {
+              ctx.setLineDash([]);
+              ctx.strokeStyle = `rgba(145, 172, 200, ${rp.alpha.toFixed(3)})`;
+              ctx.lineWidth = 0.95;
+            } else {
+              ctx.setLineDash([]);
+              ctx.strokeStyle = `rgba(145, 172, 200, ${rp.alpha.toFixed(3)})`;
+              ctx.lineWidth = 1.4;
+            }
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            if (!rp.isWake && !rp.isEcho && rp.r < 36) {
+              ctx.beginPath();
+              ctx.arc(rp.x, rp.y, rp.r * 0.45, 0, Math.PI * 2);
+              ctx.strokeStyle = `rgba(255, 158, 74, ${(rp.alpha * 0.65).toFixed(3)})`;
+              ctx.lineWidth = 0.9;
+              ctx.stroke();
+            }
+
+            if (rp.r >= rp.maxR || rp.alpha <= 0.015) ripples.splice(i, 1);
+          }
+
+          for (let i = splashes.length - 1; i >= 0; i--) {
+            const sp = splashes[i];
+            sp.x += sp.vx;
+            sp.y += sp.vy;
+            sp.vy += 0.035;
+            sp.alpha *= 0.94;
+            ctx.beginPath();
+            ctx.arc(sp.x, sp.y, sp.r, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(145, 172, 200, ${sp.alpha.toFixed(3)})`;
+            ctx.fill();
+            if (sp.alpha <= 0.02) splashes.splice(i, 1);
+          }
+
+          animId = requestAnimationFrame(tick);
+        }
+
+        document.addEventListener("visibilitychange", () => {
+          if (document.hidden && animId) {
+            cancelAnimationFrame(animId);
+            animId = null;
+          } else if (!document.hidden && !animId) {
+            lastScrollY = window.scrollY;
+            animId = requestAnimationFrame(tick);
+          }
+        });
+
+        resize();
+        animId = requestAnimationFrame(tick);
+      })();
+
+      // Initialize Manual
+      renderManual();
     </script>
   </body>
 </html>

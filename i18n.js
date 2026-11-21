@@ -103,7 +103,7 @@ const translations = {
     hw_soft_title: "SO HOW DOES THE <span class=\"text-stilsein-blue\">SOFTWARE</span> ACTUALLY WORK?",
     hw_soft_desc: "You download the app for free. There are no massive upfront software development fees. You submit your farm details, our engineering team hardcodes your specific farm topology and thresholds, and you simply pay a small monthly SaaS (Software as a Service) fee to keep the intelligence engine running.",
     hw_soft_1_title: "YOUR DIGITAL TWIN",
-    hw_soft_1_desc: "We build a digital replica of your farm. If Pump A feeds Dam B, the software knows it. If pressure drops, the app doesn't just show a generic error—it shows you exactly which pipeline is failing on your customized radar map.",
+    hw_soft_1_desc: "We build a digital replica of your farm. If Pump A feeds Dam B, the software knows it. If pressure drops, the app doesn't just show a generic error, it shows you exactly which pipeline is failing on your customized radar map.",
     hw_soft_2_title: "JUMPING THE GAP",
     hw_soft_2_desc: "Zero cell reception in the field? No problem. The app uses advanced 'Offline Caching'. It boots instantly using the last known data, meaning you can still analyze historical charts while standing in a signal-dead zone.",
     hw_soft_3_title: "NOTIFICATIONS THAT MATTER",
@@ -204,7 +204,7 @@ const translations = {
     // Architecture
     eco_s6_sub: "MILITARY PRECISION",
     eco_s6_title: "BANK-GRADE <span class=\"text-stilsein-blue\">ARCHITECTURE.</span>",
-    eco_s6_body: "Under the hood, StilSein operates on a multi-tenant Edge-Cloud matrix. Your sensors send encrypted radio waves to a Gateway, which securely routes the data through Cloudflare directly into an isolated, private Google Vault dedicated solely to your farm. The mobile app then uses lightning-fast WebSockets and local 'Offline Caching' so it boots instantly—even when you are standing in a camp with zero cell reception.",
+    eco_s6_body: "Under the hood, StilSein operates on a multi-tenant Edge-Cloud matrix. Your sensors send encrypted radio waves to a Gateway, which securely routes the data through Cloudflare directly into an isolated, private Google Vault dedicated solely to your farm. The mobile app then uses lightning-fast WebSockets and local 'Offline Caching' so it boots instantly, even when you are standing in a camp with zero cell reception.",
     
     // 9. IN-APP FARM BUILDER
     eco_s_bld_sub: "START SMALL. SCALE ENDLESSLY.",
@@ -404,7 +404,7 @@ const translations = {
     hw_soft_title: "HOE WERK DIE <span class=\"text-stilsein-blue\">SAGTEWARE</span> EINTLIK?",
     hw_soft_desc: "Jy laai die app gratis af. Daar is geen massiewe eenmalige sagteware-ontwikkelingsfooie nie. Jy dien jou plaasbesonderhede in, ons ingenieurspan skryf jou spesifieke plaas-topologie en drempels in die stelsel in, en jy betaal bloot 'n klein maandelikse SaaS (Software as a Service) fooi om die intelligensie-enjin aan die gang te hou.",
     hw_soft_1_title: "JOU DIGITALE TWEELING",
-    hw_soft_1_desc: "Ons bou 'n digitale replika van jou plaas. As Pomp A vir Dam B voer, weet die sagteware dit. As druk val, wys die app nie net 'n generiese fout nie—dit wys presies watter pyplyn faal op jou pasgemaakte radar kaart.",
+    hw_soft_1_desc: "Ons bou 'n digitale replika van jou plaas. As Pomp A vir Dam B voer, weet die sagteware dit. As druk val, wys die app nie net 'n generiese fout nie, dit wys presies watter pyplyn faal op jou pasgemaakte radar kaart.",
     hw_soft_2_title: "OORBRUG DIE GAPING",
     hw_soft_2_desc: "Geen selfoonopvangs in die kamp nie? Geen probleem. Die app gebruik 'Vanlyn Kasgeheue'. Dit maak onmiddellik oop met die laaste bekende data, sodat jy steeds historiese grafieke kan ontleed terwyl jy in 'n sein-dooie sone staan.",
     hw_soft_3_title: "WAARSKUWINGS WAT TEL",
