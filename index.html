@@ -336,6 +336,18 @@
           <div
             class="flex items-center justify-between gap-3 text-xs text-gray-200 bg-white/[0.02] border border-white/10 rounded-[4px] px-3 py-2"
           >
+            <span data-i18n="modal_li5"
+              >Direct Hardware Kit Shipping (DIY Ship Parts. Target: end of
+              February)</span
+            >
+            <span
+              class="shrink-0 text-[9px] font-mono px-2 py-0.5 rounded-[3px] bg-jakkals-orange/15 text-jakkals-orange border border-jakkals-orange/35 uppercase"
+              >END FEB</span
+            >
+          </div>
+          <div
+            class="flex items-center justify-between gap-3 text-xs text-gray-200 bg-white/[0.02] border border-white/10 rounded-[4px] px-3 py-2"
+          >
             <span data-i18n="modal_li2"
               >Fog Meter &amp; Ground Moisture sensors (GrondWolf) in the
               works</span
@@ -601,54 +613,60 @@
       id="home"
       class="pt-36 lg:pt-40 pb-20 px-6 relative z-10 w-full overflow-hidden border-b border-stilsein-blue/25"
     >
-      <!-- LARGE KAROO WINDPOMP BACKDROP (Anchored to Bottom-Left Ground behind Hero Headline) -->
-      <div
-        class="absolute bottom-0 left-[-10%] sm:left-[-4%] lg:left-[1%] w-[380px] sm:w-[500px] lg:w-[620px] xl:w-[680px] aspect-[5/4] pointer-events-none opacity-[0.085] z-[1] select-none"
-        aria-hidden="true"
-      >
-        <img
-          src="assets/images/windpomp_watermark.png"
-          alt=""
-          class="w-full h-full object-contain object-bottom"
-          style="filter: brightness(0) invert(1)"
-          onerror="this.classList.add('hidden')"
-        />
-      </div>
-
       <div
         class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center relative z-10"
       >
         <!-- LEFT COLUMN (62% Golden Ratio Weight) -->
         <div class="lg:col-span-7 text-center lg:text-left">
-          <div
-            class="eyebrow-rail border-b-2 border-jakkals-orange/65 text-jakkals-orange mb-5"
-          >
-            <span data-i18n="hero_badge">FARM WATER MONITORING SOFTWARE</span>
+          <!-- HERO HEADLINE + COPY WITH WINDPOMP STANDING DIRECTLY ON THE "WHAT WE SELL" PANEL BOX -->
+          <div class="relative pb-6 sm:pb-8">
+            <div
+              class="absolute bottom-0 right-1 sm:right-6 lg:right-8 w-[200px] sm:w-[255px] lg:w-[295px] aspect-[5/4] pointer-events-none opacity-[0.11] z-0 select-none"
+              aria-hidden="true"
+            >
+              <img
+                src="assets/images/windpomp_watermark.png"
+                alt=""
+                class="w-full h-full object-contain object-bottom"
+                style="filter: brightness(0) invert(1)"
+                onerror="this.classList.add('hidden')"
+              />
+            </div>
+
+            <div class="relative z-10">
+              <div
+                class="eyebrow-rail border-b-2 border-jakkals-orange/65 text-jakkals-orange mb-5"
+              >
+                <span data-i18n="hero_badge"
+                  >FARM WATER MONITORING SOFTWARE</span
+                >
+              </div>
+
+              <h1
+                class="text-4xl sm:text-5xl xl:text-[3.5rem] font-black text-white tracking-tight mb-5 font-garet leading-[1.08]"
+                data-i18n="hero_headline"
+              >
+                ONE APP FOR EVERY <span class="text-stilsein-blue">DROP</span>,
+                <span class="text-cyan-400">PIPE</span> &amp;
+                <span class="text-jakkals-orange">DAM</span> ON YOUR FARM.
+              </h1>
+
+              <p
+                class="text-base sm:text-lg text-stilsein-muted max-w-2xl mx-auto lg:mx-0 leading-relaxed"
+                data-i18n="hero_desc"
+              >
+                <strong>StilSein</strong> sells the cloud software and mobile
+                app that connects long-range field sensors directly to your
+                phone and office PC. Know the exact millimeter of rain per camp,
+                catch burst pipes in real time, and see how many days of water
+                remain in every dam, even where cell reception doesn't reach.
+              </p>
+            </div>
           </div>
 
-          <h1
-            class="text-4xl sm:text-5xl xl:text-[3.5rem] font-black text-white tracking-tight mb-5 font-garet leading-[1.08]"
-            data-i18n="hero_headline"
-          >
-            ONE APP FOR EVERY <span class="text-stilsein-blue">DROP</span>,
-            <span class="text-cyan-400">PIPE</span> &amp;
-            <span class="text-jakkals-orange">DAM</span> ON YOUR FARM.
-          </h1>
-
-          <p
-            class="text-base sm:text-lg text-stilsein-muted max-w-2xl mx-auto lg:mx-0 mb-8 leading-relaxed"
-            data-i18n="hero_desc"
-          >
-            <strong>StilSein</strong> sells the cloud software and mobile app
-            that connects long-range field sensors directly to your phone and
-            office PC. Know the exact millimeter of rain per camp, catch burst
-            pipes in real time, and see how many days of water remain in every
-            dam, even where cell reception doesn't reach.
-          </p>
-
-          <!-- UNIFIED SEGMENTED SPEC BAR -->
+          <!-- UNIFIED SEGMENTED SPEC BAR (Windpomp legs sit flush on this panel's top edge) -->
           <div
-            class="stilsein-panel chassis-reticle panel-texture grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-white/10 mb-8 text-left"
+            class="relative z-10 stilsein-panel chassis-reticle panel-texture grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-white/10 mb-8 text-left"
           >
             <div class="p-4">
               <div
@@ -1408,21 +1426,36 @@
                 </div>
 
                 <div
-                  class="p-4 rounded-[4px] bg-stilsein-dark/85 border border-white/10"
+                  class="p-4 rounded-[4px] bg-stilsein-dark/85 border border-white/10 border-l-[3px] border-l-amber-400/70"
                 >
                   <div
-                    class="text-xs font-bold text-white uppercase tracking-wider mb-1"
-                    data-i18n="path2_title"
+                    class="flex flex-wrap items-center justify-between gap-2 mb-1"
                   >
-                    Option 2: Ship Parts &amp; Install Yourself (DIY)
+                    <span
+                      class="text-xs font-bold text-white uppercase tracking-wider"
+                      data-i18n="path2_title"
+                    >
+                      Option 2: Ship Parts &amp; Install Yourself (DIY)
+                    </span>
+                    <span
+                      class="shrink-0 text-[9px] font-mono px-2 py-0.5 rounded-[3px] bg-jakkals-orange/15 border border-jakkals-orange/40 text-jakkals-orange font-bold uppercase"
+                      data-i18n="path2_badge"
+                    >
+                      IN DEVELOPMENT • END FEB
+                    </span>
                   </div>
                   <p
                     class="text-xs text-stilsein-muted leading-relaxed"
                     data-i18n="path2_desc"
                   >
-                    Prefer to fit your own gauges? Request a hardware kit inside
-                    the Farm Builder, follow our simple setup guide, and connect
-                    your sensors straight into StilSein.
+                    <strong
+                      >Currently in development (targeted for End of
+                      February):</strong
+                    >
+                    Request a pre-configured hardware kit inside the Farm
+                    Builder shipped straight to your farm, follow our setup
+                    guide, and go live. (Option 1 &amp; Option 3 are available
+                    today.)
                   </p>
                 </div>
 
@@ -1439,9 +1472,11 @@
                     class="text-xs text-stilsein-muted leading-relaxed"
                     data-i18n="path1_desc"
                   >
-                    We are 100% hardware-agnostic. Connect existing Dragino,
-                    Milesight, SenseCAP, Netvox, NCD, or Browan nodes (on TTN or
-                    your private LNS) and pay only the monthly software fee.
+                    Connect Dragino, Milesight, SenseCAP, Netvox, NCD, or Browan
+                    nodes two ways: pick <strong>StilSein Managed TTN</strong>
+                    and simply enter your DevEUIs in the Farm Builder (no TTN
+                    account needed), or keep your own personal TTN / private LNS
+                    and link via one Webhook.
                   </p>
                 </div>
               </div>
@@ -2073,14 +2108,24 @@
               EXISTING HARDWARE OR PRIVATE LNS?
             </div>
             <p
-              class="text-xs text-gray-200 leading-relaxed"
+              class="text-xs text-gray-200 leading-relaxed mb-4"
               data-i18n="hw_opt_desc"
             >
-              Already running Dragino, Milesight, SenseCAP, Netvox, NCD, or
-              Browan nodes on The Things Network (TTN) or ChirpStack? You don't
-              need new hardware. Just enter your DevEUIs in the app, point your
-              Webhook to our Edge router, and your sensors go live in StilSein.
+              Two easy ways to connect existing Dragino, Milesight, SenseCAP,
+              Netvox, NCD, or Browan hardware:
+              <strong>(A) StilSein Managed TTN.</strong> Skip creating your own
+              TTN account and simply enter your DevEUIs in the Farm Builder; we
+              manage the cluster for you. Or
+              <strong>(B) Your Own Personal TTN / ChirpStack.</strong> Keep full
+              control of your own LNS and link one Webhook to our Edge router.
             </p>
+            <a
+              href="ttn_gids.html"
+              class="inline-flex items-center gap-1.5 text-[10px] font-mono font-bold text-jakkals-orange hover:text-white uppercase tracking-wider"
+              data-i18n="hw_opt_link"
+            >
+              Read TTN &amp; Webhook Setup Guide &rarr;
+            </a>
           </div>
 
           <!-- STEP 3 -->
@@ -3686,6 +3731,8 @@
           modal_soon: "IN PROGRESS & TARGET MILESTONES:",
           modal_li1: "Full Apple iPhone & App Store (iStore) confirmation",
           modal_li3: "Triple-Pane Desktop Web Portal (target: end of February)",
+          modal_li5:
+            "Direct Hardware Kit Shipping (DIY Ship Parts. Target: end of February)",
           modal_li2:
             "Fog Meter & Ground Moisture sensors (GrondWolf) in the works",
           modal_li4: "Ongoing app store & partner portal finalization",
@@ -3710,6 +3757,8 @@
           hero_pill1_txt:
             "Software & Telemetry Platform connecting gateways & sensors",
           hero_pill2_tag: "TRANSPARENT MRR",
+          hero_pill2_txt:
+            "Base Hub <span class='text-jakkals-orange'>R399 ($22)/mo</span> • Sensors from <span class='text-stilsein-blue'>R49 ($3)</span>",
           hero_pill3_tag: "EASY INSTALLATION",
           hero_pill3_txt: "Book vetted local partners right inside the app",
           hero_btn_price: "VIEW PRICING & CALCULATOR",
@@ -3748,11 +3797,12 @@
           path3_desc:
             'Tap <strong>"Build New Farm"</strong>, drop pins on your satellite map, and select a vetted irrigation or solar installer within 150km of your farm. They supply & mount the sensors, enter the technical codes for you, and we activate your app.',
           path2_title: "Option 2: Ship Parts & Install Yourself (DIY)",
+          path2_badge: "IN DEVELOPMENT • END FEB",
           path2_desc:
-            "Prefer to fit your own gauges? Request a hardware kit inside the Farm Builder, follow our simple setup guide, and connect your sensors straight into StilSein.",
+            "<strong>Currently in development (targeted for End of February):</strong> Request a pre-configured hardware kit inside the Farm Builder shipped straight to your farm, follow our setup guide, and go live. (Option 1 & Option 3 are available today.)",
           path1_title: "Option 3: Already Own LoRaWAN Sensors? (Software Only)",
           path1_desc:
-            "We are 100% hardware-agnostic. Connect existing Dragino, Milesight, SenseCAP, Netvox, NCD, or Browan nodes (on TTN or your private LNS) and pay only the monthly software fee.",
+            "Connect Dragino, Milesight, SenseCAP, Netvox, NCD, or Browan nodes two ways: pick <strong>StilSein Managed TTN</strong> and simply enter your DevEUIs in the Farm Builder (no TTN account needed), or keep your own personal TTN / private LNS and link via one Webhook.",
           sell_card2_foot: "Installers can join our partner network",
           sell_card2_link: "Installer Partner Portal →",
 
@@ -3811,7 +3861,8 @@
             "A compact Gateway at your farmhouse catches radio signals from battery sensors (up to 5-year battery life, 15km range) with zero SIM cards needed out in the veld.",
           hw_opt_title: "EXISTING HARDWARE OR PRIVATE LNS?",
           hw_opt_desc:
-            "Already running Dragino, Milesight, SenseCAP, Netvox, NCD, or Browan nodes on The Things Network (TTN) or ChirpStack? You don't need new hardware. Just enter your DevEUIs in the app, point your Webhook to our Edge router, and your sensors go live in StilSein.",
+            "Two easy ways to connect existing Dragino, Milesight, SenseCAP, Netvox, NCD, or Browan hardware: <strong>(A) StilSein Managed TTN.</strong> Skip creating your own TTN account and simply enter your DevEUIs in the Farm Builder; we manage the cluster for you. Or <strong>(B) Your Own Personal TTN / ChirpStack.</strong> Keep full control of your own LNS and link one Webhook to our Edge router.",
+          hw_opt_link: "Read TTN & Webhook Setup Guide →",
           hw_step3_title: "3. EDGE CLOUD & AI",
           hw_step3_desc:
             "Incoming hex packets are decoded at the Cloudflare Edge, evaluated against your pipe & dam thresholds, stored in your isolated database vault, and analyzed by Jakkals AI.",
@@ -3933,6 +3984,8 @@
           modal_li1: "Volle Apple iPhone & App Store (iStore) bevestiging",
           modal_li3:
             "Drie-Paneel Rekenaar Web Portaal (teiken: einde Februarie)",
+          modal_li5:
+            "Direkte Hardeware-Pakket Versending (DIY Stuur Parte. Teiken: einde Februarie)",
           modal_li2:
             "Mismeter & Grondvog-sensors (GrondWolf) tans in ontwikkeling",
           modal_li4: "Deurlopende app-winkel en vennootportaal afronding",
@@ -3957,6 +4010,8 @@
           hero_pill1_txt:
             "Sagteware & Telemetrie Platform wat gateways & sensors koppel",
           hero_pill2_tag: "DEURSIGTIGE PRYSE",
+          hero_pill2_txt:
+            "Basis-Hub <span class='text-jakkals-orange'>R399 ($22)/md</span> • Sensors vanaf <span class='text-stilsein-blue'>R49 ($3)</span>",
           hero_pill3_tag: "MAKLIKE INSTALLASIE",
           hero_pill3_txt: "Reël plaaslike vennote direk in die app",
           hero_btn_price: "SIEN PRYSE & SAKREKENAAR",
@@ -3996,11 +4051,12 @@
           path3_desc:
             'Tik <strong>"Bou Nuwe Plaas"</strong>, plaas pennetjies op jou satellietkaart en kies \'n goedgekeurde besproeiings- of sonkrag-installeerder binne 150km. Hulle verskaf & monteer die sensors, laai die kodes, en ons skakel jou app aan.',
           path2_title: "Opsie 2: Stuur Parte & Installeer Self (DIY)",
+          path2_badge: "IN ONTWIKKELING • EINDE FEB",
           path2_desc:
-            "Wil jy jou eie sensors opsit? Bestel 'n hardeware-pakket direk in die Plaas-Bouer, volg ons maklike gids en koppel jou sensors aan StilSein.",
+            "<strong>Tans in ontwikkeling (teiken: Einde Februarie):</strong> Bestel 'n vooraf-opgestelde hardeware-pakket direk in die Plaas-Bouer wat na jou plaas gestuur word, volg ons gids en skakel aan. (Opsie 1 & Opsie 3 is vandag beskikbaar.)",
           path1_title: "Opsie 3: Besit Reeds LoRaWAN-Sensors? (Net Sagteware)",
           path1_desc:
-            "Ons is 100% hardeware-agnosties. Koppel bestaande Dragino, Milesight, SenseCAP, Netvox, NCD of Browan-sensors (op TTN of eie LNS) en betaal slegs die maandelikse sagtewarefooi.",
+            "Koppel Dragino, Milesight, SenseCAP, Netvox, NCD of Browan-sensors op twee maniere: kies <strong>StilSein Bestuurde TTN</strong> en voer net jou DevEUIs in die Plaas-Bouer in (geen TTN-rekening nodig nie), of gebruik jou eie persoonlike TTN / privaat LNS via een Webhook.",
           sell_card2_foot: "Installeerders kan by ons vennootnetwerk aansluit",
           sell_card2_link: "Installeerder Vennootportaal →",
 
@@ -4059,7 +4115,8 @@
             "'n Kompakte Gateway by die opstal vang radioseine van veldsensors op (tot 5-jaar battery, 15km reikwydte) met geen SIM-kaarte in die veld nie.",
           hw_opt_title: "BESTAANDE HARDEWARE OF PRIVAAT LNS?",
           hw_opt_desc:
-            "Gebruik jy reeds Dragino, Milesight, SenseCAP, Netvox, NCD of Browan op The Things Network (TTN) of ChirpStack? Voer net jou DevEUIs in die app in, wys jou Webhook na ons Edge-roeteerder, en jou sensors verskyn in StilSein.",
+            "Twee maklike maniere om bestaande Dragino, Milesight, SenseCAP, Netvox, NCD of Browan-hardeware te koppel: <strong>(A) StilSein Bestuurde TTN.</strong> Jy hoef nie 'n eie TTN-rekening op te stel nie, voer net jou DevEUIs in die Plaas-Bouer in en ons hanteer die netwerk. Of <strong>(B) Jou Eie Persoonlike TTN / ChirpStack.</strong> behou volle beheer oor jou eie LNS en koppel een Webhook na ons Edge-roeteerder.",
+          hw_opt_link: "Lees TTN & Webhook Gids →",
           hw_step3_title: "3. EDGE WOLK & KI",
           hw_step3_desc:
             "Inkomende hex-pakkies word by Cloudflare Edge ontsyfer, teen jou pyp- en damdrempels getoets, in jou eie databasis gestoor en deur Jakkals KI ontleed.",
@@ -4241,14 +4298,14 @@
           summary_af:
             "Besluit hoe jy die fisiese sensors wil bekom en monteer. Jy word nooit gedwing om hardeware by ons te koop as jy reeds versoenbare LoRaWAN-sensors het nie.",
           bullets_en: [
-            "<strong>Path A — Yes, I Have Hardware:</strong> Enter your existing sensor IDs (DevEUIs) and pay only the monthly StilSein software fee.",
-            "<strong>Path B — Ship Parts (DIY):</strong> We quote and ship pre-configured sensors and a Gateway straight to your farm for you to mount.",
-            "<strong>Path C — Local Certified Installer:</strong> The app matches you with vetted irrigation or solar partners within 150km, or enter a partner's <strong>Promo Code</strong> to link directly.",
+            "<strong>Path A - Yes, I Have Hardware:</strong> Choose <em>StilSein Managed TTN</em> (just enter your DevEUIs, no TTN account required) OR select <em>Custom / Private LNS</em> to connect your own TTN/ChirpStack webhook, and pay only the monthly software fee.",
+            "<strong>Path B - Ship Parts (DIY Coming End of Feb):</strong> Currently in development for late February. Soon you will be able to order pre-configured kits shipped straight to your farm.",
+            "<strong>Path C - Local Certified Installer:</strong> Available right now. The app matches you with vetted irrigation or solar partners within 150km, or enter a partner's <strong>Promo Code</strong> to link directly.",
           ],
           bullets_af: [
-            "<strong>Opsie A — Ja, Ek Het Hardeware:</strong> Voer jou bestaande sensor-kodes (DevEUIs) in en betaal net die maandelikse StilSein sagtewarefooi.",
-            "<strong>Opsie B — Stuur Parte (DIY):</strong> Ons kwoteer en koerier vooraf-opgestelde sensors en 'n Gateway direk na jou plaas sodat jy self kan opsit.",
-            "<strong>Opsie C — Plaaslike Installeerder:</strong> Die app wys goedgekeurde besproeiings- of sonkragvennote binne 150km, of tik 'n vennoot se <strong>Promosiekode</strong> in om direk te koppel.",
+            "<strong>Opsie A - Ja, Ek Het Hardeware:</strong> Kies <em>StilSein Bestuurde TTN</em> (voer net jou DevEUIs in, geen TTN-rekening nodig nie) OF kies <em>Privaat LNS</em> om jou eie TTN/ChirpStack webhook te koppel, en betaal slegs die maandelikse sagtewarefooi.",
+            "<strong>Opsie B - Stuur Parte (DIY Einde Feb):</strong> Tans in ontwikkeling vir einde Februarie. Binnekort kan vooraf-opgestelde pakkette direk na jou plaas gestuur word.",
+            "<strong>Opsie C - Plaaslike Installeerder:</strong> Vandag beskikbaar. Die app wys goedgekeurde besproeiings- of sonkragvennote binne 150km, of tik 'n vennoot se <strong>Promosiekode</strong> in om direk te koppel.",
           ],
           img: "assets/images/mockup_phone_builder_step3.png",
           cap_en: "STEP 3: HARDWARE SOURCE & INSTALLERS",
@@ -4937,8 +4994,8 @@
           ],
         },
         web: {
-          tag_en: "08 // DESKTOP WEB PORTAL (TRIPLE-PANE — END OF FEB)",
-          tag_af: "08 // REKENAAR WEB PORTAAL (3-PANEEL — EINDE FEB)",
+          tag_en: "08 // DESKTOP WEB PORTAL (TRIPLE-PANE: END OF FEB)",
+          tag_af: "08 // REKENAAR WEB PORTAAL (3-PANEEL: EINDE FEB)",
           items: [
             {
               cat_en: "Web Portal (3-Pane)",

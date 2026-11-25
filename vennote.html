@@ -982,200 +982,55 @@
             </div>
           </div>
 
-          <!-- RIGHT COLUMN (38%): DUMMY PHONE SHOWCASE OF INSTALLER VIEW IN APP -->
+          <!-- RIGHT COLUMN (38%): IN-APP INSTALLER SCREENSHOTS (LIST VIEW & EXPANDED DRAWER) -->
           <div class="lg:col-span-5 flex flex-col items-center">
-            <!-- Toggle between Interactive Live Card Preview & Real App Screenshot -->
+            <!-- Toggle between Installer Option List (01) & Expanded Installer Details (02) -->
             <div
               class="inline-flex items-center gap-1.5 bg-stilsein-dark/90 p-1 rounded-xl border border-stilsein-blue/30 mb-4"
             >
               <button
                 type="button"
-                id="phone-mode-live"
-                onclick="setInstallerPhoneMode('live')"
+                id="phone-mode-01"
+                onclick="setInstallerPhoneMode(1)"
                 class="px-3.5 py-1.5 rounded-lg text-[10px] font-bold tracking-wider uppercase transition-all bg-stilsein-blue text-stilsein-dark"
-                data-i18n="phone_tab_live"
+                data-i18n="phone_tab_01"
               >
-                Live Card Preview
+                1. Installer Options
               </button>
               <button
                 type="button"
-                id="phone-mode-shot"
-                onclick="setInstallerPhoneMode('shot')"
+                id="phone-mode-02"
+                onclick="setInstallerPhoneMode(2)"
                 class="px-3.5 py-1.5 rounded-lg text-[10px] font-bold tracking-wider uppercase transition-all text-stilsein-muted hover:text-white"
-                data-i18n="phone_tab_shot"
+                data-i18n="phone_tab_02"
               >
-                App Screenshot
+                2. Partner Details
               </button>
             </div>
 
-            <!-- MODE A: BESPOKE DUMMY PHONE RENDERING EXACT FLUTTER "INSTALLER SELECTED" UI -->
+            <!-- SCREEN 1: Farm Builder Installer Option + Partner List -->
             <div
-              id="installer-phone-live"
-              class="w-full max-w-[295px] rounded-[34px] border-[3px] border-stilsein-blue/35 bg-[#12161C] p-2.5 shadow-[0_26px_55px_rgba(0,0,0,0.92)]"
-            >
-              <!-- Phone Screen -->
-              <div
-                class="rounded-[26px] bg-[#1A1F26] panel-texture border border-white/10 overflow-hidden flex flex-col"
-              >
-                <!-- Notch / App Header -->
-                <div
-                  class="bg-[#232B38] px-4 pt-3 pb-2.5 border-b border-stilsein-blue/25 flex items-center justify-between"
-                >
-                  <div class="flex items-center gap-2">
-                    <img
-                      src="assets/images/wolf_white.png"
-                      alt=""
-                      class="h-4 w-auto"
-                      onerror="this.classList.add('hidden')"
-                    />
-                    <span
-                      class="text-[10px] font-garet tracking-widest text-jakkals-orange uppercase"
-                      data-i18n="phone_hdr"
-                      >FARM BUILDER • PARTNER</span
-                    >
-                  </div>
-                  <span class="text-[9px] font-mono text-stilsein-blue"
-                    >GPS 150km</span
-                  >
-                </div>
-
-                <!-- Screen Body -->
-                <div class="p-3.5 space-y-3 text-left">
-                  <!-- Promo Code Box (Exact replica of panel_farm_builder.dart / panel_upsell.dart) -->
-                  <div
-                    class="p-2.5 rounded-xl bg-black/35 border border-jakkals-orange/35"
-                  >
-                    <div
-                      class="text-[8.5px] font-bold text-jakkals-orange tracking-wider uppercase mb-1.5"
-                      data-i18n="phone_promo_lbl"
-                    >
-                      HAVE A PARTNER PROMO CODE?
-                    </div>
-                    <div class="flex items-center gap-1.5">
-                      <div
-                        id="preview-promo-code"
-                        class="flex-1 bg-black/50 rounded-md px-2 py-1.5 text-[10px] font-mono font-bold text-white truncate border border-white/10"
-                      >
-                        AGRITECH-VAR
-                      </div>
-                      <span
-                        class="px-2.5 py-1.5 rounded-md bg-emerald-400 text-[#1A1F26] text-[9px] font-black uppercase tracking-wider"
-                      >
-                        LINKED!
-                      </span>
-                    </div>
-                  </div>
-
-                  <!-- Certified Partner Expanded Card (Exact replica of ExpansionTile in app) -->
-                  <div
-                    class="rounded-xl bg-jakkals-orange/[0.08] border border-jakkals-orange p-3 space-y-2.5"
-                  >
-                    <div class="flex items-center gap-2.5">
-                      <div
-                        id="preview-logo-box"
-                        class="w-9 h-9 rounded-lg bg-[#232B38] border border-white/15 flex items-center justify-center overflow-hidden shrink-0"
-                      >
-                        <span class="text-sm">🛠️</span>
-                      </div>
-                      <div class="min-w-0 flex-1">
-                        <div
-                          id="preview-company"
-                          class="text-[11px] font-black text-jakkals-orange uppercase tracking-wide truncate"
-                        >
-                          AGRITECH INSTALLS
-                        </div>
-                        <div
-                          id="preview-distance"
-                          class="text-[9px] text-gray-400 font-mono"
-                        >
-                          14.2km away •
-                          <span id="preview-region">Eastern Cape</span>
-                        </div>
-                      </div>
-                      <span class="text-jakkals-orange text-xs">▲</span>
-                    </div>
-
-                    <div
-                      class="border-t border-white/10 pt-2 space-y-1 text-[9.5px]"
-                    >
-                      <div class="flex justify-between gap-2">
-                        <span class="text-gray-400">Contact:</span>
-                        <span
-                          id="preview-contact"
-                          class="text-white font-bold truncate"
-                          >John Doe</span
-                        >
-                      </div>
-                      <div class="flex justify-between gap-2">
-                        <span class="text-gray-400">Phone:</span>
-                        <span
-                          id="preview-phone"
-                          class="text-white font-bold truncate"
-                          >082 123 4567</span
-                        >
-                      </div>
-                      <div class="flex justify-between gap-2">
-                        <span class="text-gray-400">Email:</span>
-                        <span
-                          id="preview-email"
-                          class="text-white font-bold truncate"
-                          >info@agritech.co.za</span
-                        >
-                      </div>
-                      <div class="flex justify-between gap-2">
-                        <span class="text-gray-400">Services:</span>
-                        <span
-                          id="preview-services"
-                          class="text-stilsein-blue font-bold truncate"
-                          >Rain, Pipe, Dam</span
-                        >
-                      </div>
-                    </div>
-
-                    <div
-                      id="preview-exp"
-                      class="text-[9px] italic text-gray-300 bg-black/25 rounded p-2 line-clamp-2"
-                    >
-                      "12 years installing solar boreholes, LoRaWAN gauges, and
-                      automated irrigation."
-                    </div>
-
-                    <!-- INSTALLER SELECTED Button (Exact match to Flutter ElevatedButton) -->
-                    <div
-                      class="w-full py-2 rounded-lg bg-jakkals-orange text-[#1A1F26] text-[10px] font-black tracking-wider uppercase flex items-center justify-center gap-1.5 shadow-[0_0_12px_rgba(255,158,74,0.35)]"
-                    >
-                      <span>✓</span>
-                      <span data-i18n="phone_selected_btn"
-                        >INSTALLER SELECTED</span
-                      >
-                    </div>
-                  </div>
-
-                  <div
-                    class="w-full py-2 rounded-lg bg-[#1A1F26] border border-stilsein-blue text-stilsein-blue text-[9px] font-bold tracking-widest uppercase text-center"
-                    data-i18n="phone_proceed_btn"
-                  >
-                    PROCEED TO SENSOR CONFIG &rarr;
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- MODE B: ACTUAL APP SCREENSHOT (mockup_upsell_02.png) -->
-            <div
-              id="installer-phone-shot"
-              class="hidden w-full max-w-[275px] aspect-[1/2] flex items-center justify-center cursor-pointer"
-              onclick="
-                openLightbox(
-                  'assets/images/mockup_upsell_02.png',
-                  'In-App Local Installer Matchmaker',
-                )
-              "
+              id="installer-phone-01"
+              class="w-full max-w-[275px] aspect-[1/2] flex items-center justify-center cursor-pointer"
+              onclick="openCurrentInstallerLightbox()"
             >
               <img
-                src="assets/images/mockup_upsell_02.png"
-                alt="StilSein App Installer Selected Screen"
-                class="w-full h-full object-contain drop-shadow-[0_24px_45px_rgba(0,0,0,0.92)]"
+                src="assets/images/mockup_installer_01.png"
+                alt="StilSein Farm Builder Installer Selection"
+                class="w-full h-full object-contain drop-shadow-[0_24px_45px_rgba(0,0,0,0.92)] hover:scale-[1.02] transition-transform duration-300"
+              />
+            </div>
+
+            <!-- SCREEN 2: Same Screen with Installer Drawer Expanded -->
+            <div
+              id="installer-phone-02"
+              class="hidden w-full max-w-[275px] aspect-[1/2] flex items-center justify-center cursor-pointer"
+              onclick="openCurrentInstallerLightbox()"
+            >
+              <img
+                src="assets/images/mockup_installer_02.png"
+                alt="StilSein Farm Builder Installer Details Drawer"
+                class="w-full h-full object-contain drop-shadow-[0_24px_45px_rgba(0,0,0,0.92)] hover:scale-[1.02] transition-transform duration-300"
               />
             </div>
 
@@ -1183,7 +1038,8 @@
               class="text-[10px] font-mono text-gray-400 text-center mt-3 max-w-xs"
               data-i18n="phone_live_caption"
             >
-              Live preview updates as you type in the application form below.
+              Switch tabs to inspect the list &amp; opened drawer • Tap phone to
+              zoom.
             </p>
           </div>
         </div>
@@ -1523,7 +1379,6 @@
                   id="partner-company"
                   name="partner-company"
                   placeholder="e.g. AgriTech Installs"
-                  oninput="syncLivePhonePreview()"
                   required
                   class="w-full bg-stilsein-dark/80 border border-white/10 rounded-xl p-3 text-white placeholder-gray-500 focus:outline-none focus:border-jakkals-orange focus:ring-1 focus:ring-jakkals-orange transition-all"
                 />
@@ -1558,7 +1413,6 @@
                   id="partner-fname"
                   name="partner-fname"
                   placeholder="John"
-                  oninput="syncLivePhonePreview()"
                   required
                   class="w-full bg-stilsein-dark/80 border border-white/10 rounded-xl p-3 text-white placeholder-gray-500 focus:outline-none focus:border-jakkals-orange focus:ring-1 focus:ring-jakkals-orange transition-all"
                 />
@@ -1575,7 +1429,6 @@
                   id="partner-lname"
                   name="partner-lname"
                   placeholder="Doe"
-                  oninput="syncLivePhonePreview()"
                   required
                   class="w-full bg-stilsein-dark/80 border border-white/10 rounded-xl p-3 text-white placeholder-gray-500 focus:outline-none focus:border-jakkals-orange focus:ring-1 focus:ring-jakkals-orange transition-all"
                 />
@@ -1595,7 +1448,6 @@
                   id="partner-phone"
                   name="partner-phone"
                   placeholder="082 123 4567"
-                  oninput="syncLivePhonePreview()"
                   required
                   class="w-full bg-stilsein-dark/80 border border-white/10 rounded-xl p-3 text-white placeholder-gray-500 focus:outline-none focus:border-jakkals-orange focus:ring-1 focus:ring-jakkals-orange transition-all"
                 />
@@ -1612,7 +1464,6 @@
                   id="partner-email"
                   name="partner-email"
                   placeholder="info@example.com"
-                  oninput="syncLivePhonePreview()"
                   required
                   class="w-full bg-stilsein-dark/80 border border-white/10 rounded-xl p-3 text-white placeholder-gray-500 focus:outline-none focus:border-jakkals-orange focus:ring-1 focus:ring-jakkals-orange transition-all"
                 />
@@ -1632,7 +1483,6 @@
                 name="partner-exp"
                 rows="2"
                 placeholder="..."
-                oninput="syncLivePhonePreview()"
                 required
                 class="w-full bg-stilsein-dark/80 border border-white/10 rounded-xl p-3 text-white placeholder-gray-500 focus:outline-none focus:border-jakkals-orange focus:ring-1 focus:ring-jakkals-orange transition-all"
               ></textarea>
@@ -1929,14 +1779,10 @@
           promo_s3:
             "<strong>Stacks on Expansions Too:</strong> Even when an existing farm adds new Rain, Pipe, or Dam sensors later via Upsell, entering your code locks the expansion to you!",
 
-          phone_tab_live: "Live Card Preview",
-          phone_tab_shot: "App Screenshot",
-          phone_hdr: "FARM BUILDER • PARTNER",
-          phone_promo_lbl: "HAVE A PARTNER PROMO CODE?",
-          phone_selected_btn: "INSTALLER SELECTED",
-          phone_proceed_btn: "PROCEED TO SENSOR CONFIG →",
+          phone_tab_01: "1. Installer Options",
+          phone_tab_02: "2. Partner Details",
           phone_live_caption:
-            "Live preview updates as you type in the application form below.",
+            "Switch tabs to inspect the list & opened drawer • Tap phone to zoom.",
 
           p_tech_badge: "ZERO INVENTORY LOCK-IN",
           p_tech_title:
@@ -1977,7 +1823,7 @@
           p_form_badge: "PARTNER REGISTRATION",
           p_form_title: "APPLY TO BECOME A PARTNER",
           p_form_desc:
-            "Join the network of installers bringing agricultural intelligence to signal-dead zones. Notice how typing your details updates the live in-app preview above.",
+            "Join the network of installers bringing agricultural intelligence to signal-dead zones across South Africa.",
           p_form_company: "Company Name",
           p_form_website: "Company Website (Optional)",
           p_form_fname: "First Name",
@@ -2063,14 +1909,10 @@
           promo_s3:
             "<strong>Tel Op Uitbreidings Ook:</strong> Selfs wanneer 'n bestaande plaas later nuwe Reën-, Pyp- of Damsensors byvoeg, sluit jou kode die nuwe sensors ook aan jou!",
 
-          phone_tab_live: "Lewendige Kaart Voorskou",
-          phone_tab_shot: "App Skermkiekie",
-          phone_hdr: "PLAAS-BOUER • VENNOOT",
-          phone_promo_lbl: "HET JY 'N VENNOOT KODE?",
-          phone_selected_btn: "INSTALLEERDER GEKIES",
-          phone_proceed_btn: "GAAN VOORT NA SENSOR OPSTELLING →",
+          phone_tab_01: "1. Installeerder Opsies",
+          phone_tab_02: "2. Vennoot Besonderhede",
           phone_live_caption:
-            "Lewendige voorskou werk outomaties op soos jy hieronder tik.",
+            "Wissel oortjies vir lys & oop laai • Tik foon om te vergroot.",
 
           p_tech_badge: "NUL VOORRAAD VERPLIGTING",
           p_tech_title:
@@ -2111,7 +1953,7 @@
           p_form_badge: "VENNOOT REGISTRASIE",
           p_form_title: "DOEN AANSOEK AS VENNOOT",
           p_form_desc:
-            "Sluit aan by die netwerk van installeerders wat plaas-intelligensie na seinlose kampe bring. Kyk hoe jou inligting die lewendige app-voorskou hierbo opdateer.",
+            "Sluit aan by die netwerk van installeerders wat plaas-intelligensie na seinlose kampe regoor Suid-Afrika bring.",
           p_form_company: "Maatskappy Naam",
           p_form_website: "Webwerf (Opsioneel)",
           p_form_fname: "Voornaam",
@@ -2368,79 +2210,63 @@
         }
       }, 5000);
 
-      function setInstallerPhoneMode(mode) {
-        const liveEl = document.getElementById("installer-phone-live");
-        const shotEl = document.getElementById("installer-phone-shot");
-        const btnLive = document.getElementById("phone-mode-live");
-        const btnShot = document.getElementById("phone-mode-shot");
+      let activeInstallerShot = 1;
 
-        if (mode === "live") {
-          liveEl.classList.remove("hidden");
-          shotEl.classList.add("hidden");
-          btnLive.className =
-            "px-3.5 py-1.5 rounded-lg text-[10px] font-bold tracking-wider uppercase transition-all bg-stilsein-blue text-stilsein-dark";
-          btnShot.className =
-            "px-3.5 py-1.5 rounded-lg text-[10px] font-bold tracking-wider uppercase transition-all text-stilsein-muted hover:text-white";
+      function setInstallerPhoneMode(shotNum) {
+        activeInstallerShot = shotNum === 2 ? 2 : 1;
+        const p1 = document.getElementById("installer-phone-01");
+        const p2 = document.getElementById("installer-phone-02");
+        const b1 = document.getElementById("phone-mode-01");
+        const b2 = document.getElementById("phone-mode-02");
+
+        if (activeInstallerShot === 1) {
+          p1?.classList.remove("hidden");
+          p2?.classList.add("hidden");
+          if (b1) {
+            b1.className =
+              "px-3.5 py-1.5 rounded-lg text-[10px] font-bold tracking-wider uppercase transition-all bg-stilsein-blue text-stilsein-dark";
+          }
+          if (b2) {
+            b2.className =
+              "px-3.5 py-1.5 rounded-lg text-[10px] font-bold tracking-wider uppercase transition-all text-stilsein-muted hover:text-white";
+          }
         } else {
-          shotEl.classList.remove("hidden");
-          liveEl.classList.add("hidden");
-          btnShot.className =
-            "px-3.5 py-1.5 rounded-lg text-[10px] font-bold tracking-wider uppercase transition-all bg-stilsein-blue text-stilsein-dark";
-          btnLive.className =
-            "px-3.5 py-1.5 rounded-lg text-[10px] font-bold tracking-wider uppercase transition-all text-stilsein-muted hover:text-white";
+          p2?.classList.remove("hidden");
+          p1?.classList.add("hidden");
+          if (b2) {
+            b2.className =
+              "px-3.5 py-1.5 rounded-lg text-[10px] font-bold tracking-wider uppercase transition-all bg-stilsein-blue text-stilsein-dark";
+          }
+          if (b1) {
+            b1.className =
+              "px-3.5 py-1.5 rounded-lg text-[10px] font-bold tracking-wider uppercase transition-all text-stilsein-muted hover:text-white";
+          }
+        }
+      }
+
+      function openCurrentInstallerLightbox() {
+        const isAf = window.currentLang === "af";
+        if (activeInstallerShot === 1) {
+          openLightbox(
+            "assets/images/mockup_installer_01.png",
+            isAf
+              ? "Plaas-Bouer • Installeerder Opsies"
+              : "Farm Builder • Installer Options",
+          );
+        } else {
+          openLightbox(
+            "assets/images/mockup_installer_02.png",
+            isAf
+              ? "Plaas-Bouer • Vennoot Besonderhede"
+              : "Farm Builder • Partner Details Drawer",
+          );
         }
       }
 
       // ----------------------------------------------------------
-      // 3. LIVE DUMMY PHONE PREVIEW SYNC WITH APPLICATION FORM
+      // 3. LOGO UPLOAD & WEBP COMPRESSION
       // ----------------------------------------------------------
       let compressedLogoBase64 = "";
-
-      function syncLivePhonePreview() {
-        const rawCo = document.getElementById("partner-company")?.value.trim();
-        const fName = document.getElementById("partner-fname")?.value.trim();
-        const lName = document.getElementById("partner-lname")?.value.trim();
-        const phone = document.getElementById("partner-phone")?.value.trim();
-        const email = document.getElementById("partner-email")?.value.trim();
-        const exp = document.getElementById("partner-exp")?.value.trim();
-
-        const companyName = rawCo || "AgriTech Installs";
-        const cleanPromoBase = companyName
-          .replace(/[^a-zA-Z0-9]/g, "")
-          .toUpperCase();
-        document.getElementById("preview-promo-code").innerText =
-          `${cleanPromoBase || "YOURCO"}-VAR`;
-        document.getElementById("preview-company").innerText =
-          companyName.toUpperCase();
-
-        const fullName = [fName, lName].filter(Boolean).join(" ") || "John Doe";
-        document.getElementById("preview-contact").innerText = fullName;
-        document.getElementById("preview-phone").innerText =
-          phone || "082 123 4567";
-        document.getElementById("preview-email").innerText =
-          email || "info@agritech.co.za";
-
-        if (exp) {
-          document.getElementById("preview-exp").innerText = `"${exp}"`;
-        }
-
-        const firstRegion =
-          document.getElementById("region-0")?.value || "Eastern Cape";
-        document.getElementById("preview-region").innerText = firstRegion;
-
-        const firstBranchCbs = document.querySelectorAll(
-          ".service-cb-0:checked",
-        );
-        if (firstBranchCbs.length > 0) {
-          document.getElementById("preview-services").innerText = Array.from(
-            firstBranchCbs,
-          )
-            .map((cb) => cb.value)
-            .join(", ");
-        } else {
-          document.getElementById("preview-services").innerText = "General";
-        }
-      }
 
       document
         .getElementById("partner-logo")
@@ -2466,11 +2292,6 @@
               const preview = document.getElementById("logo-preview");
               preview.src = compressedLogoBase64;
               preview.classList.remove("hidden");
-
-              const phoneLogoBox = document.getElementById("preview-logo-box");
-              if (phoneLogoBox) {
-                phoneLogoBox.innerHTML = `<img src="${compressedLogoBase64}" alt="Partner Logo" class="w-full h-full object-cover" />`;
-              }
             };
             img.src = event.target.result;
           };
@@ -2530,7 +2351,7 @@
               <div>
                 <label class="block text-xs font-bold text-stilsein-blue tracking-widest uppercase mb-2">${isAf ? "Bedryfsstreek" : "Operating Region"}</label>
                 <div class="relative">
-                  <select id="region-${branchId}" onchange="syncLivePhonePreview()" required class="stilsein-select appearance-none w-full border border-stilsein-blue/35 hover:border-jakkals-orange/60 rounded-xl py-3 pl-3.5 pr-10 text-white text-sm font-semibold focus:outline-none focus:border-jakkals-orange transition-all cursor-pointer shadow-inner">
+                  <select id="region-${branchId}" required class="stilsein-select appearance-none w-full border border-stilsein-blue/35 hover:border-jakkals-orange/60 rounded-xl py-3 pl-3.5 pr-10 text-white text-sm font-semibold focus:outline-none focus:border-jakkals-orange transition-all cursor-pointer shadow-inner">
                     ${regionOptions}
                   </select>
                   <svg class="w-4 h-4 text-jakkals-orange pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -2558,11 +2379,11 @@
             <div class="mb-5 p-4 bg-black/25 rounded-xl border border-white/5">
               <label class="block text-[10px] font-octasquares text-stilsein-blue tracking-widest uppercase mb-3">${isAf ? "Ondersteunde Sensors in Hierdie Streek" : "Supported Services in this Region"}</label>
               <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
-                <label class="flex items-center space-x-2 text-white text-xs cursor-pointer"><input type="checkbox" value="Rain" onchange="syncLivePhonePreview()" class="service-cb-${branchId} form-checkbox text-jakkals-orange bg-black/40 border-white/10 rounded" checked><span>Rain / Weerwolf</span></label>
-                <label class="flex items-center space-x-2 text-white text-xs cursor-pointer"><input type="checkbox" value="Pipe" onchange="syncLivePhonePreview()" class="service-cb-${branchId} form-checkbox text-jakkals-orange bg-black/40 border-white/10 rounded" checked><span>Pipes / Drukwolf</span></label>
-                <label class="flex items-center space-x-2 text-white text-xs cursor-pointer"><input type="checkbox" value="Dam" onchange="syncLivePhonePreview()" class="service-cb-${branchId} form-checkbox text-jakkals-orange bg-black/40 border-white/10 rounded" checked><span>Dams / Waterwolf</span></label>
-                <label class="flex items-center space-x-2 text-gray-300 text-xs cursor-pointer"><input type="checkbox" value="Soil" onchange="syncLivePhonePreview()" class="service-cb-${branchId} form-checkbox text-jakkals-orange bg-black/40 border-white/10 rounded"><span>Soil / Grondwolf (Soon)</span></label>
-                <label class="flex items-center space-x-2 text-gray-300 text-xs cursor-pointer"><input type="checkbox" value="Security" onchange="syncLivePhonePreview()" class="service-cb-${branchId} form-checkbox text-jakkals-orange bg-black/40 border-white/10 rounded"><span>Security / Wagwolf (Soon)</span></label>
+                <label class="flex items-center space-x-2 text-white text-xs cursor-pointer"><input type="checkbox" value="Rain" class="service-cb-${branchId} form-checkbox text-jakkals-orange bg-black/40 border-white/10 rounded" checked><span>Rain / Weerwolf</span></label>
+                <label class="flex items-center space-x-2 text-white text-xs cursor-pointer"><input type="checkbox" value="Pipe" class="service-cb-${branchId} form-checkbox text-jakkals-orange bg-black/40 border-white/10 rounded" checked><span>Pipes / Drukwolf</span></label>
+                <label class="flex items-center space-x-2 text-white text-xs cursor-pointer"><input type="checkbox" value="Dam" class="service-cb-${branchId} form-checkbox text-jakkals-orange bg-black/40 border-white/10 rounded" checked><span>Dams / Waterwolf</span></label>
+                <label class="flex items-center space-x-2 text-gray-300 text-xs cursor-pointer"><input type="checkbox" value="Soil" class="service-cb-${branchId} form-checkbox text-jakkals-orange bg-black/40 border-white/10 rounded"><span>Soil / Grondwolf (Soon)</span></label>
+                <label class="flex items-center space-x-2 text-gray-300 text-xs cursor-pointer"><input type="checkbox" value="Security" class="service-cb-${branchId} form-checkbox text-jakkals-orange bg-black/40 border-white/10 rounded"><span>Security / Wagwolf (Soon)</span></label>
               </div>
             </div>
 
@@ -2802,12 +2623,9 @@
                 e.target.reset();
                 compressedLogoBase64 = "";
                 document.getElementById("logo-preview").classList.add("hidden");
-                document.getElementById("preview-logo-box").innerHTML =
-                  '<span class="text-sm">🛠️</span>';
                 document.getElementById("branches-container").innerHTML = "";
                 branchCount = 0;
                 addBranch();
-                syncLivePhonePreview();
               }, 450);
             };
           })
@@ -3144,7 +2962,6 @@
       // Initialize UI on Load
       applyPartnerTranslations();
       hydrateLivePricing();
-      syncLivePhonePreview();
     </script>
   </body>
 </html>
