@@ -389,9 +389,15 @@
               </li>
               <li>
                 <strong class="text-white">Custom Header:</strong>
-                <code class="text-jakkals-orange ml-1">X-StilSein-Auth</code>
-                <span class="text-stilsein-muted text-xs"
-                  >(your StilSein Security Token)</span
+                <code class="text-jakkals-orange ml-1"
+                  >X-StilSein-Webhook-Secret</code
+                >
+                <span
+                  class="text-stilsein-muted text-xs"
+                  data-dict="c_s3_header_note"
+                  >(paste the Webhook Secret Token from StilSein HQ —
+                  <code>X-StilSein-Auth</code> &amp;
+                  <code>Authorization: Bearer</code> are also accepted)</span
                 >
               </li>
               <li>
@@ -460,9 +466,13 @@
             class="text-sm text-gray-300 leading-relaxed mb-4"
             data-dict="hw_desc"
           >
-            StilSein natively decodes both standard TTN
-            <code>decoded_payload</code> JSON and raw LoRaWAN hex payloads
-            (<code>frm_payload</code>) directly at the Cloudflare Edge for:
+            StilSein natively accepts both
+            <strong>The Things Stack (TTN v3)</strong> and
+            <strong>ChirpStack (v3/v4)</strong> JSON webhooks, decoding both
+            pre-decoded JSON and raw LoRaWAN Base64 payloads (<code
+              >frm_payload</code
+            >
+            / <code>data</code>) directly at the Cloudflare Edge for:
           </p>
           <div class="flex flex-wrap gap-2">
             <span
@@ -569,13 +579,16 @@
           c_s2_desc:
             "If using a private LNS or setting up manually prior to template availability, click the <strong>Custom webhook</strong> tile.",
           c_s3_title: "Configure the Cloudflare Edge Bridge",
-          c_s3_event: "Tick <strong>Uplink message</strong> only.",
+          c_s3_header_note:
+            "(paste the Webhook Secret Token from StilSein HQ — <code>X-StilSein-Auth</code> &amp; <code>Authorization: Bearer</code> are also accepted)",
+          c_s3_event:
+            "Tick <strong>Uplink message</strong> only (or configure Uplink HTTP integration in ChirpStack).",
           c_s4_title: "Save and Ignite",
           c_s4_desc:
             "Click <strong>Add webhook</strong> at the bottom of the page. Your hardware will begin streaming encrypted telemetry to StilSein immediately.",
           hw_title: "Supported Hardware & Edge Decoders",
           hw_desc:
-            "StilSein natively decodes both standard TTN <code>decoded_payload</code> JSON and raw LoRaWAN hex payloads (<code>frm_payload</code>) directly at the Cloudflare Edge for:",
+            "StilSein natively accepts both <strong>The Things Stack (TTN v3)</strong> and <strong>ChirpStack (v3/v4)</strong> JSON webhooks, decoding both pre-decoded JSON and raw LoRaWAN Base64 payloads (<code>frm_payload</code> / <code>data</code>) directly at the Cloudflare Edge for:",
         },
         af: {
           nav_back: "Terug na Hoofblad",
@@ -604,13 +617,16 @@
           c_s2_desc:
             "As jy 'n privaat LNS gebruik of die skakel per hand opstel, klik op die <strong>Custom webhook</strong> blokkie.",
           c_s3_title: "Stel die Cloudflare Edge Brug Op",
-          c_s3_event: "Merk slegs <strong>Uplink message</strong>.",
+          c_s3_header_note:
+            "(plak die Webhook Geheime Sleutel van StilSein HQ — <code>X-StilSein-Auth</code> &amp; <code>Authorization: Bearer</code> word ook aanvaar)",
+          c_s3_event:
+            "Merk slegs <strong>Uplink message</strong> (of stel Uplink HTTP-integrasie op in ChirpStack).",
           c_s4_title: "Stoor en Aktiveer",
           c_s4_desc:
             "Klik <strong>Add webhook</strong> onderaan die bladsy. Jou hardeware sal onmiddellik geënkripteerde telemetrie begin stuur.",
           hw_title: "Ondersteunde Hardeware & Edge Dekodeerders",
           hw_desc:
-            "StilSein ontsyfer beide standaard TTN <code>decoded_payload</code> JSON en rou LoRaWAN heksadesimale vragte (<code>frm_payload</code>) direk op die Cloudflare Edge vir:",
+            "StilSein aanvaar beide <strong>The Things Stack (TTN v3)</strong> en <strong>ChirpStack (v3/v4)</strong> JSON webhooks, en ontsyfer vooraf-gedekodeerde JSON sowel as rou LoRaWAN Base64 vragte (<code>frm_payload</code> / <code>data</code>) direk op die Cloudflare Edge vir:",
         },
       };
 
